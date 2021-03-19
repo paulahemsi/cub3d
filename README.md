@@ -7,7 +7,8 @@ cause Doom was a milestone in my childhood
 * [Study resources](#study)
 * [Usage](#usage)
 
-## introduction :suspect:
+## introduction 
+:suspect:
 
 This [project](https://github.com/paulahemsi/cub3d/blob/main/en.subject.pdf) is inspired by the world-famous eponymous 90’s game, which was the first FPS ever. It will enable to explore ray-casting. My goal will be to make a dynamic view inside a maze, in which you’ll have to find your way
 
