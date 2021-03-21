@@ -29,7 +29,7 @@ and this [coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) *2d Ray
 
 * 18/03: study collision detection and field of view algotithms. [more info](#study) and start to code a js prototype with p5.js library to understand better the concepts
 
-![](./mindmaps/prototype_cub.mp4)
+![](./mindmaps/prototype_cub.gif)
 
 * 19/03: coloquei a libft e inseri a ft_printf na libft, fazendo os ajustes de make file e headers necessários. Criei o makefile do Cub3d. Criei o header do cub3d com uma primeira organização de structs para as infos que vierem das configurações do arquivo .cub. Iniciei este diário de trabalho. Comecei a estudar as novas funções autorizadas:
 
