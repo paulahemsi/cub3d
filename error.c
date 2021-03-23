@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/20 01:52:32 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:54:49 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	return_error(int error_id)
 		ft_putstr("Error\nmissconfig\n");
 	else if (error_id == -6)
 		ft_putstr("Error\nmalloc ou problema no path das texturas\n");
+	else if (error_id == -7)
+		ft_putstr("Error\nmap misconfig\n");
 	//!o que retornar aqui? devo olhar um padrão? ter um padrão? EXIT_FAILURE?
 	exit(error_id);
 }
