@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/23 13:26:57 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 19:38:14 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ static void	free_map(char **map)
 	free(map);
 }
 
+static void	free_paths(t_configs *configs)
+{
+	free(configs->path.north);
+	free(configs->path.south);
+	free(configs->path.west);
+	free(configs->path.east);
+	free(configs->path.sprite);
+}
+
 static void	render_cub(char *file)
 {
 	t_configs	configs;
@@ -58,13 +67,8 @@ static void	render_cub(char *file)
 	fill_map(&configs, file);
 	check_walls(&configs);
 	testando_as_parada_tudo(&configs);
-	free(configs.path.north);
-	free(configs.path.south);
-	free(configs.path.west);
-	free(configs.path.east);
-	free(configs.path.sprite);
+	free_paths(&configs);
 	free_map(configs.map.row);
-	free(line);
 }
 
 static void	check_args(int argc, char **argv)

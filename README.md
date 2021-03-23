@@ -59,7 +59,7 @@ Fiz a função main.c e o tratamento de erros para os argumentos do programa (ar
 
 * 22/03: problema da duplicidade de configs de path resolvido de maneira super simples, bem contente com essa função dos paths =) Duplicidade da resolution e do rgb floor e ceiling já estavam resolvidos na própria lógica da função.
 
-* 23/03: mais testes de erros e mapa devidamente armazenado num array de duas dimensões de char. Preciso tentar criar o hábito de escrever aqui direto em inglês o.O
+* 23/03: mais testes de erros e mapa devidamente armazenado num array de duas dimensões de char. Preciso tentar criar o hábito de escrever aqui direto em inglês o.O Checagem das paredes feita!
 
 </details>
 
