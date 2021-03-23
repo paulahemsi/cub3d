@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 21:18:02 by phemsi-a          #+#    #+#              #
-#    Updated: 2021/03/23 10:36:38 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/03/23 16:51:15 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC = ./source/
 PRINT = ./source/parsing_identifiers/print_
 LIBFT_PATH = ./libraries/libft/
 
-FILES = cub.c error.c parse_configs.c parse_map.c #map_utils.c
+FILES = cub.c error.c parse_configs.c parse_map.c check_walls.c
 OBJECTS = $(FILES:.c=.o)
 
 CC = clang

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/23 12:58:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 13:26:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	testando_as_parada_tudo(t_configs *configs)
 {
-	ft_printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\n\nMAP:\n rows: %u\n columns: %u\n\n\n", configs->path.north, configs->path.south, configs->path.west, configs->path.east, configs->path.sprite, configs->floor.red, configs->floor.green, configs->floor.blue, configs->ceiling.red, configs->ceiling.green, configs->ceiling.blue, configs->window_width, configs->window_height, configs->map.total_row, configs->map.total_column);
+	ft_printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\n\n\n", configs->path.north, configs->path.south, configs->path.west, configs->path.east, configs->path.sprite, configs->floor.red, configs->floor.green, configs->floor.blue, configs->ceiling.red, configs->ceiling.green, configs->ceiling.blue, configs->window_width, configs->window_height);
 	int i = 0;
 	while (configs->map.row[i] != NULL)
 	{
@@ -56,6 +56,7 @@ static void	render_cub(char *file)
 	free(line);
 	close(fd);
 	fill_map(&configs, file);
+	check_walls(&configs);
 	testando_as_parada_tudo(&configs);
 	free(configs.path.north);
 	free(configs.path.south);

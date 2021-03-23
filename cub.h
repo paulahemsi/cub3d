@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/23 12:06:19 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 13:28:03 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void				parse_map(t_configs *configs, char *line);
 void				return_error(int error_id);
 void				set_map(t_configs *configs, char *line);
 void				fill_map(t_configs *configs, char *file);
+void				check_walls(t_configs *configs);
 
 #endif
