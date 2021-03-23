@@ -61,6 +61,8 @@ Fiz a função main.c e o tratamento de erros para os argumentos do programa (ar
 
 * 23/03: mais testes de erros e mapa devidamente armazenado num array de duas dimensões de char. Preciso tentar criar o hábito de escrever aqui direto em inglês o.O Checagem das paredes feita!
 
+![](./mindmaps/check_walls.jpg)
+
 </details>
 
 ## mindmap 
