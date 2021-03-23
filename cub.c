@@ -1,36 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/20 01:29:17 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:58:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub.h"
 
-static void	render_cub(int scene_fd)
+static void	testando_as_parada_tudo(t_configs *configs)
+{
+	ft_printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\n\nMAP:\n rows: %u\n columns: %u\n\n\n", configs->path.north, configs->path.south, configs->path.west, configs->path.east, configs->path.sprite, configs->floor.red, configs->floor.green, configs->floor.blue, configs->ceiling.red, configs->ceiling.green, configs->ceiling.blue, configs->window_width, configs->window_height, configs->map.total_row, configs->map.total_column);
+	int i = 0;
+	while (configs->map.row[i] != NULL)
+	{
+		ft_printf("|%s|\n", configs->map.row[i]);
+		i++;
+	}
+}
+
+static void	free_map(char **map)
+{
+	size_t	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+static void	render_cub(char *file)
 {
 	t_configs	configs;
 	char		*line;
+	int			fd;
 
 	ft_memset(&configs, 0, sizeof(configs));
 	ft_memset(&configs.floor, -1, sizeof(configs.floor));
 	ft_memset(&configs.ceiling, -1, sizeof(configs.ceiling));
-	while (get_next_line(scene_fd, &line))
+	if ((fd = open(file, O_RDONLY)) < 0)
+		return_error(-2);
+	while (get_next_line(fd, &line))
 	{
 		parse_configs(&configs, line);
 		free(line);
 	}
-	//TODO free all config struct function
+	parse_configs(&configs, line);
+	free(line);
+	close(fd);
+	fill_map(&configs, file);
+	testando_as_parada_tudo(&configs);
 	free(configs.path.north);
 	free(configs.path.south);
 	free(configs.path.west);
 	free(configs.path.east);
 	free(configs.path.sprite);
+	free_map(configs.map.row);
 	free(line);
 }
 
@@ -39,15 +71,12 @@ static void	check_args(int argc, char **argv)
 	unsigned int	i;
 	unsigned int	length;
 	char			*cub;
-	int				fd;
 
 	length = ft_strlen(argv[1]);
 	i = length;
 	cub = ft_strnstr(argv[1], ".cub", length);
 	if (!(cub) || cub[0] != argv[1][length - 4])
 		return_error(-1);
-	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		return_error(-2);
 	if (argc == 3)
 	{
 		if (ft_strncmp(argv[2], "--save", 7))
@@ -56,7 +85,7 @@ static void	check_args(int argc, char **argv)
 		//TODO save .bmp
 	}
 	else
-		render_cub(fd);
+		render_cub(argv[1]);
 }
 
 int			main(int argc, char **argv)

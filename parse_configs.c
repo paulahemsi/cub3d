@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/20 09:55:28 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 11:13:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	parse_path(char **texture_path, char *line)
 {
+	if (*texture_path)
+		return_error(-5);
 	if (!(*texture_path = ft_strtrim(line, " \t")))
 		return_error(-6);
 }
@@ -72,6 +74,21 @@ static void	parse_resolution(t_configs *configs, char *line)
 	}
 }
 
+static int	all_configs(t_configs *configs)
+{
+	if ((configs->floor.blue == -1) || (configs->ceiling.blue == -1))
+		return (0);
+	if (!(configs->window_width) || !(configs->window_height))
+		return (0);
+	if (!(configs->path.north) || !(configs->path.south))
+		return (0);
+	if (!(configs->path.east) || !(configs->path.west))
+		return (0);
+	if (!(configs->path.sprite))
+		return (0);
+	return (1);
+}
+
 void		parse_configs(t_configs *configs, char *line)
 {
 	if ((ft_strnequ(line, "NO ", 3)) || (ft_strnequ(line, "NO\t", 3)))
@@ -90,8 +107,8 @@ void		parse_configs(t_configs *configs, char *line)
 		parse_colors(&configs->ceiling, (line + 2));
 	else if ((ft_strnequ(line, "R ", 2)) || (ft_strnequ(line, "R\t", 2)))
 		parse_resolution(configs, (line + 2));
-	else if ((*line == '1') || (*line == ' '))
-		ft_putendl("TODO: MAP TRANSLATE");
+	else if (((*line == '1') || (*line == ' ')) && ((all_configs(configs))))
+		set_map(configs, line);
 	else if (*line != '\0')
 		return_error(-5);
 }
