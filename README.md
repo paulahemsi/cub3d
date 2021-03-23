@@ -3,8 +3,9 @@ cause Doom was a milestone in my childhood
 
 * [Introduction](#introduction)
 * [Step by step](#step_by_step)
+* [Work Diary](#work_diary)
 * [Mindmap](#mindmap) 
-* [Study resources](#study)
+* [Study resources](#study_||_further_reading)
 * [Usage](#usage)
 
 ## introduction 
@@ -15,7 +16,7 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/en.subject.pdf) is 
 ## step_by_step 
 :hurtrealbad:
 
-## day-by-day
+## work_diary
 
 inspired by L.R.Couto [Grumpy Robot](https://github.com/lrcouto) and some articles [like this one](https://hbr.org/2011/04/four-reasons-to-keep-a-work-di) from Teresa Amabile or [this one](https://medium.com/the-productivity-inn/how-to-maintain-a-work-diary-for-better-career-growth-eb543f97c34b) from Musa Mawanda.
 
@@ -54,15 +55,18 @@ Fiz a função main.c e o tratamento de erros para os argumentos do programa (ar
 
 ![](./mindmaps/cub3d_errors.jpg)
 
-*21/03: paths para texturas, resolution size e valor rgb floor e ceiling sendo salvos nas devidas structs. Falta lidar com o mapa e com duplicidades de configs.
+* 21/03: paths para texturas, resolution size e valor rgb floor e ceiling sendo salvos nas devidas structs. Falta lidar com o mapa e com duplicidades de configs.
+
+* 22/03: problema da duplicidade de configs de path resolvido de maneira super simples, bem contente com essa função dos paths =) Duplicidade da resolution e do rgb floor e ceiling já estavam resolvidos na própria lógica da função.
+
+* 23/03: mais testes de erros e mapa devidamente armazenado num array de duas dimensões de char. Preciso tentar criar o hábito de escrever aqui direto em inglês o.O
 
 </details>
 
 ## mindmap 
 :goberserk:
 
-## study 
-## || further reading 
+## study_||_further_reading 
 :finnadie:
 
 * [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
