@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/20 01:30:57 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:06:19 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct		s_rgb
 	int				blue;
 }					t_rgb;
 
+typedef struct		s_map 
+{
+	unsigned int	total_column;
+	unsigned int	total_row;
+	char			**row;
+}					t_map;
+
 typedef	struct		s_configs
 {
 	unsigned int	window_width;
@@ -45,9 +52,13 @@ typedef	struct		s_configs
 	t_paths			path;
 	t_rgb			floor;
 	t_rgb			ceiling;
+	t_map			map;
 }					t_configs;
 
 void				parse_configs(t_configs	*configs, char *line);
+void				parse_map(t_configs *configs, char *line);
 void				return_error(int error_id);
+void				set_map(t_configs *configs, char *line);
+void				fill_map(t_configs *configs, char *file);
 
 #endif
