@@ -11,7 +11,7 @@ cause Doom was a milestone in my childhood
 ## introduction 
 :suspect:
 
-This [project](https://github.com/paulahemsi/cub3d/blob/main/en.subject.pdf) is inspired by the world-famous eponymous 90’s game, which was the first FPS ever. It will enable to explore ray-casting. My goal will be to make a dynamic view inside a maze, in which you’ll have to find your way
+This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.subject.pdf) is inspired by the world-famous eponymous 90’s game, which was the first FPS ever. It will enable to explore ray-casting. My goal will be to make a dynamic view inside a maze, in which you’ll have to find your way
 
 ## step_by_step 
 :hurtrealbad:
@@ -25,14 +25,14 @@ inspired by L.R.Couto [Grumpy Robot](https://github.com/lrcouto) and some articl
 <details>
   <summary>Click to expand (:</summary>
 
-* 16/03 and 17/03: watch this free [course](https://courses.pikuma.com/courses/raycasting) *Introduction to Raycasting Theory with JavaScript* from Pikuma
+* 16/03 and 17/03: I watched this free [course](https://courses.pikuma.com/courses/raycasting) *Introduction to Raycasting Theory with JavaScript* from Pikuma
 and this [coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) *2d Raycasting with p5js* from Coding Train
 
-* 18/03: study collision detection and field of view algotithms. [more info](#study) and start to code a js prototype with p5.js library to understand better the concepts
+* 18/03: I studied collision detection and field of view algotithms. [more info](#study) and start to code a js prototype with p5.js library to understand the concepts better
 
-![](./mindmaps/prototype_cub.gif)
+![](./study_resources/mindmaps/prototype_cub.gif)
 
-* 19/03: coloquei a libft e inseri a ft_printf na libft, fazendo os ajustes de make file e headers necessários. Criei o makefile do Cub3d. Criei o header do cub3d com uma primeira organização de structs para as infos que vierem das configurações do arquivo .cub. Iniciei este diário de trabalho. Comecei a estudar as novas funções autorizadas:
+* 19/03: I inserted ft_printf in libft and libft in cub project, making the necessaries adjustments. I created makefile with some rules (including a test rule with -fsanitize flag to check leaks during the process). I created cub3d header with a first struct organization to keep the informations from the .cub configuration file. I began this work diary and I started to study those new authorized functions:
 
 * perror:
 
@@ -49,19 +49,22 @@ and this [coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) *2d Ray
 >The C library function void exit(int status) terminates the calling process immediately. Any open file descriptors belonging to the process are closed and any children of the process are inherited by process 1, init, and the process parent is sent a SIGCHLD signal.
 [mais infos](https://www.tutorialspoint.com/c_standard_library/c_function_exit.htm)
 
-Fiz a função main.c e o tratamento de erros para os argumentos do programa (arquivo .cub e flag --save). Iniciei o tratamento de erros para a cena do arquivo .cub, analisando os diferentes type identifiers nas possíveis ordens.
+I made main.c function and error handling for program arguments (.cub and flag --save). I began the error handling in the scene from the .cub file, parsing the possibles type identifiers.
 
-* 20/03: consegui fazer o [debugger do vscode funcionar no wsl](https://code.visualstudio.com/docs/cpp/launch-json-reference) com a ajuda de uma [extensão](https://code.visualstudio.com/docs/remote/wsl-tutorial). Iniciei um fluxograma do tratamento de erros.
+* 20/03: I manage to adjust [vscode debugger for wsl](https://code.visualstudio.com/docs/cpp/launch-json-reference) thanks to [this extension](https://code.visualstudio.com/docs/remote/wsl-tutorial). I began a error handling mindmap.
 
-![](./mindmaps/cub3d_errors.jpg)
+![](./study_resources/mindmaps/cub3d_errors.jpg)
 
-* 21/03: paths para texturas, resolution size e valor rgb floor e ceiling sendo salvos nas devidas structs. Falta lidar com o mapa e com duplicidades de configs.
+* 21/03: I manage to save textures paths and resolution, floor and ceiling values in theyer own variables (inside configs struct).
+I still need to deal with the map and double configs.
 
-* 22/03: problema da duplicidade de configs de path resolvido de maneira super simples, bem contente com essa função dos paths =) Duplicidade da resolution e do rgb floor e ceiling já estavam resolvidos na própria lógica da função.
+* 22/03: Paths duplicicty problem solved! It was easier than I've imagined, I'm very glad with this path function =) I realised that resolution and color duplicity was already solved because of the function logic. yey!
 
-* 23/03: mais testes de erros e mapa devidamente armazenado num array de duas dimensões de char. Preciso tentar criar o hábito de escrever aqui direto em inglês o.O Checagem das paredes feita!
+* 23/03: I finished map and walls errors handling. Map correctly stored in a 2d array.
 
-![](./mindmaps/check_walls.jpg)
+* 24/03: I included minilibx but I'm struggling to generate a window with it. May be is an Wsl issue :/
+
+![](./study_resources/mindmaps/check_walls.jpg)
 
 </details>
 
