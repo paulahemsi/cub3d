@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/24 08:39:41 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:37:34 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ static void	check_neighbors(char **map, int row, int col, t_configs *configs)
 	}
 }
 
+static void	store_player_pos(t_configs *configs, char dir, int row, int col)
+{
+	configs->player_dir = dir;
+	configs->player_pos[x] = col;
+	configs->player_pos[y] = row; 
+}
+
 void		check_walls(t_configs *configs)
 {
 	char	**map;
@@ -71,6 +78,8 @@ void		check_walls(t_configs *configs)
 				check_edges(map[row][col]);
 			if (map[row][col] == ' ')
 				check_neighbors(map, row, col, configs);
+			else if(ft_strchr("NSWE", map[row][col]))
+				store_player_pos(configs, map[row][col], row, col);
 			col++;
 		}
 		row++;
