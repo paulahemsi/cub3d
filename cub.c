@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/25 12:39:24 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:36:27 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	testando_as_parada_tudo(t_configs *configs)
 {
-	ft_printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\n\n\n", configs->path.north, configs->path.south, configs->path.west, configs->path.east, configs->path.sprite, configs->floor.red, configs->floor.green, configs->floor.blue, configs->ceiling.red, configs->ceiling.green, configs->ceiling.blue, configs->window_width, configs->window_height);
+	ft_printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\n\nPLAYER\n position: %i x %i\n orientation: %c\n\n\n", configs->path.north, configs->path.south, configs->path.west, configs->path.east, configs->path.sprite, configs->floor.red, configs->floor.green, configs->floor.blue, configs->ceiling.red, configs->ceiling.green, configs->ceiling.blue, configs->window_width, configs->window_height, configs->player_pos[x], configs->player_pos[y], configs->player_dir);
 	int i = 0;
 	while (configs->map.row[i] != NULL)
 	{

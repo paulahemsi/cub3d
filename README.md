@@ -5,7 +5,7 @@ cause Doom was a milestone in my childhood
 * [Step by step](#step_by_step)
 * [Work Diary](#work_diary)
 * [Mindmap](#mindmap) 
-* [Study resources](#study_||_further_reading)
+* [Study resources](#study_resources)
 * [Usage](#usage)
 
 ## introduction 
@@ -64,14 +64,25 @@ I still need to deal with the map and double configs.
 
 * 24/03: I included minilibx but I'm struggling to generate a window with it. May be is an Wsl issue :/
 
+  
 ![](./study_resources/mindmaps/check_walls.jpg)
+
+* 25/03: I gave up wsl and started working on the vm. The window with mlx was generated and I manage to render some pixels and lines (yey!). I start to studied geometry in computer graphics
+
+> linear algebra is a branch of mathematics that has to do with the study of vectors. 
+
+>A vector can be represented as an array of numbers. This array of numbers, which can assume any desired length, is also sometimes called a tuple in mathematics.
+
+>Here, a point is a position in a three-dimensional space. A vector, on the other hand, usually means a direction (and some corresponding magnitude, or size) in three-dimensional space. Vectors can be thought of as arrows pointing various directions.
+
+Player position and player orientation are now been saved in the configs struct, I bet it will be very important in the future.
 
 </details>
 
 ## mindmap 
 :goberserk:
 
-## study_resources||_further_reading
+## study_resources
 :finnadie:
 
 # raycasting
@@ -84,11 +95,16 @@ I still need to deal with the map and double configs.
 * [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
 * [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
 
-# minilibX
+# minilibX and computer graphics
+* [minilibX-linux](https://github.com/42Paris/minilibx-linux)
 * [minilibX guide](https://harm-smits.github.io/42docs/libs/minilibx) by Harm-Smits
+* [computer graphics from scratch](https://www.scratchapixel.com/)
+* [math.h](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
  
 # virtual machine
 * [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
+
+# further_reading
 
 ## usage 
 :feelsgood:

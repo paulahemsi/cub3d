@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/25 12:55:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:25:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
+
+# define x	0
+# define y	1
 
 /*
 ** scene configs
@@ -55,6 +58,8 @@ typedef	struct		s_configs
 {
 	unsigned int	window_width;
 	unsigned int	window_height;
+	int				player_pos[2];
+	char			player_dir;
 	t_paths			path;
 	t_rgb			floor;
 	t_rgb			ceiling;
