@@ -71,9 +71,10 @@ I still need to deal with the map and double configs.
 ## mindmap 
 :goberserk:
 
-## study_||_further_reading 
+## study_resources||_further_reading
 :finnadie:
 
+# raycasting
 * [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
 * [2d Raycasting coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) by Daniel Shiffman (Coding Train)
 * [Ray Marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg) by Sebastian Lague
@@ -82,7 +83,13 @@ I still need to deal with the map and double configs.
 * [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 * [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
 * [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
+
+# minilibX
+* [minilibX guide](https://harm-smits.github.io/42docs/libs/minilibx) by Harm-Smits
  
+# virtual machine
+* [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
+
 ## usage 
 :feelsgood:
 
