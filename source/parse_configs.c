@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/23 11:13:51 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 11:01:23 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./cub.h"
+#include "../includes/cub.h"
 
 static void	parse_path(char **texture_path, char *line)
 {

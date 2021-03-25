@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/23 19:38:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 13:08:40 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./cub.h"
+#include "./includes/cub.h"
 
 static void	testando_as_parada_tudo(t_configs *configs)
 {

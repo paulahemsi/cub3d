@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/23 19:25:11 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 08:39:41 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./cub.h"
+#include "../includes/cub.h"
 
 static void	check_edges(char cell)
 {

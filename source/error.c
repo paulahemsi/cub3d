@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/23 12:54:49 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 08:39:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./cub.h"
+#include "../includes/cub.h"
 
 void	return_error(int error_id)
 {

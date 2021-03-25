@@ -6,21 +6,23 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/23 13:28:03 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 11:01:31 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
-# include "./libraries/libft/libft.h"
+# include "../libraries/libft/libft.h"
+# include "../libraries/minilibx-linux/mlx.h"
+# include "../libraries/minilibx-linux/mlx_int.h"
 # include <stdio.h>
 # include <errno.h>
 # include <string.h>
-# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <math.h>
 
 typedef struct		s_paths
 {
