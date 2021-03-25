@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/24 13:08:40 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:39:24 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	free_paths(t_configs *configs)
 	free(configs->path.sprite);
 }
 
-static void	render_cub(char *file)
+static void	parse_scene(char *file)
 {
 	t_configs	configs;
 	char		*line;
@@ -67,6 +67,7 @@ static void	render_cub(char *file)
 	fill_map(&configs, file);
 	check_walls(&configs);
 	testando_as_parada_tudo(&configs);
+	render_cub(&configs);
 	free_paths(&configs);
 	free_map(configs.map.row);
 }
@@ -90,7 +91,7 @@ static void	check_args(int argc, char **argv)
 		//TODO save .bmp
 	}
 	else
-		render_cub(argv[1]);
+		parse_scene(argv[1]);
 }
 
 int			main(int argc, char **argv)

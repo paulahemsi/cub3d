@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/24 11:01:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:55:48 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
+
+/*
+** scene configs
+*/
 
 typedef struct		s_paths
 {
@@ -57,11 +61,24 @@ typedef	struct		s_configs
 	t_map			map;
 }					t_configs;
 
+/*
+** mlx
+*/
+
+typedef struct	s_data {
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_data;
+
 void				parse_configs(t_configs	*configs, char *line);
 void				parse_map(t_configs *configs, char *line);
 void				return_error(int error_id);
 void				set_map(t_configs *configs, char *line);
 void				fill_map(t_configs *configs, char *file);
 void				check_walls(t_configs *configs);
+void				render_cub(t_configs *configs);
 
 #endif
