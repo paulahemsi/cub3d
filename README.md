@@ -69,6 +69,8 @@ I still need to deal with the map and double configs.
 
 * 25/03: I gave up wsl and started working on the vm. The window with mlx was generated and I manage to render some pixels and lines (yey!). I start to studied geometry in computer graphics
 
+![](./study_resources/vectors.png)
+
 > linear algebra is a branch of mathematics that has to do with the study of vectors. 
 
 >A vector can be represented as an array of numbers. This array of numbers, which can assume any desired length, is also sometimes called a tuple in mathematics.
@@ -85,7 +87,7 @@ Player position and player orientation are now been saved in the configs struct,
 ## study_resources
 :finnadie:
 
-# raycasting
+### raycasting
 * [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
 * [2d Raycasting coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) by Daniel Shiffman (Coding Train)
 * [Ray Marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg) by Sebastian Lague
@@ -95,16 +97,16 @@ Player position and player orientation are now been saved in the configs struct,
 * [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
 * [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
 
-# minilibX and computer graphics
+### minilibX and computer graphics
 * [minilibX-linux](https://github.com/42Paris/minilibx-linux)
 * [minilibX guide](https://harm-smits.github.io/42docs/libs/minilibx) by Harm-Smits
 * [computer graphics from scratch](https://www.scratchapixel.com/)
 * [math.h](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
  
-# virtual machine
+### virtual machine
 * [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
 
-# further_reading
+### further_reading
 
 ## usage 
 :feelsgood:
