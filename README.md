@@ -88,18 +88,14 @@ Player position and player orientation are now been saved in the configs struct,
 :finnadie:
 
 ### raycasting
-* [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
 * [2d Raycasting coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) by Daniel Shiffman (Coding Train)
-* [Ray Marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg) by Sebastian Lague
-* [Collision Detection book](http://www.jeffreythompson.org/collision-detection/) by Jeffrey Thompson
-* [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/) by Albert Ford
 * [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
-* [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
-* [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
+* [Lode's raycasting walk through](https://lodev.org/cgtutor/raycasting.html) by Lode Vandevenne
 
 ### minilibX and computer graphics
 * [minilibX-linux](https://github.com/42Paris/minilibx-linux)
 * [minilibX guide](https://harm-smits.github.io/42docs/libs/minilibx) by Harm-Smits
+* [mlx images](https://github.com/keuhdall/images_example/blob/master/README.md)
 * [computer graphics from scratch](https://www.scratchapixel.com/)
 * [math.h](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
  
@@ -107,6 +103,12 @@ Player position and player orientation are now been saved in the configs struct,
 * [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
 
 ### further_reading
+* [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
+* [Ray Marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg) by Sebastian Lague
+* [Collision Detection book](http://www.jeffreythompson.org/collision-detection/) by Jeffrey Thompson
+* [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/) by Albert Ford
+* [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
+* [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
 
 ## usage 
 :feelsgood:

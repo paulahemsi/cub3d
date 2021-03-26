@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/25 19:25:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/26 10:51:09 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ typedef	struct		s_configs
 */
 
 typedef struct	s_data {
-	void		*img;
-	char		*addr;
+	void		*ptr;
+	char		*data;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
