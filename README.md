@@ -16,6 +16,51 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 ## step_by_step 
 :hurtrealbad:
 
+(time may overlap, as life and data)
+* I watched videos and read about raycasting, field of view algorithms and collision detection to have an overall idea about the project. (~4 days)
+* adjusted libraries, makefile, created header file (~1 day)
+* configuration parsing, including minimap storaged and errors checking(~ 5 days)
+* I struggle to make minilibx works in wsl (~2 days)
+* I gave up wsl and intall and ran minilibx in linux vm (~5 hours)
+* studied geometry and minilibx librarie (~2 days)
+* managed to draw the 2d minimap with mlx (~1 day)
+
+for more details, read the [work diary](#work_diary)
+
+## mindmap 
+:goberserk:
+
+## study_resources
+:finnadie:
+
+### raycasting
+* [2d Raycasting coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) by Daniel Shiffman (Coding Train)
+* [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
+* [Lode's raycasting walk through](https://lodev.org/cgtutor/raycasting.html) by Lode Vandevenne
+
+### minilibx and computer graphics
+* [minilibx-linux version](https://github.com/42Paris/minilibx-linux)
+* [minilibx quick overview](https://github.com/qst0/ft_libgfx/blob/master/man_mlx.md)
+* [minilibx guide](https://harm-smits.github.io/42docs/libs/minilibx) by Harm-Smits
+* [mlx images](https://github.com/keuhdall/images_example/blob/master/README.md)
+* [computer graphics from scratch](https://www.scratchapixel.com/)
+* [math.h](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
+* [keysymdef.h -keycodes for linux](https://cgit.freedesktop.org/xorg/proto/x11proto/tree/keysymdef.h)
+ 
+### virtual machine
+* [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
+
+### further_reading
+* [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
+* [Ray Marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg) by Sebastian Lague
+* [Collision Detection book](http://www.jeffreythompson.org/collision-detection/) by Jeffrey Thompson
+* [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/) by Albert Ford
+* [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
+* [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
+
+## usage 
+:feelsgood:
+
 ## work_diary
 
 inspired by L.R.Couto [Grumpy Robot](https://github.com/lrcouto) and some articles [like this one](https://hbr.org/2011/04/four-reasons-to-keep-a-work-di) from Teresa Amabile or [this one](https://medium.com/the-productivity-inn/how-to-maintain-a-work-diary-for-better-career-growth-eb543f97c34b) from Musa Mawanda.
@@ -79,38 +124,8 @@ I still need to deal with the map and double configs.
 
 Player position and player orientation are now been saved in the configs struct, I bet it will be very important in the future.
 
+* 26/03: I studied minilibx man pages and function. I was able to make a color gradient playing with rgb values in some kind of loop and...: the minimap is now beeing render! =D 
+I'm not shure yet if it will be better to render it in another window or in the same one.
+
 </details>
-
-## mindmap 
-:goberserk:
-
-## study_resources
-:finnadie:
-
-### raycasting
-* [2d Raycasting coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) by Daniel Shiffman (Coding Train)
-* [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
-* [Lode's raycasting walk through](https://lodev.org/cgtutor/raycasting.html) by Lode Vandevenne
-
-### minilibX and computer graphics
-* [minilibX-linux](https://github.com/42Paris/minilibx-linux)
-* [minilibX guide](https://harm-smits.github.io/42docs/libs/minilibx) by Harm-Smits
-* [mlx images](https://github.com/keuhdall/images_example/blob/master/README.md)
-* [computer graphics from scratch](https://www.scratchapixel.com/)
-* [math.h](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
- 
-### virtual machine
-* [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
-
-### further_reading
-* [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
-* [Ray Marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg) by Sebastian Lague
-* [Collision Detection book](http://www.jeffreythompson.org/collision-detection/) by Jeffrey Thompson
-* [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/) by Albert Ford
-* [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
-* [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
-
-## usage 
-:feelsgood:
-
 

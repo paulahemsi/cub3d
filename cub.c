@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/25 19:36:27 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/26 18:16:58 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ static void	parse_scene(char *file)
 	parse_configs(&configs, line);
 	free(line);
 	close(fd);
+	
+	//!teste para minimap, revisar depois
+	configs.tile_size[0] = (unsigned int) floor((double)(configs.window_width / configs.map.total_column)); 
+	configs.tile_size[1] = (unsigned int) floor((double)(configs.window_height / configs.map.total_row));
+	
 	fill_map(&configs, file);
 	check_walls(&configs);
 	testando_as_parada_tudo(&configs);

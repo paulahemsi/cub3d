@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/25 19:37:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/26 23:47:19 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void		check_walls(t_configs *configs)
 				check_neighbors(map, row, col, configs);
 			else if(ft_strchr("NSWE", map[row][col]))
 				store_player_pos(configs, map[row][col], row, col);
+			//! garantir que sem player dê erro!
 			col++;
 		}
 		row++;
