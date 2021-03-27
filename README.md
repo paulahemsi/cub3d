@@ -22,7 +22,7 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 * configuration parsing, including minimap storaged and errors checking(~ 5 days)
 * I struggle to make minilibx works in wsl (~2 days)
 * I gave up wsl and intall and ran minilibx in linux vm (~5 hours)
-* studied geometry and minilibx librarie (~2 days)
+* studied geometry and minilibx library (~2 days)
 * managed to draw the 2d minimap with mlx (~1 day)
 
 for more details, read the [work diary](#work_diary)
