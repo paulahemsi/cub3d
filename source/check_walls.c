@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/26 23:47:19 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/27 17:25:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ static void	check_neighbors(char **map, int row, int col, t_configs *configs)
 		{
 			if (is_valid_cell((row + row_offset), (col + col_offset), configs))
 			{
-				
-				if (!(map[row + row_offset][col + col_offset] == ' ') 
+				if (!(map[row + row_offset][col + col_offset] == ' ')
 				&& !(map[row + row_offset][col + col_offset] == '1'))
 					return_error(-7);
 			}
@@ -52,11 +51,12 @@ static void	check_neighbors(char **map, int row, int col, t_configs *configs)
 	}
 }
 
-static void	store_player_pos(t_configs *configs, char dir, int row, int col)
+static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 {
-	configs->player_dir = dir;
-	configs->player_pos[x] = col;
-	configs->player_pos[y] = row; 
+	configs->player_dir = *dir;
+	configs->player_pos[X] = col;
+	configs->player_pos[Y] = row;
+	*dir = '0';
 }
 
 void		check_walls(t_configs *configs)
@@ -72,17 +72,18 @@ void		check_walls(t_configs *configs)
 		col = 0;
 		while (map[row][col])
 		{
-			if ((row == 0) || (col == 0) 
-				|| (row == (configs->map.total_row -1)) 
-				|| (col == (configs->map.total_column -1)))
+			if ((row == 0) || (col == 0)
+				|| (row == (configs->map.total_row - 1))
+				|| (col == (configs->map.total_column - 1)))
 				check_edges(map[row][col]);
 			if (map[row][col] == ' ')
 				check_neighbors(map, row, col, configs);
-			else if(ft_strchr("NSWE", map[row][col]))
-				store_player_pos(configs, map[row][col], row, col);
-			//! garantir que sem player dê erro!
+			else if (ft_strchr("NSWE", map[row][col]))
+				store_player_pos(configs, &map[row][col], row, col);
 			col++;
 		}
 		row++;
 	}
+	if (!(configs->player_dir))
+		return_error(-7);
 }

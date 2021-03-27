@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/26 18:14:17 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/27 17:19:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define x	0
-# define y	1
+# define X			0
+# define Y			1
 
 # define ESC		0xff1b
 # define LEFT		0xff51
@@ -63,7 +63,7 @@ typedef struct		s_rgb
 	int				blue;
 }					t_rgb;
 
-typedef struct		s_map 
+typedef struct		s_map
 {
 	unsigned int	total_column;
 	unsigned int	total_row;
@@ -72,8 +72,8 @@ typedef struct		s_map
 
 typedef	struct		s_configs
 {
-	unsigned int	window_width;
-	unsigned int	window_height;
+	unsigned int	width;
+	unsigned int	height;
 	unsigned int	tile_size[2];
 	int				player_pos[2];
 	char			player_dir;
@@ -87,26 +87,28 @@ typedef	struct		s_configs
 ** mlx
 */
 
-typedef struct	s_data {
-	void		*mlx_ptr;
-	void		*window_ptr;
-	void		*ptr;
-	char		*data;
-	int			width;
-	int			height;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-}				t_data;
+typedef struct		s_data
+{
+	void			*mlx_ptr;
+	void			*window_ptr;
+	void			*ptr;
+	char			*data;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	t_configs		*cub;
+}					t_data;
 
 void				parse_configs(t_configs	*configs, char *line);
 void				parse_map(t_configs *configs, char *line);
-void				return_error(int error_id);
 void				set_map(t_configs *configs, char *line);
 void				fill_map(t_configs *configs, char *file);
 void				check_walls(t_configs *configs);
 void				render_cub(t_configs *configs);
-int					mouse_clicked(int button, int pos_x, int pos_y, t_data *img);
-int					key_is_pressed(int key, t_data *img);
+void				put_square(t_data *img, int pos_x, int pos_y, int color);
+void				put_pixel(t_data *img, int pos_x, int pos_y, int color);
+int					mouse_clicked(int btn, int pos_x, int pos_y, t_data *img);
+int					key_pressed(int key, t_data *img);
+void				return_error(int error_id);
 
 #endif

@@ -6,19 +6,19 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/26 18:16:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/27 17:31:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cub.h"
 
-static void	testando_as_parada_tudo(t_configs *configs)
+static void	testando_as_parada_tudo(t_configs *cub)
 {
-	ft_printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\n\nPLAYER\n position: %i x %i\n orientation: %c\n\n\n", configs->path.north, configs->path.south, configs->path.west, configs->path.east, configs->path.sprite, configs->floor.red, configs->floor.green, configs->floor.blue, configs->ceiling.red, configs->ceiling.green, configs->ceiling.blue, configs->window_width, configs->window_height, configs->player_pos[x], configs->player_pos[y], configs->player_dir);
+	ft_printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\n\nPLAYER\n position: %i x %i\n orientation: %c\n\n\n", cub->path.north, cub->path.south, cub->path.west, cub->path.east, cub->path.sprite, cub->floor.red, cub->floor.green, cub->floor.blue, cub->ceiling.red, cub->ceiling.green, cub->ceiling.blue, cub->width, cub->height, cub->player_pos[X], cub->player_pos[Y], cub->player_dir);
 	int i = 0;
-	while (configs->map.row[i] != NULL)
+	while (cub->map.row[i] != NULL)
 	{
-		ft_printf("|%s|\n", configs->map.row[i]);
+		ft_printf("|%s|\n", cub->map.row[i]);
 		i++;
 	}
 }
@@ -36,45 +36,40 @@ static void	free_map(char **map)
 	free(map);
 }
 
-static void	free_paths(t_configs *configs)
+static void	free_paths(t_configs *cub)
 {
-	free(configs->path.north);
-	free(configs->path.south);
-	free(configs->path.west);
-	free(configs->path.east);
-	free(configs->path.sprite);
+	free(cub->path.north);
+	free(cub->path.south);
+	free(cub->path.west);
+	free(cub->path.east);
+	free(cub->path.sprite);
 }
 
 static void	parse_scene(char *file)
 {
-	t_configs	configs;
+	t_configs	cub;
 	char		*line;
 	int			fd;
 
-	ft_memset(&configs, 0, sizeof(configs));
-	ft_memset(&configs.floor, -1, sizeof(configs.floor));
-	ft_memset(&configs.ceiling, -1, sizeof(configs.ceiling));
+	ft_memset(&cub, 0, sizeof(cub));
+	ft_memset(&cub.floor, -1, sizeof(cub.floor));
+	ft_memset(&cub.ceiling, -1, sizeof(cub.ceiling));
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return_error(-2);
 	while (get_next_line(fd, &line))
 	{
-		parse_configs(&configs, line);
+		parse_configs(&cub, line);
 		free(line);
 	}
-	parse_configs(&configs, line);
+	parse_configs(&cub, line);
 	free(line);
 	close(fd);
-	
-	//!teste para minimap, revisar depois
-	configs.tile_size[0] = (unsigned int) floor((double)(configs.window_width / configs.map.total_column)); 
-	configs.tile_size[1] = (unsigned int) floor((double)(configs.window_height / configs.map.total_row));
-	
-	fill_map(&configs, file);
-	check_walls(&configs);
-	testando_as_parada_tudo(&configs);
-	render_cub(&configs);
-	free_paths(&configs);
-	free_map(configs.map.row);
+	fill_map(&cub, file);
+	check_walls(&cub);
+	testando_as_parada_tudo(&cub);
+	render_cub(&cub);
+	free_paths(&cub);
+	free_map(cub.map.row);
 }
 
 static void	check_args(int argc, char **argv)
@@ -93,7 +88,6 @@ static void	check_args(int argc, char **argv)
 		if (ft_strncmp(argv[2], "--save", 7))
 			return_error(-1);
 		ft_putstr("TODO: SAVE PRINT\n");
-		//TODO save .bmp
 	}
 	else
 		parse_scene(argv[1]);

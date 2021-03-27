@@ -6,28 +6,30 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/27 01:11:45 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/27 17:30:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int key_is_pressed(int key, t_data *img)
+static void	close_cub(t_data *img)
+{
+	mlx_loop_end(img->mlx_ptr);
+	mlx_destroy_window(img->mlx_ptr, img->window_ptr);
+}
+
+int			key_pressed(int key, t_data *img)
 {
 	if (key == ESC)
-	{
-		mlx_loop_end(img->mlx_ptr);
-		//mlx_destroy_image(img->mlx_ptr, img->ptr);
-		mlx_destroy_window(img->mlx_ptr, img->window_ptr);
-	}
+		close_cub(img);
 	else if (key == W)
-		ft_putendl("W");
+		img->cub->player_pos[Y]--;
 	else if (key == A)
-		ft_putendl("A");
+		img->cub->player_pos[X]--;
 	else if (key == S)
-		ft_putendl("S");
+		img->cub->player_pos[Y]++;
 	else if (key == D)
-		ft_putendl("D");
+		img->cub->player_pos[X]++;
 	else if (key == UP)
 		ft_putendl("UP");
 	else if (key == DOWN)
@@ -42,12 +44,10 @@ int key_is_pressed(int key, t_data *img)
 		ft_putendl("SPACE");
 	else if (key == TAB)
 		ft_putendl("TAB");
-	else
-		ft_putendl("ordinary key pressed");
 	return (0);
 }
 
-int		mouse_clicked(int button, int pos_x, int pos_y, t_data *img)
+int			mouse_clicked(int button, int pos_x, int pos_y, t_data *img)
 {
 	if ((button == MOUSE_1) || (button == MOUSE_2) || (button == MOUSE_3))
 	{

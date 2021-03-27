@@ -6,79 +6,37 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/27 01:09:19 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/27 17:28:02 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int		color_picker(unsigned char red, unsigned char green, unsigned char blue)
-{
-	return (red << 16 | green << 8 | blue);
-}
-
-
-static void		my_mlx_pixel_put(t_data *img, int pos_x, int pos_y, int color)
-{
-	char	*dst;
-	int		offset;
-
-	offset = (pos_y * img->line_length + pos_x * (img->bits_per_pixel / 8));
-	dst = img->data + offset;
-	*(unsigned int*)dst = color;
-}
-
-void	fill_image(t_data *img, int color)
-{
-	int	pos_x;
-	int	pos_y;
-	int color_init;
-	int factor;
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
-	
-	r = 0;
-	g = 50;
-	b = 120;
-	pos_x = 0;
-	pos_y = 0;
-	
-	while (pos_y <= img->height)
-	{
-		color = color_picker(r, g, b);
-		while (pos_x <= img->width)
-		{
-			my_mlx_pixel_put(img, pos_x, pos_y, color);
-			pos_x++;
-		}
-		pos_y++;
-		if (r < 254)
-			r++;
-		else if (g < 255)
-			g++;
-		pos_x = 0;
-	}
-}
-
-void	draw_square(t_data *img, int pos_x, int pos_y, int color, t_configs *configs)
+static void	render_player(t_data *img)
 {
 	int x_init;
+	int y_init;
+	int pos_x;
+	int pos_y;
 
+	pos_x = img->cub->player_pos[X] * (img->cub->tile_size[X]);
+	pos_y = img->cub->player_pos[Y] * (img->cub->tile_size[Y]);
 	x_init = pos_x;
-	while (pos_y < img->height)
+	y_init = pos_y;
+	while (pos_y < (y_init + img->cub->tile_size[Y]))
 	{
-		while (pos_x < img->width)
+		while (pos_x < (x_init + img->cub->tile_size[X]))
 		{
-			my_mlx_pixel_put(img, pos_x, pos_y, color);
+			put_pixel(img, pos_x, pos_y, 0X00FF0000);
 			pos_x++;
 		}
 		pos_y++;
 		pos_x = x_init;
 	}
+	mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
 }
 
-void draw_minimap(t_configs *config, t_data *img)
+static void	render_minimap(t_data *img)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -87,58 +45,47 @@ void draw_minimap(t_configs *config, t_data *img)
 	int				color;
 
 	i = 0;
-	while (i < config->map.total_row)
+	while (i < img->cub->map.total_row)
 	{
 		j = 0;
-		while (j < config->map.total_column)
+		while (j < img->cub->map.total_column)
 		{
-			pos_x = j * (config->tile_size[x]);
-			pos_y = i * (config->tile_size[y]);
-			if (config->map.row[i][j] == '0')
+			pos_x = j * (img->cub->tile_size[X]);
+			pos_y = i * (img->cub->tile_size[Y]);
+			if (img->cub->map.row[i][j] == '0')
 				color = 0xFFFFFFFF;
-			else if (ft_strchr("NSWE", config->map.row[i][j]))
-				color = 0x00FF0000;
 			else
 				color = 0x00000000;
-			draw_square(img, pos_x, pos_y, color, config);
+			put_square(img, pos_x, pos_y, color);
 			j++;
 		}
 		i++;
 	}
 }
 
-static void		render_line(t_configs *configs, t_data *img, int pos_x, int pos_y)
+static int	update(t_data *img)
 {
-	while (pos_x < configs->window_width)
-	{
-		my_mlx_pixel_put(img, pos_x, pos_y, 0x00FF00FF);
-		pos_x++;
-	}
+	render_minimap(img);
+	render_player(img);
+	return (0);
 }
 
-void			render_cub(t_configs *configs)
+void		render_cub(t_configs *cub)
 {
 	t_data	img;
 
 	if (!(img.mlx_ptr = mlx_init()))
 		return_error(-8);
-	img.window_ptr = mlx_new_window(img.mlx_ptr, configs->window_width, configs->window_height, "cub3D");
+	img.window_ptr = mlx_new_window(img.mlx_ptr, cub->width, cub->height,
+									"cub3D");
 	if (!(img.window_ptr))
 		return_error(-9);
-	img.width = configs->window_width;
-	img.height = configs->window_height;
-	img.ptr = mlx_new_image(img.mlx_ptr, img.width, img.height);
-	img.data = mlx_get_data_addr(img.ptr, &img.bits_per_pixel, &img.line_length, &img.endian);
-	fill_image(&img, color_picker(0, 30, 50));
-	draw_minimap(configs, &img);
-	//render_line(configs, &img, 50, 50);
-	mlx_put_image_to_window(img.mlx_ptr, img.window_ptr, img.ptr, 0, 0);
+	img.cub = cub;
+	img.ptr = mlx_new_image(img.mlx_ptr, img.cub->width, img.cub->height);
+	img.data = mlx_get_data_addr(img.ptr, &img.bits_per_pixel,
+								&img.line_length, &img.endian);
+	mlx_loop_hook(img.mlx_ptr, update, &img);
 	mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
-	mlx_key_hook(img.window_ptr, key_is_pressed, &img);
-	if (img.mlx_ptr)
-	{
-		mlx_destroy_image(img.mlx_ptr, img.ptr);
-		
-		mlx_loop(img.mlx_ptr);
-	}
+	mlx_key_hook(img.window_ptr, key_pressed, &img);
+	mlx_loop(img.mlx_ptr);
 }

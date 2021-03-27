@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/26 15:03:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/27 17:26:31 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ void	return_error(int error_id)
 		ft_putstr("Error\nunable to conect with graphical system\n");
 	else if (error_id == -9)
 		ft_putstr("Error\nunable to create a window\n");
-	//!o que retornar aqui? devo olhar um padrão? ter um padrão? EXIT_FAILURE?
 	exit(error_id);
 }
