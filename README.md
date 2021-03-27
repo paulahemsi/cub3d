@@ -127,5 +127,7 @@ Player position and player orientation are now been saved in the configs struct,
 * 26/03: I studied minilibx man pages and function. I was able to make a color gradient playing with rgb values in some kind of loop and...: the minimap is now beeing render! =D 
 I'm not shure yet if it will be better to render it in another window or in the same one.
 
+![](study_resources/minimap.png)
+
 </details>
 
