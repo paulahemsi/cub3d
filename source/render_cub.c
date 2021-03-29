@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/27 17:28:02 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/29 11:10:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	render_player(t_data *img)
 		pos_y++;
 		pos_x = x_init;
 	}
-	mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
 }
 
 static void	render_minimap(t_data *img)
@@ -65,8 +64,14 @@ static void	render_minimap(t_data *img)
 
 static int	update(t_data *img)
 {
+	if (img->ptr)
+		mlx_destroy_image(img->mlx_ptr, img->ptr);
+	img->ptr = mlx_new_image(img->mlx_ptr, img->cub->width, img->cub->height);
+	img->data = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
+								&img->line_length, &img->endian);
 	render_minimap(img);
 	render_player(img);
+	mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
 	return (0);
 }
 
@@ -81,11 +86,9 @@ void		render_cub(t_configs *cub)
 	if (!(img.window_ptr))
 		return_error(-9);
 	img.cub = cub;
-	img.ptr = mlx_new_image(img.mlx_ptr, img.cub->width, img.cub->height);
-	img.data = mlx_get_data_addr(img.ptr, &img.bits_per_pixel,
-								&img.line_length, &img.endian);
+	img.ptr = NULL;
 	mlx_loop_hook(img.mlx_ptr, update, &img);
 	mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
-	mlx_key_hook(img.window_ptr, key_pressed, &img);
+	mlx_hook(img.window_ptr, 2, 1L<<0, key_pressed, &img);
 	mlx_loop(img.mlx_ptr);
 }

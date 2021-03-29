@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/27 17:30:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/28 07:51:49 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	close_cub(t_data *img)
 {
+	mlx_destroy_image(img->mlx_ptr, img->ptr);
 	mlx_loop_end(img->mlx_ptr);
 	mlx_destroy_window(img->mlx_ptr, img->window_ptr);
 }
