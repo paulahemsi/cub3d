@@ -113,7 +113,7 @@ I still need to deal with the map and double configs.
 * 24/03: I included minilibx but I'm struggling to generate a window with it. May be is an Wsl issue :/
 
   
-![](./study_resources/mindmaps/check_walls.jpg)
+![](./study_resources/mindmaps/check__walls.jpg)
 
 * 25/03: I gave up wsl and started working on the vm. The window with mlx was generated and I manage to render some pixels and lines (yey!). I start to studied geometry in computer graphics
 
