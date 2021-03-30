@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/29 11:23:32 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/29 11:36:09 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	testando_as_parada_tudo(t_configs *cub)
 {
-	ft_printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\n\nPLAYER\n position: %i x %i\n direction: (%i, %i)\n\n\n", cub->path.north, cub->path.south, cub->path.west, cub->path.east, cub->path.sprite, cub->floor.red, cub->floor.green, cub->floor.blue, cub->ceiling.red, cub->ceiling.green, cub->ceiling.blue, cub->width, cub->height, cub->player_pos[X], cub->player_pos[Y], cub->player_dir[X], cub->player_dir[Y]);
+	ft_printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\n\nPLAYER\n position: %i x %i\n direction: (%i, %i)\n\n\n", cub->path.north, cub->path.south, cub->path.west, cub->path.east, cub->path.sprite, cub->floor.red, cub->floor.green, cub->floor.blue, cub->ceiling.red, cub->ceiling.green, cub->ceiling.blue, cub->width, cub->height, cub->player.pos[X], cub->player.pos[Y], cub->player.dir[X], cub->player.dir[Y]);
 	int i = 0;
 	while (cub->map.row[i] != NULL)
 	{

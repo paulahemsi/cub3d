@@ -37,6 +37,7 @@ for more details, read the [work diary](#work_diary)
 * [2d Raycasting coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) by Daniel Shiffman (Coding Train)
 * [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 * [Lode's raycasting walk through](https://lodev.org/cgtutor/raycasting.html) by Lode Vandevenne
+* [digital differential analyzer (DDA) algorithm](https://www.geeksforgeeks.org/dda-line-generation-algorithm-computer-graphics/)
 
 ### minilibx and computer graphics
 * [minilibx-linux version](https://github.com/42Paris/minilibx-linux)
@@ -57,6 +58,8 @@ for more details, read the [work diary](#work_diary)
 * [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/) by Albert Ford
 * [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
 * [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
+* [random walker to make a procedural dungeon map](https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/) by Ahmad Abdolsaheb
+* [John Carmack tech talk](https://www.youtube.com/watch?v=lHLpKzUxjGk)
 
 ## usage 
 :feelsgood:
@@ -128,6 +131,10 @@ Player position and player orientation are now been saved in the configs struct,
 I'm not shure yet if it will be better to render it in another window or in the same one.
 
 ![](study_resources/minimap.png)
+
+* 27/03: The code was refactored and the player now answer to `w a s d` keys to walk in the minimap (in the wrong way, though).
+
+* 29/03: I fixed some of the walking problems, now the player moves when the key is pressed (not released). Still studying minilibx. I should probably go back to the maths in the next days. I'm also trying to understand wich flow the program should have from now on. 
 
 </details>
 

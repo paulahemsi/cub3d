@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/27 17:16:45 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/29 11:37:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static void	fill_row(t_configs *cub, char *line, int index, int *player)
 
 static void	define_tile_size(t_configs *cub)
 {
-	cub->tile_size[0] = floor((double)(cub->width / cub->map.total_column));
-	cub->tile_size[1] = floor((double)(cub->height / cub->map.total_row));
+	cub->map.tile_size[X] = floor((double)(cub->width / cub->map.total_column));
+	cub->map.tile_size[Y] = floor((double)(cub->height / cub->map.total_row));
 }
 
 void		fill_map(t_configs *cub, char *file)

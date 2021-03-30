@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/29 11:10:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/29 19:13:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static void	render_player(t_data *img)
 {
-	int x_init;
-	int y_init;
-	int pos_x;
-	int pos_y;
+	float x_init;
+	float y_init;
+	float pos_x;
+	float pos_y;
 
-	pos_x = img->cub->player_pos[X] * (img->cub->tile_size[X]);
-	pos_y = img->cub->player_pos[Y] * (img->cub->tile_size[Y]);
+	pos_x = img->cub->player.pos[X] * (img->cub->map.tile_size[X]);
+	pos_y = img->cub->player.pos[Y] * (img->cub->map.tile_size[Y]);
 	x_init = pos_x;
 	y_init = pos_y;
-	while (pos_y < (y_init + img->cub->tile_size[Y]))
+	while (pos_y < (y_init + img->cub->map.tile_size[Y]))
 	{
-		while (pos_x < (x_init + img->cub->tile_size[X]))
+		while (pos_x < (x_init + img->cub->map.tile_size[X]))
 		{
 			put_pixel(img, pos_x, pos_y, 0X00FF0000);
 			pos_x++;
@@ -49,8 +49,8 @@ static void	render_minimap(t_data *img)
 		j = 0;
 		while (j < img->cub->map.total_column)
 		{
-			pos_x = j * (img->cub->tile_size[X]);
-			pos_y = i * (img->cub->tile_size[Y]);
+			pos_x = j * (img->cub->map.tile_size[X]);
+			pos_y = i * (img->cub->map.tile_size[Y]);
 			if (img->cub->map.row[i][j] == '0')
 				color = 0xFFFFFFFF;
 			else

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/28 07:51:49 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/29 18:58:42 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ int			key_pressed(int key, t_data *img)
 	if (key == ESC)
 		close_cub(img);
 	else if (key == W)
-		img->cub->player_pos[Y]--;
+		img->cub->player.pos[Y]--;
 	else if (key == A)
-		img->cub->player_pos[X]--;
+		img->cub->player.pos[X]--;
 	else if (key == S)
-		img->cub->player_pos[Y]++;
+		img->cub->player.pos[Y]++;
 	else if (key == D)
-		img->cub->player_pos[X]++;
+		img->cub->player.pos[X]++;
 	else if (key == UP)
-		ft_putendl("UP");
+		img->cub->player.dir[Y] = 1;
 	else if (key == DOWN)
-		ft_putendl("DOWN");
+		img->cub->player.dir[Y] = -1;
 	else if (key == LEFT)
-		ft_putendl("LEFT");
+		img->cub->player.dir[X] = -1;
 	else if (key == RIGHT)
-		ft_putendl("RIGHT");
+		img->cub->player.dir[X] = 1;
 	else if (key == SHIFT)
 		ft_putendl("SHIFT");
 	else if (key == SPACE)

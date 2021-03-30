@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/27 17:19:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/29 19:00:34 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,22 @@
 ** scene configs
 */
 
+
+typedef struct		s_map
+{
+	unsigned int	total_column;
+	unsigned int	total_row;
+	unsigned int	tile_size[2];
+	char			**row;
+}					t_map;
+
+typedef struct		s_player
+{
+	float			pos[2];
+	double			dir[2];
+	// int				speed;
+}					t_player;
+
 typedef struct		s_paths
 {
 	char			*north;
@@ -63,24 +79,15 @@ typedef struct		s_rgb
 	int				blue;
 }					t_rgb;
 
-typedef struct		s_map
-{
-	unsigned int	total_column;
-	unsigned int	total_row;
-	char			**row;
-}					t_map;
-
 typedef	struct		s_configs
 {
 	unsigned int	width;
 	unsigned int	height;
-	unsigned int	tile_size[2];
-	int				player_pos[2];
-	char			player_dir;
 	t_paths			path;
 	t_rgb			floor;
 	t_rgb			ceiling;
 	t_map			map;
+	t_player		player;
 }					t_configs;
 
 /*

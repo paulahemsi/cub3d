@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/29 11:26:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/29 11:38:26 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,22 @@ static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 {
 	if (ft_strchr("NS", *dir))
 	{
-		configs->player_dir[X] = 0;
+		configs->player.dir[X] = 0;
 		if (*dir == 'N')
-			configs->player_dir[Y] = -1;
+			configs->player.dir[Y] = -1;
 		else
-			configs->player_dir[Y] = 1;
+			configs->player.dir[Y] = 1;
 	}
 	else
 	{
-		configs->player_dir[Y] = 0;
+		configs->player.dir[Y] = 0;
 		if (*dir == 'W')
-			configs->player_dir[X] = -1;
+			configs->player.dir[X] = -1;
 		else
-			configs->player_dir[X] = 1;
+			configs->player.dir[X] = 1;
 	}
-	configs->player_pos[X] = col;
-	configs->player_pos[Y] = row;
+	configs->player.pos[X] = col;
+	configs->player.pos[Y] = row;
 	*dir = '0';
 }
 
@@ -99,6 +99,6 @@ void		check_walls(t_configs *configs)
 		}
 		row++;
 	}
-	if (!(configs->player_dir[X]) && !(configs->player_dir[Y]))
+	if (!(configs->player.dir[X]) && !(configs->player.dir[Y]))
 		return_error(-7);
 }
