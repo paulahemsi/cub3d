@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/27 17:11:35 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 00:12:03 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 static void	parse_path(char **texture_path, char *line)
 {
@@ -74,7 +74,7 @@ static void	parse_resolution(t_configs *cub, char *line)
 	}
 }
 
-static int	all_configs(t_configs *cub)
+static int	is_all_configs_set(t_configs *cub)
 {
 	if ((cub->floor.blue == -1) || (cub->ceiling.blue == -1))
 		return (0);
@@ -107,8 +107,8 @@ void		parse_configs(t_configs *cub, char *line)
 		parse_colors(&cub->ceiling, (line + 2));
 	else if ((ft_strnequ(line, "R ", 2)) || (ft_strnequ(line, "R\t", 2)))
 		parse_resolution(cub, (line + 2));
-	else if (((*line == '1') || (*line == ' ')) && ((all_configs(cub))))
-		set_map(cub, line);
+	else if (((*line == '1') || (*line == ' ')) && ((is_all_configs_set(cub))))
+		parse_map_size(cub, line);
 	else if (*line != '\0')
 		return_error(-5);
 }

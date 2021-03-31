@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/29 11:37:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 00:12:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
-void		set_map(t_configs *cub, char *line)
+void		parse_map_size(t_configs *cub, char *line)
 {
 	unsigned int	line_size;
 

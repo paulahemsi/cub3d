@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/29 19:00:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/30 23:53:03 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ typedef struct		s_map
 
 typedef struct		s_player
 {
-	float			pos[2];
-	double			dir[2];
+	int				pos[2];
+	int				dir[2];
 	// int				speed;
 }					t_player;
 
@@ -108,7 +108,7 @@ typedef struct		s_data
 
 void				parse_configs(t_configs	*configs, char *line);
 void				parse_map(t_configs *configs, char *line);
-void				set_map(t_configs *configs, char *line);
+void				parse_map_size(t_configs *configs, char *line);
 void				fill_map(t_configs *configs, char *file);
 void				check_walls(t_configs *configs);
 void				render_cub(t_configs *configs);

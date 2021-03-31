@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 21:18:02 by phemsi-a          #+#    #+#              #
-#    Updated: 2021/03/28 08:09:24 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/03/31 00:11:16 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ LIBFT = libft.a
 MLX = libmlx.a
 
 SRC = ./source/
+CONFIGS = $(SRC)parse_configs/
 LIBFT_PATH = ./libraries/libft/
 MLX_PATH = ./libraries/minilibx-linux/
 
-FILES = cub.c $(SRC)error.c $(SRC)parse_configs.c $(SRC)parse_map.c $(SRC)check_walls.c $(SRC)render_cub.c $(SRC)events.c $(SRC)render_tools.c
+FILES = cub.c $(SRC)error.c $(CONFIGS)parse_configs.c $(CONFIGS)parse_map.c $(CONFIGS)check_walls.c $(SRC)render_cub.c $(SRC)events.c $(SRC)render_tools.c
 OBJECTS = cub.o error.o parse_configs.o parse_map.o check_walls.o render_cub.o events.o render_tools.o
 
 CC = clang
