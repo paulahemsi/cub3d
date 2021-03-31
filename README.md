@@ -38,6 +38,8 @@ for more details, read the [work diary](#work_diary)
 * [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 * [Lode's raycasting walk through](https://lodev.org/cgtutor/raycasting.html) by Lode Vandevenne
 * [digital differential analyzer (DDA) algorithm](https://www.geeksforgeeks.org/dda-line-generation-algorithm-computer-graphics/)
+* [DDA line drawing algorithm video](https://www.youtube.com/watch?v=W5P8GlaEOSI)
+* [Bresenham's line algorithm video](https://www.youtube.com/watch?v=RGB-wlatStc&t=202s)
 
 ### minilibx and computer graphics
 * [minilibx-linux version](https://github.com/42Paris/minilibx-linux)
@@ -134,7 +136,9 @@ I'm not shure yet if it will be better to render it in another window or in the 
 
 * 27/03: The code was refactored and the player now answer to `w a s d` keys to walk in the minimap (in the wrong way, though).
 
-* 29/03: I fixed some of the walking problems, now the player moves when the key is pressed (not released). Still studying minilibx. I should probably go back to the maths in the next days. I'm also trying to understand wich flow the program should have from now on. 
+* 29/03: I fixed some of the walking problems, now the player moves when the key is pressed (not released). Still studying minilibx. I should probably go back to the maths in the next days. I'm also trying to understand wich flow the program should have from now on.
+
+* 30/03: I started a mindmap from the flow I will need to take to continue the program and also studied DDA and Bresenham's line drawing algotithm. I'll probably use Bresenham's, it is more complex to understand but aparently much more efficient and accurate.
 
 </details>
 
