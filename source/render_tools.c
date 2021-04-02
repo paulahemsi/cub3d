@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 13:56:02 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/27 17:30:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/01 16:55:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,24 @@ void		put_square(t_data *img, int pos_x, int pos_y, int color)
 	}
 }
 
-void		line(t_configs *cub, t_data *img, int pos_x, int pos_y)
+void	put_circle(t_data *img, int center_x, int center_y, int radius)
 {
-	while (pos_x < cub->width)
+	int radius_squared;
+	int x;
+	int y;
+
+	radius_squared = pow(radius, 2);
+	x = center_x - radius;
+	y = center_y - radius;
+	while (y <= center_y + radius)
 	{
-		put_pixel(img, pos_x, pos_y, 0x00FF00FF);
-		pos_x++;
+		while (x <= center_x + radius)
+		{
+			if ((pow(x - center_x, 2)) + pow(y - center_y, 2) <= radius_squared)
+				put_pixel(img, x, y, 0XFF0000);
+			x++;
+		}
+		y++;
+		x = center_x - radius;
 	}
 }

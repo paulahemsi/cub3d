@@ -11,7 +11,7 @@ cause Doom was a milestone in my childhood
 ## introduction 
 :suspect:
 
-This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.subject.pdf) is inspired by the world-famous eponymous 90’s game, which was the first FPS ever. It will enable to explore ray-casting. My goal will be to make a dynamic view inside a maze, in which you’ll have to find your way
+This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.subject.pdf) is inspired by the world-famous 90’s game [Wolfeinstein 3D](https://pt.wikipedia.org/wiki/Wolfenstein_3D), which was the first FPS ever. It will enable to explore ray-casting. My goal will be to make a dynamic view inside a maze, in which you’ll have to find your way
 
 ## step_by_step 
 :hurtrealbad:
@@ -21,7 +21,7 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 * adjusted libraries, makefile, created header file (~1 day)
 * configuration parsing, including minimap storaged and errors checking(~ 5 days)
 * I struggle to make minilibx works in wsl (~2 days)
-* I gave up wsl and intall and ran minilibx in linux vm (~5 hours)
+* I gave up wsl and install and ran minilibx in linux vm (~5 hours)
 * studied geometry and minilibx library (~2 days)
 * managed to draw the 2d minimap with mlx (~1 day)
 
@@ -138,7 +138,11 @@ I'm not shure yet if it will be better to render it in another window or in the 
 
 * 29/03: I fixed some of the walking problems, now the player moves when the key is pressed (not released). Still studying minilibx. I should probably go back to the maths in the next days. I'm also trying to understand wich flow the program should have from now on.
 
-* 30/03: I started a mindmap from the flow I will need to take to continue the program and also studied DDA and Bresenham's line drawing algotithm. I'll probably use Bresenham's, it is more complex to understand but aparently much more efficient and accurate.
+* 30/03: I started a mindmap from the flow I will need to take to continue the program and also studied DDA and Bresenham's line drawing algorithm. I'll probably use Bresenham's, it is more complex to understand but aparently much more efficient and accurate.
+
+* 31/03: I implemented Bresenham's algorithm to put lines and watched tons of raycasting videos on youtube. Still trying to catch what will be the best aprouch from now on.
+
+* 1/04: I've just realized that something went wrong with Bresenham's implementation. Trying to fix it. Hours later: done! Now the player has a line pointing the direction and walks acordly.
 
 </details>
 
