@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/30 23:53:03 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/01 21:10:28 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define X			0
 # define Y			1
+# define PI			3.14159265358979323846
 
 # define ESC		0xff1b
 # define LEFT		0xff51
@@ -47,7 +48,6 @@
 ** scene configs
 */
 
-
 typedef struct		s_map
 {
 	unsigned int	total_column;
@@ -59,8 +59,13 @@ typedef struct		s_map
 typedef struct		s_player
 {
 	int				pos[2];
-	int				dir[2];
-	// int				speed;
+	int				move_dir;
+	int				turn_dir;
+	int				radius;
+	float			angle;
+	float			delta_x;
+	float			delta_y;
+	int				speed;
 }					t_player;
 
 typedef struct		s_paths
@@ -106,16 +111,42 @@ typedef struct		s_data
 	t_configs		*cub;
 }					t_data;
 
+/*
+** aux
+*/
+
+typedef struct		s_bresenham
+{
+	int delta[2];
+	int increment[2][2];
+	int longest;
+	int shortest;
+	int numerator;
+	int i;
+}					t_bresenham;
+
+/*
+** parse configs
+*/
 void				parse_configs(t_configs	*configs, char *line);
 void				parse_map(t_configs *configs, char *line);
 void				parse_map_size(t_configs *configs, char *line);
 void				fill_map(t_configs *configs, char *file);
 void				check_walls(t_configs *configs);
+/*
+** render cub
+*/
 void				render_cub(t_configs *configs);
 void				put_square(t_data *img, int pos_x, int pos_y, int color);
+void				put_line(t_data *img, int *player_pos, int x2, int y2);
 void				put_pixel(t_data *img, int pos_x, int pos_y, int color);
+void				put_circle(t_data *img, int center_x, int center_y, int radius);
+/*
+** events
+*/
 int					mouse_clicked(int btn, int pos_x, int pos_y, t_data *img);
 int					key_pressed(int key, t_data *img);
+int					key_released(int key, t_data *img);
 void				return_error(int error_id);
 
 #endif
