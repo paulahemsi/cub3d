@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/31 00:11:49 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:31:24 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,25 @@ static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 {
 	if (ft_strchr("NS", *dir))
 	{
-		configs->player.dir[X] = 0;
 		if (*dir == 'N')
-			configs->player.dir[Y] = -1;
+			configs->player.angle = PI / 4;
 		else
-			configs->player.dir[Y] = 1;
+			configs->player.angle = 3 * PI / 4;
 	}
 	else
 	{
-		configs->player.dir[Y] = 0;
 		if (*dir == 'W')
-			configs->player.dir[X] = -1;
+			configs->player.angle = PI / 2;
 		else
-			configs->player.dir[X] = 1;
+			configs->player.angle = PI;
 	}
-	configs->player.pos[X] = col;
-	configs->player.pos[Y] = row;
+	configs->player.pos[X] = col * (configs->map.tile_size[X]);
+	configs->player.pos[Y] = row * (configs->map.tile_size[Y]);
+	if (configs->map.tile_size[X] > configs->map.tile_size[Y])
+		configs->player.radius = configs->map.tile_size[Y] / 2;
+	else
+		configs->player.radius = configs->map.tile_size[X] / 2;
+	configs->player.speed = 2;
 	*dir = '0';
 }
 
@@ -99,6 +102,6 @@ void		check_walls(t_configs *configs)
 		}
 		row++;
 	}
-	if (!(configs->player.dir[X]) && !(configs->player.dir[Y]))
+	if (!(configs->player.angle))
 		return_error(-7);
 }

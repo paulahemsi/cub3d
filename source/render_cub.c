@@ -6,33 +6,18 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/29 19:13:38 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/01 21:02:12 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-static void	render_player(t_data *img)
+static void	render_player(t_data *img, t_player *player)
 {
-	float x_init;
-	float y_init;
-	float pos_x;
-	float pos_y;
-
-	pos_x = img->cub->player.pos[X] * (img->cub->map.tile_size[X]);
-	pos_y = img->cub->player.pos[Y] * (img->cub->map.tile_size[Y]);
-	x_init = pos_x;
-	y_init = pos_y;
-	while (pos_y < (y_init + img->cub->map.tile_size[Y]))
-	{
-		while (pos_x < (x_init + img->cub->map.tile_size[X]))
-		{
-			put_pixel(img, pos_x, pos_y, 0X00FF0000);
-			pos_x++;
-		}
-		pos_y++;
-		pos_x = x_init;
-	}
+	put_circle(img, player->pos[X], player->pos[Y], player->radius);
+	printf("angle: %lf\n", player->angle);
+	put_line(img, player->pos, player->pos[X] + cos(player->angle) * 50, player->pos[Y] + sin(player->angle) * 50);
+	// put_line(img, pos_x, pos_y, pos_x, pos_y);
 }
 
 static void	render_minimap(t_data *img)
@@ -70,7 +55,7 @@ static int	update(t_data *img)
 	img->data = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
 								&img->line_length, &img->endian);
 	render_minimap(img);
-	render_player(img);
+	render_player(img, &img->cub->player);
 	mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
 	return (0);
 }
@@ -90,5 +75,6 @@ void		render_cub(t_configs *cub)
 	mlx_loop_hook(img.mlx_ptr, update, &img);
 	mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
 	mlx_hook(img.window_ptr, 2, 1L<<0, key_pressed, &img);
+	mlx_hook(img.window_ptr, 3, 1L<<1, key_released, &img);
 	mlx_loop(img.mlx_ptr);
 }
