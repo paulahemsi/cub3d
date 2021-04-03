@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 21:18:02 by phemsi-a          #+#    #+#              #
-#    Updated: 2021/04/01 21:07:53 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/04/02 22:20:30 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ CONFIGS = $(SRC)parse_configs/
 LIBFT_PATH = ./libraries/libft/
 MLX_PATH = ./libraries/minilibx-linux/
 
-FILES = cub.c $(SRC)error.c $(CONFIGS)parse_configs.c $(CONFIGS)parse_map.c $(CONFIGS)check_walls.c $(SRC)render_cub.c $(SRC)events.c $(SRC)render_tools.c $(SRC)put_line.c
-OBJECTS = cub.o error.o parse_configs.o parse_map.o check_walls.o render_cub.o events.o render_tools.o bresenham_algorithm.o
+FILES = cub.c $(SRC)error.c $(CONFIGS)parse_configs.c $(CONFIGS)parse_map.c $(CONFIGS)check_walls.c $(SRC)render_cub.c $(SRC)events.c $(SRC)render_tools.c $(SRC)put_line.c $(SRC)render_minimap.c $(SRC)put_walls.c
+OBJECTS = cub.o error.o parse_configs.o parse_map.o check_walls.o render_cub.o events.o render_tools.o put_line.o render_minimap.o put_walls.o
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror

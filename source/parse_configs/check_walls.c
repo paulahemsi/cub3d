@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/31 17:31:24 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/02 23:40:05 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,28 @@ static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 	if (ft_strchr("NS", *dir))
 	{
 		if (*dir == 'N')
-			configs->player.angle = PI / 4;
+			configs->player.angle = 3 * PI / 2;
 		else
-			configs->player.angle = 3 * PI / 4;
+			configs->player.angle = PI / 2;
 	}
 	else
 	{
 		if (*dir == 'W')
-			configs->player.angle = PI / 2;
-		else
 			configs->player.angle = PI;
+		else
+			configs->player.angle = 2 * PI;
 	}
 	configs->player.pos[X] = col * (configs->map.tile_size[X]);
 	configs->player.pos[Y] = row * (configs->map.tile_size[Y]);
 	if (configs->map.tile_size[X] > configs->map.tile_size[Y])
-		configs->player.radius = configs->map.tile_size[Y] / 2;
+		configs->player.radius = configs->map.tile_size[Y] / 4;
 	else
-		configs->player.radius = configs->map.tile_size[X] / 2;
+		configs->player.radius = configs->map.tile_size[X] / 4;
 	configs->player.speed = 2;
 	*dir = '0';
+	configs->player.plane_dist = floor((configs->width / 2) / tan(30 * (PI / 180)));
+	configs->ray.step= FOV / configs->width;
+	configs->ray.total = configs->width;
 }
 
 void		check_walls(t_configs *configs)

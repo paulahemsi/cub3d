@@ -1,6 +1,8 @@
 # cub3d
 cause Doom was a milestone in my childhood
 
+*in process*
+
 * [Introduction](#introduction)
 * [Step by step](#step_by_step)
 * [Work Diary](#work_diary)
@@ -24,7 +26,37 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 * I gave up wsl and install and ran minilibx in linux vm (~5 hours)
 * studied geometry and minilibx library (~2 days)
 * managed to draw the 2d minimap with mlx (~1 day)
+* getting lost and completly stuck while trying to study(~4 days that seem an eternity)
+* made a step by step list from raycasting process (~1 day)
 
+**raycasting steps:**
+
+1. define wall size
+2. define and get projection details:
+  1. define camera's height
+  2. define camera's field of view
+  3. get camera's position
+  4. get projection plane's dimension (window resolution)
+  5. calculate camera's distance from projection plane
+  6. calculate the angle between each ray that will be casted
+  7. calculate the center point of projection plane
+3. find walls
+  1. subtract half FOV from camera's position
+  2. cast a ray
+    1. for horizontal and vertical:
+      1.find first intersection with a grid boundary
+      2. check if grid cell is a wall
+      3. if it's not, calculate the step for the next's
+      4. check each cell until find a wall
+    2. save coordinates from the closest wall (horizontal or vertical)
+    3. knowing the wall coordinates, calculate wall distance with Pitagoras theorem
+    4. save wall distance with fish eye distortion correction
+    7. repeat step 3.2 for all rays
+5. draw walls
+  1. for each wall:
+    1.calculate projection wall height
+    2. draw half of the height above the middle and half under the midle of the pixel column
+    
 for more details, read the [work diary](#work_diary)
 
 ## mindmap 
@@ -143,6 +175,8 @@ I'm not shure yet if it will be better to render it in another window or in the 
 * 31/03: I implemented Bresenham's algorithm to put lines and watched tons of raycasting videos on youtube. Still trying to catch what will be the best aprouch from now on.
 
 * 1/04: I've just realized that something went wrong with Bresenham's implementation. Trying to fix it. Hours later: done! Now the player has a line pointing the direction and walks acordly.
+
+* 2/04: after days of struggling, I finally managed to make a list from the steps the raycast requires. Thanks to this [wonderfull resource](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/) by F. Permadi. I started to implement check for horizontal colision for the first ray.
 
 </details>
 

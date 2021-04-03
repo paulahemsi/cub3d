@@ -6,24 +6,26 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/01 17:44:01 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/02 11:54:50 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-static void	close_cub(t_data *img)
+int		close_cub(int key, t_data *img)
 {
 	mlx_destroy_image(img->mlx_ptr, img->ptr);
 	mlx_loop_end(img->mlx_ptr);
 	mlx_destroy_window(img->mlx_ptr, img->window_ptr);
+	img->window_ptr = NULL;
 	exit(0);
+	return (0);
 }
 
 int			key_pressed(int key, t_data *img)
 {
 	if (key == ESC)
-		close_cub(img);
+		close_cub(key, img);
 	else if (key == W)
 		img->cub->player.pos[Y]--;
 	else if (key == A)
