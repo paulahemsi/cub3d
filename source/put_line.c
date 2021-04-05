@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/01 23:14:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/05 13:47:12 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void		put_line(t_data *img, int *player_pos, int x2, int y2)
 	n.numerator = n.longest / 2;
 	while (n.i <= n.longest)
 	{
-		put_pixel(img, x, y, 0XFF0000);
+		put_pixel(img, x, y, color_picker(img->c.red, img->c.green, img->c.blue));
 		n.numerator += n.shortest;
 		if (n.numerator > n.longest)
 		{

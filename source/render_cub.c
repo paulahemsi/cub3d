@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/02 22:18:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/03 17:07:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	update(t_data *img)
 	img->data = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
 								&img->line_length, &img->endian);
 	//render_minimap(img);
+	put_background(img);
 	put_walls(img);
 	mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
 	return (0);

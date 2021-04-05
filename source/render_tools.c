@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 13:56:02 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/01 16:55:01 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/03 17:38:39 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-static int	color_picker(unsigned char red, unsigned char green,
+int	color_picker(unsigned char red, unsigned char green,
 							unsigned char blue)
 {
 	return (red << 16 | green << 8 | blue);

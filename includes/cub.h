@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/02 23:36:37 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/03 17:39:14 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@
 
 # define X				0
 # define Y				1
-# define PI				3.14159265358979323846
 # define TILE_SIZE		64
 # define PLAYER_HEIGHT	32
+
+/*
+** maths
+*/
+# define PI				3.14159265358979323846
 # define FOV			60 * (PI / 180)
 
+/*
+** events
+*/
 # define ESC			0xff1b
 # define LEFT			0xff51
 # define UP				0xff52
@@ -123,6 +130,7 @@ typedef struct		s_data
 	int				line_length;
 	int				endian;
 	t_configs		*cub;
+	t_rgb			c;
 }					t_data;
 
 /*
@@ -157,6 +165,8 @@ void				put_line(t_data *img, int *player_pos, int x2, int y2);
 void				put_pixel(t_data *img, int pos_x, int pos_y, int color);
 void				put_circle(t_data *img, int center_x, int center_y, int radius);
 void				put_walls(t_data *img);
+void				put_background(t_data *img);
+int					color_picker(unsigned char red, unsigned char green, unsigned char blue);
 
 /*
 ** events

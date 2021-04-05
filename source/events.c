@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/02 11:54:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/05 13:46:40 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int			key_released(int key, t_data *img)
 		ft_putendl("SPACE");
 	else if (key == TAB)
 		ft_putendl("TAB");
-	// ft_printf("player dir x: %i, player dir y: %i\n", img->cub->player.dir[X], img->cub->player.dir[Y]);
 	return (0);
 }
 
