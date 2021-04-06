@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 22:21:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/05 13:48:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/05 17:54:08 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 static int	is_ray_facing_down(float	angle)
 {

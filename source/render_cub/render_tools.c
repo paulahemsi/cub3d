@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 13:56:02 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/03 17:38:39 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/05 17:39:35 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 int	color_picker(unsigned char red, unsigned char green,
 							unsigned char blue)

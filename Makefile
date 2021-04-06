@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 21:18:02 by phemsi-a          #+#    #+#              #
-#    Updated: 2021/04/03 17:10:21 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/04/05 17:43:41 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,12 @@ MLX = libmlx.a
 
 SRC = ./source/
 CONFIGS = $(SRC)parse_configs/
+RENDER = $(SRC)render_cub/
 LIBFT_PATH = ./libraries/libft/
 MLX_PATH = ./libraries/minilibx-linux/
 
-FILES = cub.c $(SRC)error.c $(CONFIGS)parse_configs.c $(CONFIGS)parse_map.c $(CONFIGS)check_walls.c $(SRC)render_cub.c $(SRC)events.c $(SRC)render_tools.c $(SRC)put_line.c $(SRC)render_minimap.c $(SRC)put_walls.c $(SRC)put_background.c
-OBJECTS = cub.o error.o parse_configs.o parse_map.o check_walls.o render_cub.o events.o render_tools.o put_line.o render_minimap.o put_walls.o put_background.o
+FILES = $(SRC)cub.c $(CONFIGS)error.c $(CONFIGS)parse_configs.c $(CONFIGS)parse_map.c $(CONFIGS)check_map.c $(RENDER)render_cub.c $(SRC)events.c $(RENDER)render_tools.c $(RENDER)put_line.c $(RENDER)render_minimap.c $(RENDER)put_walls.c $(RENDER)put_background.c $(RENDER)utils.c
+OBJECTS = cub.o error.o parse_configs.o parse_map.o check_map.o render_cub.o events.o render_tools.o put_line.o render_minimap.o put_walls.o put_background.o utils.o
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror

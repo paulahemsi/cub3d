@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_walls.c                                      :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/02 23:40:05 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/06 02:01:56 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 		configs->player.radius = configs->map.tile_size[Y] / 4;
 	else
 		configs->player.radius = configs->map.tile_size[X] / 4;
-	configs->player.speed = 2;
+	configs->player.speed = 50;
 	*dir = '0';
 	configs->player.plane_dist = floor((configs->width / 2) / tan(30 * (PI / 180)));
 	configs->ray.step= FOV / configs->width;
 	configs->ray.total = configs->width;
 }
 
-void		check_walls(t_configs *configs)
+void		check_map(t_configs *configs)
 {
 	char	**map;
 	int		row;

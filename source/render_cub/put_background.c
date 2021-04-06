@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:08:57 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/03 17:55:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/05 22:56:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 static void	check_colors(t_rgb *color)
 {
@@ -22,7 +22,9 @@ void	put_background(t_data *img)
 {
 	int line;
 	int init[2];
+	float increment;
 
+	increment = 1;
 	check_colors(&img->cub->ceiling);
 	check_colors(&img->cub->floor);
 	line = 0;
@@ -33,23 +35,20 @@ void	put_background(t_data *img)
 	while (line < (img->cub->height / 2))
 	{
 		init[Y] = line;
-		ft_printf("\n");
 		put_line(img, init, img->cub->width, line);
 		line++;
-		if (img->c.red > 0)
-			img->c.red--;
+		if (img->c.red < 255)
+			img->c.red += ceil(increment);	
 	}
 	img->c.red = img->cub->floor.red;
 	img->c.green = img->cub->floor.green;
 	img->c.blue = img->cub->floor.blue;
-	line = img->cub->height;
-	while (line > ((img->cub->height / 2) - 1))
+	while (line < img->cub->height)
 	{
 		init[Y] = line;
-		ft_printf("oi\n");
 		put_line(img, init, img->cub->width, line);
-		line--;
+		line++;
 		if (img->c.red > 0)
-			img->c.red--;
+			img->c.red -= ceil(increment);
 	}
 }

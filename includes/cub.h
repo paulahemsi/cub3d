@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/03 17:39:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/06 02:20:24 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@
 # define X				0
 # define Y				1
 # define TILE_SIZE		64
+# define HALF_TILE		32
 # define PLAYER_HEIGHT	32
+# define SCALE			0.2
 
 /*
 ** maths
 */
-# define PI				3.14159265358979323846
+# define PI				3.14159265
+# define TWO_PI			6.28316530
 # define FOV			60 * (PI / 180)
 
 /*
@@ -64,19 +67,21 @@ typedef struct		s_map
 	unsigned int	total_row;
 	unsigned int	tile_size[2];
 	char			**row;
+	int				show_minimap;
 }					t_map;
 
 typedef struct		s_player
 {
 	int				plane_dist;
 	int				pos[2];
-	int				move_dir;
-	int				turn_dir;
+	int				map_pos[2];
 	int				radius;
+	int				turn_dir;
+	int				move_dir;
 	float			angle;
+	int				speed;
 	float			delta_x;
 	float			delta_y;
-	int				speed;
 }					t_player;
 
 typedef struct		s_paths
@@ -99,7 +104,7 @@ typedef struct		s_ray
 {
 	float			angle;
 	float			step;
-	int				total;
+	int				total;//resolution width
 	int				hor_col[2];
 }					t_ray;
 
@@ -154,7 +159,7 @@ void				parse_configs(t_configs	*configs, char *line);
 void				parse_map(t_configs *configs, char *line);
 void				parse_map_size(t_configs *configs, char *line);
 void				fill_map(t_configs *configs, char *file);
-void				check_walls(t_configs *configs);
+void				check_map(t_configs *configs);
 /*
 ** render cub
 */
@@ -167,6 +172,7 @@ void				put_circle(t_data *img, int center_x, int center_y, int radius);
 void				put_walls(t_data *img);
 void				put_background(t_data *img);
 int					color_picker(unsigned char red, unsigned char green, unsigned char blue);
+void				define_img_colors(t_data *img, int red, int green, int blue);
 
 /*
 ** events

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/05 13:46:40 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/06 02:24:42 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,74 +27,57 @@ int			key_pressed(int key, t_data *img)
 	if (key == ESC)
 		close_cub(key, img);
 	else if (key == W)
-		img->cub->player.pos[Y]--;
+		ft_putendl("W");
 	else if (key == A)
-		img->cub->player.pos[X]--;
+		ft_putendl("A");
 	else if (key == S)
-		img->cub->player.pos[Y]++;
+		ft_putendl("S");
 	else if (key == D)
-		img->cub->player.pos[X]++;
+		ft_putendl("D");
 	else if (key == UP)
-	{
-		img->cub->player.pos[X] += img->cub->player.delta_x;
-		img->cub->player.pos[Y] += img->cub->player.delta_y;
-	}
+		ft_putendl("UP");
 	else if (key == DOWN)
-	{
-		img->cub->player.pos[X] -= img->cub->player.delta_x;
-		img->cub->player.pos[Y] -= img->cub->player.delta_y;
-	}
+		ft_putendl("DOWN");
 	else if (key == LEFT)
-	{
-		img->cub->player.angle -= 0.05 * img->cub->player.speed;
-		if (img->cub->player.angle < 0)
-			img->cub->player.angle += 2 * PI;
-		img->cub->player.delta_x = cos(img->cub->player.angle) * 5;
-		img->cub->player.delta_y = sin(img->cub->player.angle) * 5;
-	}
+		ft_putendl("LEFT");
 	else if (key == RIGHT)
-	{
-		img->cub->player.angle += 0.05 * img->cub->player.speed;
-		if (img->cub->player.angle > 2 * PI)
-			img->cub->player.angle -= 2 * PI;
-		img->cub->player.delta_x = cos(img->cub->player.angle) * 5;
-		img->cub->player.delta_y = sin(img->cub->player.angle) * 5;
-	}
+		ft_putendl("RIGHT");
 	else if (key == SHIFT)
 		ft_putendl("SHIFT");
 	else if (key == SPACE)
 		ft_putendl("SPACE");
 	else if (key == TAB)
-		ft_putendl("TAB");
+	{
+		if (img->cub->map.show_minimap)
+			img->cub->map.show_minimap = FALSE;
+		else
+			img->cub->map.show_minimap = TRUE;
+	}
 	return (0);
 }
 
 int			key_released(int key, t_data *img)
 {
-	// if (key == ESC)
-	// 	close_cub(img);
-	// else if (key == W)
-	// 	img->cub->player.pos[Y]--;
-	// else if (key == A)
-	// 	img->cub->player.pos[X]--;
-	// else if (key == S)
-	// 	img->cub->player.pos[Y]++;
-	// else if (key == D)
-	// 	img->cub->player.pos[X]++;
+	if (key == W)
+		ft_putendl("REL W");
+	else if (key == A)
+		ft_putendl("REL A");
+	else if (key == S)
+		ft_putendl("REL S");
+	else if (key == D)
+		ft_putendl("REL D");
 	if (key == UP)
-		img->cub->player.move_dir = 0;
+		ft_putendl("REL UP");
 	else if (key == DOWN)
-		img->cub->player.move_dir = 0;
+		ft_putendl("REL DOWN");
 	else if (key == LEFT)
-		img->cub->player.turn_dir = 0;
+		ft_putendl("REL LEFT");
 	else if (key == RIGHT)
-		img->cub->player.turn_dir = 0;
+		ft_putendl("REL RIGHT");
 	else if (key == SHIFT)
-		ft_putendl("SHIFT");
+		ft_putendl("REL SHIFT");
 	else if (key == SPACE)
-		ft_putendl("SPACE");
-	else if (key == TAB)
-		ft_putendl("TAB");
+		ft_putendl("REL SPACE");
 	return (0);
 }
 

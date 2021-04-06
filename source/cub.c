@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/02 22:52:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/05 17:43:27 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/cub.h"
+#include "../includes/cub.h"
 
 static void	testando_as_parada_tudo(t_configs *cub)
 {
@@ -61,7 +61,7 @@ static void	parse_scene(char *file, t_configs *cub)
 	free(line);
 	close(fd);
 	fill_map(cub, file);
-	check_walls(cub);
+	check_map(cub);
 }
 
 static void	check_args(int argc, char **argv)
