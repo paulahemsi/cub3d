@@ -151,8 +151,6 @@ I still need to deal with the map and double configs.
 
 * 25/03: I gave up wsl and started working on the vm. The window with mlx was generated and I manage to render some pixels and lines (yey!). I start to studied geometry in computer graphics
 
-![](./study_resources/vectors.png)
-
 > linear algebra is a branch of mathematics that has to do with the study of vectors. 
 
 >A vector can be represented as an array of numbers. This array of numbers, which can assume any desired length, is also sometimes called a tuple in mathematics.
@@ -179,6 +177,8 @@ I'm not shure yet if it will be better to render it in another window or in the 
 * 2/04: after days of struggling, I finally managed to make a list from the steps the raycast requires. Thanks to this [wonderfull resource](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/) by F. Permadi. I started to implement check for horizontal colision for the first ray.
 
 * 5/04: Bresenham's algorithm is finally working properly, so I manage to make the gradient background. Minimap has now transparent background and is toggle by the alt key.
+
+![](./study_resources/gradiente_minimapa2.jpg)
 
 * 6/04: Player is moving and turning acordly. Wall collisions aren't working precisely yet.
 
