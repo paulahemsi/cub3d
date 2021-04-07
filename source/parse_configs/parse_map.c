@@ -59,10 +59,10 @@ static void	fill_row(t_configs *cub, char *line, int index, int *player)
 	}
 }
 
-static void	define_tile_size(t_configs *cub)
+static void	define_world_size(t_configs *cub)
 {
-	cub->map.tile_size[X] = floor((double)(cub->width / cub->map.total_column));
-	cub->map.tile_size[Y] = floor((double)(cub->height / cub->map.total_row));
+	cub->world_width = cub->map.total_column * TILE_SIZE;
+	cub->world_height = cub->map.total_row * TILE_SIZE;
 }
 
 void		fill_map(t_configs *cub, char *file)
@@ -89,7 +89,7 @@ void		fill_map(t_configs *cub, char *file)
 		free(line);
 	}
 	fill_row(cub, line, row, &player);
-	define_tile_size(cub);
+	define_world_size(cub);
 	free(line);
 	close(fd);
 }

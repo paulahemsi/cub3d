@@ -18,8 +18,6 @@ static void	render_rays(t_data *img)
 
 }
 
-
-
 static void	put_player(t_data *img, int *pos)
 {
 	int line;
@@ -28,9 +26,9 @@ static void	put_player(t_data *img, int *pos)
 	define_img_colors(img, 200, 200, 200);
 	player_pos[X] = pos[X];
 	player_pos[Y] = pos[Y];
-	while (player_pos[Y] < pos[Y] + (img->cub->map.tile_size[Y] * SCALE * SCALE))
+	while (player_pos[Y] < pos[Y] + 2)
 	{
-		put_line(img, player_pos, player_pos[X] + (img->cub->map.tile_size[X] * SCALE * SCALE), player_pos[Y]);
+		put_line(img, player_pos, player_pos[X] + 2, player_pos[Y]);
 		player_pos[Y]++;
 	}
 	put_line(img, player_pos, player_pos[X] + cos(img->cub->player.angle) * 20, player_pos[Y] + sin(img->cub->player.angle) * 20);
@@ -44,9 +42,9 @@ static void	put_tile(t_data *img, int *pos)
 	define_img_colors(img, 30, 0, 70);
 	tile_pos[X] = pos[X];
 	tile_pos[Y] = pos[Y];
-	while (tile_pos[Y] < pos[Y] + (img->cub->map.tile_size[Y] * SCALE))
+	while (tile_pos[Y] < pos[Y] + (TILE_SIZE * SCALE))
 	{
-		put_line(img, tile_pos, tile_pos[X] + (img->cub->map.tile_size[X] * SCALE), tile_pos[Y]);
+		put_line(img, tile_pos, tile_pos[X] + (TILE_SIZE * SCALE), tile_pos[Y]);
 		tile_pos[Y]++;
 	}
 }
@@ -72,8 +70,8 @@ void	render_minimap(t_data *img)
 		column = 0;
 		while (column < img->cub->map.total_column)
 		{
-			tile_pos[X] = (column * img->cub->map.tile_size[X]) * SCALE;
-			tile_pos[Y] = (line * img->cub->map.tile_size[Y]) * SCALE;
+			tile_pos[X] = (column * TILE_SIZE) * SCALE;
+			tile_pos[Y] = (line * TILE_SIZE) * SCALE;
 			if (img->cub->map.row[line][column] == '1')
 				put_tile(img, tile_pos);
 			column++;

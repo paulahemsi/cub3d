@@ -60,27 +60,27 @@ static void	parse_resolution(t_configs *cub, char *line)
 			line++;
 		while (ft_isdigit(*line))
 		{
-			if ((cub->width) && (cub->height))
+			if ((cub->screen_width) && (cub->screen_height))
 				return_error(-5);
 			number = (number * 10) + (*line - '0');
 			line++;
 		}
-		if (!(cub->width) && (number))
-			cub->width = number;
-		else if (!(cub->height) && (number))
-			cub->height = number;
+		if (!(cub->screen_width) && (number))
+			cub->screen_width = number;
+		else if (!(cub->screen_height) && (number))
+			cub->screen_height = number;
 		else if ((*line))
 			return_error(-5);
 	}
-	cub->center[X] = floor(cub->width / 2);
-	cub->center[Y] = floor(cub->height / 2);
+	cub->center[X] = floor(cub->screen_width / 2);
+	cub->center[Y] = floor(cub->screen_height / 2);
 }
 
 static int	is_all_configs_set(t_configs *cub)
 {
 	if ((cub->floor.blue == -1) || (cub->ceiling.blue == -1))
 		return (0);
-	if (!(cub->width) || !(cub->height))
+	if (!(cub->screen_width) || !(cub->screen_height))
 		return (0);
 	if (!(cub->path.north) || !(cub->path.south))
 		return (0);

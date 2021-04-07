@@ -30,19 +30,19 @@ void	put_background(t_data *img)
 	line = 0;
 	init[X] = 0;
 	define_img_colors(img, img->cub->ceiling.red, img->cub->ceiling.green, img->cub->ceiling.blue);
-	while (line < (img->cub->height / 2))
+	while (line < (img->cub->screen_height / 2))
 	{
 		init[Y] = line;
-		put_line(img, init, img->cub->width, line);
+		put_line(img, init, img->cub->screen_width, line);
 		line++;
 		if (img->c.red < 255)
 			img->c.red += ceil(increment);	
 	}
 	define_img_colors(img, img->cub->floor.red, img->cub->floor.green, img->cub->floor.blue);
-	while (line < img->cub->height)
+	while (line < img->cub->screen_height)
 	{
 		init[Y] = line;
-		put_line(img, init, img->cub->width, line);
+		put_line(img, init, img->cub->screen_width, line);
 		line++;
 		if (img->c.red > 0)
 			img->c.red -= ceil(increment);

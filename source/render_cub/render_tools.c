@@ -28,22 +28,22 @@ void		put_pixel(t_data *img, int pos_x, int pos_y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void		put_square(t_data *img, int pos_x, int pos_y, int color)
-{
-	int x_init;
+// void		put_square(t_data *img, int pos_x, int pos_y, int color)
+// {
+// 	int x_init;
 
-	x_init = pos_x;
-	while (pos_y < img->cub->height)
-	{
-		while (pos_x < img->cub->width)
-		{
-			put_pixel(img, pos_x, pos_y, color);
-			pos_x++;
-		}
-		pos_y++;
-		pos_x = x_init;
-	}
-}
+// 	x_init = pos_x;
+// 	while (pos_y < img->cub->height)
+// 	{
+// 		while (pos_x < img->cub->width)
+// 		{
+// 			put_pixel(img, pos_x, pos_y, color);
+// 			pos_x++;
+// 		}
+// 		pos_y++;
+// 		pos_x = x_init;
+// 	}
+// }
 
 void	put_circle(t_data *img, int center_x, int center_y, int radius)
 {

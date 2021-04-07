@@ -17,7 +17,7 @@ static int	update(t_data *img)
 {
 	if (img->ptr)
 		mlx_destroy_image(img->mlx_ptr, img->ptr);
-	img->ptr = mlx_new_image(img->mlx_ptr, img->cub->width, img->cub->height);
+	img->ptr = mlx_new_image(img->mlx_ptr, img->cub->screen_width, img->cub->screen_height);
 	img->data = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
 								&img->line_length, &img->endian);
 	put_background(img);
@@ -34,7 +34,7 @@ void		render_cub(t_configs *cub)
 
 	if (!(img.mlx_ptr = mlx_init()))
 		return_error(-8);
-	img.window_ptr = mlx_new_window(img.mlx_ptr, cub->width, cub->height,
+	img.window_ptr = mlx_new_window(img.mlx_ptr, cub->screen_width, cub->screen_height,
 									"cub3D");
 	if (!(img.window_ptr))
 		return_error(-9);

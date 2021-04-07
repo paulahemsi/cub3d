@@ -29,7 +29,7 @@
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
-# define SCALE			0.5
+# define SCALE			0.3
 
 # define TOGGLE			-1
 /*
@@ -38,7 +38,7 @@
 # define PI				3.14159265
 # define TWO_PI			6.28316530
 # define FOV			60 * (PI / 180)
-
+# define HALF_FOV		FOV / 2
 /*
 ** events
 */
@@ -66,7 +66,7 @@ typedef struct		s_map
 {
 	unsigned int	total_column;
 	unsigned int	total_row;
-	unsigned int	tile_size[2];
+	//unsigned int	tile_size[2];
 	char			**row;
 	int				show_minimap;
 }					t_map;
@@ -111,8 +111,10 @@ typedef struct		s_ray
 
 typedef	struct		s_configs
 {
-	unsigned int	width;
-	unsigned int	height;
+	unsigned int	screen_width;
+	unsigned int	screen_height;
+	unsigned int	world_width;
+	unsigned int	world_height;
 	int				center[2];
 	t_paths			path;
 	t_rgb			floor;

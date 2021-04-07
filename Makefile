@@ -64,7 +64,7 @@ $(OBJECTS): $(FILES) $(LIBFT) $(MLX)
 
 test: $(OBJECTS)
 	@echo making cub3D
-	@$(CC) $(FLAGS) -fsanitize=leak -o $(NAME) $(OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
+	@$(CC) $(FLAGS) -g -fsanitize=leak -o $(NAME) $(OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
 	@echo done! Have fun!
 	@echo ___________________________________  
 	@echo "|" _____ "|"   "|" ___ "|" ___ ___ "|" "|"   "|" "|"

@@ -12,9 +12,11 @@
 
 #include "../includes/cub.h"
 
+//!problemas quando o mapa é curto e tem linhas depois
+
 static void	testando_as_parada_tudo(t_configs *cub)
 {
-	printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n width: %u\n height: %u\ncentral point: (%i, %i)\n\nPLAYER\n position: (%i, %i)\n move_dir: %i turn dir: %i\nangle: %f\ndistance to projection plane: %i\n\nRAY:\nstep: %f\nangle: %f\n\n\n", cub->path.north, cub->path.south, cub->path.west, cub->path.east, cub->path.sprite, cub->floor.red, cub->floor.green, cub->floor.blue, cub->ceiling.red, cub->ceiling.green, cub->ceiling.blue, cub->width, cub->height, cub->center[X], cub->center[Y], cub->player.pos[X], cub->player.pos[Y], cub->player.move_dir, cub->player.turn_dir, cub->player.angle, cub->player.plane_dist, cub->ray.step, cub->ray.angle);
+	printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n screen_width: %u\n screen_height: %u\ncentral point: (%i, %i)\n\nPLAYER\n position: (%i, %i)\n move_dir: %i turn dir: %i\nangle: %f\ndistance to projection plane: %i\n\nRAY:\nstep: %f\nangle: %f\n\n\n", cub->path.north, cub->path.south, cub->path.west, cub->path.east, cub->path.sprite, cub->floor.red, cub->floor.green, cub->floor.blue, cub->ceiling.red, cub->ceiling.green, cub->ceiling.blue, cub->screen_width, cub->screen_height, cub->center[X], cub->center[Y], cub->player.pos[X], cub->player.pos[Y], cub->player.move_dir, cub->player.turn_dir, cub->player.angle, cub->player.plane_dist, cub->ray.step, cub->ray.angle);
 	int i = 0;
 	while (cub->map.row[i] != NULL)
 	{

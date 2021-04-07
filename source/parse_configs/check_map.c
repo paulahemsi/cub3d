@@ -13,7 +13,7 @@
 #include "../../includes/cub.h"
 
 static void	check_edges(char cell)
-{
+{	
 	if ((cell == ' ') || (cell == '1'))
 		return ;
 	else
@@ -67,17 +67,17 @@ static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 		else
 			configs->player.angle = 2 * PI;
 	}
-	configs->player.pos[X] = col * (configs->map.tile_size[X]);
-	configs->player.pos[Y] = row * (configs->map.tile_size[Y]);
-	if (configs->map.tile_size[X] > configs->map.tile_size[Y])
-		configs->player.radius = configs->map.tile_size[Y] / 4;
-	else
-		configs->player.radius = configs->map.tile_size[X] / 4;
+	configs->player.pos[X] = col * TILE_SIZE;
+	configs->player.pos[Y] = row * TILE_SIZE;
+	// if (configs->map.tile_size[X] > configs->map.tile_size[Y])
+	// 	configs->player.radius = configs->map.tile_size[Y] / 4;
+	// else
+	// 	configs->player.radius = configs->map.tile_size[X] / 4;
 	configs->player.speed = 15;
 	*dir = '0';
-	configs->player.plane_dist = floor((configs->width / 2) / tan(30 * (PI / 180)));
-	configs->ray.step= FOV / configs->width;
-	configs->ray.total = configs->width;
+	configs->player.plane_dist = floor((configs->screen_width / 2) / tan(HALF_FOV));
+	configs->ray.step= FOV / configs->screen_width;
+	configs->ray.total = configs->screen_width;
 }
 
 void		check_map(t_configs *configs)
@@ -91,6 +91,7 @@ void		check_map(t_configs *configs)
 	while (map[row])
 	{
 		col = 0;
+		ft_printf("xi. row: %i col: %i\n", row, col);
 		while (map[row][col])
 		{
 			if ((row == 0) || (col == 0)
@@ -104,7 +105,7 @@ void		check_map(t_configs *configs)
 			col++;
 		}
 		row++;
-	}
+	}	
 	if (!(configs->player.angle))
 		return_error(-7);
 }
