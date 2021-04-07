@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:08:57 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/05 22:56:01 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/07 00:09:04 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	put_background(t_data *img)
 	check_colors(&img->cub->floor);
 	line = 0;
 	init[X] = 0;
-	img->c.red = img->cub->ceiling.red;
-	img->c.green = img->cub->ceiling.green;
-	img->c.blue = img->cub->ceiling.blue;
+	define_img_colors(img, img->cub->ceiling.red, img->cub->ceiling.green, img->cub->ceiling.blue);
 	while (line < (img->cub->height / 2))
 	{
 		init[Y] = line;
@@ -40,9 +38,7 @@ void	put_background(t_data *img)
 		if (img->c.red < 255)
 			img->c.red += ceil(increment);	
 	}
-	img->c.red = img->cub->floor.red;
-	img->c.green = img->cub->floor.green;
-	img->c.blue = img->cub->floor.blue;
+	define_img_colors(img, img->cub->floor.red, img->cub->floor.green, img->cub->floor.blue);
 	while (line < img->cub->height)
 	{
 		init[Y] = line;

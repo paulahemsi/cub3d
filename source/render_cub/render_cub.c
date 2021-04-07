@@ -6,24 +6,12 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/06 02:20:36 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/06 22:55:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-static void	update_player(t_player *player)
-{
-	float step;
-	float new_position[2];
-	ft_printf("player->pos[X] = %i player->pos[Y] = %i\n", player->pos[X], player->pos[Y]);
-	player->angle += player->turn_dir * (player->speed * PI / 180);
-	step = player->move_dir * player->speed;
-	new_position[X] = player->pos[X] + cos(player->angle * step);
-	new_position[Y] = player->pos[Y] + sin(player->angle * step);
-	player->pos[X] = new_position[X];
-	player->pos[Y] = new_position[Y];
-}
 
 static int	update(t_data *img)
 {
@@ -33,8 +21,7 @@ static int	update(t_data *img)
 	img->data = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
 								&img->line_length, &img->endian);
 	put_background(img);
-	//update_player(&img->cub->player);
-	if (img->cub->map.show_minimap)
+	if (img->cub->map.show_minimap == TRUE)
 		render_minimap(img);
 	//put_walls(img);
 	mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);

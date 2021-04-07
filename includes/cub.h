@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/06 02:20:24 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/06 23:52:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
-# define SCALE			0.2
+# define SCALE			0.5
 
+# define TOGGLE			-1
 /*
 ** maths
 */
@@ -74,14 +75,14 @@ typedef struct		s_player
 {
 	int				plane_dist;
 	int				pos[2];
-	int				map_pos[2];
+	//int				map_pos[2];
 	int				radius;
 	int				turn_dir;
 	int				move_dir;
 	float			angle;
 	int				speed;
-	float			delta_x;
-	float			delta_y;
+	//float			delta_x;
+	//float			delta_y;
 }					t_player;
 
 typedef struct		s_paths

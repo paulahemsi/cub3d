@@ -178,5 +178,9 @@ I'm not shure yet if it will be better to render it in another window or in the 
 
 * 2/04: after days of struggling, I finally managed to make a list from the steps the raycast requires. Thanks to this [wonderfull resource](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/) by F. Permadi. I started to implement check for horizontal colision for the first ray.
 
+* 5/04: Bresenham's algorithm is finally working properly, so I manage to make the gradient background. Minimap has now transparent background and is toggle by the alt key.
+
+* 6/04: Player is moving and turning acordly. Wall collisions aren't working precisely yet.
+
 </details>
 

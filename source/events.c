@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/06 02:24:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/07 00:12:03 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,58 +22,91 @@ int		close_cub(int key, t_data *img)
 	return (0);
 }
 
+static void	update_turn_direction(int direction, t_player *player)
+{
+	player->turn_dir += direction;
+	player->angle += player->turn_dir * (player->speed * PI / 180);
+	player->angle = remainder(player->angle, TWO_PI);
+	if (player->angle < 0)
+		player->angle += TWO_PI;
+}
+
+static int	is_tile_free(float *pos, t_configs *cub)
+{
+	int minimap[2];
+
+	if (pos[X] < 0 || pos[X] > cub->width || pos[Y] < 0 || pos[Y] > cub->height)
+		return (FALSE);
+	minimap[X] = floor(pos[X] / cub->map.tile_size[X]);
+	minimap[Y] = floor(pos[Y] / cub->map.tile_size[Y]);
+	if (cub->map.row[minimap[X]][minimap[Y]] == '0')
+		return (TRUE);
+	return (FALSE);
+}
+
+static void	update_move_direction(int direction, t_player *player, t_configs *cub)
+{
+	float step;
+	float new_position[2];
+
+	player->move_dir += direction;
+	step = player->move_dir * player->speed;
+	new_position[X] = player->pos[X] + (cos(player->angle) * step);
+	new_position[Y] = player->pos[Y] + (sin(player->angle) * step);
+	//if (is_tile_free(new_position, cub))
+	//{
+		player->pos[X] = new_position[X];
+		player->pos[Y] = new_position[Y];
+	//}
+}
+
 int			key_pressed(int key, t_data *img)
 {
 	if (key == ESC)
 		close_cub(key, img);
-	else if (key == W)
-		ft_putendl("W");
+	if (key == W)
+		update_move_direction(1, &img->cub->player, img->cub);
 	else if (key == A)
 		ft_putendl("A");
 	else if (key == S)
-		ft_putendl("S");
+		update_move_direction(-1, &img->cub->player, img->cub);
 	else if (key == D)
 		ft_putendl("D");
-	else if (key == UP)
-		ft_putendl("UP");
+	if (key == UP)
+		update_move_direction(1, &img->cub->player, img->cub);
 	else if (key == DOWN)
-		ft_putendl("DOWN");
-	else if (key == LEFT)
-		ft_putendl("LEFT");
+		update_move_direction(-1, &img->cub->player, img->cub);
+	if (key == LEFT)
+		update_turn_direction(-1, &img->cub->player);
 	else if (key == RIGHT)
-		ft_putendl("RIGHT");
+		update_turn_direction(1, &img->cub->player);
 	else if (key == SHIFT)
 		ft_putendl("SHIFT");
 	else if (key == SPACE)
 		ft_putendl("SPACE");
 	else if (key == TAB)
-	{
-		if (img->cub->map.show_minimap)
-			img->cub->map.show_minimap = FALSE;
-		else
-			img->cub->map.show_minimap = TRUE;
-	}
+		img->cub->map.show_minimap *= TOGGLE;
 	return (0);
 }
 
 int			key_released(int key, t_data *img)
 {
 	if (key == W)
-		ft_putendl("REL W");
+		img->cub->player.move_dir = 0;
 	else if (key == A)
 		ft_putendl("REL A");
 	else if (key == S)
-		ft_putendl("REL S");
+		img->cub->player.move_dir = 0;
 	else if (key == D)
 		ft_putendl("REL D");
-	if (key == UP)
-		ft_putendl("REL UP");
+	else if (key == UP)
+		img->cub->player.move_dir = 0;
 	else if (key == DOWN)
-		ft_putendl("REL DOWN");
+		img->cub->player.move_dir = 0;
 	else if (key == LEFT)
-		ft_putendl("REL LEFT");
+		img->cub->player.turn_dir = 0;
 	else if (key == RIGHT)
-		ft_putendl("REL RIGHT");
+		img->cub->player.turn_dir = 0;
 	else if (key == SHIFT)
 		ft_putendl("REL SHIFT");
 	else if (key == SPACE)

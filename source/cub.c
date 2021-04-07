@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/05 17:43:27 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/06 22:53:14 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ static void	init_cub(t_configs *cub)
 {
 	ft_memset(cub, 0, sizeof(*cub));
 	ft_memset(&cub->floor, -1, sizeof(cub->floor));
-	ft_memset(&cub->ceiling, -1, sizeof(cub->ceiling));	
+	ft_memset(&cub->ceiling, -1, sizeof(cub->ceiling));
+	cub->map.show_minimap = -1;
 }
 
 int			main(int argc, char **argv)
