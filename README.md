@@ -20,14 +20,14 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 
 (time may overlap, as life and data)
 * I watched videos and read about raycasting, field of view algorithms and collision detection to have an overall idea about the project. (~4 days)
-* adjusted libraries, makefile, created header file (~1 day)
-* configuration parsing, including minimap storaged and errors checking(~ 5 days)
-* I struggle to make minilibx works in wsl (~2 days)
-* I gave up wsl and install and ran minilibx in linux vm (~5 hours)
-* studied geometry and minilibx library (~2 days)
-* managed to draw the 2d minimap with mlx (~1 day)
-* getting lost and completly stuck while trying to study(~4 days that seem an eternity)
-* made a step by step list from raycasting process (~1 day)
+* libraries adjustments, makefile and header file creation(~1 day)
+* configuration parsing, which includes minimap storage and errors checking(~ 5 days)
+* I struggled to make minilibx works in wsl (~2 days)
+* I gave up the wsl and installed and ran minilibx in linux vm (~5 hours)
+* geometry and minilibx library study (~2 days)
+* I managed to draw the 2d minimap with mlx (~1 day)
+* I got lost and completly stuck while trying to study(~4 days that seem an eternity)
+* step by step list from raycasting process (~1 day)
 
 **raycasting steps:**
 
@@ -144,12 +144,11 @@ I still need to deal with the map and double configs.
 
 * 23/03: I finished map and walls errors handling. Map correctly stored in a 2d array.
 
-* 24/03: I included minilibx but I'm struggling to generate a window with it. May be is an Wsl issue :/
+* 24/03: I included minilibx but I'm struggling to create a window with it. May be is an Wsl issue :/
 
-  
 ![](./study_resources/mindmaps/check__walls.jpg)
 
-* 25/03: I gave up wsl and started working on the vm. The window with mlx was generated and I manage to render some pixels and lines (yey!). I start to studied geometry in computer graphics
+* 25/03: I gave up wsl and started working on the vm. The window with mlx was created and I managed to render some pixels and lines (yey!). I started to study geometry in computer graphics
 
 > linear algebra is a branch of mathematics that has to do with the study of vectors. 
 
@@ -159,28 +158,28 @@ I still need to deal with the map and double configs.
 
 Player position and player orientation are now been saved in the configs struct, I bet it will be very important in the future.
 
-* 26/03: I studied minilibx man pages and function. I was able to make a color gradient playing with rgb values in some kind of loop and...: the minimap is now beeing render! =D 
-I'm not shure yet if it will be better to render it in another window or in the same one.
+* 26/03: I studied minilibx man pages and function. I was able to make a color gradient playing with rgb values in some kind of loop and...: the minimap is now being rendered! =D 
+I'm still not sure if it will be better to render it in another window or in the same one.
 
 ![](study_resources/minimap.png)
 
 * 27/03: The code was refactored and the player now answer to `w a s d` keys to walk in the minimap (in the wrong way, though).
 
-* 29/03: I fixed some of the walking problems, now the player moves when the key is pressed (not released). Still studying minilibx. I should probably go back to the maths in the next days. I'm also trying to understand wich flow the program should have from now on.
+* 29/03: I fixed some of the walking problems, now the player moves when the key is pressed (not released). Minilibx study still going on. I should probably go back to the maths in the next days. I'm also trying to understand which flow the program should have from now on.
 
 * 30/03: I started a mindmap from the flow I will need to take to continue the program and also studied DDA and Bresenham's line drawing algorithm. I'll probably use Bresenham's, it is more complex to understand but aparently much more efficient and accurate.
 
-* 31/03: I implemented Bresenham's algorithm to put lines and watched tons of raycasting videos on youtube. Still trying to catch what will be the best aprouch from now on.
+* 31/03: I implemented Bresenham's algorithm to put lines and watched tons of raycasting videos on youtube. Still trying to figure what will be the best approach from now on.
 
-* 1/04: I've just realized that something went wrong with Bresenham's implementation. Trying to fix it. Hours later: done! Now the player has a line pointing the direction and walks acordly.
+* 1/04: I've just realized that something went wrong with Bresenham's implementation. Trying to fix it. Hours later: done! Now the player has a line pointing at the direction and walks acordly.
 
-* 2/04: after days of struggling, I finally managed to make a list from the steps the raycast requires. Thanks to this [wonderfull resource](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/) by F. Permadi. I started to implement check for horizontal colision for the first ray.
+* 2/04: after days of struggling, I finally managed to make a list from the steps the raycast requires. Thanks to this [wonderfull resource](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/) by F. Permadi. I started to implement horizontal colision checking for the first ray.
 
-* 5/04: Bresenham's algorithm is finally working properly, so I manage to make the gradient background. Minimap has now transparent background and is toggle by the alt key.
+* 5/04: Bresenham's algorithm is finally working properly, so I managed to make the gradient background. Minimap has now transparent background and is toggled by the alt key.
 
 ![](./study_resources/gradiente_minimapa2.jpg)
 
-* 6/04: Player is moving and turning acordly. Wall collisions aren't working precisely yet.
+* 6/04: Player is moving and turning accordingly. Wall collisions aren't working precisely yet.
 
 </details>
 
