@@ -31,15 +31,15 @@ static void	update_turn_direction(int direction, t_player *player)
 		player->angle += TWO_PI;
 }
 
-static int	is_tile_free(float *pos, t_configs *cub)
+static int	is_tile_free(int *minimap, t_configs *cub)
 {
-	int minimap[2];
+	// int minimap[2];
 
-	if (pos[X] < 0 || pos[X] > cub->world_width || pos[Y] < 0 || pos[Y] > cub->world_height)
-		return (FALSE);
-	minimap[X] = floor(pos[X] / TILE_SIZE);
-	minimap[Y] = floor(pos[Y] / TILE_SIZE);
-	ft_printf("minimap (%i, %i) content %c", minimap[X], minimap[Y], cub->map.row[minimap[X]][minimap[Y]]);
+	// if (pos[X] < 0 || pos[X] >= cub->world_width || pos[Y] < 0 || pos[Y] >= cub->world_height)
+	// 	return (FALSE);
+	// minimap[X] = floor(pos[X] / TILE_SIZE);
+	// minimap[Y] = floor(pos[Y] / TILE_SIZE);
+	ft_printf("minimap (%i, %i) content %c\n", minimap[X], minimap[Y], cub->map.row[minimap[X]][minimap[Y]]);
 	if (minimap[X] >= cub->map.total_column || minimap[Y] >= cub->map.total_row)
 		return (FALSE);
 	if (cub->map.row[minimap[X]][minimap[Y]] == '0')
@@ -51,16 +51,20 @@ static void	update_move_direction(int direction, t_player *player, t_configs *cu
 {
 	float step;
 	float new_position[2];
+	int minimap[2];
 
 	player->move_dir += direction;
 	step = player->move_dir * player->speed;
 	new_position[X] = player->pos[X] + (cos(player->angle) * step);
 	new_position[Y] = player->pos[Y] + (sin(player->angle) * step);
-	//is_tile_free(new_position, cub);
+	minimap[X] = floor(new_position[X] / TILE_SIZE);
+	minimap[Y] = floor(new_position[Y] / TILE_SIZE);
+	//if (is_tile_free(minimap, cub))
 	//{
-		printf("player pos (%i, %i)\n", player->pos[X], player->pos[Y]);
 		player->pos[X] = new_position[X];
 		player->pos[Y] = new_position[Y];
+	//ft_printf("minimap (%i, %i) content %c\n", minimap[X], minimap[Y], cub->map.row[minimap[X]][minimap[Y]]);
+	//printf("next pos (%i, %i) tile content: %c\n", player->pos[X], player->pos[Y], cub->map.row[minimap[X]][minimap[Y]]);
 	//}
 }
 

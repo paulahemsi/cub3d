@@ -73,7 +73,7 @@ static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 	// 	configs->player.radius = configs->map.tile_size[Y] / 4;
 	// else
 	// 	configs->player.radius = configs->map.tile_size[X] / 4;
-	configs->player.speed = 15;
+	configs->player.speed = 10;
 	*dir = '0';
 	configs->player.plane_dist = floor((configs->screen_width / 2) / tan(HALF_FOV));
 	configs->ray.step= FOV / configs->screen_width;
@@ -91,7 +91,7 @@ void		check_map(t_configs *configs)
 	while (map[row])
 	{
 		col = 0;
-		ft_printf("xi. row: %i col: %i\n", row, col);
+	//	ft_printf("xi. row: %i col: %i\n", row, col);
 		while (map[row][col])
 		{
 			if ((row == 0) || (col == 0)

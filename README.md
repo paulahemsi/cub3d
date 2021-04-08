@@ -181,5 +181,7 @@ I'm still not sure if it will be better to render it in another window or in the
 
 * 6/04: Player is moving and turning accordingly. Wall collisions aren't working precisely yet.
 
+* 7/04: *wall_collisions* 7 x 1 *me*
+
 </details>
 

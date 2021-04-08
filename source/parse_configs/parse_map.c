@@ -88,7 +88,10 @@ void		fill_map(t_configs *cub, char *file)
 		}
 		free(line);
 	}
-	fill_row(cub, line, row, &player);
+	if (((*line == '1') || (*line == ' ')))
+	{
+		fill_row(cub, line, row, &player);
+	}
 	define_world_size(cub);
 	free(line);
 	close(fd);

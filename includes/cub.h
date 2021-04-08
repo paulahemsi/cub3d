@@ -29,7 +29,7 @@
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
-# define SCALE			0.3
+# define SCALE			0.1
 
 # define TOGGLE			-1
 /*
