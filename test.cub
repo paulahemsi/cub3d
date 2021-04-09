@@ -1,7 +1,7 @@
 R 640 640
 
-C 0, 55, 200
-F 255, 55, 200
+C 0, 100, 230
+F 255, 50, 230
 
 SO ./path_to_the_south_texture
 EA ./path_to_the_east_texture
@@ -17,6 +17,6 @@ S ./path_to_the_sprite_texture
 1110000001
 1111011111
 1110000101
-1100000011
+1100000001
 1101011101
 1111111111

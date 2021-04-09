@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/09 16:15:03 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/09 17:27:34 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
-# define SCALE			1
+# define SCALE			0.1
 
 # define TOGGLE			-1
 /*

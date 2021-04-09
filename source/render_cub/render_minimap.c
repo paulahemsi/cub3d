@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/09 16:39:05 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/09 17:30:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	render_rays(t_data *img, t_configs *cub, t_ray *rays)
 	int		player_pos[2];
 
 	ray = 0;
+	define_img_colors(img, 200, 200, 100);
 	player_pos[X] = cub->player.pos[X] * SCALE;
 	player_pos[Y] = cub->player.pos[Y] * SCALE;
 	while (ray < img->cub->screen_width)
@@ -86,6 +87,6 @@ void	render_minimap(t_data *img, t_ray *rays)
 		}
 		line++;
 	}
-	render_player(img, &img->cub->player);
+	//render_player(img, &img->cub->player);
 	render_rays(img, img->cub, rays);
 }
