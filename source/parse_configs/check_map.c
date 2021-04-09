@@ -69,10 +69,6 @@ static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 	}
 	configs->player.pos[X] = col * TILE_SIZE;
 	configs->player.pos[Y] = row * TILE_SIZE;
-	// if (configs->map.tile_size[X] > configs->map.tile_size[Y])
-	// 	configs->player.radius = configs->map.tile_size[Y] / 4;
-	// else
-	// 	configs->player.radius = configs->map.tile_size[X] / 4;
 	configs->player.speed = 10;
 	*dir = '0';
 	configs->player.plane_dist = floor((configs->screen_width / 2) / tan(HALF_FOV));

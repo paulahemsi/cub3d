@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/06 22:55:17 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/09 16:37:24 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 static int	update(t_data *img)
 {
+	t_ray	rays[img->cub->screen_width];
+
 	if (img->ptr)
 		mlx_destroy_image(img->mlx_ptr, img->ptr);
 	img->ptr = mlx_new_image(img->mlx_ptr, img->cub->screen_width, img->cub->screen_height);
 	img->data = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
 								&img->line_length, &img->endian);
 	put_background(img);
+	raycasting(img, img->cub, rays);
 	if (img->cub->map.show_minimap == TRUE)
-		render_minimap(img);
+		render_minimap(img, rays);
 	//put_walls(img);
 	mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
 	return (0);

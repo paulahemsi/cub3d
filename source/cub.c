@@ -110,6 +110,7 @@ int			main(int argc, char **argv)
 	parse_scene(argv[1], &cub);
 	testando_as_parada_tudo(&cub);
 	render_cub(&cub);
+	testando_as_parada_tudo(&cub);
 	free_paths(&cub);
 	free_map(cub.map.row);
 	return (EXIT_SUCCESS);

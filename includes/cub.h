@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/06 23:52:51 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/09 16:15:03 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
+# include <limits.h>
 
 # define X				0
 # define Y				1
@@ -33,7 +34,7 @@
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
-# define SCALE			0.5
+# define SCALE			1
 
 # define TOGGLE			-1
 /*
@@ -188,14 +189,17 @@ void				check_map(t_configs *configs);
 ** render cub
 */
 void				render_cub(t_configs *configs);
-void				render_minimap(t_data *img);
+void				render_minimap(t_data *img, t_ray *rays);
+void				raycasting(t_data *img, t_configs *cub, t_ray *rays);
+void				put_background(t_data *img);
+int					color_picker(unsigned char red, unsigned char green, unsigned char blue);
+/*
+** render tools
+*/
 void				put_square(t_data *img, int pos_x, int pos_y, int color);
 void				put_line(t_data *img, int *player_pos, int x2, int y2);
 void				put_pixel(t_data *img, int pos_x, int pos_y, int color);
 void				put_circle(t_data *img, int center_x, int center_y, int radius);
-void				put_walls(t_data *img);
-void				put_background(t_data *img);
-int					color_picker(unsigned char red, unsigned char green, unsigned char blue);
 /*
 ** render utils
 */
