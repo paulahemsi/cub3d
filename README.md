@@ -183,5 +183,7 @@ I'm still not sure if it will be better to render it in another window or in the
 
 * 7/04: *wall_collisions* 7 x 1 *me*
 
+* 8/04: *wall_collisions* 8 x 7 *me*
+
 </details>
 

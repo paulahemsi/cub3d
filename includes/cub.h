@@ -26,10 +26,14 @@
 
 # define X				0
 # define Y				1
+# define ROW			1
+# define COL			0
+# define HOR			0
+# define VER			1
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
-# define SCALE			0.1
+# define SCALE			0.5
 
 # define TOGGLE			-1
 /*
@@ -104,10 +108,27 @@ typedef struct		s_rgb
 typedef struct		s_ray
 {
 	float			angle;
+	float			hit[2];
+	float			dist;
+	int				vertical_hit;
+	int				hor_col[2];
+	int				up;
+	int				left;
 	float			step;
 	int				total;//resolution width
-	int				hor_col[2];
+	char			wall_content;
 }					t_ray;
+
+typedef struct		s_cast
+{
+	float			intercept[2];
+	float			step[2];
+	int				hitted;
+	float			hit[2];
+	float			distance;
+	char			content;
+}					t_cast;
+
 
 typedef	struct		s_configs
 {
@@ -175,7 +196,13 @@ void				put_circle(t_data *img, int center_x, int center_y, int radius);
 void				put_walls(t_data *img);
 void				put_background(t_data *img);
 int					color_picker(unsigned char red, unsigned char green, unsigned char blue);
+/*
+** render utils
+*/
 void				define_img_colors(t_data *img, int red, int green, int blue);
+float				normalize_angle(float angle);
+int					is_tile_free(float *pos, t_configs *cub);
+float				calc_distance(int *pos, float *hit);
 
 /*
 ** events

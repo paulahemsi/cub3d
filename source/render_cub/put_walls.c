@@ -20,6 +20,15 @@ static int	is_ray_facing_down(float	angle)
 		return (FALSE);
 }
 
+static int	is_ray_facing_right(float	angle)
+{
+	if (angle < PI / 2 || angle > 1.5 * PI)
+		return (TRUE);
+	else
+		return (FALSE);
+}
+
+
 static void	find_horizontal_collision(t_configs *cub)
 {
 	int		intersection[2];
@@ -39,7 +48,7 @@ static void	find_horizontal_collision(t_configs *cub)
 		intersection[Y] = floor(cub->player.pos[Y] / 64) * 64 - 1;
 		increment[Y] = -TILE_SIZE;
 	}
-	intersection[X] = cub->player.pos[X] + (cub->player.pos[Y] - intersection[Y]) / tan(cub->ray.angle); //TODO tabela de tangestes para evitar contas
+	intersection[X] = cub->player.pos[X] + (cub->player.pos[Y] - intersection[Y]) / tan(cub->ray.angle); //TODO tabela de tangentes para evitar contas
 	grid[X] = floor(intersection[X] / TILE_SIZE);
 	grid[Y] = floor(intersection[Y] / TILE_SIZE);
 	increment[X] = 64 / tan(cub->ray.angle);

@@ -31,41 +31,53 @@ static void	update_turn_direction(int direction, t_player *player)
 		player->angle += TWO_PI;
 }
 
-static int	is_tile_free(int *minimap, t_configs *cub)
-{
-	// int minimap[2];
-
-	// if (pos[X] < 0 || pos[X] >= cub->world_width || pos[Y] < 0 || pos[Y] >= cub->world_height)
-	// 	return (FALSE);
-	// minimap[X] = floor(pos[X] / TILE_SIZE);
-	// minimap[Y] = floor(pos[Y] / TILE_SIZE);
-	ft_printf("minimap (%i, %i) content %c\n", minimap[X], minimap[Y], cub->map.row[minimap[X]][minimap[Y]]);
-	if (minimap[X] >= cub->map.total_column || minimap[Y] >= cub->map.total_row)
-		return (FALSE);
-	if (cub->map.row[minimap[X]][minimap[Y]] == '0')
-		return (TRUE);
-	return (FALSE);
-}
 
 static void	update_move_direction(int direction, t_player *player, t_configs *cub)
 {
 	float step;
 	float new_position[2];
-	int minimap[2];
+	//int minimap[2];
 
 	player->move_dir += direction;
 	step = player->move_dir * player->speed;
 	new_position[X] = player->pos[X] + (cos(player->angle) * step);
 	new_position[Y] = player->pos[Y] + (sin(player->angle) * step);
-	minimap[X] = floor(new_position[X] / TILE_SIZE);
-	minimap[Y] = floor(new_position[Y] / TILE_SIZE);
-	//if (is_tile_free(minimap, cub))
-	//{
+	// minimap[ROW] = floor(new_position[Y] / TILE_SIZE);
+	// minimap[COL] = floor(new_position[X] / TILE_SIZE);
+	if (is_tile_free(new_position, cub))
+	{
+	// int i = 0;
+	// int j;
+	// while (cub->map.row[i] != NULL)
+	// {
+	// 	printf("ooi");
+	// 	j = 0;
+	// 	while (cub->map.row[i][j] != '\0')
+	// 	{
+	// 		ft_printf("%c", cub->map.row[i][j]);
+	// 		j++;
+	// 	}
+	// 	ft_printf("\n");
+	// 	i++;
+	// }
+	// i = 0;
+	// while (cub->map.row[i] != NULL)
+	// {
+	// 	printf("ooi");
+	// 	j = 0;
+	// 	while (cub->map.row[i][j] != '\0')
+	// 	{
+	// 		ft_printf("(%i, %i) -> %c\n", i, j, cub->map.row[i][j]);
+	// 		j++;
+	// 	}
+	// 	ft_printf("\n");
+	// 	i++;
+	// }
 		player->pos[X] = new_position[X];
 		player->pos[Y] = new_position[Y];
-	//ft_printf("minimap (%i, %i) content %c\n", minimap[X], minimap[Y], cub->map.row[minimap[X]][minimap[Y]]);
-	//printf("next pos (%i, %i) tile content: %c\n", player->pos[X], player->pos[Y], cub->map.row[minimap[X]][minimap[Y]]);
-	//}
+	// ft_printf("minimap (%i, %i) content %c\n", minimap[X], minimap[Y], cub->map.row[minimap[ROW]][minimap[COL]]);
+	// printf("next pos (%i, %i) tile content: %c\n", player->pos[X], player->pos[Y], cub->map.row[minimap[ROW]][minimap[COL]]);
+	}
 }
 
 int			key_pressed(int key, t_data *img)
