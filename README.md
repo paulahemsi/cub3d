@@ -28,6 +28,7 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 * I managed to draw the 2d minimap with mlx (~1 day)
 * I got lost and completly stuck while trying to study(~4 days that seem an eternity)
 * step by step list from raycasting process (~1 day)
+* 3d wall renderization and wall colisions implementation (~5 days)
 
 **raycasting steps:**
 
@@ -177,13 +178,16 @@ I'm still not sure if it will be better to render it in another window or in the
 
 * 5/04: Bresenham's algorithm is finally working properly, so I managed to make the gradient background. Minimap has now transparent background and is toggled by the alt key.
 
-![](./study_resources/gradiente_minimapa2.jpg)
-
 * 6/04: Player is moving and turning accordingly. Wall collisions aren't working precisely yet.
 
 * 7/04: *wall_collisions* 7 x 1 *me*
 
-* 8/04: *wall_collisions* 8 x 7 *me*
+* 8/04: *wall_collisions* 8 x 5 *me*
+
+* 9/04: Every dog has his day. Not only the wall collisions are working (99%), but also the walls are beeing rendered! **And** running/walking is implemented! 
+I also implemented invisibility and crouching, but the result gots a little bit akward, so I took them off for now.
+
+![](study_resources/walls.gif)
 
 </details>
 
