@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/05 17:03:10 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:57:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void	return_error(int error_id)
 		ft_putstr("Error\nunable to conect with graphical system\n");
 	else if (error_id == -9)
 		ft_putstr("Error\nunable to create a window\n");
+	else if (error_id == -10)
+		ft_putstr("Error\ncolors values must be in the range 0 - 255\n");
 	exit(error_id);
 }

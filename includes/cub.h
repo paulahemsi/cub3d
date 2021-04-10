@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/10 08:01:46 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/10 15:03:50 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define A				0x0061
 # define S				0x0073
 # define D				0x0064
+# define G				0x0067 
 # define SPACE			0x0020
 # define TAB			0xff09
 # define SHIFT			0xffe1
@@ -74,6 +75,7 @@ typedef struct		s_map
 	//unsigned int	tile_size[2];
 	char			**row;
 	int				show_minimap;
+	//float			scale;
 }					t_map;
 
 typedef struct		s_player
@@ -141,6 +143,7 @@ typedef	struct		s_configs
 	unsigned int	world_width;
 	unsigned int	world_height;
 	int				center[2];
+	int				gradient;
 	t_paths			path;
 	t_rgb			floor;
 	t_rgb			ceiling;

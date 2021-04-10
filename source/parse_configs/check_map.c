@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/10 08:16:51 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/10 13:33:04 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,5 @@ void		check_map(t_configs *configs)
 	}	
 	if (!(configs->player.angle))
 		return_error(-7);
+	//configs->map.scale = ((configs->world_width * configs->world_height) / (configs->screen_width * configs->screen_height)) * SCALE;
 }

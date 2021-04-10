@@ -1,12 +1,12 @@
 R 1920 1080
 
-C 0, 100, 230
+C 0, 100, 255
 F 255, 50, 230
 
-SO ./path_to_the_south_texture
-EA ./path_to_the_east_texture
-NO ./path_to_the_north_texture
-WE ./path_to_the_west_texture
+SO ./textures/light_pb.jpg
+EA ./textures/dark_pb.jpg
+NO ./textures/light_pb.jpg
+WE ./textures/dark_pb.jpg
 S ./path_to_the_sprite_texture
 
 

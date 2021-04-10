@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/06 22:53:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/10 15:04:32 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ static void	free_paths(t_configs *cub)
 	free(cub->path.sprite);
 }
 
+static void	check_colors(t_rgb *color)
+{
+	if (color->red > 255 || color->blue > 255 || color->green > 255)
+		return_error(-10);
+}
+
 static void	parse_scene(char *file, t_configs *cub)
 {
 	char		*line;
@@ -65,6 +71,8 @@ static void	parse_scene(char *file, t_configs *cub)
 		free(line);
 	}
 	parse_configs(cub, line);
+	check_colors(&cub->ceiling);
+	check_colors(&cub->floor);
 	free(line);
 	close(fd);
 	fill_map(cub, file);
@@ -96,6 +104,7 @@ static void	init_cub(t_configs *cub)
 	ft_memset(&cub->floor, -1, sizeof(cub->floor));
 	ft_memset(&cub->ceiling, -1, sizeof(cub->ceiling));
 	cub->map.show_minimap = -1;
+	cub->gradient = -1;
 }
 
 int			main(int argc, char **argv)
