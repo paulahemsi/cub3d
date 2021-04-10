@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/09 16:11:17 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/10 06:09:30 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,36 +109,43 @@ static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angl
 
 static void	store_ray_data(t_ray *rays, t_cast *direction, int column, float angle)
 {
-		rays[column].dist = direction->distance;
-		rays[column].hit[X] = direction->hit[X];
-		rays[column].hit[Y] = direction->hit[Y];
-		rays[column].wall_content = direction->content;
-		rays[column].vertical_hit = FALSE;
-		rays[column].angle = angle;
-		rays[column].up = !(is_ray_facing_down(angle));
-		rays[column].left = !(is_ray_facing_right(angle));
+	rays[column].dist = direction->distance;
+	rays[column].hit[X] = direction->hit[X];
+	rays[column].hit[Y] = direction->hit[Y];
+	rays[column].wall_content = direction->content;
+	rays[column].angle = angle;
+	rays[column].up = !(is_ray_facing_down(angle));
+	rays[column].left = !(is_ray_facing_right(angle));
 }
 
 static void	cast_ray(t_data *img, float angle, int column, t_ray *rays)
 {
 	t_cast	horizontal;
 	t_cast	vertical;
+	float	fish_eye_correction;
 
 	find_horizontal_collision(img->cub, &horizontal, angle, column);
 	find_vertical_collision(img->cub, &vertical, angle, column);
+	fish_eye_correction = cos(img->cub->player.angle - angle);
 	if (horizontal.hitted)
-		horizontal.distance = calc_distance(img->cub->player.pos, horizontal.hit);
+		horizontal.distance = calc_distance(img->cub->player.pos, horizontal.hit) * fish_eye_correction;
 	else
 		horizontal.distance = INT_MAX;
 	if (vertical.hitted)
-		vertical.distance = calc_distance(img->cub->player.pos, vertical.hit);
+		vertical.distance = calc_distance(img->cub->player.pos, vertical.hit) * fish_eye_correction;
 	else
 		vertical.distance = INT_MAX;
 	float distance;
 	if (horizontal.distance < vertical.distance)
+	{
 		store_ray_data(rays, &horizontal, column, angle);
+		rays[column].vertical_hit = FALSE;
+	}
 	else
+	{
 		store_ray_data(rays, &vertical, column, angle);
+		rays[column].vertical_hit = TRUE;
+	}
 }
 
 void	raycasting(t_data *img, t_configs *cub, t_ray *rays)

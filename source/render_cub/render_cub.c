@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/09 16:37:24 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/10 06:27:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static int	update(t_data *img)
 								&img->line_length, &img->endian);
 	put_background(img);
 	raycasting(img, img->cub, rays);
+	put_walls(img, rays);
 	if (img->cub->map.show_minimap == TRUE)
 		render_minimap(img, rays);
-	//put_walls(img);
 	mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
 	return (0);
 }

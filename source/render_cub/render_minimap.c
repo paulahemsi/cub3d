@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/09 17:30:17 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/10 08:17:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	put_tile(t_data *img, int *pos)
 	int line;
 	int tile_pos[2];
 
-	define_img_colors(img, 30, 0, 70);
+	define_img_colors(img, 30, 10, 70);
 	tile_pos[X] = pos[X];
 	tile_pos[Y] = pos[Y];
 	while (tile_pos[Y] < pos[Y] + (TILE_SIZE * SCALE))

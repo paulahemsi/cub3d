@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/07 00:12:03 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/10 08:17:09 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		close_cub(int key, t_data *img)
 static void	update_turn_direction(int direction, t_player *player)
 {
 	player->turn_dir += direction;
-	player->angle += player->turn_dir * (player->speed * PI / 180);
+	player->angle += player->turn_dir * player->rotate_speed;
 	player->angle = remainder(player->angle, TWO_PI);
 	if (player->angle < 0)
 		player->angle += TWO_PI;
@@ -36,47 +36,16 @@ static void	update_move_direction(int direction, t_player *player, t_configs *cu
 {
 	float step;
 	float new_position[2];
-	//int minimap[2];
 
 	player->move_dir += direction;
 	step = player->move_dir * player->speed;
 	new_position[X] = player->pos[X] + (cos(player->angle) * step);
 	new_position[Y] = player->pos[Y] + (sin(player->angle) * step);
-	// minimap[ROW] = floor(new_position[Y] / TILE_SIZE);
-	// minimap[COL] = floor(new_position[X] / TILE_SIZE);
 	if (is_tile_free(new_position, cub))
 	{
-	// int i = 0;
-	// int j;
-	// while (cub->map.row[i] != NULL)
-	// {
-	// 	printf("ooi");
-	// 	j = 0;
-	// 	while (cub->map.row[i][j] != '\0')
-	// 	{
-	// 		ft_printf("%c", cub->map.row[i][j]);
-	// 		j++;
-	// 	}
-	// 	ft_printf("\n");
-	// 	i++;
-	// }
-	// i = 0;
-	// while (cub->map.row[i] != NULL)
-	// {
-	// 	printf("ooi");
-	// 	j = 0;
-	// 	while (cub->map.row[i][j] != '\0')
-	// 	{
-	// 		ft_printf("(%i, %i) -> %c\n", i, j, cub->map.row[i][j]);
-	// 		j++;
-	// 	}
-	// 	ft_printf("\n");
-	// 	i++;
-	// }
 		player->pos[X] = new_position[X];
 		player->pos[Y] = new_position[Y];
-	// ft_printf("minimap (%i, %i) content %c\n", minimap[X], minimap[Y], cub->map.row[minimap[ROW]][minimap[COL]]);
-	// printf("next pos (%i, %i) tile content: %c\n", player->pos[X], player->pos[Y], cub->map.row[minimap[ROW]][minimap[COL]]);
+
 	}
 }
 
@@ -101,9 +70,12 @@ int			key_pressed(int key, t_data *img)
 	else if (key == RIGHT)
 		update_turn_direction(1, &img->cub->player);
 	else if (key == SHIFT)
-		ft_putendl("SHIFT");
-	else if (key == SPACE)
-		ft_putendl("SPACE");
+	{
+		img->cub->player.speed = 20;
+		img->cub->player.rotate_speed = 6 * PI / 180;
+	}
+//	else if (key == SPACE)
+	//	img->cub->player.invisible *= TOGGLE;
 	else if (key == TAB)
 		img->cub->map.show_minimap *= TOGGLE;
 	return (0);
@@ -128,9 +100,12 @@ int			key_released(int key, t_data *img)
 	else if (key == RIGHT)
 		img->cub->player.turn_dir = 0;
 	else if (key == SHIFT)
-		ft_putendl("REL SHIFT");
-	else if (key == SPACE)
-		ft_putendl("REL SPACE");
+	{
+		img->cub->player.speed = 7;
+		img->cub->player.rotate_speed = 2 * PI / 180;
+	}
+	// else if (key == SPACE)
+		// img->cub->player.invisible = FALSE;
 	return (0);
 }
 

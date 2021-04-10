@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/09 17:27:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/10 08:01:46 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ typedef struct		s_player
 	int				move_dir;
 	float			angle;
 	int				speed;
+	float			rotate_speed;
+	int				height;
+	int				invisible;
 	//float			delta_x;
 	//float			delta_y;
 }					t_player;
@@ -192,10 +195,11 @@ void				render_cub(t_configs *configs);
 void				render_minimap(t_data *img, t_ray *rays);
 void				raycasting(t_data *img, t_configs *cub, t_ray *rays);
 void				put_background(t_data *img);
-int					color_picker(unsigned char red, unsigned char green, unsigned char blue);
+void				put_walls(t_data *img, t_ray *rays);
 /*
 ** render tools
 */
+int					color_picker(unsigned char red, unsigned char green, unsigned char blue);
 void				put_square(t_data *img, int pos_x, int pos_y, int color);
 void				put_line(t_data *img, int *player_pos, int x2, int y2);
 void				put_pixel(t_data *img, int pos_x, int pos_y, int color);
@@ -207,7 +211,6 @@ void				define_img_colors(t_data *img, int red, int green, int blue);
 float				normalize_angle(float angle);
 int					is_tile_free(float *pos, t_configs *cub);
 float				calc_distance(int *pos, float *hit);
-
 /*
 ** events
 */
