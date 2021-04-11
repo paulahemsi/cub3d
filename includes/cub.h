@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/10 15:03:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/11 02:33:00 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define COL			0
 # define HOR			0
 # define VER			1
+# define CEILING		0
+# define FLOOR			1
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
@@ -135,6 +137,11 @@ typedef struct		s_cast
 	char			content;
 }					t_cast;
 
+typedef struct		s_gradient
+{
+	t_rgb			increment;
+	t_rgb			color_distance;
+}					t_gradient;
 
 typedef	struct		s_configs
 {
@@ -151,11 +158,9 @@ typedef	struct		s_configs
 	t_player		player;
 	t_ray			ray;
 }					t_configs;
-
 /*
 ** mlx
 */
-
 typedef struct		s_data
 {
 	void			*mlx_ptr;
@@ -168,11 +173,9 @@ typedef struct		s_data
 	t_configs		*cub;
 	t_rgb			c;
 }					t_data;
-
 /*
 ** aux
 */
-
 typedef struct		s_bresenham
 {
 	int delta[2];
@@ -182,7 +185,6 @@ typedef struct		s_bresenham
 	int numerator;
 	int i;
 }					t_bresenham;
-
 /*
 ** parse configs
 */
@@ -197,7 +199,7 @@ void				check_map(t_configs *configs);
 void				render_cub(t_configs *configs);
 void				render_minimap(t_data *img, t_ray *rays);
 void				raycasting(t_data *img, t_configs *cub, t_ray *rays);
-void				put_background(t_data *img);
+void				put_background(t_data *img, t_configs *cub);
 void				put_walls(t_data *img, t_ray *rays);
 /*
 ** render tools
@@ -222,5 +224,8 @@ int					key_pressed(int key, t_data *img);
 int					key_released(int key, t_data *img);
 void				return_error(int error_id);
 int					close_cub(int key, t_data *img);
+void				free_cub(t_configs *cub);
+void				free_all(t_data *img);
+void				init_cub(t_configs *cub);
 
 #endif

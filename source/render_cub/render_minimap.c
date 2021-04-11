@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/10 13:32:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/11 02:00:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	put_tile(t_data *img, int *pos)
 	int line;
 	int tile_pos[2];
 
-	define_img_colors(img, 30, 10, 70);
+	define_img_colors(img, 0, 0, 0);
 	tile_pos[X] = pos[X];
 	tile_pos[Y] = pos[Y];
 	while (tile_pos[Y] < pos[Y] + (TILE_SIZE * SCALE))
@@ -57,7 +57,7 @@ static void	render_rays(t_data *img, t_configs *cub, t_ray *rays)
 	int		player_pos[2];
 
 	ray = 0;
-	define_img_colors(img, 200, 200, 100);
+	define_img_colors(img, 200, 200, 0);
 	player_pos[X] = cub->player.pos[X] * SCALE;
 	player_pos[Y] = cub->player.pos[Y] * SCALE;
 	while (ray < img->cub->screen_width)

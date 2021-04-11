@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/10 06:09:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/11 00:06:56 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float 
 	horizontal->intercept[X] = cub->player.pos[X] + (horizontal->intercept[Y] - cub->player.pos[Y]) / tan(angle);
 	horizontal->step[X] = TILE_SIZE / tan(angle);
 	if (!(is_ray_facing_right(angle)) && horizontal->step[X] > 0)
-		horizontal->step[X] *= -1;
+		horizontal->step[X] *= TOGGLE;
 	if (is_ray_facing_right(angle) && horizontal->step[X] < 0)
-		horizontal->step[X] *= -1;
+		horizontal->step[X] *= TOGGLE;
 	while (horizontal->intercept[X] >= 0 && horizontal->intercept[X] <= cub->world_width && horizontal->intercept[Y] >= 0 && horizontal->intercept[Y] <= cub->world_height)
 	{
 		if (is_tile_free(horizontal->intercept, cub))
@@ -86,9 +86,9 @@ static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angl
 	vertical->intercept[Y] = cub->player.pos[Y] + (vertical->intercept[X] - cub->player.pos[X]) * tan(angle);
 	vertical->step[Y] = TILE_SIZE * tan(angle);
 	if (!(is_ray_facing_down(angle)) && vertical->step[Y] > 0)
-		vertical->step[Y] *= -1;
+		vertical->step[Y] *= TOGGLE;
 	if (is_ray_facing_down(angle) && vertical->step[Y] < 0)
-		vertical->step[Y] *= -1;
+		vertical->step[Y] *= TOGGLE;
 	while (vertical->intercept[X] >= 0 && vertical->intercept[X] <= cub->world_width && vertical->intercept[Y] >= 0 && vertical->intercept[Y] <= cub->world_height)
 	{
 		if (is_tile_free(vertical->intercept, cub))
@@ -105,6 +105,18 @@ static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angl
 			break;
 		}
 	}
+}
+
+static void	copy_last_ray(t_ray *rays, int column, float angle)
+{
+	rays[column].dist = rays[column - 1].dist;
+	rays[column].hit[X] = rays[column - 1].hit[X];
+	rays[column].hit[Y] = rays[column - 1].hit[Y];
+	rays[column].wall_content = rays[column - 1].wall_content;
+	rays[column].angle = rays[column - 1].angle;
+	rays[column].up = rays[column - 1].up;
+	rays[column].left = rays[column - 1].left;
+	rays[column].vertical_hit = rays[column - 1].vertical_hit;
 }
 
 static void	store_ray_data(t_ray *rays, t_cast *direction, int column, float angle)
@@ -128,11 +140,11 @@ static void	cast_ray(t_data *img, float angle, int column, t_ray *rays)
 	find_vertical_collision(img->cub, &vertical, angle, column);
 	fish_eye_correction = cos(img->cub->player.angle - angle);
 	if (horizontal.hitted)
-		horizontal.distance = calc_distance(img->cub->player.pos, horizontal.hit) * fish_eye_correction;
+		horizontal.distance = floor(calc_distance(img->cub->player.pos, horizontal.hit) * fish_eye_correction);
 	else
 		horizontal.distance = INT_MAX;
 	if (vertical.hitted)
-		vertical.distance = calc_distance(img->cub->player.pos, vertical.hit) * fish_eye_correction;
+		vertical.distance = floor(calc_distance(img->cub->player.pos, vertical.hit) * fish_eye_correction);
 	else
 		vertical.distance = INT_MAX;
 	float distance;
@@ -141,11 +153,13 @@ static void	cast_ray(t_data *img, float angle, int column, t_ray *rays)
 		store_ray_data(rays, &horizontal, column, angle);
 		rays[column].vertical_hit = FALSE;
 	}
-	else
+	else //if (vertical.distance < horizontal.distance)
 	{
 		store_ray_data(rays, &vertical, column, angle);
 		rays[column].vertical_hit = TRUE;
 	}
+	//else
+		//copy_last_ray(rays, column, angle);
 }
 
 void	raycasting(t_data *img, t_configs *cub, t_ray *rays)

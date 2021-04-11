@@ -30,6 +30,8 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 * step by step list from raycasting process (~1 day)
 * 3d wall renderization and wall colisions implementation (~5 days)
 
+for more details, read the [work diary](#work_diary)
+
 **raycasting steps:**
 
 1. define wall size
@@ -57,8 +59,6 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
   1. for each wall:
     1.calculate projection wall height
     2. draw half of the height above the middle and half under the midle of the pixel column
-    
-for more details, read the [work diary](#work_diary)
 
 ## mindmap 
 :goberserk:
@@ -98,6 +98,41 @@ for more details, read the [work diary](#work_diary)
 
 ## usage 
 :feelsgood:
+
+`git clone git@github.com:paulahemsi/cub3d.git`
+`cd cub3D`
+`make`
+`./cub3D scene_file.txt`
+
+you may edit all these configurations:
+
+resolution, ceil and floor colors (range 0 - 255), walls and sprite textures, map. The map must be sorrounded by walls(1) and have the initial player position and direction (W- west, E- east, N-north, S-south)
+
+```
+R width height
+C red green blue
+F red green blue
+
+SO ./path_to_south_texture.xpm
+NO ./path_to_north_texture.xpm
+EA ./path_to_east_texture.xpm
+WE ./path_to_west_texture.xpm
+S ./path_to_the_sprite_texture.xpm
+
+11111
+10001
+10201
+100W1
+11111
+```
+
+key  | function |
+---|------|
+left/right arrow | turn				|
+wasd | move					|
+shift | run				|
+tab | toggle minimap	|
+g | toggle background gradient				|
 
 ## work_diary
 
@@ -188,6 +223,9 @@ I'm still not sure if it will be better to render it in another window or in the
 I also implemented invisibility and crouching, but the result gots a little bit akward, so I took them off for now.
 
 ![](study_resources/walls.gif)
+
+* 10/04: I should have worked on the walls textures, but I polished the gradients instead. The walls are still with solid color, but now the program knows how to make a nice gradient with whatever input of ceiling and floor colors the users chooses. Player is walking like a crab as it should with `a` and `d` keys. Simple shadow effect in the walls implemented.
+
 
 </details>
 

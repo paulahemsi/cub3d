@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/10 06:27:25 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/11 02:36:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	update(t_data *img)
 	img->ptr = mlx_new_image(img->mlx_ptr, img->cub->screen_width, img->cub->screen_height);
 	img->data = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
 								&img->line_length, &img->endian);
-	put_background(img);
+	put_background(img, img->cub);
 	raycasting(img, img->cub, rays);
 	put_walls(img, rays);
 	if (img->cub->map.show_minimap == TRUE)
@@ -43,7 +43,7 @@ void		render_cub(t_configs *cub)
 		return_error(-9);
 	img.cub = cub;
 	img.ptr = NULL;
-	printf("angle: %lf\n", cub->player.angle);
+	//printf("angle: %lf\n", cub->player.angle);
 	mlx_loop_hook(img.mlx_ptr, update, &img);
 	mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
 	mlx_hook(img.window_ptr, 2, 1L<<0, key_pressed, &img);
