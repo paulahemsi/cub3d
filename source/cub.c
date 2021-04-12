@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/11 02:33:11 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/11 20:20:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@
 ** 
 */
 
-static void	check_colors(t_rgb *color)
+static void	check_colors(t_rgb *ceiling, t_rgb *floor)
 {
-	if (color->red > 255 || color->blue > 255 || color->green > 255)
+	if (ceiling->red > 255 || ceiling->blue > 255 || ceiling->green > 255)
+		return_error(-10);
+	if (floor->red > 255 || floor->blue > 255 || floor->green > 255)
 		return_error(-10);
 }
 
@@ -44,7 +46,8 @@ static void	parse_scene(char *file, t_configs *cub)
 	char		*line;
 	int			fd;
 
-	if ((fd = open(file, O_RDONLY)) < 0)
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
 		return_error(-2);
 	while (get_next_line(fd, &line))
 	{
@@ -52,22 +55,19 @@ static void	parse_scene(char *file, t_configs *cub)
 		free(line);
 	}
 	parse_configs(cub, line);
-	check_colors(&cub->ceiling);
-	check_colors(&cub->floor);
 	free(line);
 	close(fd);
-	fill_map(cub, file);
+	check_colors(&cub->ceiling, &cub->floor);
+	fill_map(cub, file, cub->map.total_row);
 	check_map(cub);
 }
 
 static void	check_args(int argc, char **argv)
 {
-	unsigned int	i;
 	unsigned int	length;
 	char			*cub;
 
 	length = ft_strlen(argv[1]);
-	i = length;
 	cub = ft_strnstr(argv[1], ".cub", length);
 	if (!(cub) || cub[0] != argv[1][length - 4])
 		return_error(-1);

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/02 22:16:07 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/11 20:14:42 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	parse_path(char **texture_path, char *line)
 {
 	if (*texture_path)
 		return_error(-5);
-	if (!(*texture_path = ft_strtrim(line, " \t")))
+	*texture_path = ft_strtrim(line, " \t");
+	if (!(*texture_path))
 		return_error(-6);
 }
 

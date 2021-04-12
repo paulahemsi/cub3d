@@ -1,6 +1,6 @@
 R 1024 720
 
-C 150, 150, 150
+C 255, 255, 255
 F 0, 0, 0
 
 SO ./textures/light_pb.jpg

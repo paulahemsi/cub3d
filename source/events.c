@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/11 02:29:51 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:34:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int			key_pressed(int key, t_data *img)
 		img->cub->map.show_minimap *= TOGGLE;
 	if (key == G)
 		img->cub->gradient *= TOGGLE;
+	if (key == B)
+		img->cub->debug *= TOGGLE;
 	return (0);
 }
 

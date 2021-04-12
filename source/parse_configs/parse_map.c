@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/31 00:12:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/11 20:25:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,13 @@ static void	define_world_size(t_configs *cub)
 	cub->world_height = cub->map.total_row * TILE_SIZE;
 }
 
-void		fill_map(t_configs *cub, char *file)
+void		fill_map(t_configs *cub, char *file, int row)
 {
 	char			*line;
-	int				row;
 	int				fd;
 	int				player;
 
 	player = FALSE;
-	row = cub->map.total_row;
 	cub->map.row = (char **)malloc((row + 1) * sizeof(char *));
 	cub->map.row[row] = NULL;
 	row = 0;
@@ -89,9 +87,7 @@ void		fill_map(t_configs *cub, char *file)
 		free(line);
 	}
 	if (((*line == '1') || (*line == ' ')))
-	{
 		fill_row(cub, line, row, &player);
-	}
 	define_world_size(cub);
 	free(line);
 	close(fd);

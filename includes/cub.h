@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/11 02:33:00 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:27:08 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,20 @@
 # define A				0x0061
 # define S				0x0073
 # define D				0x0064
-# define G				0x0067 
+# define G				0x0067
+# define B				0x0062
 # define SPACE			0x0020
 # define TAB			0xff09
 # define SHIFT			0xffe1
 # define MOUSE_1		1
 # define MOUSE_2		2
 # define MOUSE_3		3
+# define KEYPRESS		2
+# define KEYRELEASE		3
+# define CLIENTMESSAGE	33
+# define KEYPRESS_MASK	1L<<0
+# define KEYREL_MASK	1L<<1
+# define NOTIFY_MASK	1L<<17
 
 /*
 ** scene configs
@@ -151,6 +158,7 @@ typedef	struct		s_configs
 	unsigned int	world_height;
 	int				center[2];
 	int				gradient;
+	int				debug;
 	t_paths			path;
 	t_rgb			floor;
 	t_rgb			ceiling;
@@ -191,7 +199,7 @@ typedef struct		s_bresenham
 void				parse_configs(t_configs	*configs, char *line);
 void				parse_map(t_configs *configs, char *line);
 void				parse_map_size(t_configs *configs, char *line);
-void				fill_map(t_configs *configs, char *file);
+void				fill_map(t_configs *cub, char *file, int row);
 void				check_map(t_configs *configs);
 /*
 ** render cub
@@ -206,7 +214,7 @@ void				put_walls(t_data *img, t_ray *rays);
 */
 int					color_picker(unsigned char red, unsigned char green, unsigned char blue);
 void				put_square(t_data *img, int pos_x, int pos_y, int color);
-void				put_line(t_data *img, int *player_pos, int x2, int y2);
+void				put_line(t_data *img, int *pos, int x2, int y2);
 void				put_pixel(t_data *img, int pos_x, int pos_y, int color);
 void				put_circle(t_data *img, int center_x, int center_y, int radius);
 /*

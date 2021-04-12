@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:08:57 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/10 21:35:04 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:49:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static int	put_surface(t_data *img, t_gradient *gradient, int *line, t_rgb *surf
 		activate_gradient(&img->c, surface, gradient);
 	else
 		define_img_colors(img, surface->red, surface->green, surface->blue);
+	if (img->cub->debug == TRUE)
+		define_img_colors(img, 60, 21, 79);
 	put_line(img, init, img->cub->screen_width, *line);
 	return (*line += 1);
 }

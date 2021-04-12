@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/11 00:06:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:55:14 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ static int	is_ray_facing_right(float	angle)
 		return (FALSE);
 }
 
-
 static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float angle, int column)
 {
-	horizontal->hitted = 0;
-	angle = normalize_angle(angle);
+	horizontal->hitted = FALSE;
 	horizontal->intercept[Y] = floor(cub->player.pos[Y] / TILE_SIZE) * TILE_SIZE;
 	if (is_ray_facing_down(angle))
 	{
@@ -41,7 +39,7 @@ static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float 
 	}
 	else
 	{
-		horizontal->intercept[Y] -= 1;
+		//!horizontal->intercept[Y] -= 1;
 		horizontal->step[Y] = -TILE_SIZE;
 	}
 	horizontal->intercept[X] = cub->player.pos[X] + (horizontal->intercept[Y] - cub->player.pos[Y]) / tan(angle);
@@ -52,7 +50,13 @@ static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float 
 		horizontal->step[X] *= TOGGLE;
 	while (horizontal->intercept[X] >= 0 && horizontal->intercept[X] <= cub->world_width && horizontal->intercept[Y] >= 0 && horizontal->intercept[Y] <= cub->world_height)
 	{
-		if (is_tile_free(horizontal->intercept, cub))
+		float	to_check_tile[2];
+
+		to_check_tile[X] = horizontal->intercept[X];
+		to_check_tile[Y] = horizontal->intercept[Y];
+		if (!(is_ray_facing_down(angle)))
+			to_check_tile[Y] -= 1;
+		if (is_tile_free(to_check_tile, cub))
 		{
 			horizontal->intercept[X] += horizontal->step[X];
 			horizontal->intercept[Y] += horizontal->step[Y];
@@ -61,7 +65,7 @@ static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float 
 		{
 			horizontal->hit[X] = horizontal->intercept[X];
 			horizontal->hit[Y] = horizontal->intercept[Y];
-			horizontal->content = cub->map.row[(int)floor(horizontal->intercept[Y] / TILE_SIZE)][(int)floor(horizontal->intercept[X] / TILE_SIZE)];
+			horizontal->content = cub->map.row[(int)floor(to_check_tile[Y] / TILE_SIZE)][(int)floor(to_check_tile[X] / TILE_SIZE)];
 			horizontal->hitted = TRUE;
 			break;
 		}
@@ -70,8 +74,9 @@ static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float 
 
 static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angle, int column)
 {
+	float	to_check_tile[2];
+
 	vertical->hitted = FALSE;
-	angle = normalize_angle(angle);
 	vertical->intercept[X] = floor(cub->player.pos[X] / TILE_SIZE) * TILE_SIZE;
 	if (is_ray_facing_right(angle))
 	{
@@ -79,10 +84,7 @@ static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angl
 		vertical->step[X] = TILE_SIZE;
 	}
 	else
-	{
-		vertical->intercept[X] -= 1;
 		vertical->step[X] = -TILE_SIZE;
-	}
 	vertical->intercept[Y] = cub->player.pos[Y] + (vertical->intercept[X] - cub->player.pos[X]) * tan(angle);
 	vertical->step[Y] = TILE_SIZE * tan(angle);
 	if (!(is_ray_facing_down(angle)) && vertical->step[Y] > 0)
@@ -91,7 +93,11 @@ static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angl
 		vertical->step[Y] *= TOGGLE;
 	while (vertical->intercept[X] >= 0 && vertical->intercept[X] <= cub->world_width && vertical->intercept[Y] >= 0 && vertical->intercept[Y] <= cub->world_height)
 	{
-		if (is_tile_free(vertical->intercept, cub))
+		to_check_tile[X] = vertical->intercept[X];
+		to_check_tile[Y] = vertical->intercept[Y];
+		if (!(is_ray_facing_right(angle)))
+			to_check_tile[X] -= 1;
+		if (is_tile_free(to_check_tile, cub))
 		{
 			vertical->intercept[X] += vertical->step[X];
 			vertical->intercept[Y] += vertical->step[Y];
@@ -100,7 +106,7 @@ static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angl
 		{
 			vertical->hit[X] = vertical->intercept[X];
 			vertical->hit[Y] = vertical->intercept[Y];
-			vertical->content = cub->map.row[(int)floor(vertical->intercept[Y] / TILE_SIZE)][(int)floor(vertical->intercept[X] / TILE_SIZE)];
+			vertical->content = cub->map.row[(int)floor(to_check_tile[Y] / TILE_SIZE)][(int)floor(to_check_tile[X] / TILE_SIZE)];
 			vertical->hitted = TRUE;
 			break;
 		}
@@ -136,15 +142,16 @@ static void	cast_ray(t_data *img, float angle, int column, t_ray *rays)
 	t_cast	vertical;
 	float	fish_eye_correction;
 
+	angle = normalize_angle(angle);
 	find_horizontal_collision(img->cub, &horizontal, angle, column);
 	find_vertical_collision(img->cub, &vertical, angle, column);
 	fish_eye_correction = cos(img->cub->player.angle - angle);
 	if (horizontal.hitted)
-		horizontal.distance = floor(calc_distance(img->cub->player.pos, horizontal.hit) * fish_eye_correction);
+		horizontal.distance = (float)floor(calc_distance(img->cub->player.pos, horizontal.hit) * fish_eye_correction);
 	else
 		horizontal.distance = INT_MAX;
 	if (vertical.hitted)
-		vertical.distance = floor(calc_distance(img->cub->player.pos, vertical.hit) * fish_eye_correction);
+		vertical.distance = (float)floor(calc_distance(img->cub->player.pos, vertical.hit) * fish_eye_correction);
 	else
 		vertical.distance = INT_MAX;
 	float distance;
