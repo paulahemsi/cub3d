@@ -226,6 +226,8 @@ I also implemented invisibility and crouching, but the result gots a little bit 
 
 * 10/04: I should have worked on the walls textures, but I polished the gradients instead. The walls are still with solid color, but now the program knows how to make a nice gradient with whatever input of ceiling and floor colors the users chooses. Player is walking like a crab as it should with `a` and `d` keys. Simple shadow effect in the walls implemented.
 
+* 11/04: Debug colors can now be toggle with the `b` key :)
+
 
 </details>
 
