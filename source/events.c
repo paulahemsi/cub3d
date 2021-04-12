@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 00:34:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:30:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	update_move_direction(int direction, t_player *player, t_configs *cu
 	step = player->move_dir * player->speed;
 	new_position[X] = player->pos[X] + (cos(player->angle) * step);
 	new_position[Y] = player->pos[Y] + (sin(player->angle) * step);
-	if (is_tile_free(new_position, cub))
+	if (is_tile_free(new_position, cub, TRUE))
 	{
 		player->pos[X] = new_position[X];
 		player->pos[Y] = new_position[Y];
@@ -56,7 +56,7 @@ static void	update_side_direction(int direction, t_player *player, t_configs *cu
 	step = player->move_dir * player->speed;
 	new_position[X] = player->pos[X] + (cos(player->angle + PI / 2) * step);
 	new_position[Y] = player->pos[Y] + (sin(player->angle + PI / 2) * step);
-	if (is_tile_free(new_position, cub))
+	if (is_tile_free(new_position, cub, TRUE))
 	{
 		player->pos[X] = new_position[X];
 		player->pos[Y] = new_position[Y];

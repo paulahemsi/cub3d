@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 00:55:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:29:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float 
 		to_check_tile[Y] = horizontal->intercept[Y];
 		if (!(is_ray_facing_down(angle)))
 			to_check_tile[Y] -= 1;
-		if (is_tile_free(to_check_tile, cub))
+		if (is_tile_free(to_check_tile, cub, FALSE))
 		{
 			horizontal->intercept[X] += horizontal->step[X];
 			horizontal->intercept[Y] += horizontal->step[Y];
@@ -97,7 +97,7 @@ static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angl
 		to_check_tile[Y] = vertical->intercept[Y];
 		if (!(is_ray_facing_right(angle)))
 			to_check_tile[X] -= 1;
-		if (is_tile_free(to_check_tile, cub))
+		if (is_tile_free(to_check_tile, cub, FALSE))
 		{
 			vertical->intercept[X] += vertical->step[X];
 			vertical->intercept[Y] += vertical->step[Y];

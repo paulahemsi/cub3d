@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 00:27:08 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:29:39 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ void				put_circle(t_data *img, int center_x, int center_y, int radius);
 */
 void				define_img_colors(t_data *img, int red, int green, int blue);
 float				normalize_angle(float angle);
-int					is_tile_free(float *pos, t_configs *cub);
+int					is_tile_free(float *pos, t_configs *cub, int secret_door);
 float				calc_distance(int *pos, float *hit);
 /*
 ** events

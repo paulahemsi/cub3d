@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 00:52:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:36:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,36 @@ static void	toggle_debug_colors(t_data *img, t_ray *rays, int ray)
 	if (rays[ray].vertical_hit)
 	{
 		if (rays[ray].left)
-			define_img_colors(img, 226, 66, 99);
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(img, 216, 56, 89);
+			else
+				define_img_colors(img, 226, 66, 99);
+		}
 		else
-			define_img_colors(img, 244, 180, 60);	
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(img, 234, 170, 50);
+			else
+				define_img_colors(img, 244, 180, 60);
+		}
 	}
 	else
 	{
-		if (rays[ray].up)		
-			define_img_colors(img, 64, 143, 138);
+		if (rays[ray].up)
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(img, 54, 133, 128);
+			else
+				define_img_colors(img, 64, 143, 138);
+		}
 		else
-			define_img_colors(img, 237, 111, 49);
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(img, 227, 101, 39);
+			else
+				define_img_colors(img, 237, 111, 49);
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/11 02:00:57 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:23:52 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	render_minimap(t_data *img, t_ray *rays)
 		{
 			tile_pos[X] = (column * TILE_SIZE) * SCALE;
 			tile_pos[Y] = (line * TILE_SIZE) * SCALE;
-			if (img->cub->map.row[line][column] == '1')
+			if (img->cub->map.row[line][column] == '1' || img->cub->map.row[line][column] == '3')
 				put_tile(img, tile_pos);
 			column++;
 		}
