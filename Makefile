@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 21:18:02 by phemsi-a          #+#    #+#              #
-#    Updated: 2021/04/11 02:25:54 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/04/12 17:29:22 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ RE = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+$(NAME): $(OBJECTS) $(LIBFT) $(MLX)
 	@echo making cub3D
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
+	@$(CC) $(FLAGS) -g -fsanitize=leak -o $(NAME) $(OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
 	@echo done! Have fun!
 	@echo ___________________________________  
 	@echo "|" _____ "|"   "|" ___ "|" ___ ___ "|" "|"   "|" "|"
@@ -59,25 +59,8 @@ $(LIBFT):
 	@make --no-print-directory -C $(LIBFT_PATH) $(LIBFT)
 	@echo done!
 
-$(OBJECTS): $(FILES) $(LIBFT) $(MLX)
-	$(CC) $(FLAGS) -g -c $(FILES)
-
-test: $(OBJECTS)
-	@echo making cub3D
-	$(CC) $(FLAGS) -g -fsanitize=leak -o $(NAME) $(OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
-	@echo done! Have fun!
-	@echo ___________________________________  
-	@echo "|" _____ "|"   "|" ___ "|" ___ ___ "|" "|"   "|" "|"
-	@echo "|" "|"   "|" "|"_"|" "|"__ "|" "|"_"|" __"|"____ "|" "|" "|" "|"
-	@echo "|" "|" "|" "|"_________"|"__ "|"______ "|"___"|"_"|" "|"
-	@echo "|" "|"_"|"   "|" _______ "|"______ "|"   "|" ____"|"
-	@echo "|" ___ "|" "|"____ "|" "|"______ "|" "|"_"|" "|"____ "|"
-	@echo "|"___"|"_"|"____ "|" "|"   ___ "|" "|"________ "|" "|"
-	@echo "|"   ________"|" "|" "|"__ "|" "|"______ "|" "|" "|" "|"
-	@echo "|" "|" "|" ________"|" "|" __"|"____ "|" "|" "|" __"|" "|"
-	@echo "|"_"|" "|"__ "|"   "|" __"|"__ "|" ____"|" "|" "|"_"|" __"|"
-	@echo "|"   ____"|" "|" "|"____ "|" "|"__ "|"   "|"__ "|"__ "|"
-	@echo "|" "|"_______"|"_______"|"___"|"___"|"___"|"_____"|"
+$(OBJECTS): $(FILES)
+	@$(CC) $(FLAGS) -g -c $(FILES)
 
 clean:
 	@make --no-print-directory -C $(LIBFT_PATH) fclean
