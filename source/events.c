@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 16:30:17 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/13 04:36:59 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		close_cub(int key, t_data *img)
 {
 	free_all(img);
 	exit(0);
-	return (0);
 }
 
 static void	update_turn_direction(int direction, t_player *player)
@@ -88,8 +87,11 @@ int			key_pressed(int key, t_data *img)
 		img->cub->player.speed = 20;
 		img->cub->player.rotate_speed = 6 * PI / 180;
 	}
-//	else if (key == SPACE)
-	//	img->cub->player.invisible *= TOGGLE;
+	else if (key == P)
+	{
+		img->cub->bmp_id ++;
+		save_bmp(img);
+	}
 	if (key == TAB)
 		img->cub->map.show_minimap *= TOGGLE;
 	if (key == G)

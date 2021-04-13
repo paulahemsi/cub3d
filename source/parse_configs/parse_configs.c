@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/11 20:14:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/13 03:52:40 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ static void	parse_resolution(t_configs *cub, char *line)
 		else if ((*line))
 			return_error(-5);
 	}
-	cub->center[X] = floor(cub->screen_width / 2);
-	cub->center[Y] = floor(cub->screen_height / 2);
 }
 
 static int	is_all_configs_set(t_configs *cub)

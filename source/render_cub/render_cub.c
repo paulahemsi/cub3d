@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/11 20:41:02 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/13 04:05:12 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,25 @@ static int	update(t_data *img)
 	put_walls(img, rays);
 	if (img->cub->map.show_minimap == TRUE)
 		render_minimap(img, rays);
-	mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
+	if (!(img->cub->save))
+		mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
 	return (0);
+}
+
+static void	check_resolution_limits(t_data *img, t_configs *cub)
+{
+	int		max[2];
+	
+	mlx_get_screen_size(img->mlx_ptr, &max[X], &max[Y]);
+	if (cub->screen_width > max[X])
+		cub->screen_width = max[X];
+	if (cub->screen_height > max[Y])
+		cub->screen_height = max[Y];
+	cub->center[X] = floor(cub->screen_width / 2);
+	cub->center[Y] = floor(cub->screen_height / 2);
+	cub->player.plane_dist = floor((cub->screen_width / 2) / tan(HALF_FOV));
+	cub->ray.step= FOV / cub->screen_width;
+	cub->ray.total = cub->screen_width;
 }
 
 void		render_cub(t_configs *cub)
@@ -37,12 +54,19 @@ void		render_cub(t_configs *cub)
 
 	if (!(img.mlx_ptr = mlx_init()))
 		return_error(-8);
-	img.window_ptr = mlx_new_window(img.mlx_ptr, cub->screen_width, cub->screen_height,
+	check_resolution_limits(&img, cub);
+	if (!(cub->save))
+	{
+		img.window_ptr = mlx_new_window(img.mlx_ptr, cub->screen_width, cub->screen_height,
 									"cub3D");
-	if (!(img.window_ptr))
-		return_error(-9);
+		if (!(img.window_ptr))
+			return_error(-9);
+	}
 	img.cub = cub;
 	img.ptr = NULL;
+	update(&img);
+	if (cub->save)
+		save_bmp(&img);
 	mlx_loop_hook(img.mlx_ptr, update, &img);
 	mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
 	mlx_mouse_hide(img.mlx_ptr, img.window_ptr);

@@ -100,9 +100,12 @@ for more details, read the [work diary](#work_diary)
 :feelsgood:
 
 `git clone git@github.com:paulahemsi/cub3d.git`
+
 `cd cub3D`
+
 `make`
-`./cub3D scene_file.txt`
+
+`./cub3D path_to_scene_file.txt`
 
 you may edit all these configurations:
 
@@ -133,6 +136,10 @@ wasd | move					|
 shift | run				|
 tab | toggle minimap	|
 g | toggle background gradient				|
+b | toggle debug colors				|
+p | save .bmp screenshot				|
+
+
 
 ## work_diary
 
@@ -228,7 +235,8 @@ I also implemented invisibility and crouching, but the result gots a little bit 
 
 * 11/04: I implemented debug colors, that can be toggle with the `b` key :)
 
-* 12/04: I'm still procrastinating a bit, avoiding face the textures and the bmp save, so I implemented secret door's instead. As they are secret, is hard to see when testing, so I polished a bit the debug colors to also show those new invisible doors. In the minimap, though, is too easy to discover some of the secrets, so maybe would be a nice touch to have a map item that unlock the minimap acess.
+* 12/04: I'm still procrastinating a bit, avoiding face the textures and the bmp save, so I implemented secret door's instead. As they are secret, is hard to see when testing, so I polished a bit the debug colors to also show those new invisible doors. In the minimap, though, is too easy to discover some of the secrets, so maybe would be a nice touch to have a map item that unlock the minimap acess. Late in the night, finaly the bmp image is beeing saved when the flag --save is used. I also implemented a print screen key (`p`), so the player can save a screenshot in any moment.
+
 
 </details>
 

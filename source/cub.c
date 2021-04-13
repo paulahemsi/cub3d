@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 17:05:11 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/13 04:03:34 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	parse_scene(char *file, t_configs *cub)
 	check_map(cub);
 }
 
-static void	check_args(int argc, char **argv)
+static int	check_args(int argc, char **argv)
 {
 	unsigned int	length;
 	char			*cub;
@@ -75,8 +75,10 @@ static void	check_args(int argc, char **argv)
 	{
 		if (ft_strncmp(argv[2], "--save", 7))
 			return_error(-1);
-		ft_putstr("TODO: SAVE PRINT\n");
+		else
+			return (TRUE);
 	}
+	return (FALSE);
 }
 
 int			main(int argc, char **argv)
@@ -85,7 +87,7 @@ int			main(int argc, char **argv)
 
 	init_cub(&cub);
 	if ((argc == 2) || (argc == 3))
-		check_args(argc, argv);
+		cub.save = check_args(argc, argv);
 	else
 		return_error(-1);
 	parse_scene(argv[1], &cub);
