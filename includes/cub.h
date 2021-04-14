@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/13 04:33:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/14 04:05:05 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@
 # define VER			1
 # define CEILING		0
 # define FLOOR			1
+# define FRONT			0
+# define SIDE			1
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
 # define SCALE			0.1
-
 # define TOGGLE			-1
 /*
 ** maths
@@ -62,6 +63,7 @@
 # define G				0x0067
 # define B				0x0062
 # define P				0x0070
+# define N				0x006e
 # define SPACE			0x0020
 # define TAB			0xff09
 # define SHIFT			0xffe1
@@ -82,7 +84,6 @@ typedef struct		s_map
 {
 	unsigned int	total_column;
 	unsigned int	total_row;
-	//unsigned int	tile_size[2];
 	char			**row;
 	int				show_minimap;
 	//float			scale;
@@ -96,6 +97,8 @@ typedef struct		s_player
 	int				radius;
 	int				turn_dir;
 	int				move_dir;
+	int				side_dir;
+	int				direction[2];
 	float			angle;
 	int				speed;
 	float			rotate_speed;
@@ -160,6 +163,7 @@ typedef	struct		s_configs
 	int				center[2];
 	int				gradient;
 	int				debug;
+	int				night_mode;
 	int				save;
 	int				bmp_id;
 	t_paths			path;

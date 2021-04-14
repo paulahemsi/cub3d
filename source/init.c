@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:32:29 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/13 04:36:36 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/14 04:05:47 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	init_cub(t_configs *cub)
 	cub->map.show_minimap = -1;
 	cub->gradient = 1;
 	cub->debug = -1;
+	cub->night_mode = -1;
 }

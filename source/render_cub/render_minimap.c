@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 16:23:52 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/14 04:34:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	put_tile(t_data *img, int *pos)
 	int line;
 	int tile_pos[2];
 
-	define_img_colors(img, 0, 0, 0);
+	define_img_colors(img, 2, 2, 2);
 	tile_pos[X] = pos[X];
 	tile_pos[Y] = pos[Y];
 	while (tile_pos[Y] < pos[Y] + (TILE_SIZE * SCALE))
@@ -42,13 +42,25 @@ static void	put_tile(t_data *img, int *pos)
 	}
 }
 
-static void	render_player(t_data *img, t_player *player)
-{
-	int player_pos[2];
+// static void	render_player(t_data *img, t_player *player)
+// {
+// 	int player_pos[2];
 
-	player_pos[X] = player->pos[X] * SCALE;
-	player_pos[Y] = player->pos[Y] * SCALE;
-	put_player(img, player_pos);
+// 	player_pos[X] = player->pos[X] * SCALE;
+// 	player_pos[Y] = player->pos[Y] * SCALE;
+// 	put_player(img, player_pos);
+// }
+
+static void	check_limits(float *ray_hit, t_data *img)
+{
+	if (ray_hit[X]  < 1)
+		ray_hit[X]  = 1;
+	if (ray_hit[X]  > img->cub->screen_width / SCALE)
+		ray_hit[X]  = img->cub->screen_width / SCALE;
+	if (ray_hit[Y] < 1)
+		ray_hit[Y] = 1;
+	if (ray_hit[Y] > img->cub->screen_height / SCALE)
+		ray_hit[Y] = img->cub->screen_height / SCALE;
 }
 
 static void	render_rays(t_data *img, t_configs *cub, t_ray *rays)
@@ -57,11 +69,15 @@ static void	render_rays(t_data *img, t_configs *cub, t_ray *rays)
 	int		player_pos[2];
 
 	ray = 0;
-	define_img_colors(img, 200, 200, 0);
+	if (cub->night_mode == TRUE)
+		define_img_colors(img, 123, 246, 18);
+	else
+		define_img_colors(img, 200, 200, 0);
 	player_pos[X] = cub->player.pos[X] * SCALE;
 	player_pos[Y] = cub->player.pos[Y] * SCALE;
 	while (ray < img->cub->screen_width)
 	{
+		check_limits(rays[ray].hit, img);
 		put_line(img, player_pos, rays[ray].hit[X] * SCALE, rays[ray].hit[Y] * SCALE);
 		ray++;
 	}

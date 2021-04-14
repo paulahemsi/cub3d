@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 16:36:51 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/14 04:14:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,44 @@ static void	toggle_debug_colors(t_data *img, t_ray *rays, int ray)
 	}
 }
 
+static void	toggle_night_mode(t_data *img, t_ray *rays, int ray)
+{
+	if (rays[ray].vertical_hit)
+	{
+		if (rays[ray].left)
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(img, 123, 246, 18);
+			else
+				define_img_colors(img, 20, 116, 0);
+		}
+		else
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(img, 123, 246, 18);
+			else
+				define_img_colors(img, 27, 123, 0);
+		}
+	}
+	else
+	{
+		if (rays[ray].up)
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(img, 123, 246, 18);
+			else
+				define_img_colors(img, 62, 180, 6);
+		}
+		else
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(img, 123, 246, 18);
+			else
+				define_img_colors(img, 94, 211, 8);
+		}
+	}
+}
+
 static void	define_wall_colors(t_data *img, t_ray *rays, int ray)
 {
 	int	shadow;
@@ -70,6 +108,8 @@ static void	define_wall_colors(t_data *img, t_ray *rays, int ray)
 	define_img_colors(img, color, color, color);
 	if (img->cub->debug == TRUE)
 		toggle_debug_colors(img, rays, ray);
+	if (img->cub->night_mode == TRUE)
+		toggle_night_mode(img, rays, ray);
 }
 
 void	put_walls(t_data *img, t_ray *rays)

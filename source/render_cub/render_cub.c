@@ -6,12 +6,33 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/13 04:05:12 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/14 01:02:45 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
+static void	update_player(t_player *player, t_configs *cub)
+{
+	float step;
+	float new_position[2];
+	float angle;
+
+	player->angle += player->turn_dir * player->rotate_speed;
+	player->angle = normalize_angle(player->angle);
+	step = player->move_dir * player->speed;
+	if (player->direction[SIDE])
+		angle = PI / 2;
+	else
+		angle = 0;
+	new_position[X] = player->pos[X] + (cos(player->angle + angle) * step);
+	new_position[Y] = player->pos[Y] + (sin(player->angle + angle) * step);
+	if (is_tile_free(new_position, cub, TRUE))
+	{
+		player->pos[X] = new_position[X];
+		player->pos[Y] = new_position[Y];
+	}
+}
 
 static int	update(t_data *img)
 {
@@ -25,6 +46,7 @@ static int	update(t_data *img)
 	put_background(img, img->cub);
 	raycasting(img, img->cub, rays);
 	put_walls(img, rays);
+	update_player(&img->cub->player, img->cub);
 	if (img->cub->map.show_minimap == TRUE)
 		render_minimap(img, rays);
 	if (!(img->cub->save))
@@ -68,8 +90,8 @@ void		render_cub(t_configs *cub)
 	if (cub->save)
 		save_bmp(&img);
 	mlx_loop_hook(img.mlx_ptr, update, &img);
-	mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
-	mlx_mouse_hide(img.mlx_ptr, img.window_ptr);
+	//mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
+	//mlx_mouse_hide(img.mlx_ptr, img.window_ptr);
 	mlx_hook(img.window_ptr, 2, 1L<<0, key_pressed, &img);
 	mlx_hook(img.window_ptr, 3, 1L<<1, key_released, &img);
 	mlx_hook(img.window_ptr, 33, 1L<<17, close_cub, &img);

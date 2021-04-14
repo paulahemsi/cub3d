@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/13 04:04:39 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/14 02:40:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 	}
 	configs->player.pos[X] = col * TILE_SIZE;
 	configs->player.pos[Y] = row * TILE_SIZE;
-	configs->player.speed = 5;
+	configs->player.speed = 7;
 	configs->player.rotate_speed = 2 * (PI / 180);
 	*dir = '0';
 	configs->player.height = PLAYER_HEIGHT;
