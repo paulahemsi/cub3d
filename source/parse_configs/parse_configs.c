@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:43:32 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 02:39:45 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	parse_colors(t_rgb *direction, char *line)
 	}
 }
 
-static void	parse_resolution(t_settings *cub, char *line)
+static void	parse_resolution(t_settings *settings, char *line)
 {
 	unsigned int	number;
 
@@ -61,56 +61,56 @@ static void	parse_resolution(t_settings *cub, char *line)
 			line++;
 		while (ft_isdigit(*line))
 		{
-			if ((cub->screen[WIDTH]) && (cub->screen[HEIGHT]))
+			if ((settings->screen[WIDTH]) && (settings->screen[HEIGHT]))
 				return_error(-5);
 			number = (number * 10) + (*line - '0');
 			line++;
 		}
-		if (!(cub->screen[WIDTH]) && (number))
-			cub->screen[WIDTH] = number;
-		else if (!(cub->screen[HEIGHT]) && (number))
-			cub->screen[HEIGHT] = number;
+		if (!(settings->screen[WIDTH]) && (number))
+			settings->screen[WIDTH] = number;
+		else if (!(settings->screen[HEIGHT]) && (number))
+			settings->screen[HEIGHT] = number;
 		else if ((*line))
 			return_error(-5);
 	}
 }
 
-static int	is_all_configs_set(t_settings *cub)
+static int	is_all_configs_set(t_settings *settings)
 {
-	if ((cub->floor.blue == -1) || (cub->ceiling.blue == -1))
+	if ((settings->floor.blue == -1) || (settings->ceiling.blue == -1))
 		return (0);
-	if (!(cub->screen[WIDTH]) || !(cub->screen[HEIGHT]))
+	if (!(settings->screen[WIDTH]) || !(settings->screen[HEIGHT]))
 		return (0);
 	//if (!(cub->path.north) || !(cub->path.south))
-	if (!(cub->path[NORTH]) || !(cub->path[SOUTH]))
+	if (!(settings->path[NORTH]) || !(settings->path[SOUTH]))
 		return (0);
-	if (!(cub->path[EAST]) || !(cub->path[WEST]))
+	if (!(settings->path[EAST]) || !(settings->path[WEST]))
 		return (0);
-	if (!(cub->path[SPRITE]))
+	if (!(settings->path[SPRITE]))
 		return (0);
 	return (1);
 }
 
-void		parse_configs(t_settings *cub, char *line)
+void		parse_configs(t_settings *settings, char *line)
 {
 	if ((ft_strnequ(line, "NO ", 3)) || (ft_strnequ(line, "NO\t", 3)))
-		parse_path(&cub->path[NORTH], (line + 3));
+		parse_path(&settings->path[NORTH], (line + 3));
 	else if ((ft_strnequ(line, "SO ", 3)) || (ft_strnequ(line, "SO\t", 3)))
-		parse_path(&cub->path[SOUTH], (line + 3));
+		parse_path(&settings->path[SOUTH], (line + 3));
 	else if ((ft_strnequ(line, "WE ", 3)) || (ft_strnequ(line, "WE\t", 3)))
-		parse_path(&cub->path[WEST], (line + 3));
+		parse_path(&settings->path[WEST], (line + 3));
 	else if ((ft_strnequ(line, "EA ", 3)) || (ft_strnequ(line, "EA\t", 3)))
-		parse_path(&cub->path[EAST], (line + 3));
+		parse_path(&settings->path[EAST], (line + 3));
 	else if ((ft_strnequ(line, "S ", 2)) || (ft_strnequ(line, "S\t", 2)))
-		parse_path(&cub->path[SPRITE], (line + 2));
+		parse_path(&settings->path[SPRITE], (line + 2));
 	else if ((ft_strnequ(line, "F ", 2)) || (ft_strnequ(line, "F\t", 2)))
-		parse_colors(&cub->floor, (line + 2));
+		parse_colors(&settings->floor, (line + 2));
 	else if ((ft_strnequ(line, "C ", 2)) || (ft_strnequ(line, "C\t", 2)))
-		parse_colors(&cub->ceiling, (line + 2));
+		parse_colors(&settings->ceiling, (line + 2));
 	else if ((ft_strnequ(line, "R ", 2)) || (ft_strnequ(line, "R\t", 2)))
 		parse_resolution(cub, (line + 2));
-	else if (((*line == '1') || (*line == ' ')) && ((is_all_configs_set(cub))))
-		parse_map_size(cub, line);
+	else if (((*line == '1') || (*line == ' ')) && ((is_all_configs_set(settings))))
+		parse_map_size(settings, line);
 	else if (*line != '\0')
 		return_error(-5);
 }

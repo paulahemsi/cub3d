@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:43:11 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 02:44:24 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	check_colors(t_rgb *ceiling, t_rgb *floor)
 		return_error(-10);
 }
 
-static void	parse_scene(char *file, t_settings *cub, t_data *img)
+static void	parse_scene(char *file, t_cub *cub)
 {
 	char		*line;
 	int			fd;
@@ -56,20 +56,21 @@ static void	parse_scene(char *file, t_settings *cub, t_data *img)
 	parse_configs(cub, line);
 	free(line);
 	close(fd);
-	check_colors(&cub->ceiling, &cub->floor);
-	fill_map(cub, file, cub->map.total_row);
+	check_colors(&cub->settings.ceiling, &cub->settings.floor);
+	//!CONTINUAR A REFATORAR DAQUI:
+	fill_map(cub, file, cub->game.map.total_row);
 	check_map(cub);
-	load_textures(cub->path, img);
+	load_textures(cub->settings.path, cub->img);
 }
 
 static int	check_args(int argc, char **argv)
 {
 	unsigned int	length;
-	char			*cub;
+	char			*extension;
 
 	length = ft_strlen(argv[1]);
-	cub = ft_strnstr(argv[1], ".cub", length);
-	if (!(cub) || cub[0] != argv[1][length - 4])
+	extension = ft_strnstr(argv[1], ".cub", length);
+	if (!(extension) || extension[0] != argv[1][length - 4])
 		return_error(-1);
 	if (argc == 3)
 	{
@@ -83,14 +84,13 @@ static int	check_args(int argc, char **argv)
 
 int			main(int argc, char **argv)
 {
-	t_settings	cub;
-	t_data	img;
+	t_cub	cub;
 
-	if (!(img.mlx_ptr = mlx_init()))
+	if (!(cub.mlx_ptr = mlx_init()))
 		return_error(-8);
 	init_cub(&cub);
 	if ((argc == 2) || (argc == 3))
-		cub.save = check_args(argc, argv);
+		cub.toggle.save = check_args(argc, argv);
 	else
 		return_error(-1);
 	parse_scene(argv[1], &cub, &img);

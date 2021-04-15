@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 02:03:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 02:30:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ typedef struct		s_map
 	unsigned int	total_column;
 	unsigned int	total_row;
 	char			**row;
-	int				show_minimap;
 	//float			scale;
 }					t_map;
 
@@ -113,7 +112,6 @@ typedef struct		s_player
 	int				height;
 	int				invisible;
 }					t_player;
-
 
 typedef struct		s_rgb
 {
@@ -151,39 +149,44 @@ typedef struct		s_gradient
 	t_rgb			color_distance;
 }					t_gradient;
 
+typedef struct		s_toggle
+{
+	int				gradient;
+	int				debug;
+	int				night_mode;
+	int				save;
+	int				show_minimap;
+	int				bmp_id;
+}					t_toggle;
+
+typedef struct		s_render
+{
+	t_map			map;
+	t_player		player;
+	t_ray			ray;
+	t_rgb			color;
+}					t_render;
+/*
+** mlx
+*/
+typedef struct		s_data
+{
+	void			*ptr;
+	char			*data;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}					t_data;
 
 typedef	struct		s_settings
 {
 	int				screen[2];
 	int				world[2];
 	int				center[2];
-	int				gradient;
-	int				debug;
-	int				night_mode;
-	int				save;
-	int				bmp_id;
 	char			*path[5];
 	t_rgb			floor;
 	t_rgb			ceiling;
-	t_map			map;
-	t_player		player;
-	t_ray			ray;
 }					t_settings;
-/*
-** mlx
-*/
-typedef struct		s_data
-{
-	void			*mlx_ptr;//!deixar fora dessa strcut?
-	void			*window_ptr;//!deixar fora dessa strcut?
-	void			*ptr;
-	char			*data;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-	t_settings		*cub;//!deixar fora dessa strcut!!!!!!!!!
-	t_rgb			c;//!onde colocar?
-}					t_data;
 
 typedef struct		s_texture
 {
@@ -191,6 +194,18 @@ typedef struct		s_texture
 	int				width;
 	int				height;
 }					t_texture;
+
+typedef struct		s_cub
+{
+	void			*mlx_ptr;
+	void			*window_ptr;
+	t_data			*img;
+	t_settings		settings;
+	t_toggle		toggle;
+	t_render		game;
+}					t_cub;
+
+
 
 /*
 ** aux
@@ -270,6 +285,6 @@ void				return_error(int error_id);
 int					close_cub(int key, t_data *img);
 void				free_cub(t_settings *cub);
 void				free_all(t_data *img);
-void				init_cub(t_settings *cub);
+void				init_cub(t_cub *cub);
 
 #endif
