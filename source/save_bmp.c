@@ -6,25 +6,25 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/13 04:46:26 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:42:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-static void	init_header(t_configs *cub, t_bmp_header *header)
+static void	init_header(t_settings *cub, t_bmp_header *header)
 {
 	header->type = 0x4D42;
-	header->size = ((cub->screen_width + cub->screen_height) * 4) + 54;
+	header->size = ((cub->screen[WIDTH] + cub->screen[HEIGHT]) * 4) + 54;
 	header->reserved = 0x0;
 	header->offset = 54;
 	header->dib_header_size = 40;
-	header->width_px = cub->screen_width;
-	header->height_px = cub->screen_height;
+	header->width_px = cub->screen[WIDTH];
+	header->height_px = cub->screen[HEIGHT];
 	header->num_planes = 1;
 	header->bits_per_pixel = 32;
 	header->compression = 0;
-	header->image_size_bytes = ((cub->screen_width + cub->screen_height) * 4);
+	header->image_size_bytes = ((cub->screen[WIDTH] + cub->screen[HEIGHT]) * 4);
 	header->x_resolution_ppm = 3200;
 	header->y_resolution_ppm = 3200;
 	header->num_colors = 0;
@@ -55,7 +55,7 @@ static void	fill_bmp(int fd, t_data *img)
 {
 	int line;
 
-	line = img->cub->screen_height;
+	line = img->cub->screen[HEIGHT];
 	while (line >= 0)
 	{
 		if (write(fd, &img->data[line * img->line_length], img->line_length) <= 0)
@@ -64,7 +64,7 @@ static void	fill_bmp(int fd, t_data *img)
 	}
 }
 
-static char	*define_name(t_configs *cub)
+static char	*define_name(t_settings *cub)
 {
 	char	*name;
 	char	*aux;

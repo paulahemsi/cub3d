@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/14 04:05:05 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 02:03:56 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,21 @@
 # define COL			0
 # define HOR			0
 # define VER			1
+# define NORTH			0
+# define SOUTH			1
+# define EAST			2
+# define WEST			3
+# define SPRITE			4
 # define CEILING		0
 # define FLOOR			1
 # define FRONT			0
+# define MOVE			0
 # define SIDE			1
+# define TURN			2
+# define WIDTH			0
+# define HEIGHT			1
+
+
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
@@ -64,6 +75,8 @@
 # define B				0x0062
 # define P				0x0070
 # define N				0x006e
+# define Q				0x0071
+# define E				0x0065
 # define SPACE			0x0020
 # define TAB			0xff09
 # define SHIFT			0xffe1
@@ -93,29 +106,14 @@ typedef struct		s_player
 {
 	int				plane_dist;
 	int				pos[2];
-	//int				map_pos[2];
-	int				radius;
-	int				turn_dir;
-	int				move_dir;
-	int				side_dir;
-	int				direction[2];
+	int				direction[3];
 	float			angle;
 	int				speed;
 	float			rotate_speed;
 	int				height;
 	int				invisible;
-	//float			delta_x;
-	//float			delta_y;
 }					t_player;
 
-typedef struct		s_paths
-{
-	char			*north;
-	char			*south;
-	char			*west;
-	char			*east;
-	char			*sprite;
-}					t_paths;
 
 typedef struct		s_rgb
 {
@@ -130,7 +128,6 @@ typedef struct		s_ray
 	float			hit[2];
 	float			dist;
 	int				vertical_hit;
-	int				hor_col[2];
 	int				up;
 	int				left;
 	float			step;
@@ -154,40 +151,47 @@ typedef struct		s_gradient
 	t_rgb			color_distance;
 }					t_gradient;
 
-typedef	struct		s_configs
+
+typedef	struct		s_settings
 {
-	unsigned int	screen_width;
-	unsigned int	screen_height;
-	unsigned int	world_width;
-	unsigned int	world_height;
+	int				screen[2];
+	int				world[2];
 	int				center[2];
 	int				gradient;
 	int				debug;
 	int				night_mode;
 	int				save;
 	int				bmp_id;
-	t_paths			path;
+	char			*path[5];
 	t_rgb			floor;
 	t_rgb			ceiling;
 	t_map			map;
 	t_player		player;
 	t_ray			ray;
-}					t_configs;
+}					t_settings;
 /*
 ** mlx
 */
 typedef struct		s_data
 {
-	void			*mlx_ptr;
-	void			*window_ptr;
+	void			*mlx_ptr;//!deixar fora dessa strcut?
+	void			*window_ptr;//!deixar fora dessa strcut?
 	void			*ptr;
 	char			*data;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
-	t_configs		*cub;
-	t_rgb			c;
+	t_settings		*cub;//!deixar fora dessa strcut!!!!!!!!!
+	t_rgb			c;//!onde colocar?
 }					t_data;
+
+typedef struct		s_texture
+{
+	t_data			*img;
+	int				width;
+	int				height;
+}					t_texture;
+
 /*
 ** aux
 */
@@ -225,20 +229,22 @@ typedef struct		s_bmp_header
 /*
 ** parse configs
 */
-void				parse_configs(t_configs	*configs, char *line);
-void				parse_map(t_configs *configs, char *line);
-void				parse_map_size(t_configs *configs, char *line);
-void				fill_map(t_configs *cub, char *file, int row);
-void				check_map(t_configs *configs);
+void				parse_configs(t_settings	*configs, char *line);
+void				parse_map(t_settings *configs, char *line);
+void				parse_map_size(t_settings *configs, char *line);
+void				fill_map(t_settings *cub, char *file, int row);
+void				check_map(t_settings *configs);
 /*
 ** render cub
 */
-void				render_cub(t_configs *cub);
+void				render_cub(t_settings *cub, t_data *img);
 void				save_bmp(t_data *img);
 void				render_minimap(t_data *img, t_ray *rays);
-void				raycasting(t_data *img, t_configs *cub, t_ray *rays);
-void				put_background(t_data *img, t_configs *cub);
+void				raycasting(t_data *img, t_settings *cub, t_ray *rays);
+void				put_background(t_data *img, t_settings *cub);
 void				put_walls(t_data *img, t_ray *rays);
+void				load_textures(char **path, t_data *img);
+
 /*
 ** render tools
 */
@@ -252,7 +258,7 @@ void				put_circle(t_data *img, int center_x, int center_y, int radius);
 */
 void				define_img_colors(t_data *img, int red, int green, int blue);
 float				normalize_angle(float angle);
-int					is_tile_free(float *pos, t_configs *cub, int secret_door);
+int					is_tile_free(float *pos, t_settings *cub, int secret_door);
 float				calc_distance(int *pos, float *hit);
 /*
 ** events
@@ -262,8 +268,8 @@ int					key_pressed(int key, t_data *img);
 int					key_released(int key, t_data *img);
 void				return_error(int error_id);
 int					close_cub(int key, t_data *img);
-void				free_cub(t_configs *cub);
+void				free_cub(t_settings *cub);
 void				free_all(t_data *img);
-void				init_cub(t_configs *cub);
+void				init_cub(t_settings *cub);
 
 #endif

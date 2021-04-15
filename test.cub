@@ -1,12 +1,12 @@
-R 720 500
+R 1000 1000
 
 C 255, 255, 255
 F 0, 0, 0
 
-SO ./textures/light_pb.jpg
-EA ./textures/dark_pb.jpg
-NO ./textures/light_pb.jpg
-WE ./textures/dark_pb.jpg
+SO ./textures/light_pb.xpm
+EA ./textures/dark_pb.xpm
+NO ./textures/light_pb.xpm
+WE ./textures/dark_pb.xpm
 S ./path_to_the_sprite_texture
 
         11111111

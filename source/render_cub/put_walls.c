@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/14 04:14:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:36:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ static void	define_wall_colors(t_data *img, t_ray *rays, int ray)
 	int color;
 	int longest_side;
 
-	if (img->cub->world_height > img->cub->world_width)
-		longest_side = img->cub->world_height;
+	if (img->cub->world[HEIGHT] > img->cub->world[WIDTH])
+		longest_side = img->cub->world[HEIGHT];
 	else
-		longest_side = img->cub->world_width;
+		longest_side = img->cub->world[WIDTH];
 	color = 255;
 	shadow = floor((rays[ray].dist / 1000) * 255);
 	color -= shadow;
@@ -123,8 +123,8 @@ void	put_walls(t_data *img, t_ray *rays)
 	{
 		define_wall_colors(img, rays, ray);
 		wall_height = (floor)(TILE_SIZE / rays[ray].dist * img->cub->player.plane_dist);
-		if (wall_height > img->cub->screen_height)
-			wall_height = img->cub->screen_height;
+		if (wall_height > img->cub->screen[HEIGHT])
+			wall_height = img->cub->screen[HEIGHT];
 		init[X] = ray;
 		init[Y] = img->cub->center[Y] - (wall_height / 2) - ((PLAYER_HEIGHT - img->cub->player.height) * 2);
 		put_line(img, init, init[X], init[Y] + wall_height);

@@ -6,32 +6,31 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/13 04:03:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:43:11 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-/*
-** static void	testando_as_parada_tudo(t_configs *cub)
-** {
-** 	printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n screen_width: %u\n screen_height: %u\n world_width: %u\n world_height: %u\n central point: (%i, %i)\n\nPLAYER\n position: (%i, %i)\n move_dir: %i turn dir: %i\nangle: %f\ndistance to projection plane: %i\n\nRAY:\nstep: %f\nangle: %f\n\n\n", cub->path.north, cub->path.south, cub->path.west, cub->path.east, cub->path.sprite, cub->floor.red, cub->floor.green, cub->floor.blue, cub->ceiling.red, cub->ceiling.green, cub->ceiling.blue, cub->screen_width, cub->screen_height, cub->world_width, cub->world_height, cub->center[X], cub->center[Y], cub->player.pos[X], cub->player.pos[Y], cub->player.move_dir, cub->player.turn_dir, cub->player.angle, cub->player.plane_dist, cub->ray.step, cub->ray.angle);
-** 	int i = 0;
-** 	int j;
-** 	while (cub->map.row[i] != NULL)
-** 	{
-** 		j = 0;
-** 		while (cub->map.row[i][j] != '\0')
-** 		{
-** 			ft_printf("%c", cub->map.row[i][j]);
-** 			j++;
-** 		}
-** 		ft_printf("\n");
-** 		i++;
-** 	}
-** }
-** 
-*/
+
+ static void	testando_as_parada_tudo(t_settings *cub)
+ {
+ 	printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n screen[WIDTH]: %u\n screen[HEIGHT]: %u\n world[WIDTH]: %u\n world[HEIGHT]: %u\n central point: (%i, %i)\n\nPLAYER\n position: (%i, %i)\n move_dir: %i turn dir: %i\nangle: %f\ndistance to projection plane: %i\n\nRAY:\nstep: %f\nangle: %f\n\n\n", cub->path[NORTH], cub->path[SOUTH], cub->path[WEST], cub->path[EAST], cub->path[SPRITE], cub->floor.red, cub->floor.green, cub->floor.blue, cub->ceiling.red, cub->ceiling.green, cub->ceiling.blue, cub->screen[WIDTH], cub->screen[HEIGHT], cub->world[WIDTH], cub->world[HEIGHT], cub->center[X], cub->center[Y], cub->player.pos[X], cub->player.pos[Y], cub->player.direction[MOVE], cub->player.direction[TURN], cub->player.angle, cub->player.plane_dist, cub->ray.step, cub->ray.angle);
+ 	int i = 0;
+ 	int j;
+ 	while (cub->map.row[i] != NULL)
+ 	{
+ 		j = 0;
+ 		while (cub->map.row[i][j] != '\0')
+ 		{
+ 			ft_printf("%c", cub->map.row[i][j]);
+ 			j++;
+ 		}
+ 		ft_printf("\n");
+ 		i++;
+ 	}
+ }
+
 
 static void	check_colors(t_rgb *ceiling, t_rgb *floor)
 {
@@ -41,7 +40,7 @@ static void	check_colors(t_rgb *ceiling, t_rgb *floor)
 		return_error(-10);
 }
 
-static void	parse_scene(char *file, t_configs *cub)
+static void	parse_scene(char *file, t_settings *cub, t_data *img)
 {
 	char		*line;
 	int			fd;
@@ -60,6 +59,7 @@ static void	parse_scene(char *file, t_configs *cub)
 	check_colors(&cub->ceiling, &cub->floor);
 	fill_map(cub, file, cub->map.total_row);
 	check_map(cub);
+	load_textures(cub->path, img);
 }
 
 static int	check_args(int argc, char **argv)
@@ -83,15 +83,19 @@ static int	check_args(int argc, char **argv)
 
 int			main(int argc, char **argv)
 {
-	t_configs	cub;
+	t_settings	cub;
+	t_data	img;
 
+	if (!(img.mlx_ptr = mlx_init()))
+		return_error(-8);
 	init_cub(&cub);
 	if ((argc == 2) || (argc == 3))
 		cub.save = check_args(argc, argv);
 	else
 		return_error(-1);
-	parse_scene(argv[1], &cub);
-	render_cub(&cub);
-	free_cub(&cub); //?chega aqui em algum momento?
-	return (EXIT_SUCCESS);
+	parse_scene(argv[1], &cub, &img);
+	testando_as_parada_tudo(&cub);
+	render_cub(&cub, &img);
+	//free_cub(&cub); //?chega aqui em algum momento?
+	//return (EXIT_SUCCESS);
 }

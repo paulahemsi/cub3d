@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/14 00:46:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:40:46 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	is_ray_facing_right(float angle)
 		return (FALSE);
 }
 
-static void	save_hit(t_cast *direction, t_configs *cub, float *to_check_tile)
+static void	save_hit(t_cast *direction, t_settings *cub, float *to_check_tile)
 {
 	direction->hit[X] = direction->intercept[X];
 	direction->hit[Y] = direction->intercept[Y];
@@ -43,7 +43,7 @@ static void	increment(t_cast *direction)
 	direction->intercept[Y] += direction->step[Y];
 }
 
-static void	define_ray_values(t_cast *direction, t_configs *cub, int dir, int pos_axis)
+static void	define_ray_values(t_cast *direction, t_settings *cub, int dir, int pos_axis)
 {
 	int axis;
 
@@ -62,7 +62,7 @@ static void	define_ray_values(t_cast *direction, t_configs *cub, int dir, int po
 		direction->step[axis] = -TILE_SIZE;
 }
 
-static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float angle, int column)
+static void	find_horizontal_collision(t_settings *cub, t_cast *horizontal, float angle, int column)
 {
 	float	to_check_tile[2];
 	
@@ -73,7 +73,7 @@ static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float 
 		horizontal->step[X] *= TOGGLE;
 	if (is_ray_facing_right(angle) && horizontal->step[X] < 0)
 		horizontal->step[X] *= TOGGLE;
-	while (horizontal->intercept[X] >= 0 && horizontal->intercept[X] <= cub->world_width && horizontal->intercept[Y] >= 0 && horizontal->intercept[Y] <= cub->world_height)
+	while (horizontal->intercept[X] >= 0 && horizontal->intercept[X] <= cub->world[WIDTH] && horizontal->intercept[Y] >= 0 && horizontal->intercept[Y] <= cub->world[HEIGHT])
 	{
 		to_check_tile[X] = horizontal->intercept[X];
 		to_check_tile[Y] = horizontal->intercept[Y];
@@ -89,7 +89,7 @@ static void	find_horizontal_collision(t_configs *cub, t_cast *horizontal, float 
 	}
 }
 
-static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angle, int column)
+static void	find_vertical_collision(t_settings *cub, t_cast *vertical, float angle, int column)
 {
 	float	to_check_tile[2];
 
@@ -100,7 +100,7 @@ static void	find_vertical_collision(t_configs *cub, t_cast *vertical, float angl
 		vertical->step[Y] *= TOGGLE;
 	if (is_ray_facing_down(angle) && vertical->step[Y] < 0)
 		vertical->step[Y] *= TOGGLE;
-	while (vertical->intercept[X] >= 0 && vertical->intercept[X] <= cub->world_width && vertical->intercept[Y] >= 0 && vertical->intercept[Y] <= cub->world_height)
+	while (vertical->intercept[X] >= 0 && vertical->intercept[X] <= cub->world[WIDTH] && vertical->intercept[Y] >= 0 && vertical->intercept[Y] <= cub->world[HEIGHT])
 	{
 		to_check_tile[X] = vertical->intercept[X];
 		to_check_tile[Y] = vertical->intercept[Y];
@@ -178,7 +178,7 @@ static void	cast_ray(t_data *img, float angle, int column, t_ray *rays)
 		copy_last_ray(rays, column, angle);
 }
 
-void	raycasting(t_data *img, t_configs *cub, t_ray *rays)
+void	raycasting(t_data *img, t_settings *cub, t_ray *rays)
 {
 	float angle;
 	int	column;

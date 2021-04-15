@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/14 02:40:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:31:41 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	check_edges(char cell)
 		return_error(-7);
 }
 
-static int	is_valid_cell(int row, int col, t_configs *configs)
+static int	is_valid_cell(int row, int col, t_settings *configs)
 {
 	if (row < 0 || row > (configs->map.total_row - 1) ||
 		col < 0 || col > (configs->map.total_column - 1))
@@ -28,7 +28,7 @@ static int	is_valid_cell(int row, int col, t_configs *configs)
 	return (1);
 }
 
-static void	check_neighbors(char **map, int row, int col, t_configs *configs)
+static void	check_neighbors(char **map, int row, int col, t_settings *configs)
 {
 	int col_offset;
 	int row_offset;
@@ -51,7 +51,7 @@ static void	check_neighbors(char **map, int row, int col, t_configs *configs)
 	}
 }
 
-static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
+static void	store_player_pos(t_settings *configs, char *dir, int row, int col)
 {
 	if (ft_strchr("NS", *dir))
 	{
@@ -76,7 +76,7 @@ static void	store_player_pos(t_configs *configs, char *dir, int row, int col)
 	//configs->player.invisible = -1;
 }
 
-void		check_map(t_configs *configs)
+void		check_map(t_settings *configs)
 {
 	char	**map;
 	int		row;

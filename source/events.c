@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/14 04:31:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:19:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int		close_cub(int key, t_data *img)
 static void	update_player_direction(int key, t_data *img)
 {
 	if (key == W)
-		img->cub->player.move_dir = 1;
+		img->cub->player.direction[MOVE] = 1;
 	else if (key == S)
-		img->cub->player.move_dir = -1;
+		img->cub->player.direction[MOVE] = -1;
 	if (key == A)
 	{
-		img->cub->player.move_dir = -1;
+		img->cub->player.direction[MOVE] = -1;
 		img->cub->player.direction[SIDE] = TRUE;
 	}
 	else if (key == D)
 	{
-		img->cub->player.move_dir = 1;
+		img->cub->player.direction[MOVE] = 1;
 		img->cub->player.direction[SIDE] = TRUE;	
 	}
 }
@@ -59,10 +59,10 @@ int		key_pressed(int key, t_data *img)
 		close_cub(key, img);
 	if (key == W || key == A || key == S || key == D)
 		update_player_direction(key, img);
-	if (key == LEFT)
-		img->cub->player.turn_dir = -1;
-	else if (key == RIGHT)
-		img->cub->player.turn_dir = 1;
+	if (key == LEFT || key == Q)
+		img->cub->player.direction[TURN] = -1;
+	else if (key == RIGHT || key == E)
+		img->cub->player.direction[TURN] = 1;
 	else if (key == SHIFT)
 	{
 		img->cub->player.speed = 20;
@@ -83,20 +83,20 @@ int		key_pressed(int key, t_data *img)
 int		key_released(int key, t_data *img)
 {
 	if (key == W || key == S)
-		img->cub->player.move_dir = 0;
+		img->cub->player.direction[MOVE] = 0;
 	if (key == A || key == D)
 	{
-		img->cub->player.move_dir = 0;
+		img->cub->player.direction[MOVE] = 0;
 		img->cub->player.direction[SIDE] = FALSE;
 	}
 	else if (key == UP)
-		img->cub->player.move_dir = 0;
+		img->cub->player.direction[MOVE] = 0;
 	else if (key == DOWN)
-		img->cub->player.move_dir = 0;
-	if (key == LEFT)
-		img->cub->player.turn_dir = 0;
-	else if (key == RIGHT)
-		img->cub->player.turn_dir = 0;
+		img->cub->player.direction[MOVE] = 0;
+	if (key == LEFT || key == Q)
+		img->cub->player.direction[TURN] = 0;
+	else if (key == RIGHT || key == E)
+		img->cub->player.direction[TURN] = 0;
 	if (key == SHIFT)
 	{
 		img->cub->player.speed = 7;

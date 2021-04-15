@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:08:57 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/14 04:26:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:37:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	put_surface(t_data *img, t_gradient *gradient, int *line, t_rgb *surf
 		define_img_colors(img, surface->red, surface->green, surface->blue);
 	if (img->cub->debug == TRUE)
 		define_img_colors(img, 60, 21, 79);
-	put_line(img, init, img->cub->screen_width, *line);
+	put_line(img, init, img->cub->screen[WIDTH], *line);
 	return (*line += 1);
 }
 
@@ -89,7 +89,7 @@ static void	define_night_vision(t_rgb *night_vision)
 	night_vision[FLOOR].blue = 1;
 }
 
-void	put_background(t_data *img, t_configs *cub)
+void	put_background(t_data *img, t_settings *cub)
 {
 	int line;
 	float increment;
@@ -107,13 +107,13 @@ void	put_background(t_data *img, t_configs *cub)
 	}
 	else
 		define_gradient(&cub->ceiling, &cub->floor, &gradient);
-	while (line < (cub->screen_height / 2))
+	while (line < (cub->screen[HEIGHT] / 2))
 		line = put_surface(img, &gradient, &line, &cub->floor);
 	toggle_increment(&gradient);
 	if (cub->night_mode == TRUE)
 		define_img_colors(img, night_vision[FLOOR].red, night_vision[FLOOR].green, night_vision[FLOOR].blue);
 	else
 		define_img_colors(img, cub->floor.red, cub->floor.green, cub->floor.blue);
-	while (line < cub->screen_height)
+	while (line < cub->screen[HEIGHT])
 		line = put_surface(img, &gradient, &line, &cub->ceiling);
 }

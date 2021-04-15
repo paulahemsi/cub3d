@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/14 04:34:51 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:38:14 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ static void	check_limits(float *ray_hit, t_data *img)
 {
 	if (ray_hit[X]  < 1)
 		ray_hit[X]  = 1;
-	if (ray_hit[X]  > img->cub->screen_width / SCALE)
-		ray_hit[X]  = img->cub->screen_width / SCALE;
+	if (ray_hit[X]  > img->cub->screen[WIDTH] / SCALE)
+		ray_hit[X]  = img->cub->screen[WIDTH] / SCALE;
 	if (ray_hit[Y] < 1)
 		ray_hit[Y] = 1;
-	if (ray_hit[Y] > img->cub->screen_height / SCALE)
-		ray_hit[Y] = img->cub->screen_height / SCALE;
+	if (ray_hit[Y] > img->cub->screen[HEIGHT] / SCALE)
+		ray_hit[Y] = img->cub->screen[HEIGHT] / SCALE;
 }
 
-static void	render_rays(t_data *img, t_configs *cub, t_ray *rays)
+static void	render_rays(t_data *img, t_settings *cub, t_ray *rays)
 {
 	int		ray;
 	int		player_pos[2];
@@ -75,7 +75,7 @@ static void	render_rays(t_data *img, t_configs *cub, t_ray *rays)
 		define_img_colors(img, 200, 200, 0);
 	player_pos[X] = cub->player.pos[X] * SCALE;
 	player_pos[Y] = cub->player.pos[Y] * SCALE;
-	while (ray < img->cub->screen_width)
+	while (ray < img->cub->screen[WIDTH])
 	{
 		check_limits(rays[ray].hit, img);
 		put_line(img, player_pos, rays[ray].hit[X] * SCALE, rays[ray].hit[Y] * SCALE);

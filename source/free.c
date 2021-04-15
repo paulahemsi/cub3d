@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free..c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:22:45 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/11 02:30:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:32:34 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ static void	free_map(char **map)
 	free(map);
 }
 
-static void	free_paths(t_configs *cub)
+static void	free_paths(t_settings *cub)
 {
-	free(cub->path.north);
-	free(cub->path.south);
-	free(cub->path.west);
-	free(cub->path.east);
-	free(cub->path.sprite);
+	int	texture;
+
+	texture = NORTH;
+	while (texture <= SPRITE)
+		free(cub->path[texture]);
 }
 
-void		free_cub(t_configs *cub)
+void		free_cub(t_settings *cub)
 {
 	free_paths(cub);
 	free_map(cub->map.row);

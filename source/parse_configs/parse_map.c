@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 16:21:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:41:05 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void		parse_map_size(t_configs *cub, char *line)
+void		parse_map_size(t_settings *cub, char *line)
 {
 	unsigned int	line_size;
 
@@ -37,7 +37,7 @@ static int	is_valid_char(char c, int *player)
 	return (FALSE);
 }
 
-static void	fill_row(t_configs *cub, char *line, int index, int *player)
+static void	fill_row(t_settings *cub, char *line, int index, int *player)
 {
 	unsigned int	col;
 
@@ -59,13 +59,13 @@ static void	fill_row(t_configs *cub, char *line, int index, int *player)
 	}
 }
 
-static void	define_world_size(t_configs *cub)
+static void	define_world_size(t_settings *cub)
 {
-	cub->world_width = cub->map.total_column * TILE_SIZE;
-	cub->world_height = cub->map.total_row * TILE_SIZE;
+	cub->world[WIDTH] = cub->map.total_column * TILE_SIZE;
+	cub->world[HEIGHT] = cub->map.total_row * TILE_SIZE;
 }
 
-void		fill_map(t_configs *cub, char *file, int row)
+void		fill_map(t_settings *cub, char *file, int row)
 {
 	char			*line;
 	int				fd;

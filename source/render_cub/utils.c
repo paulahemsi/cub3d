@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:01:20 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/12 16:28:26 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 01:39:06 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ float	normalize_angle(float angle)
 	return (angle);
 }
 
-int		is_tile_free(float *pos, t_configs *cub, int secret_door)
+int		is_tile_free(float *pos, t_settings *cub, int secret_door)
 {
 	int minimap[2];
 
-	if (pos[X] < 0 || pos[X] >= cub->world_width || pos[Y] < 0 || pos[Y] >= cub->world_height)
+	if (pos[X] < 0 || pos[X] >= cub->world[WIDTH] || pos[Y] < 0 || pos[Y] >= cub->world[HEIGHT])
 		return (FALSE);
 	minimap[ROW] = floor(pos[Y] / TILE_SIZE);
 	minimap[COL] = floor(pos[X] / TILE_SIZE);

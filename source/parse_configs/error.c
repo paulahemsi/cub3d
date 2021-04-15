@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/13 03:34:08 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/14 22:03:46 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ void	return_error(int error_id)
 		ft_putstr("Error\ncolors values must be in the range 0 - 255\n");
 	else if (error_id == -11)
 		ft_putstr("Error\nunable to create bmp file\n");
+	else if (error_id == -12)
+		ft_putstr("Error\ninvalid texture path\n");
 	exit(error_id);
 }

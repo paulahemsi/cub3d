@@ -18,7 +18,7 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 ## step_by_step 
 :hurtrealbad:
 
-(time may overlap, as life and data)
+(time may overlap, like life and data)
 * I watched videos and read about raycasting, field of view algorithms and collision detection to have an overall idea about the project. (~4 days)
 * libraries adjustments, makefile and header file creation(~1 day)
 * configuration parsing, which includes minimap storage and errors checking(~ 5 days)
@@ -107,9 +107,9 @@ for more details, read the [work diary](#work_diary)
 
 `./cub3D path_to_scene_file.txt`
 
-you may edit all these configurations:
+you may edit all these settings:
 
-resolution, ceil and floor colors (range 0 - 255), walls and sprite textures, map. The map must be sorrounded by walls(1) and have the initial player position and direction (W- west, E- east, N-north, S-south)
+resolution, ceiling and floor colors (range 0 - 255), walls and sprite textures, map. The map must be sorrounded by walls(1) and have the initial player position and direction (W- west, E- east, N-north, S-south)
 
 ```
 R width height
@@ -137,6 +137,7 @@ shift | run				|
 tab | toggle minimap	|
 g | toggle background gradient				|
 b | toggle debug colors				|
+n | toggle night vision				|
 p | save .bmp screenshot				|
 
 
@@ -222,22 +223,22 @@ I'm still not sure if it will be better to render it in another window or in the
 
 * 6/04: Player is moving and turning accordingly. Wall collisions aren't working precisely yet.
 
-* 7/04: *wall_collisions* 7 x 1 *me*
+* 7/04: *wall_collisions* 7 vs 1 *paula*
 
-* 8/04: *wall_collisions* 8 x 5 *me*
+* 8/04: *wall_collisions* 8 vs 5 *paula*
 
-* 9/04: Every dog has his day. Not only the wall collisions are working (99%), but also the walls are beeing rendered! **And** running/walking is implemented! 
-I also implemented invisibility and crouching, but the result gots a little bit akward, so I took them off for now.
+* 9/04: Every dog has its day. Not only the wall collisions are working (99%), but also the walls are beeing rendered! **And** running/walking is implemented! 
+I also implemented invisibility and crouching, but the result got a little bit awkward, so I took them off for now.
 
 ![](study_resources/walls.gif)
 
-* 10/04: I should have worked on the walls textures, but I polished the gradients instead. The walls are still with solid color, but now the program knows how to make a nice gradient with whatever input of ceiling and floor colors the users chooses. Player is walking like a crab as it should with `a` and `d` keys. Simple shadow effect in the walls implemented.
+* 10/04: I should have worked on the walls' textures, but I polished the gradients instead. The walls are still with solid color, but now the program knows how to make a nice gradient with whatever input of ceiling and floor colors the users chooses. The player is walking like a crab as it should with `a` and `d` keys. Simple shadow effect on the walls implemented.
 
-* 11/04: I implemented debug colors, that can be toggle with the `b` key :)
+* 11/04: I implemented debug colors, that can be toggled with the `b` key :)
 
-* 12/04: I'm still procrastinating a bit, avoiding face the textures and the bmp save, so I implemented secret door's instead. As they are secret, is hard to see when testing, so I polished a bit the debug colors to also show those new invisible doors. In the minimap, though, is too easy to discover some of the secrets, so maybe would be a nice touch to have a map item that unlock the minimap acess. Late in the night, finaly the bmp image is beeing saved when the flag --save is used. I also implemented a print screen key (`p`), so the player can save a screenshot in any moment.
+* 12/04: I'm still procrastinating a bit, avoiding facing the textures and the bmp save, so I implemented secret doors instead. As they are secret, it's hard to see while testing, so I polished a bit the debug colors to also show those new invisible doors. In the minimap, though, is too easy to discover some of the secrets, so maybe it would be a nice touch to have a map item that unlocks the minimap access. Late in the night, finally the bmp image is being saved when the flag --save is used. I also implemented a print screen key (`p`), so the player can save a screenshot at any moment.
 
-* 13/04: Walls bug fixed, now the rays knows the correct collisions direction even in the tricky interseccions. Night vision implemented.
+* 13/04: Walls' bug fixed, now the rays know the correct collisions direction even in the tricky interseccions. Night vision implemented.
 
 </details>
 
