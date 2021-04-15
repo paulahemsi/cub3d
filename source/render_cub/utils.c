@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:01:20 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:39:06 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 22:53:00 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int		radiands_to_degrees(float radian)
 	return (floor(radian * 180 / PI));
 }
 
-void	define_img_colors(t_data *img, int red, int green, int blue)
+void	define_img_colors(t_rgb *color, int red, int green, int blue)
 {
-	img->c.red = red;
-	img->c.green = green;
-	img->c.blue = blue;
+	color->red = red;
+	color->green = green;
+	color->blue = blue;
 }
 
 float	normalize_angle(float angle)
@@ -39,19 +39,19 @@ float	normalize_angle(float angle)
 	return (angle);
 }
 
-int		is_tile_free(float *pos, t_settings *cub, int secret_door)
+int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door)
 {
 	int minimap[2];
 
-	if (pos[X] < 0 || pos[X] >= cub->world[WIDTH] || pos[Y] < 0 || pos[Y] >= cub->world[HEIGHT])
+	if (pos[X] < 0 || pos[X] >= set->world[WIDTH] || pos[Y] < 0 || pos[Y] >= set->world[HEIGHT])
 		return (FALSE);
 	minimap[ROW] = floor(pos[Y] / TILE_SIZE);
 	minimap[COL] = floor(pos[X] / TILE_SIZE);
-	if (minimap[X] >= cub->map.total_column || minimap[Y] >= cub->map.total_row)
+	if (minimap[X] >= map->total_column || minimap[Y] >= map->total_row)
 		return (FALSE);
-	if (cub->map.row[minimap[ROW]][minimap[COL]] == '0')
+	if (map->row[minimap[ROW]][minimap[COL]] == '0')
 		return (TRUE);
-	if (cub->map.row[minimap[ROW]][minimap[COL]] == '3' && (secret_door))
+	if (map->row[minimap[ROW]][minimap[COL]] == '3' && (secret_door))
 		return (TRUE);
 	return (FALSE);
 }

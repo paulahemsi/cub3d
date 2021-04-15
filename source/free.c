@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:22:45 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:32:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 23:27:36 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,26 @@ static void	free_map(char **map)
 	free(map);
 }
 
-static void	free_paths(t_settings *cub)
+static void	free_paths(t_cub *cub)
 {
 	int	texture;
 
 	texture = NORTH;
 	while (texture <= SPRITE)
-		free(cub->path[texture]);
+		free(cub->settings.path[texture]);
 }
 
-void		free_cub(t_settings *cub)
+void		free_cub(t_cub *cub)
 {
 	free_paths(cub);
-	free_map(cub->map.row);
+	free_map(cub->game.map.row);
 }
 
-void		free_all(t_data *img)
+void		free_all(t_cub *cub)
 {
-	mlx_destroy_image(img->mlx_ptr, img->ptr);
-	mlx_loop_end(img->mlx_ptr);
-	mlx_destroy_window(img->mlx_ptr, img->window_ptr);
-	img->window_ptr = NULL;
-	free_cub(img->cub);
+	mlx_destroy_image(cub->mlx_ptr, cub->img->ptr);
+	mlx_loop_end(cub->mlx_ptr);
+	mlx_destroy_window(cub->mlx_ptr, cub->window_ptr);
+	cub->window_ptr = NULL;
+	free_cub(cub);
 }

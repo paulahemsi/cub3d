@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/14 03:06:03 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 22:40:03 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	init_values(t_bresenham *n, int *init, int *pos)
 	ft_memset(n->increment, 0, sizeof(n->increment));
 }
 
-void		put_line(t_data *img, int *pos, int x2, int y2)
+void		put_line(t_cub *cub, int *pos, int x2, int y2)
 {
 	t_bresenham	n;
 	int			init[2];
@@ -73,7 +73,7 @@ void		put_line(t_data *img, int *pos, int x2, int y2)
 	define_longest(&n);
 	while (n.i <= n.longest)
 	{
-		put_pixel(img, init[X], init[Y], color_picker(img->c.red, img->c.green, img->c.blue));
+		put_pixel(cub->img, init[X], init[Y], color_picker(cub->game.color.red, cub->game.color.green, cub->game.color.blue));
 		n.numerator += n.shortest;
 		if (n.numerator > n.longest)
 		{

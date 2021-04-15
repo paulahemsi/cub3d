@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 02:39:45 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 22:22:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,12 @@ static void	parse_resolution(t_settings *settings, char *line)
 	}
 }
 
-static int	is_all_configs_set(t_settings *settings)
+static int	is_configs_set(t_settings *settings)
 {
 	if ((settings->floor.blue == -1) || (settings->ceiling.blue == -1))
 		return (0);
 	if (!(settings->screen[WIDTH]) || !(settings->screen[HEIGHT]))
 		return (0);
-	//if (!(cub->path.north) || !(cub->path.south))
 	if (!(settings->path[NORTH]) || !(settings->path[SOUTH]))
 		return (0);
 	if (!(settings->path[EAST]) || !(settings->path[WEST]))
@@ -91,8 +90,11 @@ static int	is_all_configs_set(t_settings *settings)
 	return (1);
 }
 
-void		parse_configs(t_settings *settings, char *line)
+void		parse_configs(t_cub *cub, char *line)
 {
+	t_settings *settings;
+
+	settings = &cub->settings;
 	if ((ft_strnequ(line, "NO ", 3)) || (ft_strnequ(line, "NO\t", 3)))
 		parse_path(&settings->path[NORTH], (line + 3));
 	else if ((ft_strnequ(line, "SO ", 3)) || (ft_strnequ(line, "SO\t", 3)))
@@ -108,9 +110,9 @@ void		parse_configs(t_settings *settings, char *line)
 	else if ((ft_strnequ(line, "C ", 2)) || (ft_strnequ(line, "C\t", 2)))
 		parse_colors(&settings->ceiling, (line + 2));
 	else if ((ft_strnequ(line, "R ", 2)) || (ft_strnequ(line, "R\t", 2)))
-		parse_resolution(cub, (line + 2));
-	else if (((*line == '1') || (*line == ' ')) && ((is_all_configs_set(settings))))
-		parse_map_size(settings, line);
+		parse_resolution(settings, (line + 2));
+	else if ((*line == '1' || (*line == ' ')) && ((is_configs_set(settings))))
+		parse_map_size(&cub->game.map, line);
 	else if (*line != '\0')
 		return_error(-5);
 }

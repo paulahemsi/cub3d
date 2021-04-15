@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 02:30:21 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 23:27:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,9 +204,6 @@ typedef struct		s_cub
 	t_toggle		toggle;
 	t_render		game;
 }					t_cub;
-
-
-
 /*
 ** aux
 */
@@ -244,47 +241,49 @@ typedef struct		s_bmp_header
 /*
 ** parse configs
 */
-void				parse_configs(t_settings	*configs, char *line);
+void				parse_configs(t_cub *cub, char *line);
 void				parse_map(t_settings *configs, char *line);
-void				parse_map_size(t_settings *configs, char *line);
-void				fill_map(t_settings *cub, char *file, int row);
-void				check_map(t_settings *configs);
+void				parse_map_size(t_map *map, char *line);
+void				fill_map(t_cub *cub, char *file, int row);
+void				check_map(t_render *game);
+
 /*
 ** render cub
 */
-void				render_cub(t_settings *cub, t_data *img);
-void				save_bmp(t_data *img);
-void				render_minimap(t_data *img, t_ray *rays);
-void				raycasting(t_data *img, t_settings *cub, t_ray *rays);
-void				put_background(t_data *img, t_settings *cub);
-void				put_walls(t_data *img, t_ray *rays);
-void				load_textures(char **path, t_data *img);
+void				render_cub(t_cub *cub);
+void				save_bmp(t_cub *cub);
+void				render_minimap(t_cub *cub, t_map *map, t_ray *rays);
+void				raycasting(t_cub *cub, t_ray *rays);
+void				put_background(t_cub *cub);
+void				put_walls(t_cub *cub, t_ray *rays);
+void				load_textures(char **path, t_cub *cub);
+
 
 /*
 ** render tools
 */
 int					color_picker(unsigned char red, unsigned char green, unsigned char blue);
 void				put_square(t_data *img, int pos_x, int pos_y, int color);
-void				put_line(t_data *img, int *pos, int x2, int y2);
+void				put_line(t_cub *cub, int *pos, int x2, int y2);
 void				put_pixel(t_data *img, int pos_x, int pos_y, int color);
 void				put_circle(t_data *img, int center_x, int center_y, int radius);
 /*
 ** render utils
 */
-void				define_img_colors(t_data *img, int red, int green, int blue);
+void				define_img_colors(t_rgb *color, int red, int green, int blue);
 float				normalize_angle(float angle);
-int					is_tile_free(float *pos, t_settings *cub, int secret_door);
+int					is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door);
 float				calc_distance(int *pos, float *hit);
 /*
 ** events
 */
 int					mouse_clicked(int btn, int pos_x, int pos_y, t_data *img);
-int					key_pressed(int key, t_data *img);
-int					key_released(int key, t_data *img);
+int					key_pressed(int key, t_cub *cub);
+int					key_released(int key, t_cub *cub);
 void				return_error(int error_id);
-int					close_cub(int key, t_data *img);
-void				free_cub(t_settings *cub);
-void				free_all(t_data *img);
+int					close_cub(int key, t_cub *cub);
+void				free_all(t_cub *cub);
+void				free_cub(t_cub *cub);
 void				init_cub(t_cub *cub);
 
 #endif

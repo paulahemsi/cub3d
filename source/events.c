@@ -6,101 +6,101 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:19:53 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 23:24:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int		close_cub(int key, t_data *img)
+int		close_cub(int key, t_cub *cub)
 {
-	//free_all(img);
+	free_all(cub);
 	exit(0);
 }
 
-static void	update_player_direction(int key, t_data *img)
+static void	update_player_direction(int key, int *player_direction)
 {
 	if (key == W)
-		img->cub->player.direction[MOVE] = 1;
+		player_direction[MOVE] = 1;
 	else if (key == S)
-		img->cub->player.direction[MOVE] = -1;
+		player_direction[MOVE] = -1;
 	if (key == A)
 	{
-		img->cub->player.direction[MOVE] = -1;
-		img->cub->player.direction[SIDE] = TRUE;
+		player_direction[MOVE] = -1;
+		player_direction[SIDE] = TRUE;
 	}
 	else if (key == D)
 	{
-		img->cub->player.direction[MOVE] = 1;
-		img->cub->player.direction[SIDE] = TRUE;	
+		player_direction[MOVE] = 1;
+		player_direction[SIDE] = TRUE;	
 	}
 }
 
-static void	update_effects(int key, t_data *img)
+static void	update_effects(int key, t_toggle *toggle)
 {
-	if ((key == G) && (img->cub->night_mode == -1))
-		img->cub->gradient *= TOGGLE;
+	if ((key == G) && (toggle->night_mode == -1))
+		toggle->gradient *= TOGGLE;
 	if (key == B)
 	{
-		img->cub->debug *= TOGGLE;
-		img->cub->night_mode = -1;
+		toggle->debug *= TOGGLE;
+		toggle->night_mode = -1;
 	}
 	if (key == N)
 	{
-		img->cub->night_mode *= TOGGLE;
-		img->cub->debug = -1;
-		img->cub->gradient = 1;
+		toggle->night_mode *= TOGGLE;
+		toggle->debug = -1;
+		toggle->gradient = 1;
 	}
 }
 
-int		key_pressed(int key, t_data *img)
+int		key_pressed(int key, t_cub *cub)
 {
 	if (key == ESC)
-		close_cub(key, img);
+		close_cub(key, cub);
 	if (key == W || key == A || key == S || key == D)
-		update_player_direction(key, img);
+		update_player_direction(key, cub->game.player.direction);
 	if (key == LEFT || key == Q)
-		img->cub->player.direction[TURN] = -1;
+		cub->game.player.direction[TURN] = -1;
 	else if (key == RIGHT || key == E)
-		img->cub->player.direction[TURN] = 1;
+		cub->game.player.direction[TURN] = 1;
 	else if (key == SHIFT)
 	{
-		img->cub->player.speed = 20;
-		img->cub->player.rotate_speed = 6 * PI / 180;
+		cub->game.player.speed = 20;
+		cub->game.player.rotate_speed = 6 * PI / 180;
 	}
 	else if (key == P)
 	{
-		img->cub->bmp_id ++;
-		save_bmp(img);
+		cub->toggle.bmp_id ++;
+		save_bmp(cub);
 	}
 	if (key == TAB)
-		img->cub->map.show_minimap *= TOGGLE;
+		cub->toggle.show_minimap *= TOGGLE;
 	if (key == G || key == B || key == N)
-		update_effects(key, img);
+		update_effects(key, &cub->toggle);
 	return (0);
 }
 
-int		key_released(int key, t_data *img)
+int		key_released(int key, t_cub *cub)
 {
 	if (key == W || key == S)
-		img->cub->player.direction[MOVE] = 0;
+		cub->game.player.direction[MOVE] = 0;
 	if (key == A || key == D)
 	{
-		img->cub->player.direction[MOVE] = 0;
-		img->cub->player.direction[SIDE] = FALSE;
+		cub->game.player.direction[MOVE] = 0;
+		cub->game.player.direction[SIDE] = FALSE;
 	}
 	else if (key == UP)
-		img->cub->player.direction[MOVE] = 0;
+		cub->game.player.direction[MOVE] = 0;
 	else if (key == DOWN)
-		img->cub->player.direction[MOVE] = 0;
+		cub->game.player.direction[MOVE] = 0;
 	if (key == LEFT || key == Q)
-		img->cub->player.direction[TURN] = 0;
+		cub->game.player.direction[TURN] = 0;
 	else if (key == RIGHT || key == E)
-		img->cub->player.direction[TURN] = 0;
+		cub->game.player.direction[TURN] = 0;
 	if (key == SHIFT)
 	{
-		img->cub->player.speed = 7;
-		img->cub->player.rotate_speed = 2 * PI / 180;
+		cub->game.player.speed = 7;
+		cub->game.player.rotate_speed = 2 * PI / 180;
 	}
 	// else if (key == SPACE)
 		// img->cub->player.invisible = FALSE;

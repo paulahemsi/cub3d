@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:40:46 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 22:56:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static int	is_ray_facing_right(float angle)
 		return (FALSE);
 }
 
-static void	save_hit(t_cast *direction, t_settings *cub, float *to_check_tile)
+static void	save_hit(t_cast *direction, t_cub *cub, float *to_check_tile)
 {
 	direction->hit[X] = direction->intercept[X];
 	direction->hit[Y] = direction->intercept[Y];
-	direction->content = cub->map.row[(int)floor(to_check_tile[Y] / TILE_SIZE)]
+	direction->content = cub->game.map.row[(int)floor(to_check_tile[Y] / TILE_SIZE)]
 										[(int)floor(to_check_tile[X] / TILE_SIZE)];
 	direction->hitted = TRUE;
 }
@@ -43,7 +43,7 @@ static void	increment(t_cast *direction)
 	direction->intercept[Y] += direction->step[Y];
 }
 
-static void	define_ray_values(t_cast *direction, t_settings *cub, int dir, int pos_axis)
+static void	define_ray_values(t_cast *direction, t_cub *cub, int dir, int pos_axis)
 {
 	int axis;
 
@@ -52,7 +52,7 @@ static void	define_ray_values(t_cast *direction, t_settings *cub, int dir, int p
 	else
 		axis = X;
 	direction->hitted = FALSE;
-	direction->intercept[axis] = floor(cub->player.pos[axis] / TILE_SIZE) * TILE_SIZE;
+	direction->intercept[axis] = floor(cub->game.player.pos[axis] / TILE_SIZE) * TILE_SIZE;
 	if (pos_axis)
 	{
 		direction->intercept[axis] += TILE_SIZE;
@@ -62,24 +62,24 @@ static void	define_ray_values(t_cast *direction, t_settings *cub, int dir, int p
 		direction->step[axis] = -TILE_SIZE;
 }
 
-static void	find_horizontal_collision(t_settings *cub, t_cast *horizontal, float angle, int column)
+static void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle, int column)
 {
 	float	to_check_tile[2];
 	
 	define_ray_values(horizontal, cub, HOR, is_ray_facing_down(angle));
-	horizontal->intercept[X] = cub->player.pos[X] + (horizontal->intercept[Y] - cub->player.pos[Y]) / tan(angle);
+	horizontal->intercept[X] = cub->game.player.pos[X] + (horizontal->intercept[Y] - cub->game.player.pos[Y]) / tan(angle);
 	horizontal->step[X] = TILE_SIZE / tan(angle);
 	if (!(is_ray_facing_right(angle)) && horizontal->step[X] > 0)
 		horizontal->step[X] *= TOGGLE;
 	if (is_ray_facing_right(angle) && horizontal->step[X] < 0)
 		horizontal->step[X] *= TOGGLE;
-	while (horizontal->intercept[X] >= 0 && horizontal->intercept[X] <= cub->world[WIDTH] && horizontal->intercept[Y] >= 0 && horizontal->intercept[Y] <= cub->world[HEIGHT])
+	while (horizontal->intercept[X] >= 0 && horizontal->intercept[X] <= cub->settings.world[WIDTH] && horizontal->intercept[Y] >= 0 && horizontal->intercept[Y] <= cub->settings.world[HEIGHT])
 	{
 		to_check_tile[X] = horizontal->intercept[X];
 		to_check_tile[Y] = horizontal->intercept[Y];
 		if (!(is_ray_facing_down(angle)))
 			to_check_tile[Y] -= 1;
-		if (is_tile_free(to_check_tile, cub, FALSE))
+		if (is_tile_free(to_check_tile, &cub->settings, &cub->game.map, FALSE))
 			increment(horizontal);
 		else
 		{
@@ -89,24 +89,24 @@ static void	find_horizontal_collision(t_settings *cub, t_cast *horizontal, float
 	}
 }
 
-static void	find_vertical_collision(t_settings *cub, t_cast *vertical, float angle, int column)
+static void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle, int column)
 {
 	float	to_check_tile[2];
 
 	define_ray_values(vertical, cub, VER, is_ray_facing_right(angle));
-	vertical->intercept[Y] = cub->player.pos[Y] + (vertical->intercept[X] - cub->player.pos[X]) * tan(angle);
+	vertical->intercept[Y] = cub->game.player.pos[Y] + (vertical->intercept[X] - cub->game.player.pos[X]) * tan(angle);
 	vertical->step[Y] = TILE_SIZE * tan(angle);
 	if (!(is_ray_facing_down(angle)) && vertical->step[Y] > 0)
 		vertical->step[Y] *= TOGGLE;
 	if (is_ray_facing_down(angle) && vertical->step[Y] < 0)
 		vertical->step[Y] *= TOGGLE;
-	while (vertical->intercept[X] >= 0 && vertical->intercept[X] <= cub->world[WIDTH] && vertical->intercept[Y] >= 0 && vertical->intercept[Y] <= cub->world[HEIGHT])
+	while (vertical->intercept[X] >= 0 && vertical->intercept[X] <= cub->settings.world[WIDTH] && vertical->intercept[Y] >= 0 && vertical->intercept[Y] <= cub->settings.world[HEIGHT])
 	{
 		to_check_tile[X] = vertical->intercept[X];
 		to_check_tile[Y] = vertical->intercept[Y];
 		if (!(is_ray_facing_right(angle)))
 			to_check_tile[X] -= 1;
-		if (is_tile_free(to_check_tile, cub, FALSE))
+		if (is_tile_free(to_check_tile, &cub->settings, &cub->game.map, FALSE))
 			increment(vertical);
 		else
 		{
@@ -154,16 +154,16 @@ static void	find_closest_collision(t_cast *horizontal, t_cast *vertical, t_playe
 		vertical->distance = INT_MAX;
 }
 
-static void	cast_ray(t_data *img, float angle, int column, t_ray *rays)
+static void	cast_ray(t_cub *cub, float angle, int column, t_ray *rays)
 {
 	t_cast	horizontal;
 	t_cast	vertical;
 	float	distance;
 
 	angle = normalize_angle(angle);
-	find_horizontal_collision(img->cub, &horizontal, angle, column);
-	find_vertical_collision(img->cub, &vertical, angle, column);
-	find_closest_collision(&horizontal, &vertical, &img->cub->player, angle);
+	find_horizontal_collision(cub, &horizontal, angle, column);
+	find_vertical_collision(cub, &vertical, angle, column);
+	find_closest_collision(&horizontal, &vertical, &cub->game.player, angle);
 	if (horizontal.distance < vertical.distance)
 	{
 		store_ray_data(rays, &horizontal, column, angle);
@@ -178,17 +178,17 @@ static void	cast_ray(t_data *img, float angle, int column, t_ray *rays)
 		copy_last_ray(rays, column, angle);
 }
 
-void	raycasting(t_data *img, t_settings *cub, t_ray *rays)
+void	raycasting(t_cub *cub, t_ray *rays)
 {
 	float angle;
 	int	column;
 
-	angle = cub->player.angle - HALF_FOV;
+	angle = cub->game.player.angle - HALF_FOV;
 	column = 0;
-	while (column < cub->ray.total)
+	while (column < cub->game.ray.total)
 	{
-		cast_ray(img, angle, column, rays);
-		angle += cub->ray.step;
+		cast_ray(cub, angle, column, rays);
+		angle += cub->game.ray.step;
 		column++;
 	}
 }

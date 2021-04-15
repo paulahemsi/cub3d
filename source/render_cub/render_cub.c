@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:40:02 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 23:17:48 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-static void	update_player(t_player *player, t_settings *cub)
+static void	update_player(t_player *player, t_cub *cub)
 {
 	float step;
 	float new_position[2];
@@ -27,69 +27,75 @@ static void	update_player(t_player *player, t_settings *cub)
 		angle = 0;
 	new_position[X] = player->pos[X] + (cos(player->angle + angle) * step);
 	new_position[Y] = player->pos[Y] + (sin(player->angle + angle) * step);
-	if (is_tile_free(new_position, cub, TRUE))
+	if (is_tile_free(new_position, &cub->settings, &cub->game.map, TRUE))
 	{
 		player->pos[X] = new_position[X];
 		player->pos[Y] = new_position[Y];
 	}
 }
 
-static int	update(t_data *img)
+static int	update(t_cub *cub)
 {
-	t_ray	rays[img->cub->screen[WIDTH]];
+	t_ray	rays[cub->settings.screen[WIDTH]];
 
-	if (img->ptr)
-		mlx_destroy_image(img->mlx_ptr, img->ptr);
-	img->ptr = mlx_new_image(img->mlx_ptr, img->cub->screen[WIDTH], img->cub->screen[HEIGHT]);
-	img->data = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
-								&img->line_length, &img->endian);
-	put_background(img, img->cub);
-	raycasting(img, img->cub, rays);
-	put_walls(img, rays);
-	update_player(&img->cub->player, img->cub);
-	if (img->cub->map.show_minimap == TRUE)
-		render_minimap(img, rays);
-	if (!(img->cub->save))
-		mlx_put_image_to_window(img->mlx_ptr, img->window_ptr, img->ptr, 0, 0);
+	if (cub->img->ptr)
+		mlx_destroy_image(cub->mlx_ptr, cub->img->ptr);
+	cub->img->ptr = mlx_new_image(cub->mlx_ptr, cub->settings.screen[WIDTH], cub->settings.screen[HEIGHT]);
+	cub->img->data = mlx_get_data_addr(cub->img->ptr, &cub->img->bits_per_pixel,
+								&cub->img->line_length, &cub->img->endian);
+	put_background(cub);
+	raycasting(cub, rays);
+	put_walls(cub, rays);
+	update_player(&cub->game.player, cub);
+	if (cub->toggle.show_minimap == TRUE)
+		render_minimap(cub, &cub->game.map, rays);
+	if (!(cub->toggle.save))
+		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->img->ptr, 0, 0);
 	return (0);
 }
 
-static void	check_resolution_limits(t_data *img, t_settings *cub)
+static void	check_resolution_limits(t_cub *cub)
 {
-	int		max[2];
+	int			max[2];
+	t_settings	*set;
+	t_render	*game;
 
-	mlx_get_screen_size(img->mlx_ptr, &max[X], &max[Y]);
-	if (cub->screen[WIDTH] > max[X])
-		cub->screen[WIDTH] = max[X];
-	if (cub->screen[HEIGHT] > max[Y])
-		cub->screen[HEIGHT] = max[Y];
-	cub->center[X] = floor(cub->screen[WIDTH] / 2);
-	cub->center[Y] = floor(cub->screen[HEIGHT] / 2);
-	cub->player.plane_dist = floor((cub->screen[WIDTH] / 2) / tan(HALF_FOV));
-	cub->ray.step= FOV / cub->screen[WIDTH];
-	cub->ray.total = cub->screen[WIDTH];
+	set = &cub->settings;
+	game = &cub->game;
+	mlx_get_screen_size(cub->mlx_ptr, &max[X], &max[Y]);
+	if (set->screen[WIDTH] > max[X])
+		set->screen[WIDTH] = max[X];
+	if (set->screen[HEIGHT] > max[Y])
+		set->screen[HEIGHT] = max[Y];
+	set->center[X] = floor(set->screen[WIDTH] / 2);
+	set->center[Y] = floor(set->screen[HEIGHT] / 2);
+	game->player.plane_dist = floor((set->screen[WIDTH] / 2) / tan(HALF_FOV));
+	game->ray.step= FOV / set->screen[WIDTH];
+	game->ray.total = set->screen[WIDTH];
 }
 
-void		render_cub(t_settings *cub, t_data *img)
+void		render_cub(t_cub *cub)
 {
-	check_resolution_limits(img, cub);
-	if (!(cub->save))
+	check_resolution_limits(cub);
+	if (!(cub->toggle.save))
 	{
-		img->window_ptr = mlx_new_window(img->mlx_ptr, cub->screen[WIDTH], cub->screen[HEIGHT],
-									"cub3D");
-		if (!(img->window_ptr))
+		cub->window_ptr = mlx_new_window(cub->mlx_ptr,
+										cub->settings.screen[WIDTH],
+										cub->settings.screen[HEIGHT],
+										"cub3D");
+		if (!(cub->window_ptr))
 			return_error(-9);
 	}
-	img->cub = cub;
-	img->ptr = NULL;
-	update(img);
-	if (cub->save)
-		save_bmp(img);
-	mlx_loop_hook(img->mlx_ptr, update, img);
+	cub->img->ptr = NULL;
+	update(cub);
+	if (cub->toggle.save)
+		save_bmp(cub);
+	mlx_loop_hook(cub->mlx_ptr, update, cub);
 	//mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
 	//mlx_mouse_hide(img.mlx_ptr, img.window_ptr);
-	mlx_hook(img->window_ptr, 2, 1L<<0, key_pressed, img);
-	mlx_hook(img->window_ptr, 3, 1L<<1, key_released, img);
-	mlx_hook(img->window_ptr, 33, 1L<<17, close_cub, img);
-	mlx_loop(img->mlx_ptr);
+	mlx_hook(cub->window_ptr, 2, 1L<<0, key_pressed, cub);
+	mlx_hook(cub->window_ptr, 3, 1L<<1, key_released, cub);
+	mlx_hook(cub->window_ptr, 33, 1L<<17, close_cub, cub);
+	mlx_loop(cub->mlx_ptr);
+	//!CONTINUAR A REFATORAR DAQUI:
 }
