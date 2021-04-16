@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 22:56:38 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/16 14:04:45 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,11 +145,11 @@ static void	find_closest_collision(t_cast *horizontal, t_cast *vertical, t_playe
 
 	fish_eye_correction = cos(player->angle - angle);
 	if (horizontal->hitted)
-		horizontal->distance = (float)floor(calc_distance(player->pos, horizontal->hit) * fish_eye_correction);
+		horizontal->distance = calc_distance(player->pos, horizontal->hit) * fish_eye_correction;
 	else
 		horizontal->distance = INT_MAX;
 	if (vertical->hitted)
-		vertical->distance = (float)floor(calc_distance(player->pos, vertical->hit) * fish_eye_correction);
+		vertical->distance = calc_distance(player->pos, vertical->hit) * fish_eye_correction;
 	else
 		vertical->distance = INT_MAX;
 }

@@ -242,5 +242,7 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 14/04: I started to study the textures implementation, but then I realized I need to change some thinks in my structs. Therefore, I'm refactoring the whole code, beggining with a reorganization of all the structs. Is getting much better, but it's a lot of work.
 
+* 15/04: New structs are implemented
+
 </details>
 

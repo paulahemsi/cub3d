@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/16 02:46:32 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/16 21:45:09 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,14 +149,6 @@ typedef struct		s_gradient
 	t_rgb			color_distance;
 }					t_gradient;
 
-typedef struct		s_render
-{
-	t_map			map;
-	t_player		player;
-	t_ray			ray;
-	t_rgb			color;
-}					t_render;
-
 typedef struct		s_toggle
 {
 	int				gradient;
@@ -196,6 +188,15 @@ typedef struct		s_texture
 	int				width;
 	int				height;
 }					t_texture;
+
+typedef struct		s_render
+{
+	t_map			map;
+	t_player		player;
+	t_ray			ray;
+	t_rgb			color;
+	t_texture		*texture;
+}					t_render;
 
 typedef struct		s_cub
 {
@@ -258,7 +259,7 @@ void				render_minimap(t_cub *cub, t_map *map, t_ray *rays);
 void				raycasting(t_cub *cub, t_ray *rays);
 void				put_background(t_cub *cub);
 void				put_walls(t_cub *cub, t_ray *rays);
-void				load_textures(char **path, t_cub *cub);
+void				load_textures(char **path, t_cub *cub, t_render *game);
 /*
 ** render tools
 */
@@ -282,8 +283,12 @@ int					key_pressed(int key, t_cub *cub);
 int					key_released(int key, t_cub *cub);
 void				return_error(int error_id);
 int					close_cub(int key, t_cub *cub);
+/*
+** init and free
+*/
 void				free_all(t_cub *cub);
 void				free_cub(t_cub *cub);
+void				free_paths(char **path);
 void				init_cub(t_cub *cub);
 
 #endif
