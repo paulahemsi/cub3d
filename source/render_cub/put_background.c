@@ -6,11 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:08:57 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:37:43 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 22:42:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+
+//!Vale a pena dar uma reorganizada
 
 static void	activate_gradient(t_rgb *color, t_rgb *opposite_surface, t_gradient *gradient)
 {
@@ -56,19 +58,19 @@ static void	define_gradient(t_rgb *ceil, t_rgb *floor, t_gradient *gradient)
 			gradient->increment.blue *= TOGGLE;
 }
 
-static int	put_surface(t_data *img, t_gradient *gradient, int *line, t_rgb *surface)
+static int	put_surface(t_cub *cub, t_gradient *gradient, int *line, t_rgb *surface)
 {
 	int init[2];
 
 	init[X] = 0;
 	init[Y] = *line;
-	if (img->cub->gradient == TRUE)
-		activate_gradient(&img->c, surface, gradient);
-	else if (img->cub->night_mode == -1)
-		define_img_colors(img, surface->red, surface->green, surface->blue);
-	if (img->cub->debug == TRUE)
-		define_img_colors(img, 60, 21, 79);
-	put_line(img, init, img->cub->screen[WIDTH], *line);
+	if (cub->toggle.gradient == TRUE)
+		activate_gradient(&cub->game.color, surface, gradient);
+	else if (cub->toggle.night_mode == -1)
+		define_img_colors(&cub->game.color, surface->red, surface->green, surface->blue);
+	if (cub->toggle.debug == TRUE)
+		define_img_colors(&cub->game.color, 60, 21, 79);
+	put_line(cub, init, cub->settings.screen[WIDTH], *line);
 	return (*line += 1);
 }
 
@@ -89,7 +91,7 @@ static void	define_night_vision(t_rgb *night_vision)
 	night_vision[FLOOR].blue = 1;
 }
 
-void	put_background(t_data *img, t_settings *cub)
+void	put_background(t_cub *cub)
 {
 	int line;
 	float increment;
@@ -98,22 +100,31 @@ void	put_background(t_data *img, t_settings *cub)
 
 	increment = 1;
 	line = 0;
-	define_img_colors(img, cub->ceiling.red, cub->ceiling.green, cub->ceiling.blue);
-	if (cub->night_mode == TRUE)
+	define_img_colors(&cub->game.color,
+						cub->settings.ceiling.red,
+						cub->settings.ceiling.green,
+						cub->settings.ceiling.blue);
+	if (cub->toggle.night_mode == TRUE)
 	{
 		define_night_vision(night_vision);
-		define_img_colors(img, night_vision[CEILING].red, night_vision[CEILING].green, night_vision[CEILING].blue);
+		define_img_colors(&cub->game.color,
+							night_vision[CEILING].red,
+							night_vision[CEILING].green,
+							night_vision[CEILING].blue);
 		define_gradient(&night_vision[CEILING], &night_vision[FLOOR], &gradient);
 	}
 	else
-		define_gradient(&cub->ceiling, &cub->floor, &gradient);
-	while (line < (cub->screen[HEIGHT] / 2))
-		line = put_surface(img, &gradient, &line, &cub->floor);
+		define_gradient(&cub->settings.ceiling, &cub->settings.floor, &gradient);
+	while (line < (cub->settings.screen[HEIGHT] / 2))
+		line = put_surface(cub, &gradient, &line, &cub->settings.floor);
 	toggle_increment(&gradient);
-	if (cub->night_mode == TRUE)
-		define_img_colors(img, night_vision[FLOOR].red, night_vision[FLOOR].green, night_vision[FLOOR].blue);
+	if (cub->toggle.night_mode == TRUE)
+		define_img_colors(&cub->game.color,
+							night_vision[FLOOR].red,
+							night_vision[FLOOR].green,
+							night_vision[FLOOR].blue);
 	else
-		define_img_colors(img, cub->floor.red, cub->floor.green, cub->floor.blue);
-	while (line < cub->screen[HEIGHT])
-		line = put_surface(img, &gradient, &line, &cub->ceiling);
+		define_img_colors(&cub->game.color, cub->settings.floor.red, cub->settings.floor.green, cub->settings.floor.blue);
+	while (line < cub->settings.screen[HEIGHT])
+		line = put_surface(cub, &gradient, &line, &cub->settings.ceiling);
 }

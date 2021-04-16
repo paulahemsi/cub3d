@@ -6,24 +6,24 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:43:11 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/16 02:05:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
 
- static void	testando_as_parada_tudo(t_settings *cub)
+ static void	testando_as_parada_tudo(t_cub *cub)
  {
- 	printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n screen[WIDTH]: %u\n screen[HEIGHT]: %u\n world[WIDTH]: %u\n world[HEIGHT]: %u\n central point: (%i, %i)\n\nPLAYER\n position: (%i, %i)\n move_dir: %i turn dir: %i\nangle: %f\ndistance to projection plane: %i\n\nRAY:\nstep: %f\nangle: %f\n\n\n", cub->path[NORTH], cub->path[SOUTH], cub->path[WEST], cub->path[EAST], cub->path[SPRITE], cub->floor.red, cub->floor.green, cub->floor.blue, cub->ceiling.red, cub->ceiling.green, cub->ceiling.blue, cub->screen[WIDTH], cub->screen[HEIGHT], cub->world[WIDTH], cub->world[HEIGHT], cub->center[X], cub->center[Y], cub->player.pos[X], cub->player.pos[Y], cub->player.direction[MOVE], cub->player.direction[TURN], cub->player.angle, cub->player.plane_dist, cub->ray.step, cub->ray.angle);
+ 	printf("\n\nPATHS:\n north: %s\n south: %s\n west: %s\n east: %s\n sprite: %s\n\nRGB:\n floor: %i, %i, %i\n ceiling: %i, %i, %i\n\nRESOLUTION:\n screen[WIDTH]: %u\n screen[HEIGHT]: %u\n world[WIDTH]: %u\n world[HEIGHT]: %u\n central point: (%i, %i)\n\nPLAYER\n position: (%i, %i)\n move_dir: %i turn dir: %i\nangle: %f\ndistance to projection plane: %i\n\nRAY:\nstep: %f\nangle: %f\n\n\n", cub->settings.path[NORTH], cub->settings.path[SOUTH], cub->settings.path[WEST], cub->settings.path[EAST], cub->settings.path[SPRITE], cub->settings.floor.red, cub->settings.floor.green, cub->settings.floor.blue, cub->settings.ceiling.red, cub->settings.ceiling.green, cub->settings.ceiling.blue, cub->settings.screen[WIDTH], cub->settings.screen[HEIGHT], cub->settings.world[WIDTH], cub->settings.world[HEIGHT], cub->settings.center[X], cub->settings.center[Y], cub->game.player.pos[X], cub->game.player.pos[Y], cub->game.player.direction[MOVE], cub->game.player.direction[TURN], cub->game.player.angle, cub->game.player.plane_dist, cub->game.ray.step, cub->game.ray.angle);
  	int i = 0;
  	int j;
- 	while (cub->map.row[i] != NULL)
+ 	while (cub->game.map.row[i] != NULL)
  	{
  		j = 0;
- 		while (cub->map.row[i][j] != '\0')
+ 		while (cub->game.map.row[i][j] != '\0')
  		{
- 			ft_printf("%c", cub->map.row[i][j]);
+ 			ft_printf("%c", cub->game.map.row[i][j]);
  			j++;
  		}
  		ft_printf("\n");
@@ -40,7 +40,7 @@ static void	check_colors(t_rgb *ceiling, t_rgb *floor)
 		return_error(-10);
 }
 
-static void	parse_scene(char *file, t_settings *cub, t_data *img)
+static void	parse_scene(char *file, t_cub *cub)
 {
 	char		*line;
 	int			fd;
@@ -56,20 +56,20 @@ static void	parse_scene(char *file, t_settings *cub, t_data *img)
 	parse_configs(cub, line);
 	free(line);
 	close(fd);
-	check_colors(&cub->ceiling, &cub->floor);
-	fill_map(cub, file, cub->map.total_row);
-	check_map(cub);
-	load_textures(cub->path, img);
+	check_colors(&cub->settings.ceiling, &cub->settings.floor);
+	fill_map(cub, file, cub->game.map.total_row);
+	check_map(&cub->game);
+	//load_textures(cub->settings.path, cub);
 }
 
 static int	check_args(int argc, char **argv)
 {
 	unsigned int	length;
-	char			*cub;
+	char			*extension;
 
 	length = ft_strlen(argv[1]);
-	cub = ft_strnstr(argv[1], ".cub", length);
-	if (!(cub) || cub[0] != argv[1][length - 4])
+	extension = ft_strnstr(argv[1], ".cub", length);
+	if (!(extension) || extension[0] != argv[1][length - 4])
 		return_error(-1);
 	if (argc == 3)
 	{
@@ -83,19 +83,17 @@ static int	check_args(int argc, char **argv)
 
 int			main(int argc, char **argv)
 {
-	t_settings	cub;
-	t_data	img;
+	t_cub	cub;
 
-	if (!(img.mlx_ptr = mlx_init()))
-		return_error(-8);
 	init_cub(&cub);
 	if ((argc == 2) || (argc == 3))
-		cub.save = check_args(argc, argv);
+		cub.toggle.save = check_args(argc, argv);
 	else
 		return_error(-1);
-	parse_scene(argv[1], &cub, &img);
+	parse_scene(argv[1], &cub);
 	testando_as_parada_tudo(&cub);
-	render_cub(&cub, &img);
+	//!CONTINUAR A REFATORAR DENTRO DAQUI:
+	render_cub(&cub);
 	//free_cub(&cub); //?chega aqui em algum momento?
 	//return (EXIT_SUCCESS);
 }

@@ -6,20 +6,20 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 01:41:05 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 21:08:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void		parse_map_size(t_settings *cub, char *line)
+void		parse_map_size(t_map *map, char *line)
 {
 	unsigned int	line_size;
 
 	line_size = ft_strlen(line);
-	if (line_size > cub->map.total_column)
-		cub->map.total_column = line_size;
-	cub->map.total_row++;
+	if (line_size > map->total_column)
+		map->total_column = line_size;
+	map->total_row++;
 }
 
 static int	is_valid_char(char c, int *player)
@@ -37,43 +37,44 @@ static int	is_valid_char(char c, int *player)
 	return (FALSE);
 }
 
-static void	fill_row(t_settings *cub, char *line, int index, int *player)
+static void	fill_row(t_map *map, char *line, int index, int *player)
 {
 	unsigned int	col;
 
-	col = cub->map.total_column;
-	cub->map.row[index] = (char *)malloc((col + 1) * sizeof(char));
-	cub->map.row[index][col] = '\0';
+	col = map->total_column;
+	map->row[index] = (char *)malloc((col + 1) * sizeof(char));
+	map->row[index][col] = '\0';
 	col = 0;
 	while (line[col] != '\0')
 	{
 		if (!(is_valid_char(line[col], player)))
 			return_error(-7);
-		cub->map.row[index][col] = line[col];
+		map->row[index][col] = line[col];
 		col++;
 	}
-	while (col < cub->map.total_column)
+	while (col < map->total_column)
 	{
-		cub->map.row[index][col] = ' ';
+		map->row[index][col] = ' ';
 		col++;
 	}
 }
 
-static void	define_world_size(t_settings *cub)
+static void	define_world_size(t_settings *setting, t_map *map)
 {
-	cub->world[WIDTH] = cub->map.total_column * TILE_SIZE;
-	cub->world[HEIGHT] = cub->map.total_row * TILE_SIZE;
+	setting->world[WIDTH] = map->total_column * TILE_SIZE;
+	setting->world[HEIGHT] = map->total_row * TILE_SIZE;
 }
 
-void		fill_map(t_settings *cub, char *file, int row)
+void		fill_map(t_cub *cub, char *file, int total_rows)
 {
 	char			*line;
 	int				fd;
 	int				player;
+	int				row;
 
 	player = FALSE;
-	cub->map.row = (char **)malloc((row + 1) * sizeof(char *));
-	cub->map.row[row] = NULL;
+	cub->game.map.row = (char **)malloc((total_rows + 1) * sizeof(char *));
+	cub->game.map.row[total_rows] = NULL;
 	row = 0;
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return_error(-2);
@@ -81,14 +82,14 @@ void		fill_map(t_settings *cub, char *file, int row)
 	{
 		if (((*line == '1') || (*line == ' ')))
 		{
-			fill_row(cub, line, row, &player);
+			fill_row(&cub->game.map, line, row, &player);
 			row++;
 		}
 		free(line);
 	}
 	if (((*line == '1') || (*line == ' ')))
-		fill_row(cub, line, row, &player);
-	define_world_size(cub);
+		fill_row(&cub->game.map, line, row, &player);
+	define_world_size(&cub->settings, &cub->game.map);
 	free(line);
 	close(fd);
 }
