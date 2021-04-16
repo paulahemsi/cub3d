@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 22:40:03 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/16 02:13:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		put_line(t_cub *cub, int *pos, int x2, int y2)
 	define_longest(&n);
 	while (n.i <= n.longest)
 	{
-		put_pixel(cub->img, init[X], init[Y], color_picker(cub->game.color.red, cub->game.color.green, cub->game.color.blue));
+		put_pixel(&cub->img, init[X], init[Y], color_picker(cub->game.color.red, cub->game.color.green, cub->game.color.blue));
 		n.numerator += n.shortest;
 		if (n.numerator > n.longest)
 		{

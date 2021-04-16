@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 21:09:49 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/16 02:05:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	parse_scene(char *file, t_cub *cub)
 	check_colors(&cub->settings.ceiling, &cub->settings.floor);
 	fill_map(cub, file, cub->game.map.total_row);
 	check_map(&cub->game);
-	load_textures(cub->settings.path, cub);
+	//load_textures(cub->settings.path, cub);
 }
 
 static int	check_args(int argc, char **argv)
@@ -85,8 +85,6 @@ int			main(int argc, char **argv)
 {
 	t_cub	cub;
 
-	if (!(cub.mlx_ptr = mlx_init()))
-		return_error(-8);
 	init_cub(&cub);
 	if ((argc == 2) || (argc == 3))
 		cub.toggle.save = check_args(argc, argv);

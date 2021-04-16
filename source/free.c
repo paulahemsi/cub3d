@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:22:45 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 23:27:36 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/16 02:54:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,21 @@ static void	free_paths(t_cub *cub)
 
 	texture = NORTH;
 	while (texture <= SPRITE)
+	{
 		free(cub->settings.path[texture]);
+		texture++;
+	}
 }
 
 void		free_cub(t_cub *cub)
 {
-	free_paths(cub);
+	free_paths(cub); //!dar free antes daqui, assim que carregar imgs das texturas
 	free_map(cub->game.map.row);
 }
 
 void		free_all(t_cub *cub)
 {
-	mlx_destroy_image(cub->mlx_ptr, cub->img->ptr);
+	mlx_destroy_image(cub->mlx_ptr, cub->img.ptr);
 	mlx_loop_end(cub->mlx_ptr);
 	mlx_destroy_window(cub->mlx_ptr, cub->window_ptr);
 	cub->window_ptr = NULL;

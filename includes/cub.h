@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 23:27:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/16 02:46:32 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@
 # define NOTIFY_MASK	1L<<17
 
 /*
-** scene configs
+** game
 */
 typedef struct		s_map
 {
@@ -112,13 +112,6 @@ typedef struct		s_player
 	int				height;
 	int				invisible;
 }					t_player;
-
-typedef struct		s_rgb
-{
-	int				red;
-	int				green;
-	int				blue;
-}					t_rgb;
 
 typedef struct		s_ray
 {
@@ -143,11 +136,26 @@ typedef struct		s_cast
 	char			content;
 }					t_cast;
 
+typedef struct		s_rgb
+{
+	int				red;
+	int				green;
+	int				blue;
+}					t_rgb;
+
 typedef struct		s_gradient
 {
 	t_rgb			increment;
 	t_rgb			color_distance;
 }					t_gradient;
+
+typedef struct		s_render
+{
+	t_map			map;
+	t_player		player;
+	t_ray			ray;
+	t_rgb			color;
+}					t_render;
 
 typedef struct		s_toggle
 {
@@ -158,14 +166,6 @@ typedef struct		s_toggle
 	int				show_minimap;
 	int				bmp_id;
 }					t_toggle;
-
-typedef struct		s_render
-{
-	t_map			map;
-	t_player		player;
-	t_ray			ray;
-	t_rgb			color;
-}					t_render;
 /*
 ** mlx
 */
@@ -177,7 +177,9 @@ typedef struct		s_data
 	int				line_length;
 	int				endian;
 }					t_data;
-
+/*
+** scene settings
+*/
 typedef	struct		s_settings
 {
 	int				screen[2];
@@ -199,7 +201,7 @@ typedef struct		s_cub
 {
 	void			*mlx_ptr;
 	void			*window_ptr;
-	t_data			*img;
+	t_data			img;
 	t_settings		settings;
 	t_toggle		toggle;
 	t_render		game;
@@ -257,8 +259,6 @@ void				raycasting(t_cub *cub, t_ray *rays);
 void				put_background(t_cub *cub);
 void				put_walls(t_cub *cub, t_ray *rays);
 void				load_textures(char **path, t_cub *cub);
-
-
 /*
 ** render tools
 */

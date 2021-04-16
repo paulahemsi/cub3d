@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 23:28:43 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/16 02:40:03 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static void	fill_bmp(int fd, t_data *img, int *screen)
 	int index;
 
 	line = screen[HEIGHT];
-	index = line * img->line_length;
 	while (line >= 0)
 	{
-		if (write(fd, img->data[index], img->line_length) <= 0)
+		index = line * img->line_length;
+		if (write(fd, &img->data[index], img->line_length) <= 0)
 			return_error(-11);
 		line--;
 	}

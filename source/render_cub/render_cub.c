@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 23:17:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/16 02:52:52 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ static int	update(t_cub *cub)
 {
 	t_ray	rays[cub->settings.screen[WIDTH]];
 
-	if (cub->img->ptr)
-		mlx_destroy_image(cub->mlx_ptr, cub->img->ptr);
-	cub->img->ptr = mlx_new_image(cub->mlx_ptr, cub->settings.screen[WIDTH], cub->settings.screen[HEIGHT]);
-	cub->img->data = mlx_get_data_addr(cub->img->ptr, &cub->img->bits_per_pixel,
-								&cub->img->line_length, &cub->img->endian);
+	if (cub->img.ptr)
+		mlx_destroy_image(cub->mlx_ptr, cub->img.ptr);
+	cub->img.ptr = mlx_new_image(cub->mlx_ptr, cub->settings.screen[WIDTH], cub->settings.screen[HEIGHT]);
+	cub->img.data = mlx_get_data_addr(cub->img.ptr, &cub->img.bits_per_pixel,
+								&cub->img.line_length, &cub->img.endian);
 	put_background(cub);
 	raycasting(cub, rays);
 	put_walls(cub, rays);
@@ -50,7 +50,7 @@ static int	update(t_cub *cub)
 	if (cub->toggle.show_minimap == TRUE)
 		render_minimap(cub, &cub->game.map, rays);
 	if (!(cub->toggle.save))
-		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->img->ptr, 0, 0);
+		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->img.ptr, 0, 0);
 	return (0);
 }
 
@@ -86,7 +86,7 @@ void		render_cub(t_cub *cub)
 		if (!(cub->window_ptr))
 			return_error(-9);
 	}
-	cub->img->ptr = NULL;
+	cub->img.ptr = NULL;
 	update(cub);
 	if (cub->toggle.save)
 		save_bmp(cub);
