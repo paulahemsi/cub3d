@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/16 02:31:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/17 22:49:00 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		key_released(int key, t_cub *cub)
 	if (key == SHIFT)
 	{
 		cub->game.player.speed = 7;
-		cub->game.player.rotate_speed = 2 * PI / 180;
+		cub->game.player.rotate_speed = 1.5 * PI / 180;
 	}
 	// else if (key == SPACE)
 		// img->cub->player.invisible = FALSE;

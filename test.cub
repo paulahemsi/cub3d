@@ -1,12 +1,12 @@
-R 800 600
+R 1280 720
 
 C 255, 255, 255
 F 0, 0, 0
 
 SO ./textures/light_pb.xpm
 EA ./textures/dark_pb.xpm
-NO ./textures/light_pb.xpm
-WE ./textures/dark_pb.xpm
+NO ./textures/stone.xpm
+WE ./textures/brick.xpm
 S ./path_to_the_sprite_texture
 
         11111111

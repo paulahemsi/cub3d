@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/16 21:49:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/17 23:16:52 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 
 #include "../../includes/cub.h"
 
+static void	load_hud(t_cub *cub, t_render *game)
+{
+	game->hearts.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, "./textures/pixel_heart_edit.XPM", &game->hearts.width, &game->hearts.height);
+	game->hearts.img.data = mlx_get_data_addr(game->hearts.img.ptr, &game->hearts.img.bits_per_pixel, &game->hearts.img.line_length, &game->hearts.img.endian); 
+}
+
 void	load_textures(char **path, t_cub *cub, t_render *game)
 {
 	int			text;
@@ -30,13 +36,14 @@ void	load_textures(char **path, t_cub *cub, t_render *game)
 	text = NORTH;
 	while (text <= WEST)
 	{
-		game->texture[text].img = mlx_xpm_file_to_image(cub->mlx_ptr, path[text], &game->texture[text].width, &game->texture[text].height);
-		if (!(game->texture[text].img))
+		game->texture[text].img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, path[text], &game->texture[text].width, &game->texture[text].height);
+		if (!(game->texture[text].img.ptr))
 			return_error(-12);
-		game->texture[text].img->data = mlx_get_data_addr(game->texture[text].img, &game->texture[text].img->bits_per_pixel, &game->texture[text].img->line_length, &game->texture[text].img->endian);
-		if (!(game->texture[text].img->data))
+		game->texture[text].img.data = mlx_get_data_addr(game->texture[text].img.ptr, &game->texture[text].img.bits_per_pixel, &game->texture[text].img.line_length, &game->texture[text].img.endian);
+		if (!(game->texture[text].img.data))
 			return_error(-12);
 		text++;
 	}
+	load_hud(cub, game);
 	free_paths(cub->settings.path);
 }

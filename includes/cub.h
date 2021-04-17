@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/16 21:45:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/17 22:06:02 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ typedef	struct		s_settings
 
 typedef struct		s_texture
 {
-	t_data			*img;
+	t_data			img;
 	int				width;
 	int				height;
 }					t_texture;
@@ -196,6 +196,9 @@ typedef struct		s_render
 	t_ray			ray;
 	t_rgb			color;
 	t_texture		*texture;
+	int				is_texture;
+	int				wall_height;
+	t_texture		hearts;
 }					t_render;
 
 typedef struct		s_cub
@@ -206,6 +209,7 @@ typedef struct		s_cub
 	t_settings		settings;
 	t_toggle		toggle;
 	t_render		game;
+	int				offset[2];
 }					t_cub;
 /*
 ** aux
