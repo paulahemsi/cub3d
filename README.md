@@ -244,5 +244,11 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 15/04: New structs are implemented
 
+* 16/04: The walls' textures are melting my brain
+
+* 17/04: Bugs are beautiful
+
+![](study_resources/bugs_are_beautiful.gif)
+
 </details>
 
