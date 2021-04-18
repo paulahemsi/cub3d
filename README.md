@@ -29,6 +29,9 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 * I got lost and completly stuck while trying to study(~4 days that seem an eternity)
 * step by step list from raycasting process (~1 day)
 * 3d wall renderization and wall colisions implementation (~5 days)
+* fixing minor problems, adding bônus features and implementing 'save bmp' (~4 days)
+* Refactoring the code (~2 days)
+* Implementing walls' textures
 
 for more details, read the [work diary](#work_diary)
 
@@ -249,6 +252,8 @@ I also implemented invisibility and crouching, but the result got a little bit a
 * 17/04: Bugs are beautiful
 
 ![](study_resources/bugs_are_beautiful.gif)
+
+* 18/04: Oh my! The walls' textures are there! They have some issues? Yes. But they are there!
 
 </details>
 

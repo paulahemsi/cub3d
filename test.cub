@@ -5,8 +5,8 @@ F 0, 0, 0
 
 SO ./textures/light_pb.xpm
 EA ./textures/orange_and_blue.xpm
-WE ./textures/matrix_green.xpm
-NO ./textures/candy_mushroom.xpm
+NO ./textures/matrix_green.xpm
+WE ./textures/fire_red.xpm
 S ./path_to_the_sprite_texture
 
         11111111

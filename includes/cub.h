@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/18 18:00:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/18 18:16:47 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@
 # define KEYPRESS_MASK	1L<<0
 # define KEYREL_MASK	1L<<1
 # define NOTIFY_MASK	1L<<17
-
 /*
 ** game
 */
