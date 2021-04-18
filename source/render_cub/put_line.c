@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/17 23:22:47 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/18 18:01:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,17 @@ static void	init_values(t_bresenham *n, int *init, int *pos)
 	ft_memset(n->increment, 0, sizeof(n->increment));
 }
 
-static int	get_texture_color(int *init, int *offset, t_cub *cub, t_bresenham *n)
+static int	get_texture_color(int *init, int *offset, t_cub *cub, int y)
 {
 	int		main_offset;
 	t_data texture;
 	
-	texture = cub->game.texture[SOUTH].img;
-	offset[Y] = 1;//(init[Y] - n->i) * ((float)cub->game.texture[SOUTH].height / cub->game.wall_height);
-	//ft_printf("offset[y], o polêmico: %i\nn->i em que estamos: %i\ninit[Y]: %i\nheight da text: %i\nWall_height: %i\n", offset[Y], n->i, init[Y], cub->game.texture[SOUTH].height, cub->game.wall_height);
+	texture = cub->game.texture[WEST].img;
+	offset[Y] = (y - init[Y]) * ((float)cub->game.texture[WEST].height / (float)cub->game.wall_height);
 	main_offset = (offset[Y] * texture.line_length + offset[X] * (texture.bits_per_pixel / 8));
 	return (*(unsigned int *)(texture.data + main_offset + 2) << 16 |
 			*(unsigned int *)(texture.data + main_offset + 1) << 8 |
 			*(unsigned int *)(texture.data + main_offset + 0) << 0);
-	
-	// int			color;
-	
-	// // color = (cub->game.texture[NORTH].img) + (cub->game.texture[NORTH].height * offset[Y] *
-	// // 	(cub->game.texture[NORTH].img->bits_per_pixel / 8)) + (offset[X] * (cub->game.texture[NORTH].img->bits_per_pixel / 8));
-	// color = cub->game.texture[NORTH].img.data[(cub->game.texture[NORTH].width * cub->offset[Y]) + cub->offset[X]];
-	// return (color);
-	// //cub->img.data[(cub->settings.screen[WIDTH] * y)] = color;
 }
 
 void		put_line(t_cub *cub, int *pos, int x2, int y2)
@@ -97,7 +88,7 @@ void		put_line(t_cub *cub, int *pos, int x2, int y2)
 	while (n.i <= n.longest)
 	{
 		if (cub->game.is_texture)
-			color = get_texture_color(pos, cub->offset, cub, &n);
+			color = get_texture_color(pos, cub->game.offset, cub, init[Y]);//&n);
 		else
 			color = color_picker(cub->game.color.red, cub->game.color.green, cub->game.color.blue);
 		put_pixel(&cub->img, init[X], init[Y], color);

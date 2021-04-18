@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/17 22:06:02 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/18 18:00:09 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ typedef struct		s_map
 	unsigned int	total_column;
 	unsigned int	total_row;
 	char			**row;
-	//float			scale;
 }					t_map;
 
 typedef struct		s_player
@@ -199,6 +198,7 @@ typedef struct		s_render
 	int				is_texture;
 	int				wall_height;
 	t_texture		hearts;
+	int				offset[2];
 }					t_render;
 
 typedef struct		s_cub
@@ -209,7 +209,6 @@ typedef struct		s_cub
 	t_settings		settings;
 	t_toggle		toggle;
 	t_render		game;
-	int				offset[2];
 }					t_cub;
 /*
 ** aux

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/17 22:21:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/18 16:34:26 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,6 @@ static int	update(t_cub *cub)
 		render_minimap(cub, &cub->game.map, rays);
 	if (!(cub->toggle.save))
 		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->img.ptr, 0, 0);
-	mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->game.texture[NORTH].img.ptr, 0, 0);
-	mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->game.texture[SOUTH].img.ptr, 0, 64);
-	mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->game.texture[EAST].img.ptr, 0, 128);
-	mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->game.texture[WEST].img.ptr, 0, 192);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->game.hearts.img.ptr, 800, 50);
 	
 

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/16 14:04:45 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/18 16:32:00 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,8 @@ void	raycasting(t_cub *cub, t_ray *rays)
 	column = 0;
 	while (column < cub->game.ray.total)
 	{
-		cast_ray(cub, angle, column, rays);
 		angle += cub->game.ray.step;
+		cast_ray(cub, angle, column, rays);
 		column++;
 	}
 }
