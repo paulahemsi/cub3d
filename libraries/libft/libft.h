@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 19:02:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/19 14:01:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:21:48 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ typedef	struct	s_ft_printf
 	int			min_width;
 	int			precision;
 }				t_flags;
+
+typedef struct	s_split
+{
+	size_t		sub_length;
+	size_t		i_array;
+	size_t		words;
+	size_t		i;
+}				t_split;
 
 typedef	struct	s_get_next_line
 {

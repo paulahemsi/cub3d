@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 03:04:08 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/15 16:44:10 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:26:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static size_t	sub_len(char const *s, char c)
 	return (length);
 }
 
-static char		**free_str_array(char **str_array)
+static char	**free_str_array(char **str_array)
 {
 	size_t	i;
 
@@ -65,31 +65,30 @@ static char		**free_str_array(char **str_array)
 	return (NULL);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char		**str_array;
-	size_t		sub_length;
-	size_t		i_array;
-	size_t		words;
-	size_t		i;
+	t_split		split;
 
-	words = word_count(s, c);
-	if (!(str_array = (char**)malloc((words + 1) * sizeof(char*))) || (!s))
+	split.words = word_count(s, c);
+	str_array = (char **)malloc((split.words + 1) * sizeof(char *));
+	if (!(str_array) || (!s))
 		return (NULL);
-	i = 0;
-	i_array = 0;
-	while (s[i] != '\0')
+	split.i = 0;
+	split.i_array = 0;
+	while (s[split.i] != '\0')
 	{
-		if (s[i] != c)
+		if (s[split.i] != c)
 		{
-			sub_length = sub_len(&s[i], c);
-			if (!(str_array[i_array] = ft_substr(s, i, sub_length)))
+			split.sub_length = sub_len(&s[split.i], c);
+			str_array[split.i_array] = ft_substr(s, split.i, split.sub_length);
+			if (!(str_array[split.i_array]))
 				return (free_str_array(str_array));
-			i_array++;
-			i += sub_length - 1;
+			split.i_array++;
+			split.i += split.sub_length - 1;
 		}
-		i++;
+		split.i++;
 	}
-	str_array[i_array] = NULL;
+	str_array[split.i_array] = NULL;
 	return (str_array);
 }
