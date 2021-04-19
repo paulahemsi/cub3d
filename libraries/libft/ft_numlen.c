@@ -6,15 +6,15 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 22:05:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/15 12:51:35 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:45:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_numlen(int number)
+int	ft_numlen(int number)
 {
-	size_t digits;
+	size_t	digits;
 
 	digits = 0;
 	if (number == 0)

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 02:08:07 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/15 17:20:24 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 21:12:32 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static int	atoi_isspace(int c)
 	return (0);
 }
 
-int			ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
-	int number;
-	int sign;
+	int	number;
+	int	sign;
 
 	number = 0;
 	sign = 1;

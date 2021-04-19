@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 16:58:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/09 21:26:28 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:53:07 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	{
 		return (NULL);
 	}
-	if (!(pointer = malloc(total_size)))
+	pointer = malloc(total_size);
+	if (!(pointer))
 	{
 		return (NULL);
 	}

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 00:01:29 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/08 20:52:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 21:07:59 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	char *dest_cast;
-	char *src_cast;
-	char c_cast;
+	char	*dest_cast;
+	char	*src_cast;
+	char	c_cast;
 
 	dest_cast = (char *)dest;
 	src_cast = (char *)src;

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 23:51:11 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/15 17:27:18 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:49:26 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	itoa_isnegative(int number)
 
 static int	itoa_countdigit(unsigned int number)
 {
-	size_t digits;
+	size_t	digits;
 
 	if (number == 0)
 	{
@@ -41,24 +41,24 @@ static int	itoa_countdigit(unsigned int number)
 	return (digits);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*string;
 	unsigned int	neg;
 	unsigned int	number;
 	unsigned int	digits;
 
-	if ((neg = itoa_isnegative(n)))
+	neg = itoa_isnegative(n);
+	if (neg)
 		number = -n;
 	else
 		number = n;
 	digits = itoa_countdigit(number);
-	if (!(string = (char *)malloc(digits + neg + 1)))
+	string = (char *)malloc(digits + neg + 1);
+	if (!(string))
 		return (NULL);
 	if (neg == 1)
-	{
 		string[0] = '-';
-	}
 	string[digits + neg] = '\0';
 	while (digits > 0)
 	{

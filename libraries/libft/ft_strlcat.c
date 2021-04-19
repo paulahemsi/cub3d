@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 21:50:14 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/10 21:18:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:43:02 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t len_dst;
-	size_t len_src;
-	size_t i;
-	size_t j;
+	size_t	len_dst;
+	size_t	len_src;
+	size_t	i;
+	size_t	j;
 
 	len_dst = ft_strlen(dst);
 	len_src = ft_strlen(src);

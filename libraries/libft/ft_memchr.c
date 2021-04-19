@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 03:19:44 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/08 20:58:46 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 21:10:19 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	unsigned char	*s_cast;
 	unsigned char	c_cast;
 
-	s_cast = (unsigned char*)s;
+	s_cast = (unsigned char *)s;
 	c_cast = (unsigned char)c;
 	while (n > 0)
 	{

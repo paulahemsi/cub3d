@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 09:50:17 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/15 12:08:53 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:45:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	invert_hex(t_itoa_hex *aux)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < (aux->length / 2))
@@ -40,12 +40,13 @@ static void	convert_to_hex(t_itoa_hex *aux, unsigned long int *number)
 	}
 }
 
-char		*ft_itoa_hex(unsigned long int number, char case_conversion_char)
+char	*ft_itoa_hex(unsigned long int number, char case_conversion_char)
 {
 	t_itoa_hex	aux;
 
 	aux.length = ft_countdigit(number);
-	if (!(aux.hex = (char *)malloc((aux.length + 1) * sizeof(char))))
+	aux.hex = (char *)malloc((aux.length + 1) * sizeof(char));
+	if (!(aux.hex))
 		return (NULL);
 	if (case_conversion_char == 'X')
 		aux.case_c = 55;
