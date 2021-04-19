@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:17:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/19 23:28:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 22:23:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	add_excess(char **line, t_gnl *string, char **excess, int new_line)
 	return (READ_LINE);
 }
 
-int			get_next_line_multfd(int fd, char **line)
+int	get_next_line_multfd(int fd, char **line)
 {
 	static char		*excess[RLIMIT_NOFILE];
 	t_gnl			string;
@@ -79,7 +79,7 @@ int			get_next_line_multfd(int fd, char **line)
 			return (ERROR);
 	}
 	while (((string.read_return = read(fd, string.read, BUFFER_SIZE)) > 0)
-			&& !(string.break_line_ptr = ft_strchr(string.read, '\n')))
+		&& !(string.break_line_ptr = ft_strchr(string.read, '\n')))
 		if (add_to_line(&string, line, &excess[fd], NO_NEW_LINE) == ERROR)
 			return (ERROR);
 	if (string.read_return < 1)
