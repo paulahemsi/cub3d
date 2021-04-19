@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:49:08 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/19 13:57:13 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:03:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	print_s(t_flags *flag, char **string)
 	flag->length += length;
 }
 
-int			print_string(t_flags *flag, va_list args)
+int	print_string(t_flags *flag, va_list args)
 {
 	char	*string;
 

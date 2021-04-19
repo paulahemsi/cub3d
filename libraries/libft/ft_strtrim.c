@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:36:00 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/12 10:44:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 19:43:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strtrim(char const *s, char const *set)
+char	*ft_strtrim(char const *s, char const *set)
 {
 	size_t	end;
 	size_t	length;

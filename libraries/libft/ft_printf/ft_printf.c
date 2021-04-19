@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 21:16:09 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/19 13:56:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 19:58:56 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ static int	ft_printf_recursive(char *str, va_list args, size_t length)
 	char	*percent_pointer;
 	char	*str_aux;
 
-	if (!(percent_pointer = ft_strchr(str, '%')))
+	percent_pointer = ft_strchr(str, '%');
+	if (!(percent_pointer))
 	{
 		length += ft_strlen(str);
 		ft_putstr(str);
 		return (length);
 	}
-	if (!(str_aux = ft_substr(str, 0, find_length(str, percent_pointer))))
+	str_aux = ft_substr(str, 0, find_length(str, percent_pointer));
+	if (!(str_aux))
 		return (ERROR);
 	ft_putstr(str_aux);
 	length += ft_strlen(str_aux);
@@ -44,7 +46,7 @@ static int	ft_printf_recursive(char *str, va_list args, size_t length)
 	return (ft_printf_recursive(percent_pointer, args, length));
 }
 
-int			ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	int		return_num;

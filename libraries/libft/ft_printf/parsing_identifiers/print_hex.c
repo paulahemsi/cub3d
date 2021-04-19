@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 23:34:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/19 13:57:27 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:03:47 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	print_h(t_flags *flag, char **hex)
 		print_width(flag, hex_len, *hex);
 }
 
-int			print_hex(t_flags *flag, va_list args)
+int	print_hex(t_flags *flag, va_list args)
 {
 	char	*hex;
 	char	char_case;

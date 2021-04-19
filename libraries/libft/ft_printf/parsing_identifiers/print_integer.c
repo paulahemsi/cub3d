@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:52:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/19 13:57:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:04:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	print_i(t_flags *flag, int num_len, char sign, int number)
 	}
 }
 
-void		print_integer(t_flags *flag, va_list args)
+void	print_integer(t_flags *flag, va_list args)
 {
 	char			sign;
 	long int		number;
@@ -95,7 +95,8 @@ void		print_integer(t_flags *flag, va_list args)
 	sign = '\0';
 	if (*flag->ptr == 'd' || *flag->ptr == 'i')
 	{
-		if ((number = va_arg(args, int)) < 0)
+		number = va_arg(args, int);
+		if (number < 0)
 		{
 			sign = '-';
 			number *= -1;

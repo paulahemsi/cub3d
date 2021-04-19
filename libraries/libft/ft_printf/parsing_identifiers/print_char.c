@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 18:18:16 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/19 13:57:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 20:00:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	print_width(t_flags *flag, char padding)
 	flag->min_width--;
 }
 
-void		print_char(t_flags *flag, va_list args)
+void	print_char(t_flags *flag, va_list args)
 {
-	char padding;
+	char	padding;
 
 	if ((flag->zero_padding) && (*flag->ptr == '%') && !(flag->left_align))
 		padding = '0';

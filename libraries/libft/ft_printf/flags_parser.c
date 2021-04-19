@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 15:11:09 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/19 13:57:02 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 19:59:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	update_flags(t_flags *flag, va_list args)
 		update_precision(flag, args);
 }
 
-size_t		flags_parser(char **ptr, va_list args, size_t length)
+size_t	flags_parser(char **ptr, va_list args, size_t length)
 {
 	t_flags	flag;
 	char	*initial_ptr;

@@ -6,7 +6,7 @@ F 0, 0, 0
 SO ./textures/light_pb.xpm
 EA ./textures/orange_and_blue.xpm
 NO ./textures/matrix_green.xpm
-WE ./textures/fire_red.xpm
+WE ./textures/candy_mushroom.xpm
 S ./path_to_the_sprite_texture
 
         11111111
