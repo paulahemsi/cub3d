@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:17:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/19 23:03:04 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 23:59:22 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static int	check_errors(int fd, char **line, t_gnl *string)
 {
+	*line = ft_strdup("");
+	if (*line == NULL)
+		return (1);
 	ft_memset(string, 0, sizeof(*string));
 	if ((fd < 0) || (fd > RLIMIT_NOFILE) || (BUFFER_SIZE < 1) || !(line))
 		return (1);
@@ -64,13 +67,18 @@ static int	add_excess(char **line, t_gnl *string, char **excess, int new_line)
 	return (READ_LINE);
 }
 
+static int	free_excess(t_gnl *string, char **excess)
+{
+	free(*excess);
+	return (string->read_return);
+}
+
 int	get_next_line(int fd, char **line)
 {
 	static char		*excess;
 	t_gnl			string;
 
-	*line = ft_strdup("");
-	if ((check_errors(fd, line, &string)) || (*line == NULL))
+	if (check_errors(fd, line, &string))
 		return (-1);
 	if (excess != NULL)
 	{
@@ -80,14 +88,16 @@ int	get_next_line(int fd, char **line)
 		if ((add_excess(line, &string, &excess, NO_NEW_LINE)) == ERROR)
 			return (ERROR);
 	}
-	while (((string.read_return = read(fd, string.read, BUFFER_SIZE)) > 0)
-			&& !(string.break_line_ptr = ft_strchr(string.read, '\n')))
+	string.read_return = read(fd, string.read, BUFFER_SIZE);
+	string.break_line_ptr = ft_strchr(string.read, '\n');
+	while (((string.read_return > 0) && !(string.break_line_ptr)))
+	{
 		if (add_to_line(&string, line, &excess, NO_NEW_LINE) == ERROR)
 			return (ERROR);
-	if (string.read_return < 1)
-	{
-		free(excess);
-		return (string.read_return);
+		string.read_return = read(fd, string.read, BUFFER_SIZE);
+		string.break_line_ptr = ft_strchr(string.read, '\n');
 	}
+	if (string.read_return < 1)
+		return (free_excess(&string, &excess));
 	return (add_to_line(&string, line, &excess, NEW_LINE));
 }
