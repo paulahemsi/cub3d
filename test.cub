@@ -3,7 +3,7 @@ R 1280 720
 C 255, 255, 255
 F 0, 0, 0
 
-WE ./textures/light_pb.xpm
+WE ./textures/tile_64.XPM
 EA ./textures/orange_and_blue.xpm
 NO ./textures/matrix_green.xpm
 SO ./textures/candy_mushroom.xpm

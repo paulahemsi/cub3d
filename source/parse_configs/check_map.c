@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/19 17:41:35 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/20 00:22:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ static void	check_edges(char cell)
 
 static int	is_valid_cell(int row, int col, t_map *game_map)
 {
-	if (row < 0 || row > (game_map->total_row - 1) ||
-		col < 0 || col > (game_map->total_column - 1))
+	if (row < 0 || row > (game_map->total_row - 1)
+		|| col < 0 || col > (game_map->total_column - 1))
 		return (0);
 	return (1);
 }
 
 static void	check_neighbors(char **map, int row, int col, t_map *game_map)
 {
-	int col_offset;
-	int row_offset;
+	int	col_offset;
+	int	row_offset;
 
 	row_offset = -1;
 	while (row_offset <= 1)
@@ -76,7 +76,7 @@ static void	store_player_pos(t_player *player, char *dir, int row, int col)
 	//configs->player.invisible = -1;
 }
 
-void		check_map(t_render *game)
+void	check_map(t_render *game)
 {
 	char	**map;
 	int		row;

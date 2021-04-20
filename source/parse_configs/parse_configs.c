@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 22:22:25 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/20 00:19:13 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ static int	is_configs_set(t_settings *settings)
 	return (1);
 }
 
-void		parse_configs(t_cub *cub, char *line)
+void	parse_configs(t_cub *cub, char *line)
 {
-	t_settings *settings;
+	t_settings	*settings;
 
 	settings = &cub->settings;
 	if ((ft_strnequ(line, "NO ", 3)) || (ft_strnequ(line, "NO\t", 3)))

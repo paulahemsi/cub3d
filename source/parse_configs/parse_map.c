@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 21:08:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/20 00:20:07 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void		parse_map_size(t_map *map, char *line)
+void	parse_map_size(t_map *map, char *line)
 {
 	unsigned int	line_size;
 
@@ -65,7 +65,7 @@ static void	define_world_size(t_settings *setting, t_map *map)
 	setting->world[HEIGHT] = map->total_row * TILE_SIZE;
 }
 
-void		fill_map(t_cub *cub, char *file, int total_rows)
+void	fill_map(t_cub *cub, char *file, int total_rows)
 {
 	char			*line;
 	int				fd;
@@ -76,7 +76,8 @@ void		fill_map(t_cub *cub, char *file, int total_rows)
 	cub->game.map.row = (char **)malloc((total_rows + 1) * sizeof(char *));
 	cub->game.map.row[total_rows] = NULL;
 	row = 0;
-	if ((fd = open(file, O_RDONLY)) < 0)
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
 		return_error(-2);
 	while (get_next_line(fd, &line))
 	{

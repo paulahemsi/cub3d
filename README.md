@@ -255,5 +255,7 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 18/04: Oh my! The walls' textures are there! They have some issues? Yes. But they are there!
 
+* 19/04: All libft's functions are now in the new norme v3, and I've realised that some of the walls issues was just a matter of adjusting the size of the images (they must have 64 x 64).
+
 </details>
 
