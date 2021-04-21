@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/19 22:43:49 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/21 02:04:49 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,31 @@ static void	define_wall_colors(t_cub *cub, t_ray *rays, int ray)
 		toggle_night_mode(&cub->game.color, rays, ray);
 }
 
-static int	define_texture_offsetX(t_ray *rays, int ray, t_texture *texture)
+static void	define_wall_direction(t_render *game, t_ray *rays, int ray)
 {
 	if (rays[ray].vertical_hit)
-		return ((int)rays[ray].hit[Y] % texture[WEST].width);
+	{
+		if (rays[ray].left)
+			game->wall = EAST;
+		else
+			game->wall = WEST;
+
+	}
 	else
-		return ((int)rays[ray].hit[X] % texture[WEST].width);
+	{
+		if (rays[ray].up)
+			game->wall = SOUTH;
+		else
+			game->wall = NORTH;
+	}
+}
+
+static int	define_texture_offsetX(t_ray *rays, int ray, t_texture texture)
+{
+	if (rays[ray].vertical_hit)
+		return ((int)rays[ray].hit[Y] % texture.width);
+	else
+		return ((int)rays[ray].hit[X] % texture.width);
 }
 
 
@@ -138,8 +157,8 @@ void	put_walls(t_cub *cub, t_ray *rays)
 		init[Y] = cub->settings.center[Y] - (cub->game.wall_height / 2);// - ((PLAYER_HEIGHT - cub->game.player.height) * 2);
 		if (init[Y] < 0)
 			init[Y] = 0;
-		
-		cub->game.offset[X] = define_texture_offsetX(rays, ray, cub->game.texture);
+		define_wall_direction(&cub->game, rays, ray);
+		cub->game.offset[X] = define_texture_offsetX(rays, ray, cub->game.texture[cub->game.wall]);
 		put_line(cub, init, init[X], init[Y] + cub->game.wall_height);
 		ray++;
 	}

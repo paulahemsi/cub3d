@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/18 18:01:18 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/21 02:06:14 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ static void	init_values(t_bresenham *n, int *init, int *pos)
 
 static int	get_texture_color(int *init, int *offset, t_cub *cub, int y)
 {
-	int		main_offset;
-	t_data texture;
+	int			main_offset;
+	t_texture	texture;
 	
-	texture = cub->game.texture[WEST].img;
-	offset[Y] = (y - init[Y]) * ((float)cub->game.texture[WEST].height / (float)cub->game.wall_height);
-	main_offset = (offset[Y] * texture.line_length + offset[X] * (texture.bits_per_pixel / 8));
-	return (*(unsigned int *)(texture.data + main_offset + 2) << 16 |
-			*(unsigned int *)(texture.data + main_offset + 1) << 8 |
-			*(unsigned int *)(texture.data + main_offset + 0) << 0);
+	texture = cub->game.texture[cub->game.wall];
+	offset[Y] = (y - init[Y]) * ((float)texture.height / (float)cub->game.wall_height);
+	main_offset = (offset[Y] * texture.img.line_length + offset[X] * (texture.img.bits_per_pixel / 8));
+	return (*(unsigned int *)(texture.img.data + main_offset + 2) << 16 |
+			*(unsigned int *)(texture.img.data + main_offset + 1) << 8 |
+			*(unsigned int *)(texture.img.data + main_offset + 0) << 0);
 }
 
 void		put_line(t_cub *cub, int *pos, int x2, int y2)

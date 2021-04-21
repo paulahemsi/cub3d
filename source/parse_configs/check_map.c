@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/20 00:22:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/21 02:03:12 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,35 @@ static void	store_player_pos(t_player *player, char *dir, int row, int col)
 	//configs->player.invisible = -1;
 }
 
+static void save_sprites_locations(t_render *game)
+{
+	char	**map;
+	int		row;
+	int		col;
+	int		i;
+
+	row = 0;
+	i = 0;
+	map = game->map.row;
+	game->sprites = (t_sprite *)malloc(game->num_sprites * sizeof(t_sprite));
+	while (map[row])
+	{
+		col = 0;
+		while (map[row][col])
+		{
+			if (map[row][col] == '2')
+			{
+				printf("sprite %i em (%i, %i)\n", i, row, col);
+				game->sprites[i].pos[X] = col * TILE_SIZE;
+				game->sprites[i].pos[Y] = row * TILE_SIZE;
+				i++;
+			}
+			col++;
+		}
+		row++;
+	}
+}
+
 void	check_map(t_render *game)
 {
 	char	**map;
@@ -97,11 +126,14 @@ void	check_map(t_render *game)
 				check_neighbors(map, row, col, &game->map);
 			else if (ft_strchr("NSWE", map[row][col]))
 				store_player_pos(&game->player, &map[row][col], row, col);
+			else if (map[row][col] == '2')
+				game->num_sprites++;
 			col++;
 		}
 		row++;
 	}	
 	if (!(game->player.angle))
 		return_error(-7);
+	save_sprites_locations(game);
 	//configs->map.scale = ((configs->world_width * configs->world_height) / (configs->screen_width * configs->screen_height)) * SCALE;
 }

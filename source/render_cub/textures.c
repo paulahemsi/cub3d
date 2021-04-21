@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/17 23:16:52 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/21 02:11:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@ static void	load_hud(t_cub *cub, t_render *game)
 	game->hearts.img.data = mlx_get_data_addr(game->hearts.img.ptr, &game->hearts.img.bits_per_pixel, &game->hearts.img.line_length, &game->hearts.img.endian); 
 }
 
+static void	load_sprites(t_cub *cub, t_render *game)
+{
+	int i;
+	int total_sprites;
+	i = 0;
+	
+	total_sprites = game->num_sprites;
+	while (total_sprites > 0)
+	{
+		game->sprites[i].texture.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, cub->settings.path[SPRITE], &game->sprites[i].texture.width, &game->sprites[i].texture.height);
+		if (!(game->sprites[i].texture.img.ptr))
+			return_error(-12);
+		game->sprites[i].texture.img.data = mlx_get_data_addr(game->sprites[i].texture.img.ptr, &game->sprites[i].texture.img.bits_per_pixel, &game->sprites[i].texture.img.line_length, &game->sprites[i].texture.img.endian);
+		if (!(game->sprites[i].texture.img.data))
+			return_error(-12);
+		i++;
+		total_sprites--;
+	}
+}
+
 void	load_textures(char **path, t_cub *cub, t_render *game)
 {
 	int			text;
@@ -45,5 +65,6 @@ void	load_textures(char **path, t_cub *cub, t_render *game)
 		text++;
 	}
 	load_hud(cub, game);
+	load_sprites(cub, game);
 	free_paths(cub->settings.path);
 }

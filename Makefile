@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 21:18:02 by phemsi-a          #+#    #+#              #
-#    Updated: 2021/04/14 16:56:26 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/04/21 02:01:28 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ RENDER = $(SRC)render_cub/
 LIBFT_PATH = ./libraries/libft/
 MLX_PATH = ./libraries/minilibx-linux/
 
-FILES = $(SRC)cub.c $(SRC)init.c $(SRC)free.c $(SRC)save_bmp.c $(CONFIGS)error.c $(CONFIGS)parse_configs.c $(CONFIGS)parse_map.c $(CONFIGS)check_map.c $(RENDER)render_cub.c $(SRC)events.c $(RENDER)render_tools.c $(RENDER)put_line.c $(RENDER)render_minimap.c $(RENDER)put_background.c $(RENDER)utils.c $(RENDER)raycasting.c $(RENDER)put_walls.c $(RENDER)textures.c
-OBJECTS = cub.o init.o free.o error.o parse_configs.o parse_map.o check_map.o render_cub.o events.o render_tools.o put_line.o render_minimap.o put_background.o utils.o raycasting.o put_walls.o save_bmp.o textures.o
+FILES = $(SRC)cub.c $(SRC)init.c $(SRC)free.c $(SRC)save_bmp.c $(CONFIGS)error.c $(CONFIGS)parse_configs.c $(CONFIGS)parse_map.c $(CONFIGS)check_map.c $(RENDER)render_cub.c $(SRC)events.c $(RENDER)render_tools.c $(RENDER)put_line.c $(RENDER)render_minimap.c $(RENDER)put_background.c $(RENDER)utils.c $(RENDER)raycasting.c $(RENDER)put_walls.c $(RENDER)textures.c $(RENDER)put_sprites.c
+OBJECTS = cub.o init.o free.o error.o parse_configs.o parse_map.o check_map.o render_cub.o events.o render_tools.o put_line.o render_minimap.o put_background.o utils.o raycasting.o put_walls.o save_bmp.o textures.o put_sprites.o
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror

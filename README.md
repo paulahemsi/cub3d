@@ -257,5 +257,7 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 19/04: All libft's functions are now in the new norme v3, and I've realised that some of the walls issues was just a matter of adjusting the size of the images (they must have 64 x 64).
 
+* 20/04: I started to deal with the sprites. Sprites' positions are being saved, but the sprite renderization is still a mess. The walls' textures are now being render accordingly with the direction that's facing (4 patterns, one for each direction).
+
 </details>
 

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:01:20 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 22:53:00 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/21 02:07:12 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door)
 	if (map->row[minimap[ROW]][minimap[COL]] == '0')
 		return (TRUE);
 	if (map->row[minimap[ROW]][minimap[COL]] == '3' && (secret_door))
+		return (TRUE);
+	if (map->row[minimap[ROW]][minimap[COL]] == '2')
 		return (TRUE);
 	return (FALSE);
 }

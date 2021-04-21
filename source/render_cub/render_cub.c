@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/20 00:16:57 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/21 02:11:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,19 @@ static int	update(t_cub *cub)
 	put_background(cub);
 	raycasting(cub, rays);
 	put_walls(cub, rays);
+	put_sprites(cub, cub->game.sprites);
 	update_player(&cub->game.player, cub);
 	if (cub->toggle.show_minimap == TRUE)
 		render_minimap(cub, &cub->game.map, rays);
 	if (!(cub->toggle.save))
 		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->img.ptr, 0, 0);
 	//mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->game.hearts.img.ptr, 800, 50);
-	
-
+	// int i = 0;
+	// while (i < cub->game.num_sprites)
+	// {
+	// 	mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr, cub->game.sprites[i].img.ptr, i * 100, 50);
+	// 	i++;
+	// }
 	return (0);
 }
 

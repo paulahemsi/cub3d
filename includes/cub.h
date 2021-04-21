@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/18 18:16:47 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/21 02:00:59 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define TURN			2
 # define WIDTH			0
 # define HEIGHT			1
+# define TOP			0
+# define BOTTOM			1
 
 
 # define TILE_SIZE		64
@@ -187,6 +189,15 @@ typedef struct		s_texture
 	int				height;
 }					t_texture;
 
+typedef struct		s_sprite
+{
+	t_texture		texture;
+	int				pos[2];
+	float			angle;
+	int				height;
+	int				width;
+}					t_sprite;
+
 typedef struct		s_render
 {
 	t_map			map;
@@ -194,9 +205,12 @@ typedef struct		s_render
 	t_ray			ray;
 	t_rgb			color;
 	t_texture		*texture;
-	int				is_texture;
-	int				wall_height;
+	t_sprite		*sprites;
 	t_texture		hearts;
+	int				num_sprites;
+	int				wall_height;
+	int				is_texture;
+	int				wall;
 	int				offset[2];
 }					t_render;
 
@@ -226,21 +240,21 @@ typedef struct		s_bresenham
 */
 typedef struct		s_bmp_header
 {
-	uint16_t		type;// Magic identifier: 0x4d42
-	uint32_t		size;// File size in bytes
-	uint16_t		reserved;// Not used
-	//uint16_t		reserved2;// Not used
-	uint32_t		offset;// Offset to image data in bytes from beginning of file (54 bytes)
-	uint32_t		dib_header_size;// DIB Header size in bytes (40 bytes)
-	int32_t			width_px;// Width of the image
-	int32_t			height_px;// Height of image
-	uint16_t		num_planes;// Number of color planes
-	uint16_t		bits_per_pixel;// Bits per pixel
-	uint32_t		compression;// Compression type
-	uint32_t		image_size_bytes;// Image size in bytes
-	int32_t			x_resolution_ppm;// Pixels per meter
-	int32_t			y_resolution_ppm;// Pixels per meter
-	uint32_t		num_colors;// Number of colors  
+	uint16_t		type;//0x4d42
+	uint32_t		size;//bytes
+	uint16_t		reserved;
+	//uint16_t		reserved2;
+	uint32_t		offset;//54 bytes
+	uint32_t		dib_header_size;//(40 bytes)
+	int32_t			width_px;
+	int32_t			height_px;
+	uint16_t		num_planes;
+	uint16_t		bits_per_pixel;
+	uint32_t		compression;
+	uint32_t		image_size_bytes;
+	int32_t			x_resolution_ppm;
+	int32_t			y_resolution_ppm;
+	uint32_t		num_colors;
 	uint32_t		important_colors;
 }					t_bmp_header;
 /*
@@ -261,6 +275,7 @@ void				render_minimap(t_cub *cub, t_map *map, t_ray *rays);
 void				raycasting(t_cub *cub, t_ray *rays);
 void				put_background(t_cub *cub);
 void				put_walls(t_cub *cub, t_ray *rays);
+void				put_sprites(t_cub *cub, t_sprite *sprites);
 void				load_textures(char **path, t_cub *cub, t_render *game);
 /*
 ** render tools

@@ -3,11 +3,11 @@ R 1280 720
 C 255, 255, 255
 F 0, 0, 0
 
-WE ./textures/tile_64.XPM
-EA ./textures/orange_and_blue.xpm
-NO ./textures/matrix_green.xpm
-SO ./textures/candy_mushroom.xpm
-S ./path_to_the_sprite_texture
+WE ./textures/pb_window.xpm
+EA ./textures/dark_pb.xpm
+NO ./textures/light_pb.xpm
+SO ./textures/floresta64.XPM
+S ./textures/pillar.xpm
 
         11111111
         1000000111111111111111111111111
@@ -15,7 +15,7 @@ S ./path_to_the_sprite_texture
         1000000100000000000003000000001
         1000000100000000000001000000001
 111111111111311100000000000001000000001
-100000000000000000000111111111111113111
+100000000000000000002111111111111113111
 10000000000000000000000000001     101
 1000000000000000000000W000001     101
 11113111110000000000000000001     101
