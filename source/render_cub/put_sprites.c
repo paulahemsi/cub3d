@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 20:00:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/21 01:49:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:33:00 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	calculate_sprite_values(t_sprite *sprite, t_player *player, t_settin
 	if (end[Y] > set->screen[HEIGHT])
 		end[Y] = set->screen[HEIGHT];
 	dist_to_center = tan(sprite->angle * player->plane_dist);
-	init[X] = set->center[X] + dist_to_center;
+	init[X] = set->center[X] + sprite->pos[X] - (sprite->width / 2);
 	int i = init[Y];
 	while (i < end[Y])
 	{
@@ -40,8 +40,16 @@ static void	calculate_sprite_values(t_sprite *sprite, t_player *player, t_settin
 	}
 }
 
+static void	clamp_angle(float *angle)
+{
+	if (*angle < -1 * PI)
+		*angle += 2 * PI;
+	if (*angle > PI)
+		*angle -= 2 * PI;
+	*angle = fabs(*angle);
+}
 
-static void	define_sprites(t_cub *cub, t_sprite *sprite, t_player *player)
+void	put_sprites(t_cub *cub, t_sprite *sprite, t_player *player)
 {
 	int 	i;
 
@@ -49,20 +57,9 @@ static void	define_sprites(t_cub *cub, t_sprite *sprite, t_player *player)
 	while (i < cub->game.num_sprites)
 	{
 		sprite[i].angle = player->angle - atan2(sprite[i].pos[Y] - player->pos[Y], sprite[i].pos[X] - player->pos[X]);
-		if (sprite[i].angle < -1 * PI)
-			sprite[i].angle += 2 * PI;
-		if (sprite[i].angle > PI)
-			sprite[i].angle -= 2 * PI;
-		sprite[i].angle = fabs(sprite[i].angle);
+		clamp_angle(&sprite[i].angle);
 		if (sprite[i].angle < HALF_FOV)
-		{
 			calculate_sprite_values(&sprite[i], player, &cub->settings, cub);
-		}
 		i++;
 	}
-}
-
-void	put_sprites(t_cub *cub, t_sprite *sprites)
-{
-	define_sprites(cub, sprites, &cub->game.player);
 }

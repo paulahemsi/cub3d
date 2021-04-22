@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/21 02:00:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:27:06 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,7 @@ void				render_minimap(t_cub *cub, t_map *map, t_ray *rays);
 void				raycasting(t_cub *cub, t_ray *rays);
 void				put_background(t_cub *cub);
 void				put_walls(t_cub *cub, t_ray *rays);
-void				put_sprites(t_cub *cub, t_sprite *sprites);
+void				put_sprites(t_cub *cub, t_sprite *sprite, t_player *player);
 void				load_textures(char **path, t_cub *cub, t_render *game);
 /*
 ** render tools

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/21 02:11:01 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/22 16:27:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	update(t_cub *cub)
 	put_background(cub);
 	raycasting(cub, rays);
 	put_walls(cub, rays);
-	put_sprites(cub, cub->game.sprites);
+	put_sprites(cub, cub->game.sprites, &cub->game.player);
 	update_player(&cub->game.player, cub);
 	if (cub->toggle.show_minimap == TRUE)
 		render_minimap(cub, &cub->game.map, rays);
