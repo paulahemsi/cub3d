@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/21 02:11:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/22 20:39:40 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ static void	load_hud(t_cub *cub, t_render *game)
 {
 	game->hearts.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, "./textures/pixel_heart_edit.XPM", &game->hearts.width, &game->hearts.height);
 	game->hearts.img.data = mlx_get_data_addr(game->hearts.img.ptr, &game->hearts.img.bits_per_pixel, &game->hearts.img.line_length, &game->hearts.img.endian); 
+}
+
+static void	load_skybox(t_cub *cub, t_render *game)
+{
+	game->skybox.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, "./textures/skybox.xpm", &game->skybox.width, &game->skybox.height);
+	game->skybox.img.data = mlx_get_data_addr(game->skybox.img.ptr, &game->skybox.img.bits_per_pixel, &game->skybox.img.line_length, &game->skybox.img.endian); 
 }
 
 static void	load_sprites(t_cub *cub, t_render *game)
@@ -66,5 +72,6 @@ void	load_textures(char **path, t_cub *cub, t_render *game)
 	}
 	load_hud(cub, game);
 	load_sprites(cub, game);
+	load_skybox(cub, game);
 	free_paths(cub->settings.path);
 }

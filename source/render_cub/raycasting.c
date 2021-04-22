@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/18 16:32:00 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/22 23:11:19 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,13 @@ static void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angl
 		to_check_tile[Y] = horizontal->intercept[Y];
 		if (!(is_ray_facing_down(angle)))
 			to_check_tile[Y] -= 1;
+		if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
+		{
+			printf("hitted!\n");
+			horizontal->sprite_hitted = TRUE;
+		}
+		else
+			horizontal->sprite_hitted = FALSE;
 		if (is_tile_free(to_check_tile, &cub->settings, &cub->game.map, FALSE))
 			increment(horizontal);
 		else
@@ -106,6 +113,13 @@ static void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle, i
 		to_check_tile[Y] = vertical->intercept[Y];
 		if (!(is_ray_facing_right(angle)))
 			to_check_tile[X] -= 1;
+		if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
+		{
+			printf("hitted!\n");
+			vertical->sprite_hitted = TRUE;
+		}
+		else
+			vertical->sprite_hitted = FALSE;
 		if (is_tile_free(to_check_tile, &cub->settings, &cub->game.map, FALSE))
 			increment(vertical);
 		else
@@ -126,6 +140,7 @@ static void	copy_last_ray(t_ray *rays, int column, float angle)
 	rays[column].up = rays[column - 1].up;
 	rays[column].left = rays[column - 1].left;
 	rays[column].vertical_hit = rays[column - 1].vertical_hit;
+	rays[column].sprite_hitted = rays[column - 1].sprite_hitted;
 }
 
 static void	store_ray_data(t_ray *rays, t_cast *direction, int column, float angle)
@@ -137,6 +152,8 @@ static void	store_ray_data(t_ray *rays, t_cast *direction, int column, float ang
 	rays[column].angle = angle;
 	rays[column].up = !(is_ray_facing_down(angle));
 	rays[column].left = !(is_ray_facing_right(angle));
+	rays[column].sprite_hitted = direction->sprite_hitted;
+	printf("up%i sprite%i\n", rays[column].up, rays[column].sprite_hitted);
 }
 
 static void	find_closest_collision(t_cast *horizontal, t_cast *vertical, t_player *player, float angle)
@@ -176,6 +193,8 @@ static void	cast_ray(t_cub *cub, float angle, int column, t_ray *rays)
 	}
 	else
 		copy_last_ray(rays, column, angle);
+	printf("%i\n", rays[column].sprite_hitted);
+	
 }
 
 void	raycasting(t_cub *cub, t_ray *rays)

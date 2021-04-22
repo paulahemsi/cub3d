@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/22 16:27:06 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/22 22:57:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct		s_ray
 	float			step;
 	int				total;//resolution width
 	char			wall_content;
+	int				sprite_hitted;
 }					t_ray;
 
 typedef struct		s_cast
@@ -134,6 +135,7 @@ typedef struct		s_cast
 	float			hit[2];
 	float			distance;
 	char			content;
+	int				sprite_hitted;
 }					t_cast;
 
 typedef struct		s_rgb
@@ -207,6 +209,7 @@ typedef struct		s_render
 	t_texture		*texture;
 	t_sprite		*sprites;
 	t_texture		hearts;
+	t_texture		skybox;
 	int				num_sprites;
 	int				wall_height;
 	int				is_texture;
@@ -275,7 +278,7 @@ void				render_minimap(t_cub *cub, t_map *map, t_ray *rays);
 void				raycasting(t_cub *cub, t_ray *rays);
 void				put_background(t_cub *cub);
 void				put_walls(t_cub *cub, t_ray *rays);
-void				put_sprites(t_cub *cub, t_sprite *sprite, t_player *player);
+void				put_sprite(t_sprite *sprite, t_player *player, t_settings *set, t_cub *cub);
 void				load_textures(char **path, t_cub *cub, t_render *game);
 /*
 ** render tools
@@ -291,6 +294,7 @@ void				put_circle(t_data *img, int center_x, int center_y, int radius);
 void				define_img_colors(t_rgb *color, int red, int green, int blue);
 float				normalize_angle(float angle);
 int					is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door);
+int					hit_sprite(float *pos, t_settings *set, t_map *map);
 float				calc_distance(int *pos, float *hit);
 /*
 ** events

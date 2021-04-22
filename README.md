@@ -29,9 +29,9 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 * I got lost and completly stuck while trying to study(~4 days that seem an eternity)
 * step by step list from raycasting process (~1 day)
 * 3d wall renderization and wall colisions implementation (~5 days)
-* fixing minor problems, adding bônus features and implementing 'save bmp' (~4 days)
+* fixing minor problems, adding bônus and extra features and implementing 'save bmp' (~4 days)
 * Refactoring the code (~2 days)
-* Implementing walls' textures
+* Implementing walls' textures (~4 days)
 
 for more details, read the [work diary](#work_diary)
 
@@ -260,6 +260,8 @@ I also implemented invisibility and crouching, but the result got a little bit a
 * 20/04: I started to deal with the sprites. Sprites' positions are being saved, but the sprite renderization is still a mess. The walls' textures are now being render accordingly with the direction that's facing (4 patterns, one for each direction).
 
 * 21/04: I spent the hole day working on the sprites and in the end needed to go back to my last git commit 'cause nothing worked. Mug.
+
+* 22/04: Still in the sprite's swamp
 
 </details>
 
