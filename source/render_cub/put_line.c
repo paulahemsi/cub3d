@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/21 02:06:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:26:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		put_line(t_cub *cub, int *pos, int x2, int y2)
 	define_longest(&n);
 	while (n.i <= n.longest)
 	{
-		if (cub->game.is_texture)
+		if (cub->game.is_texture && (cub->toggle.night_mode != TRUE) && (cub->toggle.debug != TRUE))
 			color = get_texture_color(pos, cub->game.offset, cub, init[Y]);//&n);
 		else
 			color = color_picker(cub->game.color.red, cub->game.color.green, cub->game.color.blue);

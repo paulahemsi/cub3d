@@ -259,5 +259,7 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 20/04: I started to deal with the sprites. Sprites' positions are being saved, but the sprite renderization is still a mess. The walls' textures are now being render accordingly with the direction that's facing (4 patterns, one for each direction).
 
+* 21/04: I spent the hole day working on the sprites and in the end needed to go back to my last git commit 'cause nothing worked. Mug.
+
 </details>
 

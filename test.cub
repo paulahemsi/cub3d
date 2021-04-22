@@ -1,9 +1,9 @@
-R 1280 720
+R 600 600
 
 C 255, 255, 255
 F 0, 0, 0
 
-WE ./textures/pb_window.xpm
+WE ./textures/pb_bloobs.xpm
 EA ./textures/dark_pb.xpm
 NO ./textures/light_pb.xpm
 SO ./textures/floresta64.XPM
