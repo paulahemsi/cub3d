@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:01:20 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/22 22:44:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/23 18:13:42 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,22 @@ float	normalize_angle(float angle)
 		angle = TWO_PI + angle;
 	}
 	return (angle);
+}
+
+int	is_ray_facing_down(float angle)
+{
+	if (angle > 0 && angle < PI)
+		return (TRUE);
+	else
+		return (FALSE);
+}
+
+int	is_ray_facing_right(float angle)
+{
+	if (angle < PI / 2 || angle > 1.5 * PI)
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
 int		hit_sprite(float *pos, t_settings *set, t_map *map)

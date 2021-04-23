@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/22 23:05:22 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/23 17:59:11 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,14 +158,25 @@ void	put_walls(t_cub *cub, t_ray *rays)
 			init[Y] = 0;
 		define_wall_direction(&cub->game, rays, ray);
 		cub->game.offset[X] = define_texture_offsetX(rays, ray, cub->game.texture[cub->game.wall]);
-		if (rays[ray].sprite_hitted)
-		{
-			//printf("hitted\n");
-			put_sprite(cub->game.sprites, &cub->game.player, &cub->settings, cub);
-		}
 		define_wall_colors(cub, rays, ray);
 		put_line(cub, init, init[X], init[Y] + cub->game.wall_height);
 		ray++;
 	}
+	if (cub->game.sprite)
+	{
+		put_sprite(cub->game.sprites, &cub->game.player, &cub->settings, cub);
+		// int i = 0;
+		// while (i < cub->game.num_sprites)
+		// {
+		// 	if (cub->game.sprites[i].visible == TRUE)
+		// 	{
+		// 		printf("(%i, %i)\n", cub->game.sprites[i].pos[X], cub->game.sprites[i].pos[Y]);
+		// 		printf("hit: (%i, %i)\n", (int)floor(rays[0].hit[X]), (int)floor(rays[0].hit[Y]));
+		// 	}
+		// 	cub->game.sprites[i].visible = FALSE;
+		// 	i++;
+		// }
+	}
+	cub->game.sprite = FALSE;
 	cub->game.is_texture = FALSE;
 }

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/22 12:26:43 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/23 21:09:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,11 @@ static void	init_values(t_bresenham *n, int *init, int *pos)
 
 static int	get_texture_color(int *init, int *offset, t_cub *cub, int y)
 {
-	int			main_offset;
 	t_texture	texture;
 	
 	texture = cub->game.texture[cub->game.wall];
 	offset[Y] = (y - init[Y]) * ((float)texture.height / (float)cub->game.wall_height);
-	main_offset = (offset[Y] * texture.img.line_length + offset[X] * (texture.img.bits_per_pixel / 8));
-	return (*(unsigned int *)(texture.img.data + main_offset + 2) << 16 |
-			*(unsigned int *)(texture.img.data + main_offset + 1) << 8 |
-			*(unsigned int *)(texture.img.data + main_offset + 0) << 0);
+	return (*(unsigned int *)(texture.img.data + (offset[Y] * texture.img.line_length + offset[X] * (texture.img.bits_per_pixel / 8))));
 }
 
 void		put_line(t_cub *cub, int *pos, int x2, int y2)

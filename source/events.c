@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/17 22:49:00 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/23 20:36:28 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int		close_cub(int key, t_cub *cub)
+int	close_cub(int key, t_cub *cub)
 {
 	free_all(cub);
 	exit(0);
@@ -32,7 +32,7 @@ static void	update_player_direction(int key, int *player_direction)
 	else if (key == D)
 	{
 		player_direction[MOVE] = 1;
-		player_direction[SIDE] = TRUE;	
+		player_direction[SIDE] = TRUE;
 	}
 }
 
@@ -53,7 +53,7 @@ static void	update_effects(int key, t_toggle *toggle)
 	}
 }
 
-int		key_pressed(int key, t_cub *cub)
+int	key_pressed(int key, t_cub *cub)
 {
 	if (key == ESC)
 		close_cub(key, cub);
@@ -80,7 +80,7 @@ int		key_pressed(int key, t_cub *cub)
 	return (0);
 }
 
-int		key_released(int key, t_cub *cub)
+int	key_released(int key, t_cub *cub)
 {
 	if (key == W || key == S)
 		cub->game.player.direction[MOVE] = 0;
@@ -102,8 +102,6 @@ int		key_released(int key, t_cub *cub)
 		cub->game.player.speed = 7;
 		cub->game.player.rotate_speed = 1.5 * PI / 180;
 	}
-	// else if (key == SPACE)
-		// img->cub->player.invisible = FALSE;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/20 00:20:07 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/23 20:55:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,6 @@ static void	fill_row(t_map *map, char *line, int index, int *player)
 	}
 }
 
-static void	define_world_size(t_settings *setting, t_map *map)
-{
-	setting->world[WIDTH] = map->total_column * TILE_SIZE;
-	setting->world[HEIGHT] = map->total_row * TILE_SIZE;
-}
-
 void	fill_map(t_cub *cub, char *file, int total_rows)
 {
 	char			*line;
@@ -90,7 +84,6 @@ void	fill_map(t_cub *cub, char *file, int total_rows)
 	}
 	if (((*line == '1') || (*line == ' ')))
 		fill_row(&cub->game.map, line, row, &player);
-	define_world_size(&cub->settings, &cub->game.map);
 	free(line);
 	close(fd);
 }
