@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_configs.c                                    :+:      :+:    :+:   */
+/*   parse_settings.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/20 00:19:13 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 01:27:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	is_configs_set(t_settings *settings)
 	return (1);
 }
 
-void	parse_configs(t_cub *cub, char *line)
+void	parse_settings(t_cub *cub, char *line)
 {
 	t_settings	*settings;
 

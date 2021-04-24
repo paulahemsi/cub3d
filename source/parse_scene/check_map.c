@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/23 21:18:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 04:59:04 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-static void	check_edges(char cell)
+static void	check_edges_content(char cell)
 {	
 	if ((cell == ' ') || (cell == '1'))
 		return ;
@@ -20,21 +20,24 @@ static void	check_edges(char cell)
 		return_error(-7);
 }
 
-static int	is_valid_cell(int row, int col, t_map *game_map)
+static int	check_if_is(int check, int row, int col, t_map *map)
 {
-	if (row < 0 || row > (game_map->total_row - 1)
-		|| col < 0 || col > (game_map->total_column - 1))
-		return (0);
-	return (1);
-}
-
-static int	is_edge(int row, int col, t_map *map)
-{
-	if ((row == 0) || (col == 0)
-		|| (row == (map->total_row - 1))
-		|| (col == (map->total_column - 1)))
-		return (TRUE);
-	return (FALSE);
+	if (check == VALID_CELL)
+	{
+		if (row < 0 || row > (map->total_row - 1)
+			|| col < 0 || col > (map->total_column - 1))
+			return (0);
+		return (1);
+	}
+	if (check == EDGE)
+	{
+		if ((row == 0) || (col == 0)
+			|| (row == (map->total_row - 1))
+			|| (col == (map->total_column - 1)))
+			return (TRUE);
+		return (FALSE);
+	}
+	return (0);
 }
 
 static void	check_neighbors(char **map, int row, int col, t_map *game_map)
@@ -48,7 +51,8 @@ static void	check_neighbors(char **map, int row, int col, t_map *game_map)
 		col_offset = -1;
 		while (col_offset <= 1)
 		{
-			if (is_valid_cell((row + row_offset), (col + col_offset), game_map))
+			if (check_if_is(VALID_CELL, (row + row_offset),
+					(col + col_offset), game_map))
 			{
 				if (!(map[row + row_offset][col + col_offset] == ' ')
 				&& !(map[row + row_offset][col + col_offset] == '1'))
@@ -60,7 +64,7 @@ static void	check_neighbors(char **map, int row, int col, t_map *game_map)
 	}
 }
 
-static void	store_player_pos(t_player *player, char *dir, int row, int col)
+static void	store_player_settings(t_player *player, char *dir, int row, int col)
 {
 	if (ft_strchr("NS", *dir))
 	{
@@ -97,12 +101,12 @@ void	check_map(t_render *game)
 		col = -1;
 		while (map[row][++col])
 		{
-			if (is_edge(row, col, &game->map))
-				check_edges(map[row][col]);
+			if (check_if_is(EDGE, row, col, &game->map))
+				check_edges_content(map[row][col]);
 			if (map[row][col] == ' ')
 				check_neighbors(map, row, col, &game->map);
 			else if (ft_strchr("NSWE", map[row][col]))
-				store_player_pos(&game->player, &map[row][col], row, col);
+				store_player_settings(&game->player, &map[row][col], row, col);
 			else if (map[row][col] == '2')
 				game->num_sprites++;
 		}

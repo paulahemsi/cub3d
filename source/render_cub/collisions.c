@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:08:11 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/23 19:05:52 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 02:02:42 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	save_hit(t_cast *direction, t_cub *cub, float *to_check_tile)
 	row = (int)floor(to_check_tile[X] / TILE_SIZE);
 	direction->hit[X] = direction->intercept[X];
 	direction->hit[Y] = direction->intercept[Y];
+	//!DEU UM SEGV READ UNKNOW ADDRESS AQUI:
 	direction->content = cub->game.map.row[col][row];
 	direction->hitted = TRUE;
 }

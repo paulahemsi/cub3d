@@ -263,5 +263,7 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 22/04: Still in the sprite's swamp
 
+* 23/04: 
+
 </details>
 
