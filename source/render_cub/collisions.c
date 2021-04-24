@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:08:11 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 02:02:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 14:58:50 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	save_hit(t_cast *direction, t_cub *cub, float *to_check_tile)
 {
-	int col;
-	int row;
+	int	col;
+	int	row;
 
 	col = (int)floor(to_check_tile[Y] / TILE_SIZE);
 	row = (int)floor(to_check_tile[X] / TILE_SIZE);
@@ -32,9 +32,10 @@ static void	increment(t_cast *direction)
 	direction->intercept[Y] += direction->step[Y];
 }
 
-static void	define_ray_values(t_cast *direction, t_cub *cub, int dir, int pos_axis)
+static void	define_ray_values(t_cast *direction, t_cub *cub,
+		int dir, int pos_axis)
 {
-	int axis;
+	int	axis;
 
 	if (dir == HOR)
 		axis = Y;

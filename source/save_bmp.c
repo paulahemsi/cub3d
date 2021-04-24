@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/16 02:40:03 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 13:23:07 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void	fill_bmp_header(int fd, t_bmp_header header)
 
 static void	fill_bmp(int fd, t_data *img, int *screen)
 {
-	int line;
-	int index;
+	int	line;
+	int	index;
 
 	line = screen[HEIGHT];
 	while (line >= 0)
@@ -83,13 +83,13 @@ static char	*define_name(int bmp_id)
 	}
 }
 
+//TODO colocar limitador de arquivos que pessoa pode salvar
 void	save_bmp(t_cub *cub)
 {
 	t_bmp_header	header;
 	int				fd;
 	char			*file_name;
 
-	//TODO colocar limitador de arquivos que pessoa pode salvar
 	file_name = define_name(cub->toggle.bmp_id);
 	fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (!(fd))

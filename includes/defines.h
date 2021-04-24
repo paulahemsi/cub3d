@@ -6,9 +6,12 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:25 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 01:42:37 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 14:40:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef DEFINES_H
+# define DEFINES_H
 
 # define X				0
 # define Y				1
@@ -34,7 +37,6 @@
 # define VALID_CELL		1
 # define EDGE			0
 
-
 # define TILE_SIZE		64
 # define HALF_TILE		32
 # define PLAYER_HEIGHT	32
@@ -45,8 +47,8 @@
 */
 # define PI				3.14159265
 # define TWO_PI			6.28316530
-# define FOV			60 * (PI / 180)
-# define HALF_FOV		FOV / 2
+# define FOV			1.047198
+# define HALF_FOV		0.523599
 /*
 ** events
 */
@@ -77,3 +79,5 @@
 # define KEYPRESS_MASK	1L<<0
 # define KEYREL_MASK	1L<<1
 # define NOTIFY_MASK	1L<<17
+
+#endif

@@ -6,9 +6,12 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/23 18:29:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 14:28:48 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 # include <stdio.h>
 # include <errno.h>
@@ -22,14 +25,14 @@
 /*
 ** game
 */
-typedef struct		s_map
+typedef struct s_map
 {
 	unsigned int	total_column;
 	unsigned int	total_row;
 	char			**row;
 }					t_map;
 
-typedef struct		s_player
+typedef struct s_player
 {
 	int				plane_dist;
 	int				pos[2];
@@ -41,7 +44,7 @@ typedef struct		s_player
 	int				invisible;
 }					t_player;
 
-typedef struct		s_ray
+typedef struct s_ray
 {
 	float			angle;
 	float			hit[2];
@@ -50,12 +53,12 @@ typedef struct		s_ray
 	int				up;
 	int				left;
 	float			step;
-	int				total;//resolution width
+	int				total;
 	char			wall_content;
 	int				sprite_hitted;
 }					t_ray;
 
-typedef struct		s_cast
+typedef struct s_cast
 {
 	float			intercept[2];
 	float			step[2];
@@ -66,20 +69,20 @@ typedef struct		s_cast
 	int				sprite_hitted;
 }					t_cast;
 
-typedef struct		s_rgb
+typedef struct s_rgb
 {
 	int				red;
 	int				green;
 	int				blue;
 }					t_rgb;
 
-typedef struct		s_gradient
+typedef struct s_gradient
 {
 	t_rgb			increment;
 	t_rgb			color_distance;
 }					t_gradient;
 
-typedef struct		s_toggle
+typedef struct s_toggle
 {
 	int				gradient;
 	int				debug;
@@ -91,7 +94,7 @@ typedef struct		s_toggle
 /*
 ** mlx
 */
-typedef struct		s_data
+typedef struct s_data
 {
 	void			*ptr;
 	char			*data;
@@ -102,7 +105,7 @@ typedef struct		s_data
 /*
 ** scene settings
 */
-typedef	struct		s_settings
+typedef struct s_settings
 {
 	int				screen[2];
 	int				world[2];
@@ -112,14 +115,14 @@ typedef	struct		s_settings
 	t_rgb			ceiling;
 }					t_settings;
 
-typedef struct		s_texture
+typedef struct s_texture
 {
 	t_data			img;
 	int				width;
 	int				height;
 }					t_texture;
 
-typedef struct		s_sprite
+typedef struct s_sprite
 {
 	t_texture		texture;
 	int				pos[2];
@@ -130,7 +133,7 @@ typedef struct		s_sprite
 	int				visible;
 }					t_sprite;
 
-typedef struct		s_render
+typedef struct s_render
 {
 	t_map			map;
 	t_player		player;
@@ -148,7 +151,7 @@ typedef struct		s_render
 	int				offset[2];
 }					t_render;
 
-typedef struct		s_cub
+typedef struct s_cub
 {
 	void			*mlx_ptr;
 	void			*window_ptr;
@@ -160,26 +163,25 @@ typedef struct		s_cub
 /*
 ** aux
 */
-typedef struct		s_bresenham
+typedef struct s_bresenham
 {
-	int delta[2];
-	int increment[2][2];
-	int longest;
-	int shortest;
-	int numerator;
-	int i;
+	int				delta[2];
+	int				increment[2][2];
+	int				longest;
+	int				shortest;
+	int				numerator;
+	int				i;
 }					t_bresenham;
 /*
 ** bmp
 */
-typedef struct		s_bmp_header
+typedef struct s_bmp_header
 {
-	uint16_t		type;//0x4d42
-	uint32_t		size;//bytes
+	uint16_t		type;
+	uint32_t		size;
 	uint16_t		reserved;
-	//uint16_t		reserved2;
-	uint32_t		offset;//54 bytes
-	uint32_t		dib_header_size;//(40 bytes)
+	uint32_t		offset;
+	uint32_t		dib_header_size;
 	int32_t			width_px;
 	int32_t			height_px;
 	uint16_t		num_planes;
@@ -191,3 +193,5 @@ typedef struct		s_bmp_header
 	uint32_t		num_colors;
 	uint32_t		important_colors;
 }					t_bmp_header;
+
+#endif

@@ -6,31 +6,16 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/15 23:29:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 16:03:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-// static void	put_player(t_data *img, int *pos)
-// {
-// 	int line;
-// 	int player_pos[2];
-
-// 	define_img_colors(img, 200, 200, 200);
-// 	player_pos[X] = pos[X];
-// 	player_pos[Y] = pos[Y];
-// 	while (player_pos[Y] < pos[Y] + 2)
-// 	{
-// 		put_line(img, player_pos, player_pos[X] + 2, player_pos[Y]);
-// 		player_pos[Y]++;
-// 	}
-// }
-
 static void	put_tile(t_cub *cub, int *pos)
 {
-	int line;
-	int tile_pos[2];
+	int	line;
+	int	tile_pos[2];
 
 	define_img_colors(&cub->game.color, 2, 2, 2);
 	tile_pos[X] = pos[X];
@@ -42,27 +27,17 @@ static void	put_tile(t_cub *cub, int *pos)
 	}
 }
 
-// static void	render_player(t_data *img, t_player *player)
+// static void	check_limits(float *ray_hit, int *screen)
 // {
-// 	int player_pos[2];
-
-// 	player_pos[X] = player->pos[X] * SCALE;
-// 	player_pos[Y] = player->pos[Y] * SCALE;
-// 	put_player(img, player_pos);
+// 	if (ray_hit[X] < 1)
+// 		ray_hit[X] = 1;
+// 	if (ray_hit[X] > screen[WIDTH] / SCALE)
+// 		ray_hit[X] = screen[WIDTH] / SCALE;
+// 	if (ray_hit[Y] < 1)
+// 		ray_hit[Y] = 1;
+// 	if (ray_hit[Y] > screen[HEIGHT] / SCALE)
+// 		ray_hit[Y] = screen[HEIGHT] / SCALE;
 // }
-
-//!essa está bugadona, arrumar!
-static void	check_limits(float *ray_hit, int *screen)
-{
-	if (ray_hit[X]  < 1)
-		ray_hit[X]  = 1;
-	if (ray_hit[X]  > screen[WIDTH] / SCALE)
-		ray_hit[X]  = screen[WIDTH] / SCALE;
-	if (ray_hit[Y] < 1)
-		ray_hit[Y] = 1;
-	if (ray_hit[Y] > screen[HEIGHT] / SCALE)
-		ray_hit[Y] = screen[HEIGHT] / SCALE;
-}
 
 static void	render_rays(t_cub *cub, t_ray *rays)
 {
@@ -78,8 +53,9 @@ static void	render_rays(t_cub *cub, t_ray *rays)
 	player_pos[Y] = cub->game.player.pos[Y] * SCALE;
 	while (ray < cub->settings.screen[WIDTH])
 	{
-		check_limits(rays[ray].hit, cub->settings.screen);
-		put_line(cub, player_pos, rays[ray].hit[X] * SCALE, rays[ray].hit[Y] * SCALE);
+		//check_limits(rays[ray].hit, cub->settings.screen);
+		put_line(cub, player_pos, rays[ray].hit[X] * SCALE,
+			rays[ray].hit[Y] * SCALE);
 		ray++;
 	}
 }
@@ -87,8 +63,8 @@ static void	render_rays(t_cub *cub, t_ray *rays)
 void	render_minimap(t_cub *cub, t_map *map, t_ray *rays)
 {
 	int	line;
-	int column;
-	int tile_pos[2];
+	int	column;
+	int	tile_pos[2];
 
 	line = 0;
 	while (line < map->total_row)
@@ -104,6 +80,5 @@ void	render_minimap(t_cub *cub, t_map *map, t_ray *rays)
 		}
 		line++;
 	}
-	//render_player(img, &img->cub->player);
 	render_rays(cub, rays);
 }

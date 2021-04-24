@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 13:56:02 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/17 18:07:57 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 15:01:10 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	color_picker(unsigned char red, unsigned char green,
 	return (red << 16 | green << 8 | blue);
 }
 
-void		put_pixel(t_data *img, int pos_x, int pos_y, int color)
+void	put_pixel(t_data *img, int pos_x, int pos_y, int color)
 {
 	char	*dst;
 	int		offset;
 
 	offset = (pos_y * img->line_length + pos_x * (img->bits_per_pixel / 8));
 	dst = img->data + offset;
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 // void		put_square(t_data *img, int pos_x, int pos_y, int color)
@@ -47,9 +47,9 @@ void		put_pixel(t_data *img, int pos_x, int pos_y, int color)
 
 void	put_circle(t_data *img, int center_x, int center_y, int radius)
 {
-	int radius_squared;
-	int x;
-	int y;
+	int	radius_squared;
+	int	x;
+	int	y;
 
 	radius_squared = pow(radius, 2);
 	x = center_x - radius;

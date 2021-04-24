@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 01:19:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 14:48:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	check_args(int argc, char **argv)
 	return (FALSE);
 }
 
-int			main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_cub	cub;
 

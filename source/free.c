@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:22:45 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/16 21:44:28 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 13:45:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_paths(char **path)
 	}
 }
 
-void		free_cub(t_cub *cub)
+void	free_cub(t_cub *cub)
 {
 	free_paths(cub->settings.path); //!dar free antes daqui, assim que carregar imgs das texturas
 	free_map(cub->game.map.row);
