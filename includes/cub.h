@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 15:50:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 00:05:26 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	check_map(t_render *game);
 */
 void	render_cub(t_cub *cub);
 void	save_bmp(t_cub *cub);
-void	render_minimap(t_cub *cub, t_map *map, t_ray *rays);
 void	raycasting(t_cub *cub, t_ray *rays);
 void	put_background(t_cub *cub, t_rgb *ceiling, t_rgb *floor, t_rgb *color);
 void	put_walls(t_cub *cub, t_ray *rays);
@@ -44,6 +43,7 @@ void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle, int 
 /*
 ** bônus and extras
 */
+void	render_minimap(t_cub *cub, t_map *map, t_ray *rays);
 void	init_night_vision(t_cub *cub, t_rgb *night_vision, t_gradient *grad);
 void	night_vision_floor(t_cub *cub, t_rgb *night_vision);
 void	define_gradient(t_rgb *ceil, t_rgb *floor, t_gradient *gradient);
@@ -60,6 +60,7 @@ void	put_circle(t_data *img, int center_x, int center_y, int radius);
 /*
 ** render utils
 */
+int		is_inside_world_limits(float *coord, int *world);
 void	define_img_colors(t_rgb *color, int red, int green, int blue);
 float	normalize_angle(float angle);
 int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door);

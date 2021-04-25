@@ -263,7 +263,7 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 22/04: Still in the sprite's swamp
 
-* 23/04: 
+* 23/04: I gave myself a break from the mindblowing sprites and spent the day reviewing the code and adjusting to the norm
 
 </details>
 

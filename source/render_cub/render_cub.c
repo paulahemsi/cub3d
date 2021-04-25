@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 15:40:07 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 00:10:22 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	update_player(t_player *player, t_cub *cub)
 {
 	float	step;
-	float	new_position[2];
 	float	angle;
+	float	new_position[2];
 
 	player->angle += player->direction[TURN] * player->rotate_speed;
 	player->angle = normalize_angle(player->angle);
@@ -99,7 +99,6 @@ void	render_cub(t_cub *cub)
 	mlx_hook(cub->window_ptr, 33, 1L << 17, close_cub, cub);
 	mlx_loop(cub->mlx_ptr);
 }
-
 /*
 ** mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
 ** mlx_mouse_hide(img.mlx_ptr, img.window_ptr);

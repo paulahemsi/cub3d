@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:01:20 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/23 18:13:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 00:05:08 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,12 @@ int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door)
 float	calc_distance(int *pos, float *hit)
 {
 	return (sqrt(((hit[X] - pos[X]) * (hit[X] - pos[X])) + ((hit[Y] - pos[Y]) * (hit[Y] - pos[Y]))));
+}
+
+int	is_inside_world_limits(float *coord, int *world)
+{
+	if (coord[X] >= 0 && coord[X] <= world[WIDTH] && coord[Y] >= 0
+		&& coord[Y] <= world[HEIGHT])
+		return (1);
+	return (0);
 }

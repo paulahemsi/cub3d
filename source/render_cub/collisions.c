@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:08:11 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 14:58:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 00:19:47 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,25 @@ static void	define_ray_values(t_cast *direction, t_cub *cub,
 		direction->step[axis] = -TILE_SIZE;
 }
 
+static void	sprite_collision(t_render *game, float *to_check_tile)
+{
+	int i;
+
+	i = 0;
+	while (i < game->num_sprites)
+	{
+		if ((game->sprites[i].pos[X] == (int)floor(to_check_tile[X])) && (game->sprites[i].pos[Y] == (int)floor(to_check_tile[Y])))
+			game->sprites[i].visible = TRUE;
+		i++;
+	}
+	if (game->sprite == FALSE)
+		game->sprite = TRUE;
+}
+
 void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle, int column)
 {
 	float	to_check_tile[2];
-	
+
 	define_ray_values(horizontal, cub, HOR, is_ray_facing_down(angle));
 	horizontal->intercept[X] = cub->game.player.pos[X] + (horizontal->intercept[Y] - cub->game.player.pos[Y]) / tan(angle);
 	horizontal->step[X] = TILE_SIZE / tan(angle);
@@ -63,30 +78,20 @@ void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle, int 
 		horizontal->step[X] *= TOGGLE;
 	if (is_ray_facing_right(angle) && horizontal->step[X] < 0)
 		horizontal->step[X] *= TOGGLE;
-	while (horizontal->intercept[X] >= 0 && horizontal->intercept[X] <= cub->settings.world[WIDTH] && horizontal->intercept[Y] >= 0 && horizontal->intercept[Y] <= cub->settings.world[HEIGHT])
+	while (is_inside_world_limits(horizontal->intercept, cub->settings.world))
 	{
 		to_check_tile[X] = horizontal->intercept[X];
 		to_check_tile[Y] = horizontal->intercept[Y];
 		if (!(is_ray_facing_down(angle)))
 			to_check_tile[Y] -= 1;
 		if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
-		{
-			int i = 0;
-			while (i < cub->game.num_sprites)
-			{
-				if ((cub->game.sprites[i].pos[X] == (int)floor(to_check_tile[X])) && (cub->game.sprites[i].pos[Y] == (int)floor(to_check_tile[Y])))
-					cub->game.sprites[i].visible = TRUE;
-				i++;
-			}
-			if (cub->game.sprite == FALSE)
-				cub->game.sprite = TRUE;
-		}
+			sprite_collision(&cub->game, to_check_tile);
 		if (is_tile_free(to_check_tile, &cub->settings, &cub->game.map, FALSE))
 			increment(horizontal);
 		else
 		{
 			save_hit(horizontal, cub, to_check_tile);
-			break;
+			break ;
 		}
 	}
 }
@@ -102,30 +107,20 @@ void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle, int colu
 		vertical->step[Y] *= TOGGLE;
 	if (is_ray_facing_down(angle) && vertical->step[Y] < 0)
 		vertical->step[Y] *= TOGGLE;
-	while (vertical->intercept[X] >= 0 && vertical->intercept[X] <= cub->settings.world[WIDTH] && vertical->intercept[Y] >= 0 && vertical->intercept[Y] <= cub->settings.world[HEIGHT])
+	while (is_inside_world_limits(vertical->intercept, cub->settings.world))
 	{
 		to_check_tile[X] = vertical->intercept[X];
 		to_check_tile[Y] = vertical->intercept[Y];
 		if (!(is_ray_facing_right(angle)))
 			to_check_tile[X] -= 1;
 		if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
-		{
-			int i = 0;
-			while (i < cub->game.num_sprites)
-			{
-				if ((cub->game.sprites[i].pos[X] == (int)floor(to_check_tile[X])) && (cub->game.sprites[i].pos[Y] == (int)floor(to_check_tile[Y])))
-					cub->game.sprites[i].visible = TRUE;
-				i++;
-			}
-			if (cub->game.sprite == FALSE)
-				cub->game.sprite = TRUE;
-		}
+			sprite_collision(&cub->game, to_check_tile);
 		if (is_tile_free(to_check_tile, &cub->settings, &cub->game.map, FALSE))
 			increment(vertical);
 		else
 		{
 			save_hit(vertical, cub, to_check_tile);
-			break;
+			break ;
 		}
 	}
 }
