@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 02:08:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 16:22:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,26 @@ static void	check_colors(t_rgb *ceiling, t_rgb *floor)
 		return_error(-10);
 	if (floor->red > 255 || floor->blue > 255 || floor->green > 255)
 		return_error(-10);
+}
+
+static void	check_resolution_limits(t_cub *cub)
+{
+	int			max[2];
+	t_settings	*set;
+	t_render	*game;
+
+	set = &cub->settings;
+	game = &cub->game;
+	mlx_get_screen_size(cub->mlx_ptr, &max[X], &max[Y]);
+	if (set->screen[WIDTH] > max[X])
+		set->screen[WIDTH] = max[X];
+	if (set->screen[HEIGHT] > max[Y])
+		set->screen[HEIGHT] = max[Y];
+	set->center[X] = floor(set->screen[WIDTH] / 2);
+	set->center[Y] = floor(set->screen[HEIGHT] / 2);
+	game->player.plane_dist = floor((set->screen[WIDTH] / 2) / tan(HALF_FOV));
+	game->ray.step = FOV / set->screen[WIDTH];
+	game->ray.total = set->screen[WIDTH];
 }
 
 static void	define_world_size(t_settings *setting, t_map *map)
@@ -74,6 +94,7 @@ void	parse_scene(char *file, t_cub *cub)
 	define_world_size(&cub->settings, &cub->game.map);
 	fill_map(cub, file, cub->game.map.total_row);
 	check_map(&cub->game);
+	check_resolution_limits(cub);
 	save_sprites_locations(&cub->game);
 	load_textures(cub->settings.path, cub, &cub->game);
 }

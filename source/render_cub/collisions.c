@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:08:11 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/25 00:19:47 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 16:23:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,26 @@ static void	increment(t_cast *direction)
 	direction->intercept[Y] += direction->step[Y];
 }
 
-static void	define_ray_values(t_cast *direction, t_cub *cub,
-		int dir, int pos_axis)
+static void	define_ray_values(t_cast *ray, t_cub *cub,
+		int direction, int positive_direction)
 {
 	int	axis;
 
-	if (dir == HOR)
+	if (direction == HOR)
 		axis = Y;
 	else
 		axis = X;
-	direction->hitted = FALSE;
-	direction->intercept[axis] = floor(cub->game.player.pos[axis] / TILE_SIZE) * TILE_SIZE;
-	if (pos_axis)
+	ray->hitted = FALSE;
+	ray->intercept[axis] = ((cub->game.player.pos[axis] / TILE_SIZE) * TILE_SIZE);
+	if (!positive_direction)
+		ray->intercept[axis] -= 0.0001;
+	if (positive_direction)
 	{
-		direction->intercept[axis] += TILE_SIZE;
-		direction->step[axis] = TILE_SIZE;
+		ray->intercept[axis] += TILE_SIZE;
+		ray->step[axis] = TILE_SIZE;
 	}
 	else
-		direction->step[axis] = -TILE_SIZE;
+		ray->step[axis] = -TILE_SIZE;
 }
 
 static void	sprite_collision(t_render *game, float *to_check_tile)

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/23 18:58:14 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 16:24:58 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	cast_ray(t_cub *cub, float angle, int column, t_ray *rays)
 {
 	t_cast	horizontal;
 	t_cast	vertical;
-	float	distance;
 
 	find_horizontal_collision(cub, &horizontal, angle, column);
 	find_vertical_collision(cub, &vertical, angle, column);
@@ -64,27 +63,27 @@ static void	cast_ray(t_cub *cub, float angle, int column, t_ray *rays)
 		store_ray_data(rays, &horizontal, column, angle);
 		rays[column].vertical_hit = FALSE;
 	}
-	else if (vertical.distance < horizontal.distance)
+	else if (horizontal.distance > vertical.distance)
 	{
 		store_ray_data(rays, &vertical, column, angle);
 		rays[column].vertical_hit = TRUE;
 	}
-	else
+	else if ((column - 1) >= 0)
 		copy_last_ray(rays, column, angle);
 }
 
 void	raycasting(t_cub *cub, t_ray *rays)
 {
 	float	angle;
-	int		column;
+	int		pixel_column;
 
 	angle = cub->game.player.angle - HALF_FOV;
-	column = 0;
-	while (column < cub->game.ray.total)
+	pixel_column = 0;
+	while (pixel_column < cub->settings.screen[WIDTH])
 	{
 		angle = normalize_angle(angle);
-		cast_ray(cub, angle, column, rays);
+		cast_ray(cub, angle, pixel_column, rays);
 		angle += cub->game.ray.step;
-		column++;
+		pixel_column++;
 	}
 }
