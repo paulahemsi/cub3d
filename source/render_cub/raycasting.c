@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/25 16:24:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:18:46 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	raycasting(t_cub *cub, t_ray *rays)
 	{
 		angle = normalize_angle(angle);
 		cast_ray(cub, angle, pixel_column, rays);
-		angle += cub->game.ray.step;
+		angle += cub->game.ray.step;//!distorçãozinha lateral
 		pixel_column++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/25 00:05:26 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:34:02 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	put_circle(t_data *img, int center_x, int center_y, int radius);
 ** render utils
 */
 int		is_inside_world_limits(float *coord, int *world);
+int		is_inside_screen(int *screen, float x, float y);
 void	define_img_colors(t_rgb *color, int red, int green, int blue);
 float	normalize_angle(float angle);
 int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door);

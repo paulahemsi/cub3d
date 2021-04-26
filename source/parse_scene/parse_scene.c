@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/25 16:22:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 12:43:27 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	define_world_size(t_settings *setting, t_map *map)
 	setting->world[HEIGHT] = map->total_row * TILE_SIZE;
 }
 
+//! fazer tb um loop do total de sprites para não procurar além do que precisa quando todas forem achadas
 static void	save_sprites_locations(t_render *game)
 {
 	char	**map;

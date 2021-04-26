@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/23 21:09:57 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:52:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	get_texture_color(int *init, int *offset, t_cub *cub, int y)
 	
 	texture = cub->game.texture[cub->game.wall];
 	offset[Y] = (y - init[Y]) * ((float)texture.height / (float)cub->game.wall_height);
-	return (*(unsigned int *)(texture.img.data + (offset[Y] * texture.img.line_length + offset[X] * (texture.img.bits_per_pixel / 8))));
+	return (*(unsigned int *)(texture.img.data + (offset[Y] * texture.img.line_length + offset[X] * (texture.img.bits_per_pixel / 8)))); //*GLITCH / 32
 }
 
 void		put_line(t_cub *cub, int *pos, int x2, int y2)
@@ -84,7 +84,7 @@ void		put_line(t_cub *cub, int *pos, int x2, int y2)
 	while (n.i <= n.longest)
 	{
 		if (cub->game.is_texture && (cub->toggle.night_mode != TRUE) && (cub->toggle.debug != TRUE))
-			color = get_texture_color(pos, cub->game.offset, cub, init[Y]);//&n);
+			color = get_texture_color(pos, cub->game.offset, cub, init[Y]);
 		else
 			color = color_picker(cub->game.color.red, cub->game.color.green, cub->game.color.blue);
 		put_pixel(&cub->img, init[X], init[Y], color);

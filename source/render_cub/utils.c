@@ -6,21 +6,21 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:01:20 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/25 00:05:08 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:43:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-float	degrees_to_radians(int degree)
-{
-	return ((float)degree * PI / 180);
-}
+// float	degrees_to_radians(int degree)
+// {
+// 	return ((float)degree * PI / 180);
+// }
 
-int		radiands_to_degrees(float radian)
-{
-	return (floor(radian * 180 / PI));
-}
+// int		radiands_to_degrees(float radian)
+// {
+// 	return (floor(radian * 180 / PI));
+// }
 
 void	define_img_colors(t_rgb *color, int red, int green, int blue)
 {
@@ -100,4 +100,11 @@ int	is_inside_world_limits(float *coord, int *world)
 		&& coord[Y] <= world[HEIGHT])
 		return (1);
 	return (0);
+}
+
+int	is_inside_screen(int *screen, float x, float y)
+{
+	if (x > 0 && x < screen[WIDTH] && y > 0 && y < screen[HEIGHT])
+		return (TRUE);
+	return (FALSE);
 }

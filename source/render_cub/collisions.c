@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:08:11 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/25 16:23:57 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 13:18:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	save_hit(t_cast *direction, t_cub *cub, float *to_check_tile)
 	row = (int)floor(to_check_tile[X] / TILE_SIZE);
 	direction->hit[X] = direction->intercept[X];
 	direction->hit[Y] = direction->intercept[Y];
-	//!DEU UM SEGV READ UNKNOW ADDRESS AQUI:
+	//!segv read aqui:
 	direction->content = cub->game.map.row[col][row];
 	direction->hitted = TRUE;
 }
@@ -61,7 +61,9 @@ static void	sprite_collision(t_render *game, float *to_check_tile)
 	i = 0;
 	while (i < game->num_sprites)
 	{
-		if ((game->sprites[i].pos[X] == (int)floor(to_check_tile[X])) && (game->sprites[i].pos[Y] == (int)floor(to_check_tile[Y])))
+		if ((game->sprites[i].pos[X] == (int)floor(to_check_tile[X]))
+			&& (game->sprites[i].pos[Y] == (int)floor(to_check_tile[Y]))
+			&& game->sprites[i].visible == FALSE)
 			game->sprites[i].visible = TRUE;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 14:28:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:41:50 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ typedef struct s_sprite
 	int				height;
 	int				width;
 	float			distance;
+	float			init[2];
+	float			end[2];
 	int				visible;
 }					t_sprite;
 

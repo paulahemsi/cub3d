@@ -265,5 +265,9 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 23/04: I gave myself a break from the mindblowing sprites and spent the day reviewing the code and adjusting to the norm
 
+* 24/04: Same as yesterday
+
+* 25/04: The bug that made the player sometimes look through the walls and see the horizont are fixed. 
+
 </details>
 
