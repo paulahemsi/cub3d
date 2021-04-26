@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 04:18:55 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 20:24:39 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	key_pressed(int key, t_cub *cub)
 	else if (key == SHIFT)
 	{
 		cub->game.player.speed = 20;
-		cub->game.player.rotate_speed = 6 * PI / 180;
+		cub->game.player.rotate_speed = 4 * PI / 180;
 	}
 	else if (key == P)
 	{
@@ -75,6 +75,8 @@ int	key_pressed(int key, t_cub *cub)
 	}
 	if (key == TAB)
 		cub->toggle.show_minimap *= TOGGLE;
+	if (key == R)
+		cub->toggle.always_running *= TOGGLE;
 	if (key == G || key == B || key == N)
 		update_effects(key, &cub->toggle);
 	return (0);

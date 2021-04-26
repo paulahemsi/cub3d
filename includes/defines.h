@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:25 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 14:40:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 20:23:24 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 # define G				0x0067
 # define B				0x0062
 # define P				0x0070
+# define R				0x0072
 # define N				0x006e
 # define Q				0x0071
 # define E				0x0065

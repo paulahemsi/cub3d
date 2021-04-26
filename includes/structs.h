@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/26 14:41:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 20:23:56 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ typedef struct s_toggle
 	int				gradient;
 	int				debug;
 	int				night_mode;
-	int				save;
 	int				show_minimap;
+	int				always_running;
+	int				save;
 	int				bmp_id;
 }					t_toggle;
 /*

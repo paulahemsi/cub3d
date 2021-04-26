@@ -6,11 +6,30 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/26 13:23:40 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 20:48:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+
+static int		is_tile_free_p(float *pos, t_settings *set, t_map *map, int secret_door)
+{
+	int minimap[2];
+
+	if (pos[X] < 0 || pos[X] >= set->world[WIDTH] || pos[Y] < 0 || pos[Y] >= set->world[HEIGHT])
+		return (FALSE);
+	minimap[ROW] = floor(pos[Y] / TILE_SIZE);
+	minimap[COL] = floor(pos[X] / TILE_SIZE);
+	if (minimap[X] >= map->total_column || minimap[Y] >= map->total_row)
+		return (FALSE);
+	if (map->row[minimap[ROW]][minimap[COL]] == '0')
+		return (TRUE);
+	if (map->row[minimap[ROW]][minimap[COL]] == '3' && (secret_door))
+		return (TRUE);
+	if (map->row[minimap[ROW]][minimap[COL]] == '2')
+		return (FALSE);
+	return (FALSE);
+}
 
 static void	update_player(t_player *player, t_cub *cub)
 {
@@ -18,6 +37,17 @@ static void	update_player(t_player *player, t_cub *cub)
 	float	angle;
 	float	new_position[2];
 
+	if (cub->toggle.always_running == TRUE)
+	{
+		cub->game.player.speed = 20;
+		cub->game.player.rotate_speed = 4 * PI / 180;
+	}
+	else
+	{
+		cub->game.player.speed = 7;
+		cub->game.player.rotate_speed = 1.5 * PI / 180;
+	}
+	
 	player->angle += player->direction[TURN] * player->rotate_speed;
 	player->angle = normalize_angle(player->angle);
 	step = player->direction[MOVE] * player->speed;
@@ -27,7 +57,7 @@ static void	update_player(t_player *player, t_cub *cub)
 		angle = 0;
 	new_position[X] = player->pos[X] + (cos(player->angle + angle) * step);
 	new_position[Y] = player->pos[Y] + (sin(player->angle + angle) * step);
-	if (is_tile_free(new_position, &cub->settings, &cub->game.map, TRUE))
+	if (is_tile_free_p(new_position, &cub->settings, &cub->game.map, TRUE))
 	{
 		player->pos[X] = new_position[X];
 		player->pos[Y] = new_position[Y];
@@ -50,7 +80,7 @@ static int	update(t_cub *cub)
 		&cub->game.color);
 	raycasting(cub, rays);
 	put_walls(cub, rays);
-	put_sprite(cub->game.sprites, &cub->game.player,&cub->settings, cub);
+	put_sprite(cub->game.sprites, &cub->game.player, cub, rays);
 	update_player(&cub->game.player, cub);
 	if (cub->toggle.show_minimap == TRUE)
 		render_minimap(cub, &cub->game.map, rays);

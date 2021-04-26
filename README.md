@@ -142,7 +142,7 @@ g | toggle background gradient				|
 b | toggle debug colors				|
 n | toggle night vision				|
 p | save .bmp screenshot				|
-
+r | always running mode on		|
 
 
 ## work_diary
@@ -267,7 +267,10 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 24/04: Same as yesterday
 
-* 25/04: The bug that made the player sometimes look through the walls and see the horizont are fixed. 
+* 25/04: The bug that made the player sometimes look through the walls and see the horizont is fixed. 
+
+* 26/04: I gave myself until thursday to put the sprites in the game. Big achievement today: the pink square that represents my sprites for now is in the same position in the map, without follow the player's view as before.
+I also implemented a "always running" key (`r`), very usefull when the player (or the programmer) is without patience to walk slow
 
 </details>
 
