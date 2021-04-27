@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 16:03:21 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 14:26:48 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ static void	put_tile(t_cub *cub, int *pos)
 	int	line;
 	int	tile_pos[2];
 
-	define_img_colors(&cub->game.color, 2, 2, 2);
+	if (cub->toggle.night_mode == TRUE)
+		define_img_colors(&cub->game.color, 2, 2, 2);
+	else
+		define_img_colors(&cub->game.color, 22, 22, 22);
 	tile_pos[X] = pos[X];
 	tile_pos[Y] = pos[Y];
 	while (tile_pos[Y] < pos[Y] + (TILE_SIZE * SCALE))
@@ -48,7 +51,7 @@ static void	render_rays(t_cub *cub, t_ray *rays)
 	if (cub->toggle.night_mode == TRUE)
 		define_img_colors(&cub->game.color, 123, 246, 18);
 	else
-		define_img_colors(&cub->game.color, 200, 200, 0);
+		define_img_colors(&cub->game.color, 255, 255, 255);
 	player_pos[X] = cub->game.player.pos[X] * SCALE;
 	player_pos[Y] = cub->game.player.pos[Y] * SCALE;
 	while (ray < cub->settings.screen[WIDTH])

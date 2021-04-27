@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 20:00:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 02:22:25 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 14:24:41 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@ static void	set_sprite_values(t_cub *cub, t_sprite *sprite, t_player *player)
 static int	get_sprite_color(t_sprite *sprite, t_texture *texture, int x, int y, t_settings *set)
 {
 	int offset[2];
-	//int dist_to_top;
+	int dist_to_top;
 
-	offset[X] = x - sprite->init[X];
-	if (offset[X] < 0)
-		offset[X] *= -1;
-	offset[X] *= texture->width;
-	//dist_to_top = y + (sprite->height / 2) - set->center[HEIGHT];
-	offset[Y] = (y - sprite->init[Y]) * (texture->height / sprite->height);
+	offset[X] = (x - sprite->init[X]) * sprite->texture.width / sprite->width;
+	// if (offset[X] < 0)
+	// offset[X] *= -1;
+	dist_to_top = y + (sprite->height / 2) - (set->screen[HEIGHT] / 2);
+	offset[Y] = dist_to_top * ((float)texture->height / (float)sprite->height);
 	return (*(unsigned int *)(texture->img.data + (offset[Y] * texture->img.line_length + offset[X] * (texture->img.bits_per_pixel / 8))));
 }
 
@@ -50,7 +49,7 @@ static void	draw_sprite(t_cub *cub, t_sprite *sprite, t_player *player, t_ray *r
 {
 	int	y;
 	int	x;
-	int		dist_to_top;
+	int	color;
 
 	x = (int)sprite->init[X];
 	while (x < sprite->end[X])
@@ -60,7 +59,11 @@ static void	draw_sprite(t_cub *cub, t_sprite *sprite, t_player *player, t_ray *r
 		{
 			if (is_inside_screen(cub->settings.screen, x, y))
 				if (sprite->distance < ray[x].dist)
-					put_pixel(&cub->img, x, y, 0xFF0088);//get_sprite_color(sprite, &sprite->texture, x, y, &cub->settings));
+				{
+					color = get_sprite_color(sprite, &sprite->texture, x, y, &cub->settings);
+					if (color != 0x000000)
+						put_pixel(&cub->img, x, y, color);
+				}
 			y++;
 		}
 		x++;
@@ -84,6 +87,6 @@ void	put_sprite(t_sprite *sprites, t_player *player, t_cub *cub, t_ray *ray)
 			i++;
 		}
 	}
-	cub->game.sprite = FALSE;
+	cub->game.sprite = FALSE; //?precisa?
 
 }

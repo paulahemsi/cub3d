@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 02:21:39 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 14:28:32 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void	define_wall_colors(t_cub *cub, t_ray *rays, int ray)
 	else
 		longest_side = cub->settings.world[WIDTH];
 	color = 255;
-	shadow = floor((rays[ray].dist / 1000) * 255);
+	shadow = floor((rays[ray].dist / 500) * 255);
 	color -= shadow;
 	if (color > 200)
 		color = 200;
@@ -146,7 +146,7 @@ void	put_walls(t_cub *cub, t_ray *rays)
 	int		init[2];
 
 	ray = 0;
-	cub->game.is_texture = FALSE;
+	cub->game.is_texture = TRUE;
 	while (ray < cub->game.ray.total)
 	{
 		cub->game.wall_height = (floor)(TILE_SIZE / rays[ray].dist * cub->game.player.plane_dist);
