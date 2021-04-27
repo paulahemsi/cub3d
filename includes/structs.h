@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/26 20:23:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 02:06:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ typedef struct s_render
 	t_rgb			color;
 	t_texture		*texture;
 	t_sprite		*sprites;
-	t_texture		hearts;
+	t_texture		hud;
 	t_texture		skybox;
 	int				num_sprites;
 	int				wall_height;

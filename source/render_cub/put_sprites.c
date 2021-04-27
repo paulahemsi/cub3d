@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 20:00:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/26 21:05:39 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 02:22:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ static void	set_sprite_values(t_cub *cub, t_sprite *sprite, t_player *player)
 	sprite->end[X] = sprite->init[X] + sprite->width;
 }
 
+static int	get_sprite_color(t_sprite *sprite, t_texture *texture, int x, int y, t_settings *set)
+{
+	int offset[2];
+	//int dist_to_top;
+
+	offset[X] = x - sprite->init[X];
+	if (offset[X] < 0)
+		offset[X] *= -1;
+	offset[X] *= texture->width;
+	//dist_to_top = y + (sprite->height / 2) - set->center[HEIGHT];
+	offset[Y] = (y - sprite->init[Y]) * (texture->height / sprite->height);
+	return (*(unsigned int *)(texture->img.data + (offset[Y] * texture->img.line_length + offset[X] * (texture->img.bits_per_pixel / 8))));
+}
+
 static void	draw_sprite(t_cub *cub, t_sprite *sprite, t_player *player, t_ray *ray)
 {
 	int	y;
@@ -46,7 +60,7 @@ static void	draw_sprite(t_cub *cub, t_sprite *sprite, t_player *player, t_ray *r
 		{
 			if (is_inside_screen(cub->settings.screen, x, y))
 				if (sprite->distance < ray[x].dist)
-					put_pixel(&cub->img, x, y, 0xFFFF0077);
+					put_pixel(&cub->img, x, y, 0xFF0088);//get_sprite_color(sprite, &sprite->texture, x, y, &cub->settings));
 			y++;
 		}
 		x++;

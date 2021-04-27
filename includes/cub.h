@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/26 20:49:33 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 03:18:35 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	night_vision_floor(t_cub *cub, t_rgb *night_vision);
 void	define_gradient(t_rgb *ceil, t_rgb *floor, t_gradient *gradient);
 void	activate_gradient(t_rgb *color, t_rgb *opposite_surface, t_gradient *gradient);
 void	toggle_increment(t_gradient *gradient);
+void	put_hud(t_texture *texture, t_cub *cub);
 /*
 ** render tools
 */
@@ -72,7 +73,7 @@ int		is_ray_facing_down(float angle);
 /*
 ** events
 */
-int		mouse_clicked(int btn, int pos_x, int pos_y, t_data *img);
+int		mouse_clicked(int btn, int pos_x, int pos_y, t_cub *cub);
 int		key_pressed(int key, t_cub *cub);
 int		key_released(int key, t_cub *cub);
 void	return_error(int error_id);

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/26 20:48:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 03:18:03 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ static void	update_player(t_player *player, t_cub *cub)
 	}
 	else
 	{
-		cub->game.player.speed = 7;
-		cub->game.player.rotate_speed = 1.5 * PI / 180;
+		cub->game.player.speed = 10;
+		cub->game.player.rotate_speed = 2.5 * PI / 180;
 	}
-	
 	player->angle += player->direction[TURN] * player->rotate_speed;
 	player->angle = normalize_angle(player->angle);
 	step = player->direction[MOVE] * player->speed;
@@ -82,6 +81,7 @@ static int	update(t_cub *cub)
 	put_walls(cub, rays);
 	put_sprite(cub->game.sprites, &cub->game.player, cub, rays);
 	update_player(&cub->game.player, cub);
+	put_hud(&cub->game.hud, cub);
 	if (cub->toggle.show_minimap == TRUE)
 		render_minimap(cub, &cub->game.map, rays);
 	if (!(cub->toggle.save))
@@ -113,6 +113,6 @@ void	render_cub(t_cub *cub)
 	mlx_loop(cub->mlx_ptr);
 }
 /*
-** mlx_mouse_hook(img.window_ptr, mouse_clicked, &img);
+** mlx_mouse_hook(cub->window_ptr, mouse_clicked, cub);
 ** mlx_mouse_hide(img.mlx_ptr, img.window_ptr);
 */

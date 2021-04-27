@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 04:58:22 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 02:05:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 
 static void	load_hud(t_cub *cub, t_render *game)
 {
-	game->hearts.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr,
-			"./textures/pixel_heart_edit.XPM",
-			&game->hearts.width, &game->hearts.height);
-	game->hearts.img.data = mlx_get_data_addr(game->hearts.img.ptr,
-			&game->hearts.img.bits_per_pixel,
-			&game->hearts.img.line_length,
-			&game->hearts.img.endian);
+	game->hud.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr,
+			"./textures/hud.XPM",
+			&game->hud.width, &game->hud.height);
+	game->hud.img.data = mlx_get_data_addr(game->hud.img.ptr,
+			&game->hud.img.bits_per_pixel,
+			&game->hud.img.line_length,
+			&game->hud.img.endian);
 }
 
 static void	load_skybox(t_cub *cub, t_render *game)
