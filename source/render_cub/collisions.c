@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:08:11 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/26 23:48:04 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 22:52:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,14 @@ void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle, int 
 			to_check_tile[Y] -= 1;
 		if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
 			sprite_collision(&cub->game, to_check_tile);
-		if (is_tile_free(to_check_tile, &cub->settings, &cub->game.map, FALSE))
-			increment(horizontal);
-		else
+		if (has_wall(to_check_tile, &cub->settings, &cub->game.map))
 		{
 			save_hit(horizontal, cub, to_check_tile);
 			break ;
+		}
+		else
+		{
+			increment(horizontal);
 		}
 	}
 }
@@ -119,12 +121,12 @@ void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle, int colu
 			to_check_tile[X] -= 1;
 		if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
 			sprite_collision(&cub->game, to_check_tile);
-		if (is_tile_free(to_check_tile, &cub->settings, &cub->game.map, FALSE))
-			increment(vertical);
-		else
+		if (has_wall(to_check_tile, &cub->settings, &cub->game.map))
 		{
 			save_hit(vertical, cub, to_check_tile);
 			break ;
 		}
+		else
+			increment(vertical);
 	}
 }

@@ -270,9 +270,11 @@ I also implemented invisibility and crouching, but the result got a little bit a
 * 25/04: The bug that made the player sometimes look through the walls and see the horizont is fixed. 
 
 * 26/04: I gave myself until thursday to put the sprites in the game. Big achievement today: the pink square that represents my sprites for now is in the same position in the map, without follow the player's view as before.
-I also implemented a "always running" key (`r`), very usefull when the player (or the programmer) is without patience to walk slow.
+I also implemented a "always running" key (`r`), very usefull when the player (or the programmer) is without patience to walk slow, and started to use my breaks from coding to draw a hud for the game. I started drawing a little girl (the main character) and some hearts for the life bar. Hearts are harder to draw than I thougth.
 
-* 27/04: I started to use my breaks from coding to draw a hud for the game. I started drawing a little girl (the main character) and some hearts for the life bar. Hearts are harder to draw than I thougth.
+* 27/04: Another day of hope! The sprites are being render on the map! They are full of bugs? Yes, but is a huge step anyway :)
+I also finally fix a bug that was making the program crash once in a while. The problem was in my raycasting function, I was checking if the tile was free and if not, I was supposing that the tile should be a wall and saved the hit, but apparently there's some other possible cases, so I changed the function and now I check if has a wall in the tile first, and if it isn't, I increment to continue my wall search.
+Less but not least, I drawed more elements to the hud: night vision glasses, map, keys and a skull version of the character.
 
 </details>
 

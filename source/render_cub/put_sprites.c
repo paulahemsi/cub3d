@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 20:00:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 14:24:41 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 14:47:49 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,37 @@ static void	draw_sprite(t_cub *cub, t_sprite *sprite, t_player *player, t_ray *r
 	}
 }
 
+static void	sort_sprites(t_sprite *sprites, t_player *player, t_cub *cub)
+{
+	t_sprite	*temp;
+	int			i;
+
+	i = 0;
+	while (i < cub->game.num_sprites)
+	{
+		sprites[i].distance = sqrt(((sprites->pos[X] - player->pos[X]) * (sprites->pos[X] - player->pos[X])) + ((sprites->pos[Y] - player->pos[Y]) * (sprites->pos[Y] - player->pos[Y])));
+		i++;
+	}
+	i = 0;
+	while (i < cub->game.num_sprites - 1)
+	{
+		if (sprites[i].distance < sprites[i + 1].distance)
+		{
+			*temp = sprites[i];
+			sprites[i] = sprites[i + 1];
+			sprites[i + 1] = *temp;
+		}
+		i++;
+	}
+}
+
 void	put_sprite(t_sprite *sprites, t_player *player, t_cub *cub, t_ray *ray)
 {
 
 	if (cub->game.sprite)
 	{
 		int i = 0;
+		sort_sprites(sprites, player, cub);
 		while (i < cub->game.num_sprites)
 		{
 			if (sprites[i].visible == TRUE)

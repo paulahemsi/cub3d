@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/25 22:52:01 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 18:10:07 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ static int	get_texture_color(int *init, int *offset, t_cub *cub, int y)
 	t_texture	texture;
 	
 	texture = cub->game.texture[cub->game.wall];
-	offset[Y] = (y - init[Y]) * ((float)texture.height / (float)cub->game.wall_height);
+	int dist_to_top = y + (cub->game.wall_height / 2) - (cub->settings.screen[HEIGHT] / 2);
+	offset[Y] = dist_to_top * ((float)texture.height / (float)cub->game.wall_height);
 	return (*(unsigned int *)(texture.img.data + (offset[Y] * texture.img.line_length + offset[X] * (texture.img.bits_per_pixel / 8)))); //*GLITCH / 32
 }
 

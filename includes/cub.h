@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 03:18:35 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/27 22:51:13 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		hit_sprite(float *pos, t_settings *set, t_map *map);
 float	calc_distance(int *pos, float *hit);
 int		is_ray_facing_right(float angle);
 int		is_ray_facing_down(float angle);
+int		has_wall(float *pos, t_settings *set, t_map *map);
 /*
 ** events
 */
