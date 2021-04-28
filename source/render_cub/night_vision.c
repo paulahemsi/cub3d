@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 15:20:01 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 15:54:57 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/28 17:07:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,45 @@ void	night_vision_floor(t_cub *cub, t_rgb *night_vision)
 		night_vision[FLOOR].red,
 		night_vision[FLOOR].green,
 		night_vision[FLOOR].blue);
+}
+
+static void	define_horizontal_colors(t_rgb *color, t_ray *rays, int ray)
+{
+	if (rays[ray].up)
+	{
+		if (rays[ray].wall_content == '3')
+			define_img_colors(color, 123, 246, 18);
+		else
+			define_img_colors(color, 62, 180, 6);
+	}
+	else
+	{
+		if (rays[ray].wall_content == '3')
+			define_img_colors(color, 123, 246, 18);
+		else
+			define_img_colors(color, 94, 211, 8);
+	}
+}
+
+void	toggle_night_mode(t_rgb *color, t_ray *rays, int ray)
+{
+	if (rays[ray].vertical_hit)
+	{
+		if (rays[ray].left)
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(color, 123, 246, 18);
+			else
+				define_img_colors(color, 20, 116, 0);
+		}
+		else
+		{
+			if (rays[ray].wall_content == '3')
+				define_img_colors(color, 123, 246, 18);
+			else
+				define_img_colors(color, 27, 123, 0);
+		}
+	}
+	else
+		define_horizontal_colors(color, rays, ray);
 }

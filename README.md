@@ -277,6 +277,7 @@ I also finally fix a bug that was making the program crash once in a while. The 
 Less but not least, I drawed more elements to the hud: night vision glasses, map, keys and a skull version of the character.
 
 * 28/04: I need to say: I just love the bugs! I wish I had written what I did to make them and use them in the game! Well, better late than ever, today I wrote down my new bug to make a dizzy effect.
+And also in the bug subject, I've, after days and days of struggling and digging, corrected the walls' texture bug! Yey!
 
 </details>
 

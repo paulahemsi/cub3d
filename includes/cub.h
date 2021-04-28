@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 22:51:13 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/28 17:11:52 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	define_gradient(t_rgb *ceil, t_rgb *floor, t_gradient *gradient);
 void	activate_gradient(t_rgb *color, t_rgb *opposite_surface, t_gradient *gradient);
 void	toggle_increment(t_gradient *gradient);
 void	put_hud(t_texture *texture, t_cub *cub);
+void	toggle_night_mode(t_rgb *color, t_ray *rays, int ray);
+void	define_wall_colors(t_cub *cub, t_ray *rays, int ray);
 /*
 ** render tools
 */

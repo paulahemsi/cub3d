@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 03:08:25 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:59:45 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static void	store_player_settings(t_player *player, char *dir, int row, int col)
 	player->speed = 10;
 	player->rotate_speed = 2.5 * (PI / 180);
 	*dir = '0';
-	player->height = PLAYER_HEIGHT;
 }
 
 void	check_map(t_render *game)

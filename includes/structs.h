@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 15:59:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:57:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ typedef struct s_player
 	float			angle;
 	int				speed;
 	float			rotate_speed;
-	int				height;
-	int				invisible;
 }					t_player;
 
 typedef struct s_ray
