@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:55:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 13:09:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:30:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void		put_line(t_cub *cub, int *pos, int x2, int y2)
 		//	color = get_texture_color(pos, cub->game.offset, cub, init[Y]);
 		//else
 		color = color_picker(cub->game.color.red, cub->game.color.green, cub->game.color.blue);
-		put_pixel(&cub->img, init[X], init[Y], color);
+		if (is_inside_screen(cub->settings.screen, init[X], init[Y]))
+			put_pixel(&cub->img, init[X], init[Y], color);
 		n.numerator += n.shortest;
 		if (n.numerator > n.longest)
 		{
