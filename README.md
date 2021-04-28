@@ -276,5 +276,7 @@ I also implemented a "always running" key (`r`), very usefull when the player (o
 I also finally fix a bug that was making the program crash once in a while. The problem was in my raycasting function, I was checking if the tile was free and if not, I was supposing that the tile should be a wall and saved the hit, but apparently there's some other possible cases, so I changed the function and now I check if has a wall in the tile first, and if it isn't, I increment to continue my wall search.
 Less but not least, I drawed more elements to the hud: night vision glasses, map, keys and a skull version of the character.
 
+* 28/04: I need to say: I just love the bugs! I wish I had written what I did to make them and use them in the game! Well, better late than ever, today I wrote down my new bug to make a dizzy effect.
+
 </details>
 

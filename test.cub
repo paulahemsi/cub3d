@@ -5,8 +5,8 @@ F 0, 0, 0
 
 WE ./textures/tile_64.XPM
 EA ./textures/matrix_green.xpm
-NO ./textures/dark_pb.xpm
-SO ./textures/light_pb.xpm
+NO ./textures/candy_mushroom.xpm
+SO ./textures/pb_bloobs.xpm
 S ./textures/pillar.xpm
 
         11111111
