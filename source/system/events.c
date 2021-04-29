@@ -6,17 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 16:56:46 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 22:31:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
-
-int	close_cub(int key, t_cub *cub)
-{
-	free_all(cub);
-	exit(0);
-}
+#include "../../includes/cub.h"
 
 static void	update_player_direction(int key, int *player_direction)
 {
@@ -56,7 +50,7 @@ static void	update_effects(int key, t_toggle *toggle)
 int	key_pressed(int key, t_cub *cub)
 {
 	if (key == ESC)
-		close_cub(key, cub);
+		close_cub(cub);
 	if (key == W || key == A || key == S || key == D)
 		update_player_direction(key, cub->game.player.direction);
 	if (key == LEFT || key == Q)
@@ -107,7 +101,7 @@ int	key_released(int key, t_cub *cub)
 	return (0);
 }
 
-int		mouse_clicked(int button, int pos_x, int pos_y, t_cub *cub)
+int	mouse_clicked(int button, int pos_x, int pos_y, t_cub *cub)
 {
 	if ((button == MOUSE_1) || (button == MOUSE_2) || (button == MOUSE_3))
 	{

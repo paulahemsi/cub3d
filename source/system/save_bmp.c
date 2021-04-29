@@ -6,11 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/24 13:23:07 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 15:20:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 static void	init_header(int *screen, t_bmp_header *header)
 {
@@ -50,7 +50,7 @@ static void	fill_bmp_header(int fd, t_bmp_header header)
 	write(fd, &header.important_colors, 4);
 }
 
-static void	fill_bmp(int fd, t_data *img, int *screen)
+static void	fill_bmp(t_cub *cub, int fd, t_data *img, int *screen)
 {
 	int	line;
 	int	index;
@@ -60,7 +60,7 @@ static void	fill_bmp(int fd, t_data *img, int *screen)
 	{
 		index = line * img->line_length;
 		if (write(fd, &img->data[index], img->line_length) <= 0)
-			return_error(-11);
+			return_error(cub, -11);
 		line--;
 	}
 }
@@ -93,10 +93,10 @@ void	save_bmp(t_cub *cub)
 	file_name = define_name(cub->toggle.bmp_id);
 	fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (!(fd))
-		return_error(-11);
+		return_error(cub, -11);
 	init_header(cub->settings.screen, &header);
 	fill_bmp_header(fd, header);
-	fill_bmp(fd, &cub->img, cub->settings.screen);
+	fill_bmp(cub, fd, &cub->img, cub->settings.screen);
 	close(fd);
 	if (!(cub->toggle.bmp_id))
 	{

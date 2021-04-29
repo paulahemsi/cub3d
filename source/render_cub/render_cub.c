@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 22:28:34 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 22:32:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-static int		is_tile_free_p(float *pos, t_settings *set, t_map *map, int secret_door)
+static int	is_tile_free_p(float *pos, t_settings *set, t_map *map, int secret_door)
 {
 	int minimap[2];
 
@@ -63,20 +63,28 @@ static void	update_player(t_player *player, t_cub *cub)
 	}
 }
 
+static void	create_image(t_cub *cub)
+{
+	int		*win;
+	t_data	*img;
+
+	img = &cub->img;
+	win = cub->settings.screen;
+	if (img->ptr)
+		mlx_destroy_image(cub->mlx_ptr, img->ptr);
+	img->ptr = mlx_new_image(cub->mlx_ptr, win[WIDTH], win[HEIGHT]);
+	img->data = mlx_get_data_addr(img->ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
+}
+
 static int	update(t_cub *cub)
 {
-	t_ray	*rays;
+	t_ray		*rays;
+	t_settings	*set;
 
+	set = &cub->settings,
 	rays = (t_ray *)malloc(cub->settings.screen[WIDTH] * sizeof(t_ray));
-	if (cub->img.ptr)
-		mlx_destroy_image(cub->mlx_ptr, cub->img.ptr);
-	cub->img.ptr = mlx_new_image(cub->mlx_ptr,
-			cub->settings.screen[WIDTH],
-			cub->settings.screen[HEIGHT]);
-	cub->img.data = mlx_get_data_addr(cub->img.ptr, &cub->img.bits_per_pixel,
-			&cub->img.line_length, &cub->img.endian);
-	put_background(cub, &cub->settings.ceiling, &cub->settings.floor,
-		&cub->game.color);
+	create_image(cub);
+	put_background(cub, &set->ceiling, &cub->settings.floor, &cub->game.color);
 	raycasting(cub, rays);
 	put_walls(cub, rays);
 	put_sprite(cub->game.sprites, &cub->game.player, cub, rays);
@@ -91,18 +99,20 @@ static int	update(t_cub *cub)
 	return (0);
 }
 
+static void	generate_window(t_cub *cub)
+{
+	cub->window_ptr = mlx_new_window(cub->mlx_ptr,
+			cub->settings.screen[WIDTH],
+			cub->settings.screen[HEIGHT],
+			"cub3D");
+	if (!(cub->window_ptr))
+		return_error(cub, -9);
+}
+
 void	render_cub(t_cub *cub)
 {
 	if (!(cub->toggle.save))
-	{
-		cub->window_ptr = mlx_new_window(cub->mlx_ptr,
-				cub->settings.screen[WIDTH],
-				cub->settings.screen[HEIGHT],
-				"cub3D");
-		if (!(cub->window_ptr))
-			return_error(-9);
-	}
-	cub->img.ptr = NULL;
+		generate_window(cub);
 	update(cub);
 	if (cub->toggle.save)
 		save_bmp(cub);

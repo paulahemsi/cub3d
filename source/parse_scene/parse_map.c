@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/23 20:55:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 14:24:34 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ static int	is_valid_char(char c, int *player)
 	return (FALSE);
 }
 
-static void	fill_row(t_map *map, char *line, int index, int *player)
+static void	fill_row(t_cub *cub, char *line, int index, int *player)
 {
 	unsigned int	col;
+	t_map			*map;
 
+	map = &cub->game.map;
 	col = map->total_column;
 	map->row[index] = (char *)malloc((col + 1) * sizeof(char));
 	map->row[index][col] = '\0';
@@ -48,7 +50,7 @@ static void	fill_row(t_map *map, char *line, int index, int *player)
 	while (line[col] != '\0')
 	{
 		if (!(is_valid_char(line[col], player)))
-			return_error(-7);
+			return_error(cub, -7);
 		map->row[index][col] = line[col];
 		col++;
 	}
@@ -72,18 +74,18 @@ void	fill_map(t_cub *cub, char *file, int total_rows)
 	row = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return_error(-2);
+		return_error(cub, -2);
 	while (get_next_line(fd, &line))
 	{
 		if (((*line == '1') || (*line == ' ')))
 		{
-			fill_row(&cub->game.map, line, row, &player);
+			fill_row(cub, line, row, &player);
 			row++;
 		}
 		free(line);
 	}
 	if (((*line == '1') || (*line == ' ')))
-		fill_row(&cub->game.map, line, row, &player);
+		fill_row(cub, line, row, &player);
 	free(line);
 	close(fd);
 }

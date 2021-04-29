@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 17:11:52 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 22:32:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parse_settings(t_cub *cub, char *line);
 void	parse_map(t_settings *configs, char *line);
 void	parse_map_size(t_map *map, char *line);
 void	fill_map(t_cub *cub, char *file, int row);
-void	check_map(t_render *game);
+void	check_map(t_cub *cub, t_render *game);
 /*
 ** render cub
 */
@@ -74,19 +74,14 @@ int		is_ray_facing_right(float angle);
 int		is_ray_facing_down(float angle);
 int		has_wall(float *pos, t_settings *set, t_map *map);
 /*
-** events
+** system and events
 */
 int		mouse_clicked(int btn, int pos_x, int pos_y, t_cub *cub);
 int		key_pressed(int key, t_cub *cub);
 int		key_released(int key, t_cub *cub);
-void	return_error(int error_id);
-int		close_cub(int key, t_cub *cub);
-/*
-** init and free
-*/
-void	free_all(t_cub *cub);
+void	return_error(t_cub *cub, int error_id);
+int		close_cub(t_cub *cub);
 void	free_cub(t_cub *cub);
 void	free_paths(char **path);
-void	init_cub(t_cub *cub);
 
 #endif

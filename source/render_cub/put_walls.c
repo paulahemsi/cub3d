@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 17:10:00 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 22:34:41 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int	get_texture_color(int *init, t_cub *cub, int y, int offset_x)
 	offset[X] = offset_x;
 	//!para bônus mexer no offset[X] para dar efeito de tudo se mexendo/tontura. algo por aqui: offset[X] = init[X] * texture.width / cub->game.wall_height;
 	//!offset[Y] = 1 -> listras verticais
+	//offset[X] = init[X] * texture.width / cub->game.wall_height;
 	int dist_to_top = y + (cub->game.wall_height / 2) - (cub->settings.screen[HEIGHT] / 2);
 	offset[Y] = dist_to_top * ((float)texture.height / cub->game.wall_height);
 	return (*(unsigned int *)(texture.img.data + (offset[Y] * texture.img.line_length + offset[X] * (texture.img.bits_per_pixel / 8))));
@@ -76,7 +77,7 @@ void	put_walls(t_cub *cub, t_ray *rays)
 	int		init[2];
 
 	ray = 0;
-	cub->game.is_texture = TRUE;
+	cub->game.is_texture = FALSE;
 	while (ray < cub->game.ray.total)
 	{
 		cub->game.wall_height = ((TILE_SIZE / rays[ray].dist) * cub->game.player.plane_dist);

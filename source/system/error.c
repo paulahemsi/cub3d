@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/14 22:03:46 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 15:32:41 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void	return_error(int error_id)
+void	return_error(t_cub *cub, int error_id)
 {
 	if (error_id == -1)
 		ft_putstr("Error\nUsage: cub3d file.cub (--save)\n");
@@ -38,5 +38,6 @@ void	return_error(int error_id)
 		ft_putstr("Error\nunable to create bmp file\n");
 	else if (error_id == -12)
 		ft_putstr("Error\ninvalid texture path\n");
+	free_cub(cub);
 	exit(error_id);
 }

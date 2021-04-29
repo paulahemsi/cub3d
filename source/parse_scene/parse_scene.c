@@ -6,18 +6,18 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 23:21:27 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 19:23:28 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-static void	check_colors(t_rgb *ceiling, t_rgb *floor)
+static void	check_colors(t_cub *cub, t_rgb *ceiling, t_rgb *floor)
 {
 	if (ceiling->red > 255 || ceiling->blue > 255 || ceiling->green > 255)
-		return_error(-10);
+		return_error(cub, -10);
 	if (floor->red > 255 || floor->blue > 255 || floor->green > 255)
-		return_error(-10);
+		return_error(cub, -10);
 }
 
 static void	check_resolution_limits(t_cub *cub)
@@ -46,7 +46,8 @@ static void	define_world_size(t_settings *setting, t_map *map)
 	setting->world[HEIGHT] = map->total_row * TILE_SIZE;
 }
 
-//! fazer tb um loop do total de sprites para não procurar além do que precisa quando todas forem achadas
+//! fazer tb um loop do total de sprites
+//!para não procurar além do que precisa quando todas forem achadas
 static void	save_sprites_locations(t_render *game)
 {
 	char	**map;
@@ -67,7 +68,6 @@ static void	save_sprites_locations(t_render *game)
 			{
 				game->sprites[i].pos[X] = row * TILE_SIZE;
 				game->sprites[i].pos[Y] = col * TILE_SIZE;
-				printf("sprite[%i](%i, %i)\n", i, game->sprites[i].pos[X], game->sprites[i].pos[Y]);
 				i++;
 			}
 			row++;
@@ -83,7 +83,7 @@ void	parse_scene(char *file, t_cub *cub)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return_error(-2);
+		return_error(cub, -2);
 	while (get_next_line(fd, &line))
 	{
 		parse_settings(cub, line);
@@ -92,10 +92,10 @@ void	parse_scene(char *file, t_cub *cub)
 	parse_settings(cub, line);
 	free(line);
 	close(fd);
-	check_colors(&cub->settings.ceiling, &cub->settings.floor);
+	check_colors(cub, &cub->settings.ceiling, &cub->settings.floor);
 	define_world_size(&cub->settings, &cub->game.map);
 	fill_map(cub, file, cub->game.map.total_row);
-	check_map(&cub->game);
+	check_map(cub, &cub->game);
 	check_resolution_limits(cub);
 	save_sprites_locations(&cub->game);
 	load_textures(cub->settings.path, cub, &cub->game);
