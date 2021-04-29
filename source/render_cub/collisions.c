@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:08:11 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 22:52:18 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/28 23:35:45 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	save_hit(t_cast *direction, t_cub *cub, float *to_check_tile)
 	row = (int)floor(to_check_tile[X] / TILE_SIZE);
 	direction->hit[X] = direction->intercept[X];
 	direction->hit[Y] = direction->intercept[Y];
-	//!segv read aqui:
 	direction->content = cub->game.map.row[col][row];
 	direction->hitted = TRUE;
 }
@@ -54,22 +53,27 @@ static void	define_ray_values(t_cast *ray, t_cub *cub,
 		ray->step[axis] = -TILE_SIZE;
 }
 
-static void	sprite_collision(t_render *game, float *to_check_tile)
-{
-	int i;
+// static void	sprite_collision(t_render *game, float *to_check_tile)
+// {
+// 	int i;
 
-	i = 0;
-	while (i < game->num_sprites)
-	{
-		if ((game->sprites[i].pos[X] == (int)floor(to_check_tile[X]))
-			&& (game->sprites[i].pos[Y] == (int)floor(to_check_tile[Y]))
-			&& game->sprites[i].visible == FALSE)
-			game->sprites[i].visible = TRUE;
-		i++;
-	}
-	if (game->sprite == FALSE)
-		game->sprite = TRUE;
-}
+// 	i = 0;
+// 	while (i < game->num_sprites)
+// 	{
+// 		printf("(%i, %i)\n", (int)floor(to_check_tile[X]), (int)floor(to_check_tile[Y]));
+// 		if (((game->sprites[i].pos[X] == (int)floor(to_check_tile[X]))
+// 			&& (game->sprites[i].pos[Y] == (int)floor(to_check_tile[Y])))
+// 			&& game->sprites[i].visible == FALSE)
+// 		{
+// 			game->sprites[i].visible = TRUE;
+// 			printf("sprite[%i]\n", i);
+// 		}
+// 		i++;
+// 	}
+//	if (game->sprite == FALSE)
+//		game->sprite = TRUE;
+//	printf("collision!\n");
+//}
 
 void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle, int column)
 {
@@ -88,8 +92,8 @@ void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle, int 
 		to_check_tile[Y] = horizontal->intercept[Y];
 		if (!(is_ray_facing_down(angle)))
 			to_check_tile[Y] -= 1;
-		if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
-			sprite_collision(&cub->game, to_check_tile);
+		// if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
+		// 	sprite_collision(&cub->game, to_check_tile);
 		if (has_wall(to_check_tile, &cub->settings, &cub->game.map))
 		{
 			save_hit(horizontal, cub, to_check_tile);
@@ -119,8 +123,8 @@ void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle, int colu
 		to_check_tile[Y] = vertical->intercept[Y];
 		if (!(is_ray_facing_right(angle)))
 			to_check_tile[X] -= 1;
-		if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
-			sprite_collision(&cub->game, to_check_tile);
+		// if (hit_sprite(to_check_tile, &cub->settings, &cub->game.map))
+		// 	sprite_collision(&cub->game, to_check_tile);
 		if (has_wall(to_check_tile, &cub->settings, &cub->game.map))
 		{
 			save_hit(vertical, cub, to_check_tile);

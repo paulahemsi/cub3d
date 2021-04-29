@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 16:57:38 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/28 23:58:37 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ typedef struct s_render
 	int				num_sprites;
 	int				wall_height;
 	int				is_texture;
-	int				sprite;
 	int				wall;
 	int				offset[2];
 }					t_render;

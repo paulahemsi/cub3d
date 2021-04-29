@@ -243,7 +243,7 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 * 13/04: Walls' bug fixed, now the rays know the correct collisions direction even in the tricky interseccions. Night vision implemented.
 
-* 14/04: I started to study the textures implementation, but then I realized I need to change some thinks in my structs. Therefore, I'm refactoring the whole code, beggining with a reorganization of all the structs. Is getting much better, but it's a lot of work.
+* 14/04: I started to study the textures implementation, but then I realized I need to change some things in my structs. Therefore, I'm refactoring the whole code, beggining with a reorganization of all the structs. It's getting much better, but it's a lot of work.
 
 * 15/04: New structs are implemented
 
@@ -253,31 +253,33 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 ![](study_resources/bugs_are_beautiful.gif)
 
-* 18/04: Oh my! The walls' textures are there! They have some issues? Yes. But they are there!
+* 18/04: Oh my! The walls' textures are there! Do they have some issues? Yes. But they are there!
 
-* 19/04: All libft's functions are now in the new norme v3, and I've realised that some of the walls issues was just a matter of adjusting the size of the images (they must have 64 x 64).
+* 19/04: All libft's functions are now in the new norme v3, and I've realised that some of the walls' issues were just a matter of adjusting the size of the images (they must be 64 x 64).
 
-* 20/04: I started to deal with the sprites. Sprites' positions are being saved, but the sprite renderization is still a mess. The walls' textures are now being render accordingly with the direction that's facing (4 patterns, one for each direction).
+* 20/04: I started to deal with the sprites. Sprites' positions are being saved, but the sprite renderization is still a mess. The walls' textures are now being rendered according to the direction it's facing (4 patterns, one for each direction).
 
-* 21/04: I spent the hole day working on the sprites and in the end needed to go back to my last git commit 'cause nothing worked. Mug.
+* 21/04: I spent the whole day working on the sprites and in the end I needed to go back to my last git commit 'cause nothing worked. Mud.
 
 * 22/04: Still in the sprite's swamp
 
-* 23/04: I gave myself a break from the mindblowing sprites and spent the day reviewing the code and adjusting to the norm
+* 23/04: I gave myself a break from the mindblowing sprites and spent the day reviewing the code and adjusting to the norme
 
 * 24/04: Same as yesterday
 
-* 25/04: The bug that made the player sometimes look through the walls and see the horizont is fixed. 
+* 25/04: The bug that made the player sometimes look through the walls and see the horizon is fixed. 
 
-* 26/04: I gave myself until thursday to put the sprites in the game. Big achievement today: the pink square that represents my sprites for now is in the same position in the map, without follow the player's view as before.
-I also implemented a "always running" key (`r`), very usefull when the player (or the programmer) is without patience to walk slow, and started to use my breaks from coding to draw a hud for the game. I started drawing a little girl (the main character) and some hearts for the life bar. Hearts are harder to draw than I thougth.
+* 26/04: I gave myself until Thursday to put the sprites in the game. Big achievement today: the pink square that represents my sprites for now is in the same position in the map, without following the player's view as before.
+I also implemented a "always running" key (`r`), very usefull when the player (or the programmer) is without patience to walk slow. I started to use my breaks from coding to draw a hud for the game. I started drawing a little girl (the main character) and some hearts for the life bar. Hearts are harder to draw than I thought.
 
-* 27/04: Another day of hope! The sprites are being render on the map! They are full of bugs? Yes, but is a huge step anyway :)
-I also finally fix a bug that was making the program crash once in a while. The problem was in my raycasting function, I was checking if the tile was free and if not, I was supposing that the tile should be a wall and saved the hit, but apparently there's some other possible cases, so I changed the function and now I check if has a wall in the tile first, and if it isn't, I increment to continue my wall search.
-Less but not least, I drawed more elements to the hud: night vision glasses, map, keys and a skull version of the character.
+* 27/04: Another day of hope! The sprites are being rendered on the map! Are they full of bugs? Yes, but is a huge step anyway :)
+I also finally fixed a bug that was making the program crash once in a while. The problem was in my raycasting function. I was checking if the tile was free and, if not, I supposed that the tile should be a wall and saved the hit, but apparently there are some other possible cases; so I changed the function and now I always check if there is a wall in the tile first, and then if there isn't, I increment to continue my wall search.
+Last but not least, I drew more elements to the hud: night vision glasses, map, keys and a skull version of the character.
 
-* 28/04: I need to say: I just love the bugs! I wish I had written what I did to make them and use them in the game! Well, better late than ever, today I wrote down my new bug to make a dizzy effect.
-And also in the bug subject, I've, after days and days of struggling and digging, corrected the walls' texture bug! Yey!
+* 28/04: I need to say: I just love the bugs! I wish I had written the code I wrote to make the bugs somewhere to use them later in the game! Well, better late than ever, today I wrote down my new bug to make a dizziness effect.
+And also in the bug subject, I've, after days and days of struggling and digging, corrected the walls' textures bug! Yey!
+and....:
+Habemus sprites!!
 
 </details>
 

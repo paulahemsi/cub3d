@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/26 12:43:27 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/28 23:21:27 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	save_sprites_locations(t_render *game)
 			{
 				game->sprites[i].pos[X] = row * TILE_SIZE;
 				game->sprites[i].pos[Y] = col * TILE_SIZE;
+				printf("sprite[%i](%i, %i)\n", i, game->sprites[i].pos[X], game->sprites[i].pos[Y]);
 				i++;
 			}
 			row++;

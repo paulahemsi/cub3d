@@ -6,17 +6,16 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 20:00:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 14:47:49 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 00:17:09 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-
 static void	set_sprite_values(t_cub *cub, t_sprite *sprite, t_player *player)
 {
-	float screen_x;
-	
+	float	screen_x;
+
 	sprite->distance = sqrt(((sprite->pos[X] - player->pos[X]) * (sprite->pos[X] - player->pos[X])) + ((sprite->pos[Y] - player->pos[Y]) * (sprite->pos[Y] - player->pos[Y])));
 	sprite->height = (sprite->texture.height / sprite->distance) * player->plane_dist;
 	sprite->width = (sprite->texture.width / sprite->distance) * player->plane_dist;
@@ -26,69 +25,72 @@ static void	set_sprite_values(t_cub *cub, t_sprite *sprite, t_player *player)
 	sprite->end[Y] = cub->settings.center[Y] + (sprite->height / 2);
 	if (sprite->end[Y] > cub->settings.screen[HEIGHT])
 		sprite->end[Y] = cub->settings.screen[HEIGHT];
-	sprite->angle = atan2(sprite->pos[Y] - player->pos[Y], sprite->pos[X] - player->pos[X]) - player->angle;
+	sprite->angle = atan2(sprite->pos[Y] - player->pos[Y],
+			sprite->pos[X] - player->pos[X]) - player->angle;
 	screen_x = tan(sprite->angle) * player->plane_dist;
-	sprite->init[X] = cub->settings.center[WIDTH] + screen_x - (sprite->width / 2);
+	sprite->init[X] = cub->settings.center[WIDTH] + screen_x;
 	sprite->end[X] = sprite->init[X] + sprite->width;
 }
 
-static int	get_sprite_color(t_sprite *sprite, t_texture *texture, int x, int y, t_settings *set)
+static int	get_sprite_color(t_sprite *sprite, t_texture *texture,
+		int *pos, t_settings *set)
 {
-	int offset[2];
-	int dist_to_top;
+	int	offset[2];
+	int	dist_to_top;
+	int	diff_x;
 
-	offset[X] = (x - sprite->init[X]) * sprite->texture.width / sprite->width;
-	// if (offset[X] < 0)
-	// offset[X] *= -1;
-	dist_to_top = y + (sprite->height / 2) - (set->screen[HEIGHT] / 2);
+	diff_x = (pos[X] - sprite->init[X]);
+	offset[X] = diff_x * sprite->texture.width / sprite->width;
+	if (offset[X] < 0)
+		offset[X] *= -1;
+	dist_to_top = pos[Y] + (sprite->height / 2) - (set->screen[HEIGHT] / 2);
 	offset[Y] = dist_to_top * ((float)texture->height / (float)sprite->height);
-	return (*(unsigned int *)(texture->img.data + (offset[Y] * texture->img.line_length + offset[X] * (texture->img.bits_per_pixel / 8))));
+	return (*(unsigned int *)(texture->img.data
+		+ (offset[Y] * texture->img.line_length
+			+ offset[X] * (texture->img.bits_per_pixel / 8))));
 }
 
-static void	draw_sprite(t_cub *cub, t_sprite *sprite, t_player *player, t_ray *ray)
+static void	draw_sprite(t_cub *cub, t_sprite *sprite,
+	t_player *player, t_ray *ray)
 {
-	int	y;
-	int	x;
+	int	pos[2];
 	int	color;
 
-	x = (int)sprite->init[X];
-	while (x < sprite->end[X])
+	pos[X] = (int)sprite->init[X];
+	while (pos[X] < sprite->end[X])
 	{
-		y = (int)sprite->init[Y];
-		while (y < sprite->end[Y])
+		pos[Y] = (int)sprite->init[Y];
+		while (pos[Y] < sprite->end[Y])
 		{
-			if (is_inside_screen(cub->settings.screen, x, y))
-				if (sprite->distance < ray[x].dist)
+			if (is_inside_screen(cub->settings.screen, pos[X], pos[Y]))
+			{
+				if (sprite->distance < ray[pos[X]].dist)
 				{
-					color = get_sprite_color(sprite, &sprite->texture, x, y, &cub->settings);
+					color = get_sprite_color(sprite, &sprite->texture, pos,
+							&cub->settings);
 					if (color != 0x000000)
-						put_pixel(&cub->img, x, y, color);
+						put_pixel(&cub->img, pos[X], pos[Y], color);
 				}
-			y++;
+			}
+			pos[Y]++;
 		}
-		x++;
+		pos[X]++;
 	}
 }
 
 static void	sort_sprites(t_sprite *sprites, t_player *player, t_cub *cub)
 {
-	t_sprite	*temp;
+	t_sprite	temp;
 	int			i;
 
-	i = 0;
-	while (i < cub->game.num_sprites)
-	{
-		sprites[i].distance = sqrt(((sprites->pos[X] - player->pos[X]) * (sprites->pos[X] - player->pos[X])) + ((sprites->pos[Y] - player->pos[Y]) * (sprites->pos[Y] - player->pos[Y])));
-		i++;
-	}
 	i = 0;
 	while (i < cub->game.num_sprites - 1)
 	{
 		if (sprites[i].distance < sprites[i + 1].distance)
 		{
-			*temp = sprites[i];
+			temp = sprites[i];
 			sprites[i] = sprites[i + 1];
-			sprites[i + 1] = *temp;
+			sprites[i + 1] = temp;
 		}
 		i++;
 	}
@@ -96,22 +98,29 @@ static void	sort_sprites(t_sprite *sprites, t_player *player, t_cub *cub)
 
 void	put_sprite(t_sprite *sprites, t_player *player, t_cub *cub, t_ray *ray)
 {
+	int	i;
 
-	if (cub->game.sprite)
+	i = 0;
+	while (i < cub->game.num_sprites)
 	{
-		int i = 0;
-		sort_sprites(sprites, player, cub);
-		while (i < cub->game.num_sprites)
-		{
-			if (sprites[i].visible == TRUE)
-			{
-				set_sprite_values(cub, &sprites[i], player);
-				draw_sprite(cub, &sprites[i], player, ray);
-			}
-			cub->game.sprites[i].visible = FALSE;
-			i++;
-		}
+		set_sprite_values(cub, &sprites[i], player);
+		if (sprites[i].angle > PI)
+			sprites[i].angle -= TWO_PI;
+		if (sprites[i].angle < -PI)
+			sprites[i].angle += TWO_PI;
+		sprites[i].angle = fabs(sprites[i].angle);
+		if (sprites[i].angle < (HALF_FOV + 0.2))
+			sprites[i].visible = TRUE;
+		else
+			sprites[i].visible = FALSE;
+		i++;
 	}
-	cub->game.sprite = FALSE; //?precisa?
-
+	sort_sprites(sprites, player, cub);
+	i = 0;
+	while (i < cub->game.num_sprites)
+	{
+		if (sprites[i].visible)
+			draw_sprite(cub, &sprites[i], player, ray);
+		i++;
+	}
 }
