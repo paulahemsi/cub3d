@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 13:44:27 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:59:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static void	find_closest_wall(t_cast *h, t_cast *v, t_player *player, float a)
 
 	fish_eye = cos(player->angle - a);
 	if (h->hitted)
-		h->distance = calc_distance(player->pos, h->hit) * fish_eye;
+		h->distance = hit_distance(player->pos, h->hit) * fish_eye;
 	else
 		h->distance = INT_MAX;
 	if (v->hitted)
-		v->distance = calc_distance(player->pos, v->hit) * fish_eye;
+		v->distance = hit_distance(player->pos, v->hit) * fish_eye;
 	else
 		v->distance = INT_MAX;
 }

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 13:47:25 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 15:21:06 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,24 @@ void	define_wall_colors(t_cub *cub, t_ray *rays, int ray);
 /*
 ** render tools
 */
-int		color_picker(unsigned char red, unsigned char green, unsigned char blue);
-void	put_square(t_data *img, int pos_x, int pos_y, int color);
 void	put_line(t_cub *cub, int *pos, int x2, int y2);
+int		color_picker(unsigned char red, unsigned char green, unsigned char blue);
+void	define_img_colors(t_rgb *color, int red, int green, int blue);
 void	put_pixel(t_data *img, int pos_x, int pos_y, int color);
-void	put_circle(t_data *img, int center_x, int center_y, int radius);
+/*
+** check tile and limits
+*/
+int		has_wall(float *pos, t_settings *set, t_map *map);
+int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door);
+int		is_inside_world_limits(float *coord, int *world);
+int		is_inside_screen(int *screen, float x, float y);
 /*
 ** render utils
 */
-int		is_inside_world_limits(float *coord, int *world);
-int		is_inside_screen(int *screen, float x, float y);
-void	define_img_colors(t_rgb *color, int red, int green, int blue);
+float	hit_distance(int *pos, float *hit);
+float	define_distance(int *pos1, int *pos2);
 float	normalize_angle(float angle);
-int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door);
-int		hit_sprite(float *pos, t_settings *set, t_map *map);
-float	calc_distance(int *pos, float *hit);
 int		is_ray_facing(int direction, float angle);
-int		has_wall(float *pos, t_settings *set, t_map *map);
 /*
 ** system and events
 */

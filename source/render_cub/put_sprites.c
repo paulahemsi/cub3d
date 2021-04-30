@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 20:00:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/29 00:17:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 15:06:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	set_sprite_values(t_cub *cub, t_sprite *sprite, t_player *player)
 {
 	float	screen_x;
 
-	sprite->distance = sqrt(((sprite->pos[X] - player->pos[X]) * (sprite->pos[X] - player->pos[X])) + ((sprite->pos[Y] - player->pos[Y]) * (sprite->pos[Y] - player->pos[Y])));
+	sprite->distance = define_distance(player->pos, sprite->pos);
 	sprite->height = (sprite->texture.height / sprite->distance) * player->plane_dist;
 	sprite->width = (sprite->texture.width / sprite->distance) * player->plane_dist;
 	sprite->init[Y] = cub->settings.center[Y] - (sprite->height / 2);
