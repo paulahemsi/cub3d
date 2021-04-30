@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 21:18:02 by phemsi-a          #+#    #+#              #
-#    Updated: 2021/04/30 15:22:21 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/04/30 18:34:34 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT) $(MLX)
 	@echo making cub3D
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
 	@echo done! Have fun!
 	@echo ___________________________________  
 	@echo "|" _____ "|"   "|" ___ "|" ___ ___ "|" "|"   "|" "|"
@@ -52,7 +52,7 @@ $(NAME): $(OBJECTS) $(LIBFT) $(MLX)
 
 bonus: $(OBJECTS) $(BONUS_OBJECTS) $(LIBFT) $(MLX)
 	@echo making cub3D
-	@$(CC) $(FLAGS) -g -fsanitize=leak -o $(NAME) $(OBJECTS) $(BONUS_OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -g -fsanitize=leak -o $(NAME) $(OBJECTS) $(BONUS_OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
 	@echo done! Have fun!
 	@echo ___________________________________  
 	@echo "|" _____ "|"   "|" ___ "|" ___ ___ "|" "|"   "|" "|"
@@ -80,10 +80,10 @@ $(LIBFT):
 	@echo done!
 
 $(OBJECTS): $(FILES)
-	@$(CC) $(FLAGS) -g -c $(FILES)
+	@$(CC) $(CFLAGS) -g -c $(FILES)
 
 $(BONUS_OBJECTS): $(BONUS_FILES)
-	@$(CC) $(FLAGS) -g -c $(BONUS_FILES)
+	@$(CC) $(CFLAGS) -g -c $(BONUS_FILES)
 
 clean:
 	@make --no-print-directory -C $(LIBFT_PATH) fclean

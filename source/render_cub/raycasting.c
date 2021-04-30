@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 14:59:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 18:55:23 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-static void	copy_last_ray(t_ray *ray, int col, float angle)
+static void	copy_last_ray(t_ray *ray, int col)
 {
 	ray[col].dist = ray[col - 1].dist;
 	ray[col].hit[X] = ray[col - 1].hit[X];
@@ -69,7 +69,7 @@ static void	cast_ray(t_cub *cub, float angle, int column, t_ray *rays)
 		rays[column].vertical_hit = TRUE;
 	}
 	else if ((column - 1) >= 0)
-		copy_last_ray(rays, column, angle);
+		copy_last_ray(rays, column);
 }
 
 void	raycasting(t_cub *cub, t_ray *rays)

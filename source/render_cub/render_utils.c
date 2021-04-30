@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:01:20 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 15:20:38 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 19:49:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 float	hit_distance(int *pos, float *hit)
 {
-	return (sqrt(((hit[X] - pos[X]) * (hit[X] - pos[X])) + ((hit[Y] - pos[Y]) * (hit[Y] - pos[Y]))));
+	return (sqrt(((hit[X] - pos[X]) * (hit[X] - pos[X]))
+			+ ((hit[Y] - pos[Y]) * (hit[Y] - pos[Y]))));
 }
 
 float	define_distance(int *pos1, int *pos2)
 {
-	return (sqrt(((pos2[X] - pos1[X]) * (pos2[X] - pos1[X])) + ((pos2[Y] - pos1[Y]) * (pos2[Y] - pos1[Y]))));
+	return (sqrt(((pos2[X] - pos1[X]) * (pos2[X] - pos1[X]))
+			+ ((pos2[Y] - pos1[Y]) * (pos2[Y] - pos1[Y]))));
 }
 
 float	normalize_angle(float angle)

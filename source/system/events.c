@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/29 23:11:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 19:06:50 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ int	key_pressed(int key, t_cub *cub)
 	}
 	if (key == TAB)
 		cub->toggle.show_minimap *= TOGGLE;
-	if (key == R)
-		cub->toggle.always_running *= TOGGLE;
 	if (key == G || key == B || key == N)
 		update_effects(key, &cub->toggle);
 	return (0);

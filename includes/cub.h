@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 15:21:06 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 19:48:02 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	render_cub(t_cub *cub);
 void	save_bmp(t_cub *cub);
 void	raycasting(t_cub *cub, t_ray *rays);
 void	put_background(t_cub *cub, t_rgb *ceiling, t_rgb *floor, t_rgb *color);
-void	put_walls(t_cub *cub, t_ray *rays);
+void	put_walls(t_cub *cub, t_ray *rays, t_toggle *t);
 void	put_sprite(t_sprite *sprites, t_player *player, t_cub *cub, t_ray *ray);
 void	load_textures(char **path, t_cub *cub, t_render *game);
 void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle);

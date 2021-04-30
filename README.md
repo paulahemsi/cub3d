@@ -283,5 +283,7 @@ Habemus sprites!!
 
 * 29/04: The leaks were found and corrected and the code is being refactored. Error messages were wrote in a more specific way.
 
+* 30/04: Two mechanics were in conflict: the `r` *always running* key and `shift` to run, so I took off the always running option. 
+
 </details>
 

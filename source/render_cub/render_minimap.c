@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 14:16:55 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 18:54:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	put_tile(t_cub *cub, int *pos)
 {
-	int	line;
 	int	tile_pos[2];
 
 	if (cub->toggle.night_mode == TRUE)

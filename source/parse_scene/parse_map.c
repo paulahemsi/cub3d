@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 00:19:51 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 18:54:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	parse_map_size(t_map *map, char *line)
 {
-	unsigned int	line_size;
+	int	line_size;
 
 	line_size = ft_strlen(line);
 	if (line_size > map->total_column)
@@ -39,8 +39,8 @@ static int	is_valid_char(char c, int *player)
 
 static void	fill_row(t_cub *cub, char *line, int index, int *player)
 {
-	unsigned int	col;
-	t_map			*map;
+	int		col;
+	t_map	*map;
 
 	map = &cub->game.map;
 	col = map->total_column;

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 14:13:39 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 18:48:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 */
 typedef struct s_map
 {
-	unsigned int	total_column;
-	unsigned int	total_row;
+	int				total_column;
+	int				total_row;
 	char			**row;
 }					t_map;
 
