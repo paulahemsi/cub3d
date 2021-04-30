@@ -6,11 +6,29 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:09:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 17:10:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:07:22 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+
+static void	define_horizontal_colors(t_rgb *color, t_ray *rays, int ray)
+{
+	if (rays[ray].up)
+	{
+		if (rays[ray].wall_content == '3')
+			define_img_colors(color, 54, 133, 128);
+		else
+			define_img_colors(color, 64, 143, 138);
+	}
+	else
+	{
+		if (rays[ray].wall_content == '3')
+			define_img_colors(color, 227, 101, 39);
+		else
+			define_img_colors(color, 237, 111, 49);
+	}
+}
 
 static void	toggle_debug_colors(t_rgb *color, t_ray *rays, int ray)
 {
@@ -32,29 +50,14 @@ static void	toggle_debug_colors(t_rgb *color, t_ray *rays, int ray)
 		}
 	}
 	else
-	{
-		if (rays[ray].up)
-		{
-			if (rays[ray].wall_content == '3')
-				define_img_colors(color, 54, 133, 128);
-			else
-				define_img_colors(color, 64, 143, 138);
-		}
-		else
-		{
-			if (rays[ray].wall_content == '3')
-				define_img_colors(color, 227, 101, 39);
-			else
-				define_img_colors(color, 237, 111, 49);
-		}
-	}
+		define_horizontal_colors(color, rays, ray);
 }
 
 void	define_wall_colors(t_cub *cub, t_ray *rays, int ray)
 {
 	int	shadow;
-	int color;
-	int longest_side;
+	int	color;
+	int	longest_side;
 
 	if (cub->settings.world[HEIGHT] > cub->settings.world[WIDTH])
 		longest_side = cub->settings.world[HEIGHT];

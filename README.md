@@ -281,5 +281,7 @@ And also in the bug subject, I've, after days and days of struggling and digging
 and....:
 Habemus sprites!!
 
+* 29/04: The leaks were found and corrected and the code is being refactored. Error messages were wrote in a more specific way.
+
 </details>
 

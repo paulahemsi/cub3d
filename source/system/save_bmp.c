@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/29 15:20:17 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 00:41:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	fill_bmp(t_cub *cub, int fd, t_data *img, int *screen)
 	{
 		index = line * img->line_length;
 		if (write(fd, &img->data[index], img->line_length) <= 0)
-			return_error(cub, -11);
+			return_error(cub, -111);
 		line--;
 	}
 }
@@ -93,7 +93,7 @@ void	save_bmp(t_cub *cub)
 	file_name = define_name(cub->toggle.bmp_id);
 	fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (!(fd))
-		return_error(cub, -11);
+		return_error(cub, -111);
 	init_header(cub->settings.screen, &header);
 	fill_bmp_header(fd, header);
 	fill_bmp(cub, fd, &cub->img, cub->settings.screen);

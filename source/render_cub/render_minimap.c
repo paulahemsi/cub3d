@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 14:26:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:16:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@ static void	put_tile(t_cub *cub, int *pos)
 	}
 }
 
-// static void	check_limits(float *ray_hit, int *screen)
-// {
-// 	if (ray_hit[X] < 1)
-// 		ray_hit[X] = 1;
-// 	if (ray_hit[X] > screen[WIDTH] / SCALE)
-// 		ray_hit[X] = screen[WIDTH] / SCALE;
-// 	if (ray_hit[Y] < 1)
-// 		ray_hit[Y] = 1;
-// 	if (ray_hit[Y] > screen[HEIGHT] / SCALE)
-// 		ray_hit[Y] = screen[HEIGHT] / SCALE;
-// }
-
 static void	render_rays(t_cub *cub, t_ray *rays)
 {
 	int		ray;
@@ -56,7 +44,6 @@ static void	render_rays(t_cub *cub, t_ray *rays)
 	player_pos[Y] = cub->game.player.pos[Y] * SCALE;
 	while (ray < cub->settings.screen[WIDTH])
 	{
-		//check_limits(rays[ray].hit, cub->settings.screen);
 		put_line(cub, player_pos, rays[ray].hit[X] * SCALE,
 			rays[ray].hit[Y] * SCALE);
 		ray++;

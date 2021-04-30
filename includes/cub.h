@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/29 22:32:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 13:47:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	put_background(t_cub *cub, t_rgb *ceiling, t_rgb *floor, t_rgb *color);
 void	put_walls(t_cub *cub, t_ray *rays);
 void	put_sprite(t_sprite *sprites, t_player *player, t_cub *cub, t_ray *ray);
 void	load_textures(char **path, t_cub *cub, t_render *game);
-void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle, int column);
-void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle, int column);
+void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle);
+void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle);
 /*
 ** bônus and extras
 */
@@ -70,8 +70,7 @@ float	normalize_angle(float angle);
 int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door);
 int		hit_sprite(float *pos, t_settings *set, t_map *map);
 float	calc_distance(int *pos, float *hit);
-int		is_ray_facing_right(float angle);
-int		is_ray_facing_down(float angle);
+int		is_ray_facing(int direction, float angle);
 int		has_wall(float *pos, t_settings *set, t_map *map);
 /*
 ** system and events

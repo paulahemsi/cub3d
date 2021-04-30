@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/29 19:24:04 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/29 23:59:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	check_edges_content(t_cub *cub, char cell)
 	if ((cell == ' ') || (cell == '1'))
 		return ;
 	else
-		return_error(cub, -7);
+		return_error(cub, -107);
 }
 
 static int	check_if_is(int check, int row, int col, t_map *map)
@@ -58,7 +58,7 @@ static void	check_neighbors(char **map, int row, int col, t_cub *cub)
 			{
 				if (!(map[row + row_offset][col + col_offset] == ' ')
 				&& !(map[row + row_offset][col + col_offset] == '1'))
-					return_error(cub, -7);
+					return_error(cub, -107);
 			}
 			col_offset++;
 		}
@@ -113,5 +113,5 @@ void	check_map(t_cub *cub, t_render *game)
 		}
 	}	
 	if (!(game->player.angle))
-		return_error(cub, -7);
+		return_error(cub, -108);
 }

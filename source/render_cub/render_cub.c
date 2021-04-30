@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/29 22:32:01 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 00:40:24 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static void	generate_window(t_cub *cub)
 			cub->settings.screen[HEIGHT],
 			"cub3D");
 	if (!(cub->window_ptr))
-		return_error(cub, -9);
+		return_error(cub, -120);
 }
 
 void	render_cub(t_cub *cub)

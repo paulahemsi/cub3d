@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 03:17:40 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/27 03:18:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:16:13 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 static int	get_hud_color(t_texture *texture, int x, int y)
 {
-	return (*(unsigned int *)(texture->img.data + (y * texture->img.line_length + x * (texture->img.bits_per_pixel / 8))));
+	return (*(unsigned int *)(texture->img.data
+		+ (y * texture->img.line_length + x
+			* (texture->img.bits_per_pixel / 8))));
 }
 
 void	put_hud(t_texture *texture, t_cub *cub)
 {
-	int x;
-	int y;
-	int color;
+	int	x;
+	int	y;
+	int	color;
 
 	x = 0;
 	while (x < cub->settings.screen[WIDTH])

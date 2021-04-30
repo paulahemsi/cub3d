@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/29 19:23:28 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 00:15:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	check_colors(t_cub *cub, t_rgb *ceiling, t_rgb *floor)
 {
 	if (ceiling->red > 255 || ceiling->blue > 255 || ceiling->green > 255)
-		return_error(cub, -10);
+		return_error(cub, -110);
 	if (floor->red > 255 || floor->blue > 255 || floor->green > 255)
-		return_error(cub, -10);
+		return_error(cub, -110);
 }
 
 static void	check_resolution_limits(t_cub *cub)
@@ -83,7 +83,7 @@ void	parse_scene(char *file, t_cub *cub)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return_error(cub, -2);
+		return_error(cub, -104);
 	while (get_next_line(fd, &line))
 	{
 		parse_settings(cub, line);

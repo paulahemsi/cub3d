@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:28:34 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/25 22:18:46 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 13:44:27 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	store_ray_data(t_ray *ray, t_cast *direction, int col, float angle)
 	ray[col].hit[Y] = direction->hit[Y];
 	ray[col].wall_content = direction->content;
 	ray[col].angle = angle;
-	ray[col].up = !(is_ray_facing_down(angle));
-	ray[col].left = !(is_ray_facing_right(angle));
+	ray[col].up = is_ray_facing(UP, angle);
+	ray[col].left = is_ray_facing(LEFT, angle);
 }
 
 static void	find_closest_wall(t_cast *h, t_cast *v, t_player *player, float a)
@@ -55,8 +55,8 @@ static void	cast_ray(t_cub *cub, float angle, int column, t_ray *rays)
 	t_cast	horizontal;
 	t_cast	vertical;
 
-	find_horizontal_collision(cub, &horizontal, angle, column);
-	find_vertical_collision(cub, &vertical, angle, column);
+	find_horizontal_collision(cub, &horizontal, angle);
+	find_vertical_collision(cub, &vertical, angle);
 	find_closest_wall(&horizontal, &vertical, &cub->game.player, angle);
 	if (horizontal.distance < vertical.distance)
 	{
@@ -83,7 +83,7 @@ void	raycasting(t_cub *cub, t_ray *rays)
 	{
 		angle = normalize_angle(angle);
 		cast_ray(cub, angle, pixel_column, rays);
-		angle += cub->game.ray.step;//!distorçãozinha lateral
+		angle += cub->game.ray.step;
 		pixel_column++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/28 23:58:37 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:13:39 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_ray
 	float			step;
 	int				total;
 	char			wall_content;
-	int				sprite_hitted;
 }					t_ray;
 
 typedef struct s_cast
@@ -64,7 +63,6 @@ typedef struct s_cast
 	float			hit[2];
 	float			distance;
 	char			content;
-	int				sprite_hitted;
 }					t_cast;
 
 typedef struct s_rgb
@@ -166,7 +164,7 @@ typedef struct s_cub
 typedef struct s_bresenham
 {
 	int				delta[2];
-	int				increment[2][2];
+	int				inc[2][2];
 	int				longest;
 	int				shortest;
 	int				numerator;

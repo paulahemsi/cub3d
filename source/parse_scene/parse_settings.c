@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/29 14:24:19 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/04/30 00:39:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	parse_path(t_cub *cub, char **texture_path, char *line)
 {
 	if (*texture_path)
-		return_error(cub, -5);
+		return_error(cub, -119);
 	*texture_path = ft_strtrim(line, " \t");
 	if (!(*texture_path))
-		return_error(cub, -6);
+		return_error(cub, -119);
 }
 
 static void	parse_colors(t_cub *cub, t_rgb *direction, char *line)
@@ -33,7 +33,7 @@ static void	parse_colors(t_cub *cub, t_rgb *direction, char *line)
 		while (ft_isdigit(*line))
 		{
 			if (direction->blue >= 0)
-				return_error(cub, -5);
+				return_error(cub, -118);
 			number = (number * 10) + (*line - '0');
 			line++;
 		}
@@ -44,7 +44,7 @@ static void	parse_colors(t_cub *cub, t_rgb *direction, char *line)
 		else if (direction->blue < 0)
 			direction->blue = number;
 		else if ((*line))
-			return_error(cub, -5);
+			return_error(cub, -118);
 		if ((*line == ',') && (direction->blue < 0))
 			line++;
 	}
@@ -62,7 +62,7 @@ static void	parse_resolution(t_cub *cub, t_settings *settings, char *line)
 		while (ft_isdigit(*line))
 		{
 			if ((settings->screen[WIDTH]) && (settings->screen[HEIGHT]))
-				return_error(cub, -5);
+				return_error(cub, -117);
 			number = (number * 10) + (*line - '0');
 			line++;
 		}
@@ -71,7 +71,7 @@ static void	parse_resolution(t_cub *cub, t_settings *settings, char *line)
 		else if (!(settings->screen[HEIGHT]) && (number))
 			settings->screen[HEIGHT] = number;
 		else if ((*line))
-			return_error(cub, -5);
+			return_error(cub, -117);
 	}
 }
 
@@ -114,5 +114,5 @@ void	parse_settings(t_cub *cub, char *line)
 	else if ((*line == '1' || (*line == ' ')) && ((is_configs_set(settings))))
 		parse_map_size(&cub->game.map, line);
 	else if (*line != '\0')
-		return_error(cub, -5);
+		return_error(cub, -116);
 }
