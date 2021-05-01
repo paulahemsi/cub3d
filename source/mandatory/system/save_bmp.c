@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:14:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/01 01:42:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,32 +65,13 @@ static void	fill_bmp(t_cub *cub, int fd, t_data *img, int *screen)
 	}
 }
 
-static char	*define_name(int bmp_id)
-{
-	char	*name;
-	char	*aux;
-
-	if (!(bmp_id))
-		return ("./bmp_images/cub.bmp");
-	else
-	{
-		name = ft_itoa(bmp_id);
-		aux = ft_strjoin("./bmp_images/cub", name);
-		free(name);
-		name = ft_strjoin(aux, ".bmp");
-		free(aux);
-		return (name);
-	}
-}
-
-//TODO colocar limitador de arquivos que pessoa pode salvar
 void	save_bmp(t_cub *cub)
 {
 	t_bmp_header	header;
 	int				fd;
 	char			*file_name;
 
-	file_name = define_name(cub->toggle.bmp_id);
+	file_name = "./bmp_images/cub.bmp";
 	fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (!(fd))
 		return_error(cub, -111);
@@ -98,10 +79,6 @@ void	save_bmp(t_cub *cub)
 	fill_bmp_header(fd, header);
 	fill_bmp(cub, fd, &cub->img, cub->settings.screen);
 	close(fd);
-	if (!(cub->toggle.bmp_id))
-	{
-		printf("cub.bmp created\n");
-		exit(0);
-	}
-	free(file_name);
+	printf("cub.bmp created\n");
+	exit(0);
 }

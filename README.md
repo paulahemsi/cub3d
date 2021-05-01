@@ -32,6 +32,10 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 * fixing minor problems, adding bônus and extra features and implementing 'save bmp' (~4 days)
 * Refactoring the code (~2 days)
 * Implementing walls' textures (~4 days)
+* Refactoring the code again and adjusting the project to the new norm(~2 days)
+* Implementing sprites (~6 days)
+* Solving the lasts bugs (~2 days)
+* Finishing bônus version
 
 for more details, read the [work diary](#work_diary)
 
@@ -39,29 +43,29 @@ for more details, read the [work diary](#work_diary)
 
 1. define wall size
 2. define and get projection details:
-  1. define camera's height
-  2. define camera's field of view
-  3. get camera's position
-  4. get projection plane's dimension (window resolution)
-  5. calculate camera's distance from projection plane
-  6. calculate the angle between each ray that will be casted
-  7. calculate the center point of projection plane
+	1. define camera's height
+	2. define camera's field of view
+	3. get camera's position
+	4. get projection plane's dimension (window resolution)
+	5. calculate camera's distance from projection plane
+	6. calculate the angle between each ray that will be casted
+	7. calculate the center point of projection plane
 3. find walls
-  1. subtract half FOV from camera's position
-  2. cast a ray
-    1. for horizontal and vertical:
-      1.find first intersection with a grid boundary
-      2. check if grid cell is a wall
-      3. if it's not, calculate the step for the next's
-      4. check each cell until find a wall
-    2. save coordinates from the closest wall (horizontal or vertical)
-    3. knowing the wall coordinates, calculate wall distance with Pitagoras theorem
-    4. save wall distance with fish eye distortion correction
-    7. repeat step 3.2 for all rays
+	1. subtract half FOV from camera's position
+	2. cast a ray
+		1. for horizontal and vertical:
+			1.find first intersection with a grid boundary
+			2. check if grid cell is a wall
+			3. if it's not, calculate the step for the next's
+			4. check each cell until find a wall
+		2. save coordinates from the closest wall (horizontal or vertical)
+		3. knowing the wall coordinates, calculate wall distance with Pitagoras theorem
+		4. save wall distance with fish eye distortion correction
+		7. repeat step 3.2 for all rays
 5. draw walls
-  1. for each wall:
-    1.calculate projection wall height
-    2. draw half of the height above the middle and half under the midle of the pixel column
+	1. for each wall:
+		1.calculate projection wall height
+		2. draw half of the height above the middle and half under the midle of the pixel column
 
 ## mindmap 
 :goberserk:
@@ -70,9 +74,10 @@ for more details, read the [work diary](#work_diary)
 :finnadie:
 
 ### raycasting
+* [Ray-Casting Tutorial For Game Development And Other Purposes](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/) by F. Permadi
 * [2d Raycasting coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) by Daniel Shiffman (Coding Train)
-* [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 * [Lode's raycasting walk through](https://lodev.org/cgtutor/raycasting.html) by Lode Vandevenne
+* [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 * [digital differential analyzer (DDA) algorithm](https://www.geeksforgeeks.org/dda-line-generation-algorithm-computer-graphics/)
 * [DDA line drawing algorithm video](https://www.youtube.com/watch?v=W5P8GlaEOSI)
 * [Bresenham's line algorithm video](https://www.youtube.com/watch?v=RGB-wlatStc&t=202s)
@@ -106,9 +111,11 @@ for more details, read the [work diary](#work_diary)
 
 `cd cub3D`
 
+## mandatory:
+
 `make`
 
-`./cub3D path_to_scene_file.txt`
+`./cub3D ./maps/madatory/path_to_scene_file.cub`
 
 you may edit all these settings:
 
@@ -131,6 +138,12 @@ S ./path_to_the_sprite_texture.xpm
 100W1
 11111
 ```
+
+## bonus:
+
+`make bonus`
+
+`./cub3D ./maps/bonus/game.cub`
 
 key  | function |
 ---|------|
@@ -283,7 +296,8 @@ Habemus sprites!!
 
 * 29/04: The leaks were found and corrected and the code is being refactored. Error messages were wrote in a more specific way.
 
-* 30/04: Two mechanics were in conflict: the `r` *always running* key and `shift` to run, so I took off the always running option. 
+* 30/04: Two mechanics were in conflict: the `r` *always running* key and `shift` to run, so I took off the always running option.
+
 
 </details>
 

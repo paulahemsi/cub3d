@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 18:48:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/01 01:46:44 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,6 @@ typedef struct s_rgb
 	int				green;
 	int				blue;
 }					t_rgb;
-
-typedef struct s_gradient
-{
-	t_rgb			increment;
-	t_rgb			color_distance;
-}					t_gradient;
-
-typedef struct s_toggle
-{
-	int				gradient;
-	int				debug;
-	int				night_mode;
-	int				show_minimap;
-	int				always_running;
-	int				save;
-	int				bmp_id;
-}					t_toggle;
 /*
 ** mlx
 */
@@ -140,8 +123,6 @@ typedef struct s_render
 	t_rgb			color;
 	t_texture		*texture;
 	t_sprite		*sprites;
-	t_texture		hud;
-	t_texture		skybox;
 	int				num_sprites;
 	int				wall_height;
 	int				is_texture;
@@ -155,8 +136,8 @@ typedef struct s_cub
 	void			*window_ptr;
 	t_data			img;
 	t_settings		settings;
-	t_toggle		toggle;
 	t_render		game;
+	int				save;
 }					t_cub;
 /*
 ** aux

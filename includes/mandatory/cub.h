@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 22:02:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/01 01:34:08 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,6 @@ void	load_textures(char **path, t_cub *cub, t_render *game);
 void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle);
 void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle);
 /*
-** bônus and extras
-*/
-void	render_minimap(t_cub *cub, t_map *map, t_ray *rays);
-void	init_night_vision(t_cub *cub, t_rgb *night_vision, t_gradient *grad);
-void	night_vision_floor(t_cub *cub, t_rgb *night_vision);
-void	define_gradient(t_rgb *ceil, t_rgb *floor, t_gradient *gradient);
-void	activate_gradient(t_rgb *color, t_rgb *opposite_surface, t_gradient *gradient);
-void	toggle_increment(t_gradient *gradient);
-void	put_hud(t_texture *texture, t_cub *cub);
-void	toggle_night_mode(t_rgb *color, t_ray *rays, int ray);
-void	define_wall_colors(t_cub *cub, t_ray *rays, int ray);
-/*
 ** render tools
 */
 void	put_line(t_cub *cub, int *pos, int x2, int y2);
@@ -76,7 +64,6 @@ int		is_ray_facing(int direction, float angle);
 /*
 ** system and events
 */
-int		mouse_clicked(int btn, int pos_x, int pos_y, t_cub *cub);
 int		key_pressed(int key, t_cub *cub);
 int		key_released(int key, t_cub *cub);
 void	return_error(t_cub *cub, int error_id);

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 22:18:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/01 01:45:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	update(t_cub *cub)
 	put_walls(cub, rays);
 	put_sprite(cub->game.sprites, &cub->game.player, cub, rays);
 	update_player(&cub->game.player, cub);
-	if (!(cub->toggle.save))
+	if (!(cub->save))
 		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr,
 			cub->img.ptr, 0, 0);
 	free(rays);
@@ -80,10 +80,10 @@ static void	generate_window(t_cub *cub)
 
 void	render_cub(t_cub *cub)
 {
-	if (!(cub->toggle.save))
+	if (!(cub->save))
 		generate_window(cub);
 	update(cub);
-	if (cub->toggle.save)
+	if (cub->save)
 		save_bmp(cub);
 	mlx_loop_hook(cub->mlx_ptr, update, cub);
 	mlx_hook(cub->window_ptr, 2, 1L << 0, key_pressed, cub);
