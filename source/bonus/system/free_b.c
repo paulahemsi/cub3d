@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:22:45 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:11:23 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/01 22:04:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ static void	free_textures(t_cub *cub, t_texture *wall_text, t_sprite *sprites)
 
 static void	free_hud(t_cub *cub)
 {
-	if (cub->game.hud.img.ptr)
-		mlx_destroy_image(cub->mlx_ptr, cub->game.hud.img.ptr);
+	if (cub->game.hud[0].img.ptr)
+		mlx_destroy_image(cub->mlx_ptr, cub->game.hud[0].img.ptr);
+	if (cub->game.hud[1].img.ptr)
+		mlx_destroy_image(cub->mlx_ptr, cub->game.hud[1].img.ptr);
 }
 
 void	free_cub(t_cub *cub)

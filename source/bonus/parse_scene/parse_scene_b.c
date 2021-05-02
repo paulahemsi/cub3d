@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:12:25 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/02 17:36:49 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,32 @@ static void	define_world_size(t_settings *setting, t_map *map)
 	setting->world[HEIGHT] = map->total_row * TILE_SIZE;
 }
 
-//! fazer tb um loop do total de sprites
-//!para não procurar além do que precisa quando todas forem achadas
-static void	save_sprites_locations(t_render *game)
+void	save_sprites_locations(t_render *game)
 {
 	char	**map;
 	int		row;
 	int		col;
-	int		i;
+	//int		i;
+	int		id;
 
 	col = 0;
-	i = 0;
+	//i = 0;
 	map = game->map.row;
 	game->sprites = (t_sprite *)malloc(game->num_sprites * sizeof(t_sprite));
+	ft_memset(game->sprites, 0, sizeof(*game->sprites));
 	while (map[col])
 	{
 		row = 0;
 		while (map[col][row])
 		{
-			if (map[col][row] == '2')
+			if (map[col][row] >= '2' && map[col][row] <= '6')
 			{
-				game->sprites[i].pos[X] = row * TILE_SIZE;
-				game->sprites[i].pos[Y] = col * TILE_SIZE;
-				i++;
+				id = map[col][row] - '0';
+				game->sprites[id - 2].id = id;
+				game->sprites[id - 2].pos[X] = row * TILE_SIZE;
+				game->sprites[id - 2].pos[Y] = col * TILE_SIZE;
+				game->sprites[id - 2].active = TRUE;
+				//i++;
 			}
 			row++;
 		}

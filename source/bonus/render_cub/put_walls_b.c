@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/01 03:02:38 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/02 19:07:42 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	get_texture_color(t_cub *cub, int y, int offset_x)
 
 	texture = cub->game.texture[cub->game.wall];
 	screen_height = cub->settings.screen[HEIGHT];
-	offset[X] = offset_x;
+	offset[X] = offset_x + y;
 	dist_to_top = y + (cub->game.wall_height / 2) - (screen_height / 2);
 	offset[Y] = dist_to_top * ((float)texture.height / cub->game.wall_height);
 	return (*(unsigned int *)(texture.img.data
@@ -69,7 +69,8 @@ static void	draw_wall(t_cub *cub, int *init, int y_end, int offset_x)
 		if ((y >= 0) && (y <= cub->settings.screen[HEIGHT]))
 		{
 			color = get_texture_color(cub, y, offset_x);
-			put_pixel(&cub->img, init[X], y, color);
+			if (color != 0x000000)
+				put_pixel(&cub->img, init[X], y, color);
 		}
 		y++;
 	}

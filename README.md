@@ -54,10 +54,10 @@ for more details, read the [work diary](#work_diary)
 	1. subtract half FOV from camera's position
 	2. cast a ray
 		1. for horizontal and vertical:
-			1.find first intersection with a grid boundary
-			2. check if grid cell is a wall
-			3. if it's not, calculate the step for the next's
-			4. check each cell until find a wall
+			* find first intersection with a grid boundary
+			* check if grid cell is a wall
+			* if it's not, calculate the step for the next's
+			* check each cell until find a wall
 		2. save coordinates from the closest wall (horizontal or vertical)
 		3. knowing the wall coordinates, calculate wall distance with Pitagoras theorem
 		4. save wall distance with fish eye distortion correction
@@ -117,6 +117,11 @@ for more details, read the [work diary](#work_diary)
 
 `./cub3D ./maps/madatory/path_to_scene_file.cub`
 
+key  | function |
+---|------|
+left/right arrow or `q`/`e`| turn				|
+`w` `a` `s` `d` | move					|
+
 you may edit all these settings:
 
 resolution, ceiling and floor colors (range 0 - 255), walls and sprite textures, map. The map must be sorrounded by walls(1) and have the initial player position and direction (W- west, E- east, N-north, S-south)
@@ -145,18 +150,31 @@ S ./path_to_the_sprite_texture.xpm
 
 `./cub3D ./maps/bonus/game.cub`
 
+**bônus and extra features**:
+
+* wall collisions
+* hud
+* shadow effect
+* life bar
+* secret doos
+* minimap
+* run
+* background gradient
+* debug colors
+* night vision mode
+* screenshot
+* dizziness effect
+
 key  | function |
 ---|------|
-left/right arrow | turn				|
-wasd | move					|
+left/right arrow or `q`/`e`| turn				|
+`w` `a` `s` `d` | move					|
 shift | run				|
 tab | toggle minimap	|
-g | toggle background gradient				|
-b | toggle debug colors				|
-n | toggle night vision				|
-p | save .bmp screenshot				|
-r | always running mode on		|
-
+`g` | toggle background gradient				|
+`b` | toggle debug colors				|
+`n` | toggle night vision				|
+`p` | save .bmp screenshot				|
 
 ## work_diary
 
@@ -296,8 +314,9 @@ Habemus sprites!!
 
 * 29/04: The leaks were found and corrected and the code is being refactored. Error messages were wrote in a more specific way.
 
-* 30/04: Two mechanics were in conflict: the `r` *always running* key and `shift` to run, so I took off the always running option.
+* 30/04: Two mechanics were in conflict: the `r` *always running* key and `shift` to run, so I took off the always running option. Bonus and mandatory version has now diferente rules in the makefile. Mandatory version is clean and ready to evaluation!
 
+* 02/05: I managed to insert diferent objects in the map, that can be collected. The hud changeded when the player picks an item, but in a pre-determined order.
 
 </details>
 

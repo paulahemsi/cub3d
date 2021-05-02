@@ -6,21 +6,43 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:12:32 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/02 19:39:50 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/bonus/cub.h"
 
+static char	*define_hud_name(int id)
+{
+	char	*name;
+	char	*aux;
+
+	name = ft_itoa(id);
+	aux = ft_strjoin("./textures/hud_", name);
+	free(name);
+	name = ft_strjoin(aux, ".XPM");
+	free(aux);
+	return (name);
+}
+
 static void	load_hud(t_cub *cub, t_render *game)
 {
-	game->hud.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr,
-			"./textures/hud.XPM",
-			&game->hud.width, &game->hud.height);
-	game->hud.img.data = mlx_get_data_addr(game->hud.img.ptr,
-			&game->hud.img.bits_per_pixel,
-			&game->hud.img.line_length,
-			&game->hud.img.endian);
+	int id;
+	char *name;
+
+	id = 0;
+	while (id <= 5)
+	{
+		name = define_hud_name(id);
+		game->hud[id].img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
+				&game->hud[id].width, &game->hud[id].height);
+		game->hud[id].img.data = mlx_get_data_addr(game->hud[id].img.ptr,
+				&game->hud[id].img.bits_per_pixel,
+				&game->hud[id].img.line_length,
+				&game->hud[id].img.endian);
+		id++;
+		free (name);
+	}
 }
 
 // static void	load_skybox(t_cub *cub, t_render *game)
@@ -34,15 +56,30 @@ static void	load_hud(t_cub *cub, t_render *game)
 // 			&game->skybox.img.endian);
 // }
 
+static char	*define_sprite_name(int id)
+{
+	char	*name;
+	char	*aux;
+
+	name = ft_itoa(id);
+	aux = ft_strjoin("./textures/sprite", name);
+	free(name);
+	name = ft_strjoin(aux, ".XPM");
+	free(aux);
+	return (name);
+}
+
 static void	load_sprites(t_cub *cub, t_sprite *sprites, int total_sprites)
 {
-	int	i;
+	int		i;
+	char	*name;
 
 	i = 0;
 	while (i < total_sprites)
 	{
-		sprites[i].texture.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr,
-				cub->settings.path[SPRITE],
+		name = define_sprite_name(i + 2);
+		ft_printf("name %s\n", name);
+		sprites[i].texture.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
 				&sprites[i].texture.width,
 				&sprites[i].texture.height);
 		if (!(sprites[i].texture.img.ptr))
@@ -55,6 +92,7 @@ static void	load_sprites(t_cub *cub, t_sprite *sprites, int total_sprites)
 		if (!(sprites[i].texture.img.data))
 			return_error(cub, -115);
 		i++;
+		free (name);
 	}
 }
 

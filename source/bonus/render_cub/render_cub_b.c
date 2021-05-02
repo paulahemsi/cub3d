@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:11:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/02 19:38:32 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	update_player(t_player *player, t_cub *cub)
 		angle = 0;
 	new_position[X] = player->pos[X] + (cos(player->angle + angle) * step);
 	new_position[Y] = player->pos[Y] + (sin(player->angle + angle) * step);
-	if (is_tile_free(new_position, &cub->settings, &cub->game.map, TRUE))
+	if (is_tile_free(new_position, cub, &cub->game.map, TRUE))
 	{
 		player->pos[X] = new_position[X];
 		player->pos[Y] = new_position[Y];
@@ -61,13 +61,25 @@ static int	update(t_cub *cub)
 	put_walls(cub, rays, &cub->toggle);
 	put_sprite(cub->game.sprites, &cub->game.player, cub, rays);
 	update_player(&cub->game.player, cub);
-	put_hud(&cub->game.hud, cub);
+	put_hud(cub->game.hud, cub);
 	if (cub->toggle.show_minimap == TRUE)
 		render_minimap(cub, &cub->game.map, rays);
 	if (!(cub->toggle.save))
 		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr,
 			cub->img.ptr, 0, 0);
 	free(rays);
+	
+	//int	i;
+
+	// i = 0;
+	// while (i < cub->game.num_sprites)
+	// {
+	// 	//ft_printf("sprite[%i].active = %i\n", i, cub->game.sprites[i].active);
+	// 	if (cub->game.sprites[i].active)
+	// 		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr,
+	// 		cub->game.sprites[i].texture.img.ptr, 0, i * 100);
+	// 	i++;
+	// }
 	return (0);
 }
 

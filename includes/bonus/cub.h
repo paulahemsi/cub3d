@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 20:36:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/02 13:34:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	put_pixel(t_data *img, int pos_x, int pos_y, int color);
 ** check tile and limits
 */
 int		has_wall(float *pos, t_settings *set, t_map *map);
-int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door);
+int		is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door);
 int		is_inside_world_limits(float *coord, int *world);
 int		is_inside_screen(int *screen, float x, float y);
 /*
@@ -83,5 +83,8 @@ void	return_error(t_cub *cub, int error_id);
 int		close_cub(t_cub *cub);
 void	free_cub(t_cub *cub);
 void	free_paths(char **path);
+
+void	save_sprites_locations(t_render *game);
+
 
 #endif

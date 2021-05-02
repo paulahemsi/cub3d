@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:09:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:12:08 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/02 16:08:30 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static void	define_horizontal_colors(t_rgb *color, t_ray *rays, int ray)
 {
 	if (rays[ray].up)
 	{
-		if (rays[ray].wall_content == '3')
+		if (rays[ray].wall_content == '9')
 			define_img_colors(color, 54, 133, 128);
 		else
 			define_img_colors(color, 64, 143, 138);
 	}
 	else
 	{
-		if (rays[ray].wall_content == '3')
+		if (rays[ray].wall_content == '9')
 			define_img_colors(color, 227, 101, 39);
 		else
 			define_img_colors(color, 237, 111, 49);
@@ -36,14 +36,14 @@ static void	toggle_debug_colors(t_rgb *color, t_ray *rays, int ray)
 	{
 		if (rays[ray].left)
 		{
-			if (rays[ray].wall_content == '3')
+			if (rays[ray].wall_content == '9')
 				define_img_colors(color, 216, 56, 89);
 			else
 				define_img_colors(color, 226, 66, 99);
 		}
 		else
 		{
-			if (rays[ray].wall_content == '3')
+			if (rays[ray].wall_content == '9')
 				define_img_colors(color, 234, 170, 50);
 			else
 				define_img_colors(color, 244, 180, 60);

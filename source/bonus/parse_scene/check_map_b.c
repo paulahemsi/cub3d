@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:12:36 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/02 16:15:52 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	check_map(t_cub *cub, t_render *game)
 				check_neighbors(map, row, col, cub);
 			else if (ft_strchr("NSWE", map[row][col]))
 				store_player_settings(&game->player, &map[row][col], row, col);
-			else if (map[row][col] == '2')
+			else if (map[row][col] >= '2' && map[row][col] <= '6')
 				game->num_sprites++;
 		}
 	}	

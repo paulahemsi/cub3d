@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 22:28:12 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/02 19:35:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ typedef struct s_texture
 typedef struct s_sprite
 {
 	t_texture		texture;
+	int				visible;
+	int				active;
+	int				id;
 	int				pos[2];
 	float			angle;
 	int				height;
@@ -129,7 +132,6 @@ typedef struct s_sprite
 	float			distance;
 	float			init[2];
 	float			end[2];
-	int				visible;
 }					t_sprite;
 
 typedef struct s_render
@@ -140,7 +142,8 @@ typedef struct s_render
 	t_rgb			color;
 	t_texture		*texture;
 	t_sprite		*sprites;
-	t_texture		hud;
+	t_texture		hud[6];
+	int				hud_id;
 	t_texture		skybox;
 	int				num_sprites;
 	int				wall_height;
