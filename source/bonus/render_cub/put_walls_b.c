@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 13:09:39 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 20:07:59 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	put_walls(t_cub *cub, t_ray *rays, t_toggle *t)
 	int		offset_x;
 
 	ray = 0;
-	cub->game.is_texture = FALSE;
+	cub->game.is_texture = TRUE;
 	while (ray < cub->game.ray.total)
 	{
 		cub->game.wall_height = ((TILE_SIZE / rays[ray].dist) * cub->game.player.plane_dist);

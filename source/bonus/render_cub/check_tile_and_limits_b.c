@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 15:15:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 14:14:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 20:16:48 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 
 	id = map->row[row][col] - '0';
 	cub->game.sprites[id - 2].active = FALSE;
-	cub->game.hud_id++;
 	map->row[row][col] = '0';
 	if (id == 2)
 		cub->game.item.red_key = TRUE;

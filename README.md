@@ -82,7 +82,7 @@ for more details, read the [work diary](#work_diary)
 * [DDA line drawing algorithm video](https://www.youtube.com/watch?v=W5P8GlaEOSI)
 * [Bresenham's line algorithm video](https://www.youtube.com/watch?v=RGB-wlatStc&t=202s)
 
-### minilibx and computer graphics
+### minilibx, computer graphics and audio
 * [minilibx-linux version](https://github.com/42Paris/minilibx-linux)
 * [minilibx quick overview](https://github.com/qst0/ft_libgfx/blob/master/man_mlx.md)
 * [minilibx guide](https://harm-smits.github.io/42docs/libs/minilibx) by Harm-Smits
@@ -90,7 +90,8 @@ for more details, read the [work diary](#work_diary)
 * [computer graphics from scratch](https://www.scratchapixel.com/)
 * [math.h](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
 * [keysymdef.h -keycodes for linux](https://cgit.freedesktop.org/xorg/proto/x11proto/tree/keysymdef.h)
- 
+* [bass audio library](http://www.un4seen.com/)
+
 ### virtual machine
 * [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
 
@@ -319,6 +320,8 @@ Habemus sprites!!
 * 30/04: Two mechanics were in conflict: the `r` *always running* key and `shift` to run, so I took off the always running option. Bonus and mandatory version has now diferente rules in the makefile. Mandatory version is clean and ready to evaluation!
 
 * 02/05: I managed to insert diferent objects in the map, that can be collected. The hud changeded when the player picks an item, but in a pre-determined order.
+
+* 03/05: All the colectable object are done (I want to redraw the map, though) and being rendered. The game now has locked doors that can be unlocked with the correct keys. 
 
 </details>
 

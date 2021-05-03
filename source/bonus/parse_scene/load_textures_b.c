@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 15:14:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 18:21:41 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*define_hud_name(int id)
 	char	*aux;
 
 	name = ft_itoa(id);
-	aux = ft_strjoin("./textures/hud_", name);
+	aux = ft_strjoin("./textures/hud/hud_", name);
 	free(name);
 	name = ft_strjoin(aux, ".XPM");
 	free(aux);
@@ -31,7 +31,7 @@ static void	load_hud(t_cub *cub, t_game *game)
 	char *name;
 
 	id = 0;
-	while (id <= 5)
+	while (id <= 7)
 	{
 		name = define_hud_name(id);
 		game->hud[id].img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
