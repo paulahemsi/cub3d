@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 16:50:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 16:15:52 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:09:19 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	store_player_settings(t_player *player, char *dir, int row, int col)
 	*dir = '0';
 }
 
-void	check_map(t_cub *cub, t_render *game)
+void	check_map(t_cub *cub, t_game *game)
 {
 	char	**map;
 	int		row;

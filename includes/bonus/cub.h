@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 13:34:18 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:07:56 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parse_settings(t_cub *cub, char *line);
 void	parse_map(t_settings *configs, char *line);
 void	parse_map_size(t_map *map, char *line);
 void	fill_map(t_cub *cub, char *file, int row);
-void	check_map(t_cub *cub, t_render *game);
+void	check_map(t_cub *cub, t_game *game);
 /*
 ** render cub
 */
@@ -37,7 +37,7 @@ void	raycasting(t_cub *cub, t_ray *rays);
 void	put_background(t_cub *cub, t_rgb *ceiling, t_rgb *floor, t_rgb *color);
 void	put_walls(t_cub *cub, t_ray *rays, t_toggle *t);
 void	put_sprite(t_sprite *sprites, t_player *player, t_cub *cub, t_ray *ray);
-void	load_textures(char **path, t_cub *cub, t_render *game);
+void	load_textures(char **path, t_cub *cub, t_game *game);
 void	find_vertical_collision(t_cub *cub, t_cast *vertical, float angle);
 void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle);
 /*
@@ -83,8 +83,5 @@ void	return_error(t_cub *cub, int error_id);
 int		close_cub(t_cub *cub);
 void	free_cub(t_cub *cub);
 void	free_paths(char **path);
-
-void	save_sprites_locations(t_render *game);
-
 
 #endif

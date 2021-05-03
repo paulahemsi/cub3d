@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 17:36:49 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:10:40 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	check_resolution_limits(t_cub *cub)
 {
 	int			max[2];
 	t_settings	*set;
-	t_render	*game;
+	t_game	*game;
 
 	set = &cub->settings;
 	game = &cub->game;
@@ -46,7 +46,7 @@ static void	define_world_size(t_settings *setting, t_map *map)
 	setting->world[HEIGHT] = map->total_row * TILE_SIZE;
 }
 
-void	save_sprites_locations(t_render *game)
+static void	save_sprites_locations(t_game*game)
 {
 	char	**map;
 	int		row;

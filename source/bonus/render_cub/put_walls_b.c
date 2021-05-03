@@ -6,27 +6,27 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 19:07:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:09:39 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/bonus/cub.h"
 
-static void	define_wall_direction(t_render *game, t_ray *rays, int ray)
+static void	define_wall_direction(t_game *game, t_ray *rays, int ray)
 {
 	if (rays[ray].vertical_hit)
 	{
 		if (rays[ray].left)
-			game->wall = EAST;
+			game->wall_direction = EAST;
 		else
-			game->wall = WEST;
+			game->wall_direction = WEST;
 	}
 	else
 	{
 		if (rays[ray].up)
-			game->wall = SOUTH;
+			game->wall_direction = SOUTH;
 		else
-			game->wall = NORTH;
+			game->wall_direction = NORTH;
 	}
 }
 
@@ -48,7 +48,7 @@ static int	get_texture_color(t_cub *cub, int y, int offset_x)
 	int			offset[2];
 	int			dist_to_top;
 
-	texture = cub->game.texture[cub->game.wall];
+	texture = cub->game.texture[cub->game.wall_direction];
 	screen_height = cub->settings.screen[HEIGHT];
 	offset[X] = offset_x + y;
 	dist_to_top = y + (cub->game.wall_height / 2) - (screen_height / 2);
@@ -96,7 +96,7 @@ void	put_walls(t_cub *cub, t_ray *rays, t_toggle *t)
 		if (end_y > cub->settings.screen[HEIGHT])
 			end_y = cub->settings.screen[HEIGHT];
 		define_wall_direction(&cub->game, rays, ray);
-		offset_x = define_texture_offsetX(rays, ray, cub->game.texture[cub->game.wall]);
+		offset_x = define_texture_offsetX(rays, ray, cub->game.texture[cub->game.wall_direction]);
 		define_wall_colors(cub, rays, ray);
 		if (cub->game.is_texture && (t->night_mode != TRUE) && (t->debug != TRUE))
 			draw_wall(cub, init, end_y, offset_x);

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:12:22 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:50:48 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ static int	is_configs_set(t_settings *settings)
 		return (0);
 	if (!(settings->path[EAST]) || !(settings->path[WEST]))
 		return (0);
-	if (!(settings->path[SPRITE]))
-		return (0);
 	return (1);
 }
 
@@ -103,8 +101,6 @@ void	parse_settings(t_cub *cub, char *line)
 		parse_path(cub, &settings->path[WEST], (line + 3));
 	else if ((ft_strnequ(line, "EA ", 3)) || (ft_strnequ(line, "EA\t", 3)))
 		parse_path(cub, &settings->path[EAST], (line + 3));
-	else if ((ft_strnequ(line, "S ", 2)) || (ft_strnequ(line, "S\t", 2)))
-		parse_path(cub, &settings->path[SPRITE], (line + 2));
 	else if ((ft_strnequ(line, "F ", 2)) || (ft_strnequ(line, "F\t", 2)))
 		parse_colors(cub, &settings->floor, (line + 2));
 	else if ((ft_strnequ(line, "C ", 2)) || (ft_strnequ(line, "C\t", 2)))

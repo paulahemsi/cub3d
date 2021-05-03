@@ -156,12 +156,14 @@ S ./path_to_the_sprite_texture.xpm
 * hud
 * shadow effect
 * life bar
+* more itens in the maze
+* keys that unlock doors
 * secret doos
-* minimap
+* map pickable item that unlocks minimap
+* glasses pickable item that unlocks night vision mode
 * run
 * background gradient
 * debug colors
-* night vision mode
 * screenshot
 * dizziness effect
 

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 15:15:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 17:41:23 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 14:14:29 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,41 +26,35 @@ int	has_wall(float *pos, t_settings *set, t_map *map)
 		return (TRUE);
 	if (map->row[minimap[ROW]][minimap[COL]] == '1')
 		return (TRUE);
+	if (ft_isalpha(map->row[minimap[ROW]][minimap[COL]]))
+		return (TRUE);
 	return (FALSE);
 }
 
-static void	grab_item(t_cub *cub, int id)
+static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 {
-	//int i;
+	int 		id;
 
-	cub->game.hud_id++;
-	//printf("hud_id %i\n", cub->game.hud_id);
-	
-	printf("id %i\n", id);
-	//printf("before index: %i active: %i \n", (id - 2), cub->game.sprites[id - 2].active);
+	id = map->row[row][col] - '0';
 	cub->game.sprites[id - 2].active = FALSE;
-	//printf("after index: %i active: %i \n", (id - 2), cub->game.sprites[id - 2].active);
-	
-	// if (cub->game.sprites)
-	// {
-	// 	i = 0;
-	// 	while (i < cub->game.num_sprites)
-	// 	{
-	// 		if (cub->game.sprites[i].texture.img.ptr)
-	// 			mlx_destroy_image(cub->mlx_ptr, cub->game.sprites[i].texture.img.ptr);
-	// 		i++;
-	// 	}
-	// 	free(cub->game.sprites);
-	// }
-	// cub->game.num_sprites--;
-	// save_sprites_locations(&cub->game);
+	cub->game.hud_id++;
+	map->row[row][col] = '0';
+	if (id == 2)
+		cub->game.item.red_key = TRUE;
+	else if (id == 3)
+		cub->game.item.green_key = TRUE;
+	else if (id == 4)
+		cub->game.item.blue_key = TRUE;
+	else if (id == 5)
+		cub->game.item.map = TRUE;
+	else if (id == 6)
+		cub->game.item.glasses = TRUE;
 }
 
 int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
 {
 	int			minimap[2];
 	t_settings	*set;
-	int 		sprite_id;
 
 	set = &cub->settings;
 	if (!(is_inside_world_limits(pos, set->world)))
@@ -71,19 +65,19 @@ int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
 		return (FALSE);
 	if (map->row[minimap[ROW]][minimap[COL]] == '0')
 		return (TRUE);
-	else
-	{
-		ft_printf("tile content: %c\n", map->row[minimap[ROW]][minimap[COL]]);
-
-	}
 	if (map->row[minimap[ROW]][minimap[COL]] == '9' && (secret_door))
 		return (TRUE);
-	if (map->row[minimap[ROW]][minimap[COL]] >= '2' && map->row[minimap[ROW]][minimap[COL]] <= '6')//!mudar para id?
+	if (map->row[minimap[ROW]][minimap[COL]] == 'r' && (cub->game.item.red_key))
+		return (TRUE);
+	if (map->row[minimap[ROW]][minimap[COL]] == 'g' && (cub->game.item.green_key))
+		return (TRUE);
+	if (map->row[minimap[ROW]][minimap[COL]] == 'b' && (cub->game.item.blue_key))
+		return (TRUE);
+	if (map->row[minimap[ROW]][minimap[COL]] >= '2'
+		&& map->row[minimap[ROW]][minimap[COL]] <= '6')
 	{
-		sprite_id = map->row[minimap[ROW]][minimap[COL]] - '0';
-		grab_item(cub, sprite_id);
-		map->row[minimap[ROW]][minimap[COL]] = '0';
-		return (FALSE);
+		grab_item(cub, map, minimap[ROW], minimap[COL]);
+		return (TRUE);
 	}
 	return (FALSE);
 }

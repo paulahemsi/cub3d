@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 19:35:25 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:51:02 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ typedef struct s_settings
 	int				screen[2];
 	int				world[2];
 	int				center[2];
-	char			*path[5];
+	char			*path[4];
 	t_rgb			floor;
 	t_rgb			ceiling;
 }					t_settings;
@@ -134,12 +134,22 @@ typedef struct s_sprite
 	float			end[2];
 }					t_sprite;
 
-typedef struct s_render
+typedef struct s_item
+{
+	int			map;
+	int			glasses;
+	int			red_key;
+	int			blue_key;
+	int			green_key;
+}				t_item;
+
+typedef struct s_game
 {
 	t_map			map;
 	t_player		player;
 	t_ray			ray;
 	t_rgb			color;
+	t_item			item;
 	t_texture		*texture;
 	t_sprite		*sprites;
 	t_texture		hud[6];
@@ -147,10 +157,10 @@ typedef struct s_render
 	t_texture		skybox;
 	int				num_sprites;
 	int				wall_height;
+	int				wall_direction;
 	int				is_texture;
-	int				wall;
 	int				offset[2];
-}					t_render;
+}					t_game;
 
 typedef struct s_cub
 {
@@ -159,7 +169,7 @@ typedef struct s_cub
 	t_data			img;
 	t_settings		settings;
 	t_toggle		toggle;
-	t_render		game;
+	t_game			game;
 }					t_cub;
 /*
 ** aux

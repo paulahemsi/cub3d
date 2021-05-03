@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 19:39:50 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:10:56 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*define_hud_name(int id)
 	return (name);
 }
 
-static void	load_hud(t_cub *cub, t_render *game)
+static void	load_hud(t_cub *cub, t_game *game)
 {
 	int id;
 	char *name;
@@ -45,7 +45,7 @@ static void	load_hud(t_cub *cub, t_render *game)
 	}
 }
 
-// static void	load_skybox(t_cub *cub, t_render *game)
+// static void	load_skybox(t_cub *cub, t_game *game)
 // {
 // 	game->skybox.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr,
 // 			"./textures/skybox.xpm",
@@ -78,7 +78,6 @@ static void	load_sprites(t_cub *cub, t_sprite *sprites, int total_sprites)
 	while (i < total_sprites)
 	{
 		name = define_sprite_name(i + 2);
-		ft_printf("name %s\n", name);
 		sprites[i].texture.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
 				&sprites[i].texture.width,
 				&sprites[i].texture.height);
@@ -96,7 +95,7 @@ static void	load_sprites(t_cub *cub, t_sprite *sprites, int total_sprites)
 	}
 }
 
-void	load_textures(char **path, t_cub *cub, t_render *game)
+void	load_textures(char **path, t_cub *cub, t_game *game)
 {
 	t_texture	*texture;
 	int			text;

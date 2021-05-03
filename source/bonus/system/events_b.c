@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:11:26 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:34:13 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	update_player_direction(int key, int *player_direction)
 	}
 }
 
-static void	update_effects(int key, t_toggle *toggle)
+static void	update_effects(int key, t_toggle *toggle, t_item *has)
 {
 	if ((key == G) && (toggle->night_mode == -1))
 		toggle->gradient *= TOGGLE;
@@ -39,12 +39,14 @@ static void	update_effects(int key, t_toggle *toggle)
 		toggle->debug *= TOGGLE;
 		toggle->night_mode = -1;
 	}
-	if (key == N)
+	if ((key == N) && (has->glasses))
 	{
 		toggle->night_mode *= TOGGLE;
 		toggle->debug = -1;
 		toggle->gradient = 1;
 	}
+	if ((key == M) && (has->map))
+		toggle->show_minimap *= TOGGLE;
 }
 
 int	key_pressed(int key, t_cub *cub)
@@ -67,10 +69,8 @@ int	key_pressed(int key, t_cub *cub)
 		cub->toggle.bmp_id ++;
 		save_bmp(cub);
 	}
-	if (key == TAB)
-		cub->toggle.show_minimap *= TOGGLE;
-	if (key == G || key == B || key == N)
-		update_effects(key, &cub->toggle);
+	if (key == G || key == B || key == N || key == M)
+		update_effects(key, &cub->toggle, &cub->game.item);
 	return (0);
 }
 

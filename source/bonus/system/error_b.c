@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:11:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:50:12 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static void	print_texture_message(int error_id)
 		ft_putendl("Error\nsettings missconfig");
 		ft_putendl(".cub file must contain:\nR resolution");
 		ft_putendl("NO/SO/WE/EA path to the north/south/west/east texture");
-		ft_putendl("S path to the sprite texture");
 		ft_putendl("F floor colors\nC ceiling colors");
 		ft_putendl("a map, composed by those possible characters:");
 		ft_putendl("'0' for empty space\n'1' for a wall\n'2' for an item");

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:09:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 16:08:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 14:09:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ static void	define_horizontal_colors(t_rgb *color, t_ray *rays, int ray)
 	{
 		if (rays[ray].wall_content == '9')
 			define_img_colors(color, 54, 133, 128);
+		else if (rays[ray].wall_content == 'r')
+			define_img_colors(color, 255, 0, 0);
+		else if (rays[ray].wall_content == 'g')
+			define_img_colors(color, 0, 255, 0);
+		else if (rays[ray].wall_content == 'b')
+			define_img_colors(color, 0, 0, 255);
 		else
 			define_img_colors(color, 64, 143, 138);
 	}
@@ -25,6 +31,12 @@ static void	define_horizontal_colors(t_rgb *color, t_ray *rays, int ray)
 	{
 		if (rays[ray].wall_content == '9')
 			define_img_colors(color, 227, 101, 39);
+		else if (rays[ray].wall_content == 'r')
+			define_img_colors(color, 255, 0, 0);
+		else if (rays[ray].wall_content == 'g')
+			define_img_colors(color, 0, 255, 0);
+		else if (rays[ray].wall_content == 'b')
+			define_img_colors(color, 0, 0, 255);
 		else
 			define_img_colors(color, 237, 111, 49);
 	}
@@ -38,6 +50,12 @@ static void	toggle_debug_colors(t_rgb *color, t_ray *rays, int ray)
 		{
 			if (rays[ray].wall_content == '9')
 				define_img_colors(color, 216, 56, 89);
+			else if (rays[ray].wall_content == 'r')
+				define_img_colors(color, 255, 0, 0);
+			else if (rays[ray].wall_content == 'g')
+				define_img_colors(color, 0, 255, 0);
+			else if (rays[ray].wall_content == 'b')
+				define_img_colors(color, 0, 0, 255);
 			else
 				define_img_colors(color, 226, 66, 99);
 		}
@@ -45,6 +63,12 @@ static void	toggle_debug_colors(t_rgb *color, t_ray *rays, int ray)
 		{
 			if (rays[ray].wall_content == '9')
 				define_img_colors(color, 234, 170, 50);
+			else if (rays[ray].wall_content == 'r')
+				define_img_colors(color, 255, 0, 0);
+			else if (rays[ray].wall_content == 'g')
+				define_img_colors(color, 0, 255, 0);
+			else if (rays[ray].wall_content == 'b')
+				define_img_colors(color, 0, 0, 255);
 			else
 				define_img_colors(color, 244, 180, 60);
 		}

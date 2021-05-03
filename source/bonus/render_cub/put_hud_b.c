@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 03:17:40 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 19:38:19 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:27:00 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ void	put_hud(t_texture *textures, t_cub *cub)
 	t_texture texture;
 
 	x = 0;
-	//****proteção para testes********
-	if (cub->game.hud_id > 5)
-		cub->game.hud_id = 5;
-	//********************************
 	texture = textures[cub->game.hud_id];
 	while (x < cub->settings.screen[WIDTH])
 	{
