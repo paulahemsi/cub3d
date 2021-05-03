@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 13:10:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 15:14:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ static void	load_hud(t_cub *cub, t_game *game)
 // 			&game->skybox.img.endian);
 // }
 
-static char	*define_sprite_name(int id)
+static char	*define_sprite_name(t_sprite *sprite)
 {
 	char	*name;
 	char	*aux;
+	int		id;
 
+	id = sprite->id;
 	name = ft_itoa(id);
 	aux = ft_strjoin("./textures/sprite", name);
 	free(name);
@@ -77,7 +79,7 @@ static void	load_sprites(t_cub *cub, t_sprite *sprites, int total_sprites)
 	i = 0;
 	while (i < total_sprites)
 	{
-		name = define_sprite_name(i + 2);
+		name = define_sprite_name(&sprites[i]);
 		sprites[i].texture.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
 				&sprites[i].texture.width,
 				&sprites[i].texture.height);

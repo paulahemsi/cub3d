@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 21:23:03 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 14:32:41 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 15:05:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ static void	render_rays(t_cub *cub, t_ray *rays)
 	int		player_pos[2];
 
 	ray = 0;
+	if (cub->toggle.night_mode == TRUE)
+		define_img_colors(&cub->game.color, 123, 246, 18);
+	else
+		define_img_colors(&cub->game.color, 255, 255, 255);
 	player_pos[X] = cub->game.player.pos[X] * SCALE;
 	player_pos[Y] = cub->game.player.pos[Y] * SCALE;
 	while (ray < cub->settings.screen[WIDTH])
@@ -59,17 +63,6 @@ void	render_minimap(t_cub *cub, t_map *map, t_ray *rays)
 		{
 			tile_pos[X] = (column * TILE_SIZE) * SCALE;
 			tile_pos[Y] = (line * TILE_SIZE) * SCALE;
-			if (cub->toggle.night_mode == TRUE)
-				define_img_colors(&cub->game.color, 123, 246, 18);
-			//!tiles com cores não está funfando
-			else if (map->row[line][column] == 'r')
-				define_img_colors(&cub->game.color, 170, 0, 0);
-			else if (map->row[line][column] == 'g')
-				define_img_colors(&cub->game.color, 0, 170, 0);
-			else if (map->row[line][column] == 'b')
-				define_img_colors(&cub->game.color, 0, 0, 170);
-			else
-				define_img_colors(&cub->game.color, 255, 255, 255);
 			if (map->row[line][column] == '1' || map->row[line][column] == '9')
 				put_tile(cub, tile_pos);
 			else if (ft_isalpha(map->row[line][column]))

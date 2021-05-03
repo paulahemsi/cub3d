@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 15:20:01 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 16:08:43 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/03 15:30:47 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ void	night_vision_floor(t_cub *cub, t_rgb *night_vision)
 		night_vision[FLOOR].blue);
 }
 
+static void	define_doors_color(t_rgb *color, char door)
+{
+	if (door == 'r')
+		define_img_colors(color, 100, 0, 0);
+	else if (door == 'g')
+		define_img_colors(color, 0, 100, 0);
+	else if (door == 'b')
+		define_img_colors(color, 0, 0, 100);
+}
+
 static void	define_horizontal_colors(t_rgb *color, t_ray *rays, int ray)
 {
 	if (rays[ray].up)
@@ -60,7 +70,9 @@ static void	define_horizontal_colors(t_rgb *color, t_ray *rays, int ray)
 
 void	toggle_night_mode(t_rgb *color, t_ray *rays, int ray)
 {
-	if (rays[ray].vertical_hit)
+	if (ft_isalpha(rays[ray].wall_content))
+		define_doors_color(color, rays[ray].wall_content);
+	else if (rays[ray].vertical_hit)
 	{
 		if (rays[ray].left)
 		{
