@@ -6,69 +6,81 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 18:21:41 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 01:42:48 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/bonus/cub.h"
 
-static char	*define_hud_name(int id)
+// static char	*define_hud_name(int id)
+// {
+// 	char	*name;
+// 	char	*aux;
+
+// 	name = ft_itoa(id);
+// 	aux = ft_strjoin("./textures/hud/hud_", name);
+// 	free(name);
+// 	name = ft_strjoin(aux, ".XPM");
+// 	free(aux);
+// 	return (name);
+// }
+
+static char	*define_name(int texture, int id)
 {
 	char	*name;
 	char	*aux;
 
 	name = ft_itoa(id);
-	aux = ft_strjoin("./textures/hud/hud_", name);
+	if (texture == SPRITE)
+		aux = ft_strjoin("./textures/sprite", name);
+	else if (texture == HUD)
+		aux = ft_strjoin("./textures/hud/hud_", name);
+	else
+		aux = ft_strjoin("./textures/hud/hearts_", name);
 	free(name);
 	name = ft_strjoin(aux, ".XPM");
 	free(aux);
 	return (name);
 }
 
-static void	load_hud(t_cub *cub, t_game *game)
+static void	load_life_bar(t_cub *cub, t_game *game)
 {
-	int id;
+	int i;
 	char *name;
 
-	id = 0;
-	while (id <= 7)
+	i = 0;
+	while (i <= 3)
 	{
-		name = define_hud_name(id);
-		game->hud[id].img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
-				&game->hud[id].width, &game->hud[id].height);
-		game->hud[id].img.data = mlx_get_data_addr(game->hud[id].img.ptr,
-				&game->hud[id].img.bits_per_pixel,
-				&game->hud[id].img.line_length,
-				&game->hud[id].img.endian);
-		id++;
+		name = define_name(HEARTS, i);
+		game->hearts[i].img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
+				&game->hearts[i].width, &game->hearts[i].height);
+		game->hearts[i].img.data = mlx_get_data_addr(game->hearts[i].img.ptr,
+				&game->hearts[i].img.bits_per_pixel,
+				&game->hearts[i].img.line_length,
+				&game->hearts[i].img.endian);
+		i++;
 		free (name);
 	}
 }
 
-// static void	load_skybox(t_cub *cub, t_game *game)
-// {
-// 	game->skybox.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr,
-// 			"./textures/skybox.xpm",
-// 			&game->skybox.width, &game->skybox.height);
-// 	game->skybox.img.data = mlx_get_data_addr(game->skybox.img.ptr,
-// 			&game->skybox.img.bits_per_pixel,
-// 			&game->skybox.img.line_length,
-// 			&game->skybox.img.endian);
-// }
-
-static char	*define_sprite_name(t_sprite *sprite)
+static void	load_hud(t_cub *cub, t_game *game)
 {
-	char	*name;
-	char	*aux;
-	int		id;
+	int i;
+	char *name;
 
-	id = sprite->id;
-	name = ft_itoa(id);
-	aux = ft_strjoin("./textures/sprite", name);
-	free(name);
-	name = ft_strjoin(aux, ".XPM");
-	free(aux);
-	return (name);
+	i = 0;
+	while (i <= 7)
+	{
+		name = define_name(HUD, i);
+		game->hud[i].img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
+				&game->hud[i].width, &game->hud[i].height);
+		game->hud[i].img.data = mlx_get_data_addr(game->hud[i].img.ptr,
+				&game->hud[i].img.bits_per_pixel,
+				&game->hud[i].img.line_length,
+				&game->hud[i].img.endian);
+		i++;
+		free (name);
+	}
 }
 
 static void	load_sprites(t_cub *cub, t_sprite *sprites, int total_sprites)
@@ -79,7 +91,7 @@ static void	load_sprites(t_cub *cub, t_sprite *sprites, int total_sprites)
 	i = 0;
 	while (i < total_sprites)
 	{
-		name = define_sprite_name(&sprites[i]);
+		name = define_name(SPRITE, sprites[i].id);
 		sprites[i].texture.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
 				&sprites[i].texture.width,
 				&sprites[i].texture.height);
@@ -120,6 +132,7 @@ void	load_textures(char **path, t_cub *cub, t_game *game)
 		text++;
 	}
 	load_hud(cub, game);
+	load_life_bar(cub, game);
 	load_sprites(cub, game->sprites, game->num_sprites);
 	//load_skybox(cub, game);
 }

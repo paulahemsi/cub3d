@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 20:07:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 02:08:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	render_cub(t_cub *cub)
 	mlx_hook(cub->window_ptr, 2, 1L << 0, key_pressed, cub);
 	mlx_hook(cub->window_ptr, 3, 1L << 1, key_released, cub);
 	mlx_hook(cub->window_ptr, 33, 1L << 17, close_cub, cub);
+	mlx_mouse_hook(cub->window_ptr, mouse_clicked, cub);
 	mlx_loop(cub->mlx_ptr);
 }
 /*

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 03:17:40 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 20:04:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 02:16:33 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,31 @@ static int	get_hud_color(t_texture *texture, int x, int y)
 	return (*(unsigned int *)(texture->img.data
 		+ (y * texture->img.line_length + x
 			* (texture->img.bits_per_pixel / 8))));
+}
+
+static void	put_skull(t_texture skull, t_cub *cub)
+{
+	int pos[2];
+	int pos_skull[2];
+	int	color;
+
+	pos[X] = 541;
+	pos_skull[X] = 0;
+	while (pos[X] < (541 + 160))
+	{
+		pos[Y] = 490;
+		pos_skull[Y] = 0;
+		while (pos[Y] < 692)
+		{
+			color = get_hud_color(&skull, pos_skull[X], pos_skull[Y]);
+			if (color != 0x000000)
+				put_pixel(&cub->img, pos[X], pos[Y], color);
+			pos_skull[Y]++;
+			pos[Y]++;
+		}
+		pos_skull[X]++;
+		pos[X]++;
+	}
 }
 
 static void	put_glasses(t_texture glasses, t_cub *cub)
@@ -71,6 +96,31 @@ static void	draw_hud(t_texture texture, t_cub *cub, int x, int x_end)
 	}
 }
 
+static void	draw_lifebar(t_texture hearts, t_cub *cub)
+{
+	int pos[2];
+	int pos_hearts[2];
+	int	color;
+
+	pos[X] = 896;
+	pos_hearts[X] = 6;
+	while (pos[X] < cub->settings.screen[WIDTH])
+	{
+		pos[Y] = 0;
+		pos_hearts[Y] = 0;
+		while (pos[Y] < 201)
+		{
+			color = get_hud_color(&hearts, pos_hearts[X], pos_hearts[Y]);
+			if (color != 0x000000)
+				put_pixel(&cub->img, pos[X], pos[Y], color);
+			pos_hearts[Y]++;
+			pos[Y]++;
+		}
+		pos_hearts[X]++;
+		pos[X]++;
+	}
+}
+
 void	put_hud(t_texture *textures, t_cub *cub)
 {
 	draw_hud(textures[0], cub, 0, cub->settings.screen[WIDTH]);
@@ -84,6 +134,9 @@ void	put_hud(t_texture *textures, t_cub *cub)
 		draw_hud(textures[4], cub, 791, 965);
 	if (cub->game.item.map)
 		draw_hud(textures[5], cub, 1006, 1203);
+	if (cub->game.life == 0)
+		put_skull(textures[7], cub);
 	if (cub->toggle.night_mode == TRUE)
 		put_glasses(textures[6], cub);
+	draw_lifebar(cub->game.hearts[cub->game.life], cub);
 }

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:25 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 13:33:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 01:16:58 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define EAST			2
 # define WEST			3
 # define SPRITE			4
+# define HUD			5
+# define HEARTS			6
 # define CEILING		0
 # define FLOOR			1
 # define FRONT			0
@@ -36,6 +38,7 @@
 # define BOTTOM			1
 # define VALID_CELL		1
 # define EDGE			0
+
 
 # define TILE_SIZE		64
 # define HALF_TILE		32
