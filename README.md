@@ -22,7 +22,11 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 
 `cd cub3D`
 
-## mandatory:
+# mandatory:
+
+![](./study_resources/mario_cub.jpg)
+
+![](./study_resources/doom_cub.jpg)
 
 `make`
 
@@ -55,7 +59,9 @@ S ./path_to_the_sprite_texture.xpm
 11111
 ```
 
-## bonus:
+# bonus:
+
+![](./study_resources/night_glasses.gif)
 
 `make bonus`
 
@@ -69,21 +75,24 @@ S ./path_to_the_sprite_texture.xpm
 * life bar
 * more itens in the maze
 * keys that unlock doors
-* secret doos
+* secret doors
+* run
 * map pickable item that unlocks minimap
 * glasses pickable item that unlocks night vision mode
-* run
+* poison
+* after-life mode
 * background gradient
 * debug colors
 * screenshot
 * dizziness effect
+* two levels
 
 key  | function |
 ---|------|
 left/right arrow or `q`/`e`| turn				|
 `w` `a` `s` `d` | move					|
 shift | run				|
-tab | toggle minimap	|
+`m` | toggle minimap	|
 `g` | toggle background gradient				|
 `b` | toggle debug colors				|
 `n` | toggle night vision				|
@@ -127,7 +136,7 @@ for more details, read the [work diary](#work_diary)
 	7. calculate the center point of projection plane
 3. find walls
 	1. subtract half FOV from camera's position
-	2. cast a ray
+	2. repeat for all rays: cast the ray, 
 		1. for horizontal and vertical:
 			* find first intersection with a grid boundary
 			* check if grid cell is a wall
@@ -136,7 +145,6 @@ for more details, read the [work diary](#work_diary)
 		2. save coordinates from the closest wall (horizontal or vertical)
 		3. knowing the wall coordinates, calculate wall distance with Pitagoras theorem
 		4. save wall distance with fish eye distortion correction
-		7. repeat step 3.2 for all rays
 5. draw walls
 	1. for each wall:
 		1.calculate projection wall height
@@ -144,6 +152,9 @@ for more details, read the [work diary](#work_diary)
 
 ## mindmap 
 :goberserk:
+
+![](./study_resources/mindmaps/cub3d_errors.jpg)
+![](./study_resources/mindmaps/check__walls.jpg)
 
 ## study_resources
 :finnadie:
