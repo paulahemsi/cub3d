@@ -6,24 +6,11 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 01:42:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 14:30:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/bonus/cub.h"
-
-// static char	*define_hud_name(int id)
-// {
-// 	char	*name;
-// 	char	*aux;
-
-// 	name = ft_itoa(id);
-// 	aux = ft_strjoin("./textures/hud/hud_", name);
-// 	free(name);
-// 	name = ft_strjoin(aux, ".XPM");
-// 	free(aux);
-// 	return (name);
-// }
 
 static char	*define_name(int texture, int id)
 {
@@ -32,7 +19,7 @@ static char	*define_name(int texture, int id)
 
 	name = ft_itoa(id);
 	if (texture == SPRITE)
-		aux = ft_strjoin("./textures/sprite", name);
+		aux = ft_strjoin("./textures/sprites/sprite", name);
 	else if (texture == HUD)
 		aux = ft_strjoin("./textures/hud/hud_", name);
 	else

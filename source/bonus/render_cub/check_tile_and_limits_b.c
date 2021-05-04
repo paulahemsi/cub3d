@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 15:15:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 20:16:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 13:45:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,21 @@ int	has_wall(float *pos, t_settings *set, t_map *map)
 static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 {
 	int 		id;
+	int			i;
+	t_sprite	*sprite;
 
+	sprite = cub->game.sprites;
 	id = map->row[row][col] - '0';
-	cub->game.sprites[id - 2].active = FALSE;
+	i = 0;
+	while (i < cub->game.num_sprites)
+	{
+		if ((sprite[i].pos[X] == col * TILE_SIZE) && (sprite[i].pos[Y] == row * TILE_SIZE))
+		{
+			cub->game.sprites[i].active = FALSE;
+			break ;
+		}
+		i++;
+	}
 	map->row[row][col] = '0';
 	if (id == 2)
 		cub->game.item.red_key = TRUE;
@@ -48,6 +60,8 @@ static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 		cub->game.item.map = TRUE;
 	else if (id == 6)
 		cub->game.item.glasses = TRUE;
+	else if (id == 7)
+		cub->game.life--;
 }
 
 int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
@@ -73,7 +87,7 @@ int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
 	if (map->row[minimap[ROW]][minimap[COL]] == 'b' && (cub->game.item.blue_key))
 		return (TRUE);
 	if (map->row[minimap[ROW]][minimap[COL]] >= '2'
-		&& map->row[minimap[ROW]][minimap[COL]] <= '6')
+		&& map->row[minimap[ROW]][minimap[COL]] <= '7')
 	{
 		grab_item(cub, map, minimap[ROW], minimap[COL]);
 		return (TRUE);

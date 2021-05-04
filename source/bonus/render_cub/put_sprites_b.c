@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 20:00:41 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/02 19:02:44 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 14:02:27 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,23 @@ static void	draw_sprite(t_cub *cub, t_sprite *sprite, t_ray *ray)
 	}
 }
 
-//!tirei pq a mudança de ordem estava bagunçando o id, se der tempo, rever isso
-// static void	sort_sprites(t_sprite *sprites, t_cub *cub)
-// {
-// 	t_sprite	temp;
-// 	int			i;
+static void	sort_sprites(t_sprite *sprites, t_cub *cub)
+{
+	t_sprite	temp;
+	int			i;
 
-// 	i = 0;
-// 	while (i < cub->game.num_sprites - 1)
-// 	{
-// 		if (sprites[i].distance < sprites[i + 1].distance)
-// 		{
-// 			temp = sprites[i];
-// 			sprites[i] = sprites[i + 1];
-// 			sprites[i + 1] = temp;
-// 		}
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (i < cub->game.num_sprites - 1)
+	{
+		if (sprites[i].distance < sprites[i + 1].distance)
+		{
+			temp = sprites[i];
+			sprites[i] = sprites[i + 1];
+			sprites[i + 1] = temp;
+		}
+		i++;
+	}
+}
 
 void	put_sprite(t_sprite *sprites, t_player *player, t_cub *cub, t_ray *ray)
 {
@@ -116,7 +115,7 @@ void	put_sprite(t_sprite *sprites, t_player *player, t_cub *cub, t_ray *ray)
 			sprites[i].visible = FALSE;
 		i++;
 	}
-	//sort_sprites(sprites, cub);
+	sort_sprites(sprites, cub);
 	i = 0;
 	while (i < cub->game.num_sprites)
 	{

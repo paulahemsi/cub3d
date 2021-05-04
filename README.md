@@ -95,6 +95,12 @@ for more details, read the [work diary](#work_diary)
 ### virtual machine
 * [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
 
+### art
+* [piskel online free app to draw pixel art](piskelapp.com)
+* [photopea online free app to image edition](photopea.com)
+* [krita free open source painting software](krita.org)
+* [jpg to xpm convert](online-utility.org/image/convert/to/XPM)
+
 ### further_reading
 * [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
 * [Ray Marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg) by Sebastian Lague
@@ -321,7 +327,7 @@ Habemus sprites!!
 
 * 02/05: I managed to insert diferent objects in the map, that can be collected. The hud changeded when the player picks an item, but in a pre-determined order.
 
-* 03/05: All the colectable object are done (I want to redraw the map, though) and being rendered. The game now has locked doors that can be unlocked with the correct keys. 
+* 03/05: All the colectable object are done (I want to redraw the map, though) and being rendered. The game now has locked doors that can be unlocked with the correct keys. The life bar is in the game, and when the player loses all the hearts, the character is replaced by a skull.
 
 </details>
 
