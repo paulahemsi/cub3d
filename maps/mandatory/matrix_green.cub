@@ -7,7 +7,7 @@ WE ./textures/matrix_green.xpm
 EA ./textures/matrix_green.xpm
 NO ./textures/matrix_green.xpm
 SO ./textures/matrix_green.xpm
-S ./textures/pillar.xpm
+S ./textures/sprites/pillar.xpm
 
 111111111111
 100000000001

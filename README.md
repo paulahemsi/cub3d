@@ -4,112 +4,16 @@ cause Doom was a milestone in my childhood
 *in process*
 
 * [Introduction](#introduction)
+* [Usage](#usage)
 * [Step by step](#step_by_step)
 * [Work Diary](#work_diary)
 * [Mindmap](#mindmap) 
 * [Study resources](#study_resources)
-* [Usage](#usage)
 
 ## introduction 
 :suspect:
 
-This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.subject.pdf) is inspired by the world-famous 90’s game [Wolfeinstein 3D](https://pt.wikipedia.org/wiki/Wolfenstein_3D), which was the first FPS ever. It will enable to explore ray-casting. My goal will be to make a dynamic view inside a maze, in which you’ll have to find your way
-
-## step_by_step 
-:hurtrealbad:
-
-(time may overlap, like life and data)
-* I watched videos and read about raycasting, field of view algorithms and collision detection to have an overall idea about the project. (~4 days)
-* libraries adjustments, makefile and header file creation(~1 day)
-* configuration parsing, which includes minimap storage and errors checking(~ 5 days)
-* I struggled to make minilibx works in wsl (~2 days)
-* I gave up the wsl and installed and ran minilibx in linux vm (~5 hours)
-* geometry and minilibx library study (~2 days)
-* I managed to draw the 2d minimap with mlx (~1 day)
-* I got lost and completly stuck while trying to study(~4 days that seem an eternity)
-* step by step list from raycasting process (~1 day)
-* 3d wall renderization and wall colisions implementation (~5 days)
-* fixing minor problems, adding bônus and extra features and implementing 'save bmp' (~4 days)
-* Refactoring the code (~2 days)
-* Implementing walls' textures (~4 days)
-* Refactoring the code again and adjusting the project to the new norm(~2 days)
-* Implementing sprites (~6 days)
-* Solving the lasts bugs (~2 days)
-* Finishing bônus version
-
-for more details, read the [work diary](#work_diary)
-
-**raycasting steps:**
-
-1. define wall size
-2. define and get projection details:
-	1. define camera's height
-	2. define camera's field of view
-	3. get camera's position
-	4. get projection plane's dimension (window resolution)
-	5. calculate camera's distance from projection plane
-	6. calculate the angle between each ray that will be casted
-	7. calculate the center point of projection plane
-3. find walls
-	1. subtract half FOV from camera's position
-	2. cast a ray
-		1. for horizontal and vertical:
-			* find first intersection with a grid boundary
-			* check if grid cell is a wall
-			* if it's not, calculate the step for the next's
-			* check each cell until find a wall
-		2. save coordinates from the closest wall (horizontal or vertical)
-		3. knowing the wall coordinates, calculate wall distance with Pitagoras theorem
-		4. save wall distance with fish eye distortion correction
-		7. repeat step 3.2 for all rays
-5. draw walls
-	1. for each wall:
-		1.calculate projection wall height
-		2. draw half of the height above the middle and half under the midle of the pixel column
-
-## mindmap 
-:goberserk:
-
-## study_resources
-:finnadie:
-
-### raycasting
-* [Ray-Casting Tutorial For Game Development And Other Purposes](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/) by F. Permadi
-* [2d Raycasting coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) by Daniel Shiffman (Coding Train)
-* [Lode's raycasting walk through](https://lodev.org/cgtutor/raycasting.html) by Lode Vandevenne
-* [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
-* [digital differential analyzer (DDA) algorithm](https://www.geeksforgeeks.org/dda-line-generation-algorithm-computer-graphics/)
-* [DDA line drawing algorithm video](https://www.youtube.com/watch?v=W5P8GlaEOSI)
-* [Bresenham's line algorithm video](https://www.youtube.com/watch?v=RGB-wlatStc&t=202s)
-
-### minilibx, computer graphics and audio
-* [minilibx-linux version](https://github.com/42Paris/minilibx-linux)
-* [minilibx quick overview](https://github.com/qst0/ft_libgfx/blob/master/man_mlx.md)
-* [minilibx guide](https://harm-smits.github.io/42docs/libs/minilibx) by Harm-Smits
-* [mlx images](https://github.com/keuhdall/images_example/blob/master/README.md)
-* [computer graphics from scratch](https://www.scratchapixel.com/)
-* [math.h](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
-* [keysymdef.h -keycodes for linux](https://cgit.freedesktop.org/xorg/proto/x11proto/tree/keysymdef.h)
-* [bass audio library](http://www.un4seen.com/)
-
-### virtual machine
-* [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
-
-### art
-* [piskel online free app to draw pixel art](piskelapp.com)
-* [photopea online free app to image edition](photopea.com)
-* [krita free open source painting software](krita.org)
-* [jpg to xpm convert](online-utility.org/image/convert/to/XPM)
-
-### further_reading
-* [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
-* [Ray Marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg) by Sebastian Lague
-* [Collision Detection book](http://www.jeffreythompson.org/collision-detection/) by Jeffrey Thompson
-* [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/) by Albert Ford
-* [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
-* [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
-* [random walker to make a procedural dungeon map](https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/) by Ahmad Abdolsaheb
-* [John Carmack tech talk](https://www.youtube.com/watch?v=lHLpKzUxjGk)
+This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.subject.pdf) is inspired by the world-famous 90’s game [Wolfeinstein 3D](http://users.atw.hu/wolf3d/), which was the first FPS ever. It will enable to explore ray-casting. My goal will be to make a dynamic view inside a maze, in which you’ll have to find your way
 
 ## usage 
 :feelsgood:
@@ -184,6 +88,103 @@ tab | toggle minimap	|
 `b` | toggle debug colors				|
 `n` | toggle night vision				|
 `p` | save .bmp screenshot				|
+
+
+## step_by_step 
+:hurtrealbad:
+
+(time may overlap, like life and data)
+* I watched videos and read about raycasting, field of view algorithms and collision detection to have an overall idea about the project. (~4 days)
+* libraries adjustments, makefile and header file creation(~1 day)
+* configuration parsing, which includes minimap storage and errors checking(~ 5 days)
+* I struggled to make minilibx works in wsl (~2 days)
+* I gave up the wsl and installed and ran minilibx in linux vm (~5 hours)
+* geometry and minilibx library study (~2 days)
+* I managed to draw the 2d minimap with mlx (~1 day)
+* I got lost and completly stuck while trying to study(~4 days that seem an eternity)
+* step by step list from raycasting process (~1 day)
+* 3d wall renderization and wall colisions implementation (~5 days)
+* fixing minor problems, adding bônus and extra features and implementing 'save bmp' (~4 days)
+* Refactoring the code (~2 days)
+* Implementing walls' textures (~4 days)
+* Refactoring the code again and adjusting the project to the new norm(~2 days)
+* Implementing sprites (~6 days)
+* Solving the lasts bugs (~2 days)
+* Finishing bônus version (~4 days)
+
+for more details, read the [work diary](#work_diary)
+
+**raycasting steps:**
+
+1. define wall size
+2. define and get projection details:
+	1. define camera's height
+	2. define camera's field of view
+	3. get camera's position
+	4. get projection plane's dimension (window resolution)
+	5. calculate camera's distance from projection plane
+	6. calculate the angle between each ray that will be casted
+	7. calculate the center point of projection plane
+3. find walls
+	1. subtract half FOV from camera's position
+	2. cast a ray
+		1. for horizontal and vertical:
+			* find first intersection with a grid boundary
+			* check if grid cell is a wall
+			* if it's not, calculate the step for the next's
+			* check each cell until find a wall
+		2. save coordinates from the closest wall (horizontal or vertical)
+		3. knowing the wall coordinates, calculate wall distance with Pitagoras theorem
+		4. save wall distance with fish eye distortion correction
+		7. repeat step 3.2 for all rays
+5. draw walls
+	1. for each wall:
+		1.calculate projection wall height
+		2. draw half of the height above the middle and half under the midle of the pixel column
+
+## mindmap 
+:goberserk:
+
+## study_resources
+:finnadie:
+
+### raycasting
+* [Ray-Casting Tutorial For Game Development And Other Purposes](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/) by F. Permadi
+* [2d Raycasting coding challenge](https://www.youtube.com/watch?v=TOEi6T2mtHo) by Daniel Shiffman (Coding Train)
+* [Lode's raycasting walk through](https://lodev.org/cgtutor/raycasting.html) by Lode Vandevenne
+* [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
+* [digital differential analyzer (DDA) algorithm](https://www.geeksforgeeks.org/dda-line-generation-algorithm-computer-graphics/)
+* [DDA line drawing algorithm video](https://www.youtube.com/watch?v=W5P8GlaEOSI)
+* [Bresenham's line algorithm video](https://www.youtube.com/watch?v=RGB-wlatStc&t=202s)
+
+### minilibx, computer graphics and audio
+* [minilibx-linux version](https://github.com/42Paris/minilibx-linux)
+* [minilibx quick overview](https://github.com/qst0/ft_libgfx/blob/master/man_mlx.md)
+* [minilibx guide](https://harm-smits.github.io/42docs/libs/minilibx) by Harm-Smits
+* [mlx images](https://github.com/keuhdall/images_example/blob/master/README.md)
+* [computer graphics from scratch](https://www.scratchapixel.com/)
+* [math.h](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
+* [keysymdef.h -keycodes for linux](https://cgit.freedesktop.org/xorg/proto/x11proto/tree/keysymdef.h)
+* [bass audio library](http://www.un4seen.com/)
+
+### virtual machine
+* [vscode settings sync video](https://www.youtube.com/watch?v=f-uzUsHTQ8s) by James Q Quick
+
+### art
+* [piskel online free app to draw pixel art](piskelapp.com)
+* [photopea online free app to image edition](photopea.com)
+* [krita free open source painting software](krita.org)
+* [jpg to xpm convert](online-utility.org/image/convert/to/XPM)
+
+### further_reading
+* [Nothing To Hide's light explanation](https://ncase.me/sight-and-light/) by Nicky Case 
+* [Ray Marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg) by Sebastian Lague
+* [Collision Detection book](http://www.jeffreythompson.org/collision-detection/) by Jeffrey Thompson
+* [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/) by Albert Ford
+* [field of view algotithms overview](http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html) by Adam Milazzo
+* [2d visibility article](https://www.redblobgames.com/articles/visibility/) by Red Blob Games
+* [random walker to make a procedural dungeon map](https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/) by Ahmad Abdolsaheb
+* [John Carmack tech talk](https://www.youtube.com/watch?v=lHLpKzUxjGk)
 
 ## work_diary
 
@@ -328,6 +329,8 @@ Habemus sprites!!
 * 02/05: I managed to insert diferent objects in the map, that can be collected. The hud changeded when the player picks an item, but in a pre-determined order.
 
 * 03/05: All the colectable object are done (I want to redraw the map, though) and being rendered. The game now has locked doors that can be unlocked with the correct keys. The life bar is in the game, and when the player loses all the hearts, the character is replaced by a skull.
+
+* 04/05: I added poisons bottles that make the player loses life and some new maps for the mandatory part (tributes to lemmings, doom and mario, nice games from my childhoood).
 
 </details>
 

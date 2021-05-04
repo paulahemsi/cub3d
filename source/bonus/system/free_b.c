@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:22:45 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 01:44:02 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 19:21:23 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	free_paths_and_map(char **path, char **map)
 	size_t	i;
 
 	texture = NORTH;
-	while (texture <= SPRITE)
+	while (texture <= WEST)
 	{
 		if (path[texture])
 		{

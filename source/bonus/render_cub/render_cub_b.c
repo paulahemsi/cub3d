@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 02:08:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 18:59:59 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	generate_window(t_cub *cub)
 	cub->window_ptr = mlx_new_window(cub->mlx_ptr,
 			cub->settings.screen[WIDTH],
 			cub->settings.screen[HEIGHT],
-			"cub3D");
+			"cub3D || phemsi-a");
 	if (!(cub->window_ptr))
 		return_error(cub, -120);
 }

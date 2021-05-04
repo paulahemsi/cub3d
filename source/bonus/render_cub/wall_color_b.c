@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_mode_b.c                                     :+:      :+:    :+:   */
+/*   wall_color_b.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:09:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 15:29:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/04 20:33:01 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/bonus/cub.h"
 
-static void	define_doors_color(t_rgb *color, char door)
+static void	define_debug_doors_color(t_rgb *color, char door)
 {
 	if (door == 'r')
-		define_img_colors(color, 200, 0, 0);
+		define_img_colors(color, 153, 0, 0);
 	else if (door == 'g')
-		define_img_colors(color, 0, 200, 0);
+		define_img_colors(color, 76, 153, 0);
 	else if (door == 'b')
-		define_img_colors(color, 0, 0, 200);
+		define_img_colors(color, 0, 0, 153);
 }
 
 static void	define_horizontal_colors(t_rgb *color, t_ray *rays, int ray)
@@ -43,7 +43,7 @@ static void	define_horizontal_colors(t_rgb *color, t_ray *rays, int ray)
 static void	toggle_debug_colors(t_rgb *color, t_ray *rays, int ray)
 {
 	if (ft_isalpha(rays[ray].wall_content))
-			define_doors_color(color, rays[ray].wall_content);
+			define_debug_doors_color(color, rays[ray].wall_content);
 	else if (rays[ray].vertical_hit)
 	{
 		if (rays[ray].left)
@@ -57,18 +57,22 @@ static void	toggle_debug_colors(t_rgb *color, t_ray *rays, int ray)
 		{
 			if (rays[ray].wall_content == '9')
 				define_img_colors(color, 234, 170, 50);
-			else if (rays[ray].wall_content == 'r')
-				define_img_colors(color, 255, 0, 0);
-			else if (rays[ray].wall_content == 'g')
-				define_img_colors(color, 0, 255, 0);
-			else if (rays[ray].wall_content == 'b')
-				define_img_colors(color, 0, 0, 255);
 			else
 				define_img_colors(color, 244, 180, 60);
 		}
 	}
 	else
 		define_horizontal_colors(color, rays, ray);
+}
+
+static void define_doors_color(char door, int color, t_cub *cub)
+{
+	if (door == 'r')
+		define_img_colors(&cub->game.color, color, 0, 0);
+	else if (door == 'g')
+		define_img_colors(&cub->game.color, 0, color, 0);
+	else if (door == 'b')
+		define_img_colors(&cub->game.color, 0, 0, color);
 }
 
 void	define_wall_colors(t_cub *cub, t_ray *rays, int ray)
@@ -88,7 +92,10 @@ void	define_wall_colors(t_cub *cub, t_ray *rays, int ray)
 		color = 200;
 	else if (color < 0)
 		color = 0;
-	define_img_colors(&cub->game.color, color, color, color);
+	if (ft_isalpha(rays[ray].wall_content))
+		define_doors_color(rays[ray].wall_content, color, cub);
+	else
+		define_img_colors(&cub->game.color, color, color, color);
 	if (cub->toggle.debug == TRUE)
 		toggle_debug_colors(&cub->game.color, rays, ray);
 	if (cub->toggle.night_mode == TRUE)

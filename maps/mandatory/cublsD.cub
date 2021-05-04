@@ -7,7 +7,7 @@ WE ./textures/candy_mushroom.xpm
 EA ./textures/candy_mushroom.xpm
 NO ./textures/candy_mushroom.xpm
 SO ./textures/candy_mushroom.xpm
-S ./textures/pillar.xpm
+S ./textures/sprites/pillar.xpm
 
         11111111
         1000000111111111111111111111111
