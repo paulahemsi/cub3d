@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 13:07:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 23:05:31 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	toggle_increment(t_gradient *gradient);
 void	put_hud(t_texture *texture, t_cub *cub);
 void	toggle_night_mode(t_rgb *color, t_ray *rays, int ray);
 void	define_wall_colors(t_cub *cub, t_ray *rays, int ray);
+int		get_hud_color(t_texture *texture, int x, int y);
 /*
 ** render tools
 */

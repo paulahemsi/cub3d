@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 21:28:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 22:47:56 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static char	*define_name(int texture, int id)
 
 static void	load_life_bar(t_cub *cub, t_game *game)
 {
-	int i;
-	char *name;
+	int		i;
+	char	*name;
 
 	i = 0;
 	while (i <= 3)
@@ -52,8 +52,8 @@ static void	load_life_bar(t_cub *cub, t_game *game)
 
 static void	load_hud(t_cub *cub, t_game *game)
 {
-	int i;
-	char *name;
+	int		i;
+	char	*name;
 
 	i = 0;
 	while (i <= 7)
@@ -121,5 +121,4 @@ void	load_textures(char **path, t_cub *cub, t_game *game)
 	load_hud(cub, game);
 	load_life_bar(cub, game);
 	load_sprites(cub, game->sprites, game->num_sprites);
-	//load_skybox(cub, game);
 }

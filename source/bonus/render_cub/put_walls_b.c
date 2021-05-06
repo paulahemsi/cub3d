@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 00:55:47 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 23:15:59 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,20 @@ static int	get_texture_color(t_cub *cub, int y, int offset_x)
 	int			screen_height;
 	int			offset[2];
 	int			dist_to_top;
+	int			glitch;
 
 	texture = cub->game.texture[cub->game.wall_direction];
 	screen_height = cub->settings.screen[HEIGHT];
-	offset[X] = offset_x;// + y;
+	if (cub->settings.level == 2)
+		glitch = y;
+	else
+		glitch = 0;
+	offset[X] = offset_x + glitch;
 	dist_to_top = y + (cub->game.wall_height / 2) - (screen_height / 2);
 	offset[Y] = dist_to_top * ((float)texture.height / cub->game.wall_height);
 	return (*(unsigned int *)(texture.img.data
 		+ (offset[Y] * texture.img.line_length + offset[X]
-		* (texture.img.bits_per_pixel / 8))));
+			* (texture.img.bits_per_pixel / 8))));
 }
 
 static void	draw_wall(t_cub *cub, int *init, int y_end, int offset_x)
@@ -87,9 +92,9 @@ void	put_walls(t_cub *cub, t_ray *rays, t_toggle *t)
 	while (ray < cub->game.ray.total)
 	{
 		cub->game.is_texture = FALSE;
-		if (cub->game.win)
+		if (cub->game.win || cub->settings.level == 2)
 			cub->game.is_texture = TRUE;
-		if (ft_isalpha(rays[ray].wall_content))//!manter secret com s..??
+		if (ft_isalpha(rays[ray].wall_content))
 			cub->game.is_texture = FALSE;
 		cub->game.wall_height = ((TILE_SIZE / rays[ray].dist) * cub->game.player.plane_dist);
 		init[X] = ray;

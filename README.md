@@ -374,5 +374,9 @@ Habemus sprites!!
 
 * 04/05: I added poisons bottles that make the player loses life, some new maps for the mandatory part (tributes to lemmings, doom and mario, nice games from my childhoood) and finished the rgb locked doors implementation.
 
+* 05/05: The game final moment is ready to go! I made the new sprite that unlocks the colorful world in the end of the level, changing the walls and the sky. The sky seems like a party though, with flashing colorful lights. It's a bug, but maybe I'll implemented as a featured cause is actualy very interesting and make sense in the end of the game. Just need to understand why is happening and make it on purpose.
+
+* 06/05: git empty object error again :/ The google says is something with the vm, but I cant find more acurate informations. Besides that, no leaks, says valgrind! Level 1 is finished and errors are being handle correctly in bônus program.
+
 </details>
 

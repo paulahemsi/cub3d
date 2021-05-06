@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 00:51:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 22:47:04 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,6 @@ int	key_pressed(int key, t_cub *cub)
 		cub->toggle.bmp_id ++;
 		save_bmp(cub);
 	}
-	else if (key == SPACE)
-	{
-		cub->game.life--;
-		if (cub->game.life < 0)
-			cub->game.life = 0;
-	}
-		
 	if (key == G || key == B || key == N || key == M)
 		update_effects(key, &cub->toggle, &cub->game.item);
 	return (0);

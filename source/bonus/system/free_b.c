@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:22:45 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 19:21:23 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 22:47:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	free_textures(t_cub *cub, t_texture *wall_text, t_sprite *sprites)
 
 static void	free_hud(t_cub *cub)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i <= 7)

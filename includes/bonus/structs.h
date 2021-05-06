@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 20:30:41 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 23:07:26 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,9 @@ typedef struct s_item
 {
 	int			map;
 	int			glasses;
-	int			red_key;
-	int			blue_key;
-	int			green_key;
+	int			red_k;
+	int			blue_k;
+	int			green_k;
 }				t_item;
 
 typedef struct s_game

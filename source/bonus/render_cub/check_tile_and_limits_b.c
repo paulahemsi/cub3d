@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 15:15:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 19:40:52 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 23:12:09 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	has_wall(float *pos, t_settings *set, t_map *map)
 
 static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 {
-	int 		id;
+	int			id;
 	int			i;
 	t_sprite	*sprite;
 
@@ -40,7 +40,8 @@ static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 	i = 0;
 	while (i < cub->game.num_sprites)
 	{
-		if ((sprite[i].pos[X] == col * TILE_SIZE) && (sprite[i].pos[Y] == row * TILE_SIZE))
+		if ((sprite[i].pos[X] == col * TILE_SIZE)
+			&& (sprite[i].pos[Y] == row * TILE_SIZE))
 		{
 			cub->game.sprites[i].active = FALSE;
 			break ;
@@ -49,11 +50,11 @@ static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 	}
 	map->row[row][col] = '0';
 	if (id == 2)
-		cub->game.item.red_key = TRUE;
+		cub->game.item.red_k = TRUE;
 	else if (id == 3)
-		cub->game.item.green_key = TRUE;
+		cub->game.item.green_k = TRUE;
 	else if (id == 4)
-		cub->game.item.blue_key = TRUE;
+		cub->game.item.blue_k = TRUE;
 	else if (id == 5)
 		cub->game.item.map = TRUE;
 	else if (id == 6)
@@ -80,21 +81,19 @@ int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
 	t_settings	*set;
 
 	set = &cub->settings;
-	if (!(is_inside_world_limits(pos, set->world)))
-		return (FALSE);
 	minimap[ROW] = floor(pos[Y] / TILE_SIZE);
 	minimap[COL] = floor(pos[X] / TILE_SIZE);
-	if (minimap[X] >= map->total_column || minimap[Y] >= map->total_row)
+	if (minimap[X] >= map->total_column || minimap[Y] >= map->total_row
+		|| !(is_inside_world_limits(pos, set->world)))
 		return (FALSE);
-	if (map->row[minimap[ROW]][minimap[COL]] == '0')
+	if ((map->row[minimap[ROW]][minimap[COL]] == '0')
+		|| (map->row[minimap[ROW]][minimap[COL]] == 's' && (secret_door)))
 		return (TRUE);
-	if (map->row[minimap[ROW]][minimap[COL]] == 's' && (secret_door))
+	if (map->row[minimap[ROW]][minimap[COL]] == 'r' && (cub->game.item.red_k))
 		return (TRUE);
-	if (map->row[minimap[ROW]][minimap[COL]] == 'r' && (cub->game.item.red_key))
+	if (map->row[minimap[ROW]][minimap[COL]] == 'g' && (cub->game.item.green_k))
 		return (TRUE);
-	if (map->row[minimap[ROW]][minimap[COL]] == 'g' && (cub->game.item.green_key))
-		return (TRUE);
-	if (map->row[minimap[ROW]][minimap[COL]] == 'b' && (cub->game.item.blue_key))
+	if (map->row[minimap[ROW]][minimap[COL]] == 'b' && (cub->game.item.blue_k))
 		return (TRUE);
 	if (map->row[minimap[ROW]][minimap[COL]] >= '2'
 		&& map->row[minimap[ROW]][minimap[COL]] <= '9')

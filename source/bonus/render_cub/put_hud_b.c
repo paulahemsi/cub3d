@@ -6,23 +6,16 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 03:17:40 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 02:16:33 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 23:08:12 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/bonus/cub.h"
 
-static int	get_hud_color(t_texture *texture, int x, int y)
-{
-	return (*(unsigned int *)(texture->img.data
-		+ (y * texture->img.line_length + x
-			* (texture->img.bits_per_pixel / 8))));
-}
-
 static void	put_skull(t_texture skull, t_cub *cub)
 {
-	int pos[2];
-	int pos_skull[2];
+	int	pos[2];
+	int	pos_skull[2];
 	int	color;
 
 	pos[X] = 541;
@@ -46,8 +39,8 @@ static void	put_skull(t_texture skull, t_cub *cub)
 
 static void	put_glasses(t_texture glasses, t_cub *cub)
 {
-	int pos[2];
-	int pos_glasses[2];
+	int	pos[2];
+	int	pos_glasses[2];
 	int	color;
 
 	pos[X] = 556;
@@ -72,7 +65,7 @@ static void	put_glasses(t_texture glasses, t_cub *cub)
 static void	draw_hud(t_texture texture, t_cub *cub, int x, int x_end)
 {
 	int	y;
-	int hud[2];
+	int	hud[2];
 	int	color;
 
 	hud[X] = 0;
@@ -98,8 +91,8 @@ static void	draw_hud(t_texture texture, t_cub *cub, int x, int x_end)
 
 static void	draw_lifebar(t_texture hearts, t_cub *cub)
 {
-	int pos[2];
-	int pos_hearts[2];
+	int	pos[2];
+	int	pos_hearts[2];
 	int	color;
 
 	pos[X] = 896;
@@ -124,11 +117,11 @@ static void	draw_lifebar(t_texture hearts, t_cub *cub)
 void	put_hud(t_texture *textures, t_cub *cub)
 {
 	draw_hud(textures[0], cub, 0, cub->settings.screen[WIDTH]);
-	if (cub->game.item.red_key)
+	if (cub->game.item.red_k)
 		draw_hud(textures[1], cub, 0, 162);
-	if (cub->game.item.green_key)
+	if (cub->game.item.green_k)
 		draw_hud(textures[2], cub, 162, 320);
-	if (cub->game.item.blue_key)
+	if (cub->game.item.blue_k)
 		draw_hud(textures[3], cub, 320, 494);
 	if (cub->game.item.glasses)
 		draw_hud(textures[4], cub, 791, 965);

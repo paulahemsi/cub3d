@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 19:39:43 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 23:01:19 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	parse_settings(t_cub *cub, char *line)
 		parse_colors(cub, &settings->floor, (line + 2));
 	else if ((ft_strnequ(line, "C ", 2)) || (ft_strnequ(line, "C\t", 2)))
 		parse_colors(cub, &settings->ceiling, (line + 2));
-	//! implementando o level
 	else if ((ft_strnequ(line, "L ", 2)) || (ft_strnequ(line, "L\t", 2)))
 		parse_level(cub, settings, (line + 2));
 	else if ((*line == '1' || (*line == ' ')) && ((is_configs_set(settings))))

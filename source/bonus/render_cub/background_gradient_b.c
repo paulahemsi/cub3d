@@ -6,14 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 15:20:05 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 00:51:35 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 23:02:58 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/bonus/cub.h"
 
-void	
-activate_gradient(t_rgb *color, t_rgb *opposite_surface,
+void	activate_gradient(t_rgb *color, t_rgb *opposite_surface,
 		t_gradient *gradient)
 {
 	if (gradient->increment.red > 0)

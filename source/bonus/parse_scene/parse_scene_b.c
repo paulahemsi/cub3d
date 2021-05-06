@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 21:55:18 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 22:58:21 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	check_colors(t_cub *cub, t_rgb *ceiling, t_rgb *floor)
 static void	define_resolution_limits(t_cub *cub)
 {
 	t_settings	*set;
-	t_game	*game;
+	t_game		*game;
 
 	set = &cub->settings;
 	game = &cub->game;
@@ -34,12 +34,19 @@ static void	define_resolution_limits(t_cub *cub)
 	game->player.plane_dist = floor((set->screen[WIDTH] / 2) / tan(HALF_FOV));
 	game->ray.step = FOV / set->screen[WIDTH];
 	game->ray.total = set->screen[WIDTH];
+	set->world[WIDTH] = game->map.total_column * TILE_SIZE;
+	set->world[HEIGHT] = game->map.total_row * TILE_SIZE;
 }
 
-static void	define_world_size(t_settings *setting, t_map *map)
+static void	set_sprite(t_game *game, int i, int col, int row)
 {
-	setting->world[WIDTH] = map->total_column * TILE_SIZE;
-	setting->world[HEIGHT] = map->total_row * TILE_SIZE;
+	int	id;
+
+	id = game->map.row[col][row] - '0';
+	game->sprites[i].id = id;
+	game->sprites[i].pos[X] = row * TILE_SIZE;
+	game->sprites[i].pos[Y] = col * TILE_SIZE;
+	game->sprites[i].active = TRUE;
 }
 
 static void	save_sprites_locations(t_game*game)
@@ -48,7 +55,6 @@ static void	save_sprites_locations(t_game*game)
 	int		row;
 	int		col;
 	int		i;
-	int		id;
 
 	col = 0;
 	i = 0;
@@ -62,11 +68,7 @@ static void	save_sprites_locations(t_game*game)
 		{
 			if (map[col][row] >= '2' && map[col][row] <= '9')
 			{
-				id = map[col][row] - '0';
-				game->sprites[i].id = id;
-				game->sprites[i].pos[X] = row * TILE_SIZE;
-				game->sprites[i].pos[Y] = col * TILE_SIZE;
-				game->sprites[i].active = TRUE;
+				set_sprite(game, i, col, row);
 				i++;
 			}
 			row++;
@@ -83,7 +85,6 @@ void	parse_scene(char *file, t_cub *cub)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return_error(cub, -104);
-	define_resolution_limits(cub);
 	while (get_next_line(fd, &line))
 	{
 		parse_settings(cub, line);
@@ -93,9 +94,9 @@ void	parse_scene(char *file, t_cub *cub)
 	free(line);
 	close(fd);
 	check_colors(cub, &cub->settings.ceiling, &cub->settings.floor);
-	define_world_size(&cub->settings, &cub->game.map);
 	fill_map(cub, file, cub->game.map.total_row);
 	check_map(cub, &cub->game);
+	define_resolution_limits(cub);
 	save_sprites_locations(&cub->game);
 	load_textures(cub->settings.path, cub, &cub->game);
 }

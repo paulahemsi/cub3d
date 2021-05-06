@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:09:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 00:52:08 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 23:02:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	define_debug_doors_color(t_rgb *color, char door)
 	else if (door == 'b')
 		define_img_colors(color, 0, 0, 153);
 	else if (door == 's')
-		define_img_colors(color, 216, 56, 89); 
+		define_img_colors(color, 216, 56, 89);
 }
 
 static void	toggle_debug_colors(t_rgb *color, t_ray *rays, int ray)
 {
 	if (ft_isalpha(rays[ray].wall_content))
-			define_debug_doors_color(color, rays[ray].wall_content);
+		define_debug_doors_color(color, rays[ray].wall_content);
 	else if (rays[ray].vertical_hit)
 	{
 		if (rays[ray].left)
@@ -44,7 +44,7 @@ static void	toggle_debug_colors(t_rgb *color, t_ray *rays, int ray)
 	}
 }
 
-static void define_doors_color(char door, int color, t_cub *cub)
+static void	define_doors_color(char door, int color, t_cub *cub)
 {
 	if (door == 'r')
 		define_img_colors(&cub->game.color, color, 0, 0);
@@ -80,7 +80,7 @@ void	define_wall_colors(t_cub *cub, t_ray *rays, int ray)
 		define_doors_color(rays[ray].wall_content, color, cub);
 	else
 		define_img_colors(&cub->game.color, color, color, color);
-	if (cub->toggle.debug == TRUE)//|| !(cub->game.is_texture))
+	if (cub->toggle.debug == TRUE)//! || (cub->game.is_texture))
 		toggle_debug_colors(&cub->game.color, rays, ray);
 	if (cub->toggle.night_mode == TRUE)
 		toggle_night_mode(&cub->game.color, rays, ray);
