@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 21:18:02 by phemsi-a          #+#    #+#              #
-#    Updated: 2021/05/04 20:21:09 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/05/06 21:29:16 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ $(NAME): $(OBJECTS) $(LIBFT) $(MLX)
 
 bonus: $(BONUS_OBJECTS) $(LIBFT) $(MLX)
 	@echo making cub3D
-	@$(CC) $(CFLAGS) -g -fsanitize=leak -o cub3D $(BONUS_OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -g -o cub3D $(BONUS_OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
 	@echo done! Have fun!
 	@echo ___________________________________  
 	@echo "|" _____ "|"   "|" ___ "|" ___ ___ "|" "|"   "|" "|"
