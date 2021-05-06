@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 19:40:27 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 22:19:58 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ static void	print_map_and_bmp_message(int error_id)
 	if (error_id == -106)
 	{
 		ft_putendl("Error\nYour map must have only those characters:");
-		ft_putendl("'0' for empty space\n'1' for a wall\n'2' for an item");
+		ft_putendl("'0' empty space\n'1' wall\n's' secret door");
+		ft_putendl("'r' red door\n'g' green door\n'b' blue door");
+		ft_putendl("itens:\n'2' red key\n'3' green key\n'4' blue key");
+		ft_putendl("'5' map\n'6' night vision glasses\n'7' life bottle");
+		ft_putendl("'8' poison bottle\n'9' end game marker");
 		ft_putendl("'N'/'S'/'E'/'W' for player position and orientation");
 		ft_putendl("' ' for optional padding");
 	}
@@ -71,7 +75,11 @@ static void	print_texture_message(int error_id)
 		ft_putendl("NO/SO/WE/EA path to the north/south/west/east texture");
 		ft_putendl("F floor colors\nC ceiling colors");
 		ft_putendl("a map, composed by those possible characters:");
-		ft_putendl("'0' for empty space\n'1' for a wall\n'2' for an item");
+		ft_putendl("'0' empty space\n'1' wall\n's' secret door");
+		ft_putendl("'r' red door\n'g' green door\n'b' blue door");
+		ft_putendl("itens:\n'2' red key\n'3' green key\n'4' blue key");
+		ft_putendl("'5' map\n'6' night vision glasses\n'7' life bottle");
+		ft_putendl("'8' poison bottle\n'9' end game marker");
 		ft_putendl("'N'/'S'/'E'/'W' for player position and orientation");
 		ft_putendl("' ' for optional padding");
 		ft_putendl("The map must be the last content");

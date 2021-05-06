@@ -104,6 +104,31 @@ shift | run				|
 `n` | toggle night vision				|
 `p` | save .bmp screenshot				|
 
+you may edit these settings in .cub file:
+
+L level (1 or 2)
+NO/SO/WE/EA path to the north/south/west/east texture
+F floor colors
+C ceiling colors
+map, composed by those possible characters:
+'0' empty space
+'1' wall
+'s' secret door
+'r' red door
+'g' green door
+'b' blue door
+itens:
+'2' red key
+'3' green key
+'4' blue key
+'5' map
+'6' night vision glasses
+'7' life bottle
+'8' poison bottle
+'9' end game marker
+'N'/'S'/'E'/'W' for player position and orientation
+' ' for optional padding
+The map must be the last content
 
 ## step_by_step 
 :hurtrealbad:
