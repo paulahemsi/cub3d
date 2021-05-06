@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 13:12:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 00:53:39 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_map_size(t_map *map, char *line)
 
 static int	is_valid_char(char c, int *player)
 {
-	if (ft_strchr("012345679rgb NSEW", c))
+	if (ft_strchr("0123456789rgbs NSEW", c))
 	{
 		if (ft_isupper(c))
 		{

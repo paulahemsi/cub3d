@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 01:46:11 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 00:50:10 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ typedef struct s_game
 	t_texture		hud[8];
 	t_texture		hearts[4];
 	t_texture		skybox;
+	int				win;
 	int				life;
 	int				num_sprites;
 	int				wall_height;

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 13:20:07 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 00:53:58 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	save_sprites_locations(t_game*game)
 		row = 0;
 		while (map[col][row])
 		{
-			if (map[col][row] >= '2' && map[col][row] <= '7')
+			if (map[col][row] >= '2' && map[col][row] <= '9')
 			{
 				id = map[col][row] - '0';
 				game->sprites[i].id = id;

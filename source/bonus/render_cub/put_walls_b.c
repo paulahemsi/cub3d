@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 19:48:06 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 00:55:47 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	get_texture_color(t_cub *cub, int y, int offset_x)
 
 	texture = cub->game.texture[cub->game.wall_direction];
 	screen_height = cub->settings.screen[HEIGHT];
-	offset[X] = offset_x + y;
+	offset[X] = offset_x;// + y;
 	dist_to_top = y + (cub->game.wall_height / 2) - (screen_height / 2);
 	offset[Y] = dist_to_top * ((float)texture.height / cub->game.wall_height);
 	return (*(unsigned int *)(texture.img.data
@@ -84,9 +84,13 @@ void	put_walls(t_cub *cub, t_ray *rays, t_toggle *t)
 	int		offset_x;
 
 	ray = 0;
-	cub->game.is_texture = FALSE;
 	while (ray < cub->game.ray.total)
 	{
+		cub->game.is_texture = FALSE;
+		if (cub->game.win)
+			cub->game.is_texture = TRUE;
+		if (ft_isalpha(rays[ray].wall_content))//!manter secret com s..??
+			cub->game.is_texture = FALSE;
 		cub->game.wall_height = ((TILE_SIZE / rays[ray].dist) * cub->game.player.plane_dist);
 		init[X] = ray;
 		init[Y] = cub->settings.center[Y] - (cub->game.wall_height / 2);
@@ -104,5 +108,4 @@ void	put_walls(t_cub *cub, t_ray *rays, t_toggle *t)
 			put_line(cub, init, init[X], end_y);
 		ray++;
 	}
-	cub->game.is_texture = FALSE;
 }

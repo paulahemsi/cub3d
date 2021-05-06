@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:01:46 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:11:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 00:57:17 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static char	*define_name(int bmp_id)
 	}
 }
 
-//TODO colocar limitador de arquivos que pessoa pode salvar
 void	save_bmp(t_cub *cub)
 {
 	t_bmp_header	header;

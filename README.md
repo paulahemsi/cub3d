@@ -22,15 +22,25 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 
 `cd cub3D`
 
+**mandatory**
+
+`make`
+
+`./cub3D ./maps/madatory/path_to_scene_file.cub`
+
+**bonus**:
+
+`make bonus`
+
+`./cub3D ./maps/bonus/level1.cub`
+
+`./cub3D ./maps/bonus/level2.cub`
+
 # mandatory:
 
 ![](./study_resources/mario_cub.jpg)
 
 ![](./study_resources/doom_cub.jpg)
-
-`make`
-
-`./cub3D ./maps/madatory/path_to_scene_file.cub`
 
 key  | function |
 ---|------|
@@ -63,10 +73,6 @@ S ./path_to_the_sprite_texture.xpm
 
 ![](./study_resources/night_glasses.gif)
 
-`make bonus`
-
-`./cub3D ./maps/bonus/game.cub`
-
 **bônus and extra features**:
 
 * wall collisions
@@ -93,7 +99,7 @@ left/right arrow or `q`/`e`| turn				|
 `w` `a` `s` `d` | move					|
 shift | run				|
 `m` | toggle minimap	|
-`g` | toggle background gradient				|
+`g` | toggle background gradient		|
 `b` | toggle debug colors				|
 `n` | toggle night vision				|
 `p` | save .bmp screenshot				|
@@ -341,7 +347,7 @@ Habemus sprites!!
 
 * 03/05: All the colectable object are done (I want to redraw the map, though) and being rendered. The game now has locked doors that can be unlocked with the correct keys. The life bar is in the game, and when the player loses all the hearts, the character is replaced by a skull.
 
-* 04/05: I added poisons bottles that make the player loses life and some new maps for the mandatory part (tributes to lemmings, doom and mario, nice games from my childhoood).
+* 04/05: I added poisons bottles that make the player loses life, some new maps for the mandatory part (tributes to lemmings, doom and mario, nice games from my childhoood) and finished the rgb locked doors implementation.
 
 </details>
 

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 18:59:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 00:50:53 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static int	update(t_cub *cub)
 	t_settings	*set;
 
 	set = &cub->settings;
-	rays = (t_ray *)malloc(cub->settings.screen[WIDTH] * sizeof(t_ray));
+	rays = (t_ray *)malloc(set->screen[WIDTH] * sizeof(t_ray));
 	create_image(cub);
-	put_background(cub, &set->ceiling, &cub->settings.floor, &cub->game.color);
+	put_background(cub, &set->ceiling, &set->floor, &cub->game.color);
 	raycasting(cub, rays);
 	put_walls(cub, rays, &cub->toggle);
 	put_sprite(cub->game.sprites, &cub->game.player, cub, rays);
@@ -68,18 +68,6 @@ static int	update(t_cub *cub)
 		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr,
 			cub->img.ptr, 0, 0);
 	free(rays);
-	
-	//int	i;
-
-	// i = 0;
-	// while (i < cub->game.num_sprites)
-	// {
-	// 	//ft_printf("sprite[%i].active = %i\n", i, cub->game.sprites[i].active);
-	// 	if (cub->game.sprites[i].active)
-	// 		mlx_put_image_to_window(cub->mlx_ptr, cub->window_ptr,
-	// 		cub->game.sprites[i].texture.img.ptr, 0, i * 100);
-	// 	i++;
-	// }
 	return (0);
 }
 

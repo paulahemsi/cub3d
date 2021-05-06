@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 02:03:55 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 00:51:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	update_effects(int key, t_toggle *toggle, t_item *has)
 	{
 		toggle->night_mode *= TOGGLE;
 		toggle->debug = -1;
-		toggle->gradient = 1;
+		//toggle->gradient = 1;
 	}
 	if ((key == M) && (has->map))
 		toggle->show_minimap *= TOGGLE;

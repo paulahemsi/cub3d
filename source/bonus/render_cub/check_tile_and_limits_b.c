@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 15:15:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 13:45:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 00:54:38 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	has_wall(float *pos, t_settings *set, t_map *map)
 	minimap[COL] = floor(pos[X] / TILE_SIZE);
 	if (minimap[X] >= map->total_column || minimap[Y] >= map->total_row)
 		return (FALSE);
-	if (map->row[minimap[ROW]][minimap[COL]] == '9')
-		return (TRUE);
 	if (map->row[minimap[ROW]][minimap[COL]] == '1')
 		return (TRUE);
 	if (ft_isalpha(map->row[minimap[ROW]][minimap[COL]]))
@@ -60,8 +58,16 @@ static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 		cub->game.item.map = TRUE;
 	else if (id == 6)
 		cub->game.item.glasses = TRUE;
+	else if (id == 9)
+		cub->game.win = TRUE;
 	else if (id == 7)
-		cub->game.life--;
+	{
+		if (cub->game.life < 3)
+			cub->game.life++;
+	}
+	else if (id == 8)
+		if (cub->game.life > 0)
+			cub->game.life--;
 }
 
 int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
@@ -78,7 +84,7 @@ int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
 		return (FALSE);
 	if (map->row[minimap[ROW]][minimap[COL]] == '0')
 		return (TRUE);
-	if (map->row[minimap[ROW]][minimap[COL]] == '9' && (secret_door))
+	if (map->row[minimap[ROW]][minimap[COL]] == 's' && (secret_door))
 		return (TRUE);
 	if (map->row[minimap[ROW]][minimap[COL]] == 'r' && (cub->game.item.red_key))
 		return (TRUE);
@@ -87,7 +93,7 @@ int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
 	if (map->row[minimap[ROW]][minimap[COL]] == 'b' && (cub->game.item.blue_key))
 		return (TRUE);
 	if (map->row[minimap[ROW]][minimap[COL]] >= '2'
-		&& map->row[minimap[ROW]][minimap[COL]] <= '7')
+		&& map->row[minimap[ROW]][minimap[COL]] <= '9')
 	{
 		grab_item(cub, map, minimap[ROW], minimap[COL]);
 		return (TRUE);
