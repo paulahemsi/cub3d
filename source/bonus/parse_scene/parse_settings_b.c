@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:48:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 13:50:48 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 19:39:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	parse_colors(t_cub *cub, t_rgb *direction, char *line)
 	}
 }
 
-static void	parse_resolution(t_cub *cub, t_settings *settings, char *line)
+static void	parse_level(t_cub *cub, t_settings *settings, char *line)
 {
 	unsigned int	number;
 
@@ -61,15 +61,13 @@ static void	parse_resolution(t_cub *cub, t_settings *settings, char *line)
 			line++;
 		while (ft_isdigit(*line))
 		{
-			if ((settings->screen[WIDTH]) && (settings->screen[HEIGHT]))
+			if ((settings->level))
 				return_error(cub, -117);
 			number = (number * 10) + (*line - '0');
 			line++;
 		}
-		if (!(settings->screen[WIDTH]) && (number))
-			settings->screen[WIDTH] = number;
-		else if (!(settings->screen[HEIGHT]) && (number))
-			settings->screen[HEIGHT] = number;
+		if ((number == 1) || (number == 2))
+			settings->level = number;
 		else if ((*line))
 			return_error(cub, -117);
 	}
@@ -79,7 +77,7 @@ static int	is_configs_set(t_settings *settings)
 {
 	if ((settings->floor.blue == -1) || (settings->ceiling.blue == -1))
 		return (0);
-	if (!(settings->screen[WIDTH]) || !(settings->screen[HEIGHT]))
+	if (!(settings->level))
 		return (0);
 	if (!(settings->path[NORTH]) || !(settings->path[SOUTH]))
 		return (0);
@@ -105,8 +103,9 @@ void	parse_settings(t_cub *cub, char *line)
 		parse_colors(cub, &settings->floor, (line + 2));
 	else if ((ft_strnequ(line, "C ", 2)) || (ft_strnequ(line, "C\t", 2)))
 		parse_colors(cub, &settings->ceiling, (line + 2));
-	else if ((ft_strnequ(line, "R ", 2)) || (ft_strnequ(line, "R\t", 2)))
-		parse_resolution(cub, settings, (line + 2));
+	//! implementando o level
+	else if ((ft_strnequ(line, "L ", 2)) || (ft_strnequ(line, "L\t", 2)))
+		parse_level(cub, settings, (line + 2));
 	else if ((*line == '1' || (*line == ' ')) && ((is_configs_set(settings))))
 		parse_map_size(&cub->game.map, line);
 	else if (*line != '\0')

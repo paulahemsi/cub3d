@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 12:47:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 20:33:54 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static void	load_sprites(t_cub *cub, t_sprite *sprites, int total_sprites)
 	while (i < total_sprites)
 	{
 		name = define_name(SPRITE, sprites[i].id);
-		printf("name %s\n", name);
 		sprites[i].texture.img.ptr = mlx_xpm_file_to_image(cub->mlx_ptr, name,
 				&sprites[i].texture.width,
 				&sprites[i].texture.height);

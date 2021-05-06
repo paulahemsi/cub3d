@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 13:50:12 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 19:40:27 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	print_texture_message(int error_id)
 	else if (error_id == -116)
 	{
 		ft_putendl("Error\nsettings missconfig");
-		ft_putendl(".cub file must contain:\nR resolution");
+		ft_putendl(".cub file must contain:\nL level (1 or 2)");
 		ft_putendl("NO/SO/WE/EA path to the north/south/west/east texture");
 		ft_putendl("F floor colors\nC ceiling colors");
 		ft_putendl("a map, composed by those possible characters:");
@@ -81,7 +81,7 @@ static void	print_texture_message(int error_id)
 static void	print_settings_and_window_message(int error_id)
 {
 	if (error_id == -117)
-		ft_putendl("Error\nResolution settings misconfig");
+		ft_putendl("Error\nLevel settings misconfig");
 	else if (error_id == -118)
 		ft_putendl("Error\nColors' settings misconfig");
 	else if (error_id == -119)

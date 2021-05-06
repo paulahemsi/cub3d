@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 00:53:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 19:41:27 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,15 @@ static void	check_colors(t_cub *cub, t_rgb *ceiling, t_rgb *floor)
 		return_error(cub, -110);
 }
 
-static void	check_resolution_limits(t_cub *cub)
+static void	define_resolution_limits(t_cub *cub)
 {
-	int			max[2];
 	t_settings	*set;
 	t_game	*game;
 
 	set = &cub->settings;
 	game = &cub->game;
-	mlx_get_screen_size(cub->mlx_ptr, &max[X], &max[Y]);
-	if (set->screen[WIDTH] > max[X])
-		set->screen[WIDTH] = max[X];
-	if (set->screen[HEIGHT] > max[Y])
-		set->screen[HEIGHT] = max[Y];
+	set->screen[WIDTH] = 1280;
+	set->screen[HEIGHT] = 720;
 	set->center[X] = floor(set->screen[WIDTH] / 2);
 	set->center[Y] = floor(set->screen[HEIGHT] / 2);
 	game->player.plane_dist = floor((set->screen[WIDTH] / 2) / tan(HALF_FOV));
@@ -87,6 +83,7 @@ void	parse_scene(char *file, t_cub *cub)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return_error(cub, -104);
+	define_resolution_limits(cub);
 	while (get_next_line(fd, &line))
 	{
 		parse_settings(cub, line);
@@ -99,7 +96,6 @@ void	parse_scene(char *file, t_cub *cub)
 	define_world_size(&cub->settings, &cub->game.map);
 	fill_map(cub, file, cub->game.map.total_row);
 	check_map(cub, &cub->game);
-	check_resolution_limits(cub);
 	save_sprites_locations(&cub->game);
 	load_textures(cub->settings.path, cub, &cub->game);
 }

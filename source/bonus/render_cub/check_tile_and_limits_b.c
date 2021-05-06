@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 15:15:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 00:54:38 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/06 19:40:52 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 	else if (id == 6)
 		cub->game.item.glasses = TRUE;
 	else if (id == 9)
+	{
+		if (cub->toggle.night_mode == TRUE)
+			cub->toggle.night_mode *= TOGGLE;
 		cub->game.win = TRUE;
+	}
 	else if (id == 7)
 	{
 		if (cub->game.life < 3)
