@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:08:57 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 23:03:27 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 02:54:10 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	put_background(t_cub *cub, t_rgb *ceiling, t_rgb *floor, t_rgb *color)
 	define_img_colors(color, 0, 0, 0);
 	if ((cub->game.win) || (cub->settings.level == 2))
 	{
-		cub->toggle.gradient *= TOGGLE;
+		if (cub->settings.level == 1)
+			cub->toggle.gradient *= TOGGLE;
+		else
+			cub->toggle.gradient = TRUE;
 		define_img_colors(color, ceiling->red, ceiling->green, ceiling->blue);
 	}
 	if (cub->toggle.night_mode == TRUE)

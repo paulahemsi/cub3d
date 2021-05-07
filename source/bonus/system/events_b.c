@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 22:47:04 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 02:57:09 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void	update_player_direction(int key, int *player_direction)
 
 static void	update_effects(int key, t_toggle *toggle, t_item *has)
 {
-	if ((key == G) && (toggle->night_mode == -1))
-		toggle->gradient *= TOGGLE;
 	if (key == B)
 	{
 		toggle->debug *= TOGGLE;
@@ -43,7 +41,6 @@ static void	update_effects(int key, t_toggle *toggle, t_item *has)
 	{
 		toggle->night_mode *= TOGGLE;
 		toggle->debug = -1;
-		//toggle->gradient = 1;
 	}
 	if ((key == M) && (has->map))
 		toggle->show_minimap *= TOGGLE;
