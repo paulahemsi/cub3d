@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 00:53:39 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 20:06:06 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,12 @@ static void	fill_row(t_cub *cub, char *line, int index, int *player)
 	while (line[col] != '\0')
 	{
 		if (!(is_valid_char(line[col], player)))
+		{
+			free(map->row[index]);
+			map->row[index] = NULL;
+			//free(line);
 			return_error(cub, -106);
+		}
 		map->row[index][col] = line[col];
 		col++;
 	}
@@ -75,17 +80,21 @@ void	fill_map(t_cub *cub, char *file, int total_rows)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return_error(cub, -104);
-	while (get_next_line(fd, &line))
+	while (get_next_line(fd, &cub->settings.line))
 	{
+		line = cub->settings.line;
 		if (((*line == '1') || (*line == ' ')))
 		{
 			fill_row(cub, line, row, &player);
 			row++;
 		}
-		free(line);
+		free(cub->settings.line);
+		cub->settings.line = NULL;
 	}
+	line = cub->settings.line;
 	if (((*line == '1') || (*line == ' ')))
 		fill_row(cub, line, row, &player);
-	free(line);
+	free(cub->settings.line);
+	cub->settings.line = NULL;
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/01 01:45:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 13:14:57 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ int	main(int argc, char **argv)
 		return_error(&cub, -101);
 	parse_scene(argv[1], &cub);
 	render_cub(&cub);
+	return (0);
 }

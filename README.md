@@ -6,9 +6,9 @@ cause Doom was a milestone in my childhood
 * [Introduction](#introduction)
 * [Usage](#usage)
 * [Step by step](#step_by_step)
-* [Work Diary](#work_diary)
 * [Mindmap](#mindmap) 
 * [Study resources](#study_resources)
+* [Work Diary](#work_diary)
 
 ## introduction 
 :suspect:
@@ -17,6 +17,15 @@ This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.
 
 ## usage 
 :feelsgood:
+
+[Clang](https://releases.llvm.org/9.0.0/tools/clang/docs/index.html)
+
+MiniLibX folder is inside the project, but it requires xorg, x11 and zlib.
+Installing these dependencies on Ubuntu can be done as follows:
+
+`sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev`
+
+Then:
 
 `git clone git@github.com:paulahemsi/cub3d.git`
 
@@ -52,21 +61,29 @@ you may edit all these settings:
 resolution, ceiling and floor colors (range 0 - 255), walls and sprite textures, map. The map must be sorrounded by walls(1) and have the initial player position and direction (W- west, E- east, N-north, S-south)
 
 ```
-R width height
-C red green blue
-F red green blue
+R 1280 720
 
-SO ./path_to_south_texture.xpm
-NO ./path_to_north_texture.xpm
-EA ./path_to_east_texture.xpm
-WE ./path_to_west_texture.xpm
-S ./path_to_the_sprite_texture.xpm
+C 92, 148, 252
+F 128, 208, 15
 
-11111
-10001
-10201
-100W1
-11111
+WE ./textures/walls/mario_1.XPM
+EA ./textures/walls/mario_4.XPM
+NO ./textures/walls/mario_2.XPM
+SO ./textures/walls/mario_3.XPM
+S ./textures/sprites/mario.XPM
+
+11111111111111111111111
+100S0010000100010000111
+11000000000000000000111
+10000000011111000000011
+10020000000000000001111
+10000010000000000111111
+11102011000100000000011
+10000011000100002000001
+11000001000100000000111
+11000020010110200011111
+11011000001110002000111
+11111111111111111111111
 ```
 
 # bonus:
@@ -85,11 +102,13 @@ S ./path_to_the_sprite_texture.xpm
 * run
 * map pickable item that unlocks minimap
 * glasses pickable item that unlocks night vision mode
-* poison
+* poison bottle
+* life bottle
 * after-life mode
 * background gradient
+* stroboscopic sky
 * debug colors
-* screenshot
+* screenshot option anytime
 * dizziness effect
 * two levels
 
@@ -98,10 +117,9 @@ key  | function |
 left/right arrow or `q`/`e`| turn				|
 `w` `a` `s` `d` | move					|
 shift | run				|
-`m` | toggle minimap	|
-`g` | toggle background gradient		|
+`m` | toggle minimap (with map item)|
+`n` | toggle night vision (with glasses item)|
 `b` | toggle debug colors				|
-`n` | toggle night vision				|
 `p` | save .bmp screenshot				|
 
 you may edit these settings in .cub file:
@@ -376,7 +394,7 @@ Habemus sprites!!
 
 * 05/05: The game final moment is ready to go! I made the new sprite that unlocks the colorful world in the end of the level, changing the walls and the sky. The sky seems like a party though, with flashing colorful lights. It's a bug, but maybe I'll implemented as a featured cause is actualy very interesting and make sense in the end of the game. Just need to understand why is happening and make it on purpose.
 
-* 06/05: git empty object error again :/ The google says is something with the vm, but I cant find more acurate informations. Besides that, no leaks, says valgrind! Level 1 is finished and errors are being handle correctly in bônus program. I spent some hours trying to improve the gradient background mess, not so sucessful though.
+* 06/05: git empty object error again :/ The google says is something with the vm, but I cant find more acurate informations. Besides that, no leaks, says valgrind! Level 1 is finished and errors are being handle correctly in bônus program. I spent some hours trying to improve the gradient background mess, not so sucessful though. All the files are in the new norme.
 
 </details>
 

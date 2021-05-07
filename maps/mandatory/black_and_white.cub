@@ -1,18 +1,18 @@
-R 1028 1000
+R 700 700
 
 C 255, 255, 255
 F 0, 0, 0
 
-WE ./textures/pb_bloobs.xpm
-EA ./textures/light_pb.xpm
-NO ./textures/dark_pb.xpm
-SO ./textures/pb_window.xpm
+WE ./textures/walls/pb_bloobs.xpm
+EA ./textures/walls/light_pb.xpm
+NO ./textures/walls/dark_pb.xpm
+SO ./textures/walls/pb_window.xpm
 S ./textures/sprites/pillar.xpm
 
         11111111
         1000000111111111111111
         1000000100000000000001
-        1000000100000000000001
+        1002000100000002000001
         1000000100000000000001
 111111111111011100000000000001
 100000000000000000000111111111

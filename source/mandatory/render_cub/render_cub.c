@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:37:43 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 18:37:42 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 14:04:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	update_player(t_player *player, t_cub *cub)
 		angle = 0;
 	new_position[X] = player->pos[X] + (cos(player->angle + angle) * step);
 	new_position[Y] = player->pos[Y] + (sin(player->angle + angle) * step);
-	if (is_tile_free(new_position, &cub->settings, &cub->game.map, TRUE))
+	if (is_tile_free(new_position, &cub->settings, &cub->game.map))
 	{
 		player->pos[X] = new_position[X];
 		player->pos[Y] = new_position[Y];

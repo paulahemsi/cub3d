@@ -6,7 +6,7 @@
 #    By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 21:18:02 by phemsi-a          #+#    #+#              #
-#    Updated: 2021/05/07 03:48:19 by phemsi-a         ###   ########.fr        #
+#    Updated: 2021/05/07 13:11:44 by phemsi-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ all: $(NAME)
 $(NAME): $(OBJECTS) $(LIBFT) $(MLX)
 	@echo making cub3D
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
-	@echo done! Have fun!
 	@echo ___________________________________  
 	@echo "|" _____ "|"   "|" ___ "|" ___ ___ "|" "|"   "|" "|"
 	@echo "|" "|"   "|" "|"_"|" "|"__ "|" "|"_"|" __"|"____ "|" "|" "|" "|"
@@ -56,11 +55,11 @@ $(NAME): $(OBJECTS) $(LIBFT) $(MLX)
 	@echo "|"_"|" "|"__ "|"   "|" __"|"__ "|" ____"|" "|" "|"_"|" __"|"
 	@echo "|"   ____"|" "|" "|"____ "|" "|"__ "|"   "|"__ "|"__ "|"
 	@echo "|" "|"_______"|"_______"|"___"|"___"|"___"|"_____"|"
+	@echo done! Have fun!
 
 bonus: $(BONUS_OBJECTS) $(LIBFT) $(MLX)
 	@echo making cub3D
 	@$(CC) $(CFLAGS) -g -o cub3D $(BONUS_OBJECTS) -L $(LIBFT_PATH) -L $(MLX_PATH) -lft $(MLX_FLAGS)
-	@echo done! Have fun!
 	@echo ___________________________________  
 	@echo "|" _____ "|"   "|" ___ "|" ___ ___ "|" "|"   "|" "|"
 	@echo "|" "|"   "|" "|"_"|" "|"__ "|" "|"_"|" __"|"____ "|" "|" "|" "|"
@@ -73,6 +72,7 @@ bonus: $(BONUS_OBJECTS) $(LIBFT) $(MLX)
 	@echo "|"_"|" "|"__ "|"   "|" __"|"__ "|" ____"|" "|" "|"_"|" __"|"
 	@echo "|"   ____"|" "|" "|"____ "|" "|"__ "|"   "|"__ "|"__ "|"
 	@echo "|" "|"_______"|"_______"|"___"|"___"|"___"|"_____"|"
+	@echo done! Have fun!
 
 $(MLX):
 	@echo making minilibx....

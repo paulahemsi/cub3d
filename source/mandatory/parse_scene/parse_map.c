@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 22:16:43 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 19:13:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ static void	fill_row(t_cub *cub, char *line, int index, int *player)
 	while (line[col] != '\0')
 	{
 		if (!(is_valid_char(line[col], player)))
+		{
+			free(map->row[index]);
+			map->row[index] = NULL;
 			return_error(cub, -106);
+		}
 		map->row[index][col] = line[col];
 		col++;
 	}

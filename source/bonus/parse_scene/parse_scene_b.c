@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 22:58:21 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 20:06:11 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,17 @@ void	parse_scene(char *file, t_cub *cub)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return_error(cub, -104);
-	while (get_next_line(fd, &line))
+	while (get_next_line(fd, &cub->settings.line))
 	{
+		line = cub->settings.line;
 		parse_settings(cub, line);
-		free(line);
+		free(cub->settings.line);
+		cub->settings.line = NULL;
 	}
+	line = cub->settings.line;
 	parse_settings(cub, line);
-	free(line);
+	free(cub->settings.line);
+	cub->settings.line = NULL;
 	close(fd);
 	check_colors(cub, &cub->settings.ceiling, &cub->settings.floor);
 	fill_map(cub, file, cub->game.map.total_row);

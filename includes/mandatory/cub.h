@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/07 03:16:36 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 14:04:40 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	put_pixel(t_data *img, int pos_x, int pos_y, int color);
 ** check tile and limits
 */
 int		has_wall(float *pos, t_settings *set, t_map *map);
-int		is_tile_free(float *pos, t_settings *set, t_map *map, int secret_door);
+int		is_tile_free(float *pos, t_settings *set, t_map *map);
 int		is_inside_world_limits(float *coord, int *world);
 int		is_inside_screen(int *screen, float x, float y);
 /*

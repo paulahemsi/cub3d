@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:04 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 23:07:26 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 19:57:45 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_settings
 	int				level;
 	t_rgb			floor;
 	t_rgb			ceiling;
+	char			*line;
 }					t_settings;
 
 typedef struct s_texture

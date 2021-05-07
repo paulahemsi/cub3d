@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 22:19:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 19:10:18 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static void	print_settings_and_window_message(int error_id)
 
 void	return_error(t_cub *cub, int error_id)
 {
+	ft_putendl("\x1B[31m---------------------------------------------");
 	if (error_id <= -101 && error_id >= -105)
 		print_args_and_mlx_message(error_id);
 	else if (error_id <= -106 && error_id >= -111)
@@ -108,6 +109,7 @@ void	return_error(t_cub *cub, int error_id)
 		print_texture_message(error_id);
 	else if (error_id <= -117 && error_id >= -120)
 		print_settings_and_window_message(error_id);
+	ft_putendl("\x1B[31m---------------------------------------------\033[0m");
 	free_cub(cub);
 	exit(error_id);
 }

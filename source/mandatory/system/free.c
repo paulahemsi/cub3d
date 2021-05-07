@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:22:45 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 22:21:47 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 19:12:30 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	free_paths_and_map(char **path, char **map)
 		while (map[i])
 		{
 			free(map[i]);
+			map[i] = NULL;
 			i++;
 		}
 		free(map);
