@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:08:57 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/07 02:54:10 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 03:21:34 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ static int	put_surface(t_cub *cub, t_gradient *gradient,
 	return (*line += 1);
 }
 
+static void	colors_on(t_cub *cub, t_rgb *ceiling, t_rgb *color)
+{
+	if (cub->settings.level == 1)
+		cub->toggle.gradient *= TOGGLE;
+	else
+		cub->toggle.gradient = TRUE;
+	define_img_colors(color, ceiling->red, ceiling->green, ceiling->blue);
+}
+
 void	put_background(t_cub *cub, t_rgb *ceiling, t_rgb *floor, t_rgb *color)
 {
 	int			line;
@@ -42,13 +51,7 @@ void	put_background(t_cub *cub, t_rgb *ceiling, t_rgb *floor, t_rgb *color)
 	line = 0;
 	define_img_colors(color, 0, 0, 0);
 	if ((cub->game.win) || (cub->settings.level == 2))
-	{
-		if (cub->settings.level == 1)
-			cub->toggle.gradient *= TOGGLE;
-		else
-			cub->toggle.gradient = TRUE;
-		define_img_colors(color, ceiling->red, ceiling->green, ceiling->blue);
-	}
+		colors_on(cub, ceiling, color);
 	if (cub->toggle.night_mode == TRUE)
 		init_night_vision(cub, night_vision, &gradient);
 	else if (cub->toggle.gradient == TRUE)

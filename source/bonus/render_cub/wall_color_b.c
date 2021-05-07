@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:09:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 23:02:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 03:13:42 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,11 @@ static void	define_doors_color(char door, int color, t_cub *cub)
 		define_img_colors(&cub->game.color, color, color, color);
 }
 
-void	define_wall_colors(t_cub *cub, t_ray *rays, int ray)
+static int	define_shadow(t_ray *rays, int ray)
 {
 	int	shadow;
 	int	color;
-	int	longest_side;
 
-	if (cub->settings.world[HEIGHT] > cub->settings.world[WIDTH])
-		longest_side = cub->settings.world[HEIGHT];
-	else
-		longest_side = cub->settings.world[WIDTH];
 	if (rays[ray].vertical_hit)
 		color = 200;
 	else
@@ -76,11 +71,24 @@ void	define_wall_colors(t_cub *cub, t_ray *rays, int ray)
 		color = 250;
 	else if (color < 0)
 		color = 0;
+	return (color);
+}
+
+void	define_wall_colors(t_cub *cub, t_ray *rays, int ray)
+{
+	int	color;
+	int	longest_side;
+
+	if (cub->settings.world[HEIGHT] > cub->settings.world[WIDTH])
+		longest_side = cub->settings.world[HEIGHT];
+	else
+		longest_side = cub->settings.world[WIDTH];
+	color = define_shadow(rays, ray);
 	if (ft_isalpha(rays[ray].wall_content) && !(cub->game.is_texture))
 		define_doors_color(rays[ray].wall_content, color, cub);
 	else
 		define_img_colors(&cub->game.color, color, color, color);
-	if (cub->toggle.debug == TRUE)//! || (cub->game.is_texture))
+	if (cub->toggle.debug == TRUE)
 		toggle_debug_colors(&cub->game.color, rays, ray);
 	if (cub->toggle.night_mode == TRUE)
 		toggle_night_mode(&cub->game.color, rays, ray);

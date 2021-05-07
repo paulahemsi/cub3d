@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_tile_and_limits_b.c                          :+:      :+:    :+:   */
+/*   check_tile_b.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 15:15:51 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 23:12:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 03:48:50 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,8 @@ int	has_wall(float *pos, t_settings *set, t_map *map)
 	return (FALSE);
 }
 
-static void	grab_item(t_cub *cub, t_map *map, int row, int col)
+static void	update_inventory(int id, t_cub *cub)
 {
-	int			id;
-	int			i;
-	t_sprite	*sprite;
-
-	sprite = cub->game.sprites;
-	id = map->row[row][col] - '0';
-	i = 0;
-	while (i < cub->game.num_sprites)
-	{
-		if ((sprite[i].pos[X] == col * TILE_SIZE)
-			&& (sprite[i].pos[Y] == row * TILE_SIZE))
-		{
-			cub->game.sprites[i].active = FALSE;
-			break ;
-		}
-		i++;
-	}
-	map->row[row][col] = '0';
 	if (id == 2)
 		cub->game.item.red_k = TRUE;
 	else if (id == 3)
@@ -73,6 +55,29 @@ static void	grab_item(t_cub *cub, t_map *map, int row, int col)
 	else if (id == 8)
 		if (cub->game.life > 0)
 			cub->game.life--;
+}
+
+static void	grab_item(t_cub *cub, t_map *map, int row, int col)
+{
+	int			id;
+	int			i;
+	t_sprite	*sprite;
+
+	sprite = cub->game.sprites;
+	id = map->row[row][col] - '0';
+	i = 0;
+	while (i < cub->game.num_sprites)
+	{
+		if ((sprite[i].pos[X] == col * TILE_SIZE)
+			&& (sprite[i].pos[Y] == row * TILE_SIZE))
+		{
+			cub->game.sprites[i].active = FALSE;
+			break ;
+		}
+		i++;
+	}
+	map->row[row][col] = '0';
+	update_inventory(id, cub);
 }
 
 int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
@@ -101,20 +106,5 @@ int	is_tile_free(float *pos, t_cub *cub, t_map *map, int secret_door)
 		grab_item(cub, map, minimap[ROW], minimap[COL]);
 		return (TRUE);
 	}
-	return (FALSE);
-}
-
-int	is_inside_world_limits(float *coord, int *world)
-{
-	if (coord[X] >= 0 && coord[X] <= world[WIDTH] && coord[Y] >= 0
-		&& coord[Y] <= world[HEIGHT])
-		return (1);
-	return (0);
-}
-
-int	is_inside_screen(int *screen, float x, float y)
-{
-	if (x > 0 && x < screen[WIDTH] && y > 0 && y < screen[HEIGHT])
-		return (TRUE);
 	return (FALSE);
 }

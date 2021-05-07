@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 13:56:02 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 23:05:05 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 03:47:14 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ void	put_pixel(t_data *img, int pos_x, int pos_y, int color)
 	offset = (pos_y * img->line_length + pos_x * (img->bits_per_pixel / 8));
 	dst = img->data + offset;
 	*(unsigned int *)dst = color;
+}
+
+float	normalize_angle(float angle)
+{
+	angle = remainder(angle, TWO_PI);
+	if (angle < 0)
+	{
+		angle = TWO_PI + angle;
+	}
+	return (angle);
 }

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 23:05:31 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 03:16:22 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	render_minimap(t_cub *cub, t_map *map, t_ray *rays);
 void	init_night_vision(t_cub *cub, t_rgb *night_vision, t_gradient *grad);
 void	night_vision_floor(t_cub *cub, t_rgb *night_vision);
 void	define_gradient(t_rgb *ceil, t_rgb *floor, t_gradient *gradient);
-void	activate_gradient(t_rgb *color, t_rgb *opposite_surface, t_gradient *gradient);
+void	activate_gradient(t_rgb *color, t_rgb *opposite_surface,
+			t_gradient *gradient);
 void	toggle_increment(t_gradient *gradient);
 void	put_hud(t_texture *texture, t_cub *cub);
 void	toggle_night_mode(t_rgb *color, t_ray *rays, int ray);
@@ -57,7 +58,8 @@ int		get_hud_color(t_texture *texture, int x, int y);
 ** render tools
 */
 void	put_line(t_cub *cub, int *pos, int x2, int y2);
-int		color_picker(unsigned char red, unsigned char green, unsigned char blue);
+int		color_picker(unsigned char red, unsigned char green,
+			unsigned char blue);
 void	define_img_colors(t_rgb *color, int red, int green, int blue);
 void	put_pixel(t_data *img, int pos_x, int pos_y, int color);
 /*

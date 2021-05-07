@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 17:01:20 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/04/30 21:11:32 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 03:49:36 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ float	define_distance(int *pos1, int *pos2)
 			+ ((pos2[Y] - pos1[Y]) * (pos2[Y] - pos1[Y]))));
 }
 
-float	normalize_angle(float angle)
-{
-	angle = remainder(angle, TWO_PI);
-	if (angle < 0)
-	{
-		angle = TWO_PI + angle;
-	}
-	return (angle);
-}
-
 int	is_ray_facing(int direction, float angle)
 {
 	if (direction == DOWN)
@@ -46,4 +36,19 @@ int	is_ray_facing(int direction, float angle)
 		return (!(angle < PI / 2 || angle > 1.5 * PI));
 	else
 		return (ERROR);
+}
+
+int	is_inside_world_limits(float *coord, int *world)
+{
+	if (coord[X] >= 0 && coord[X] <= world[WIDTH] && coord[Y] >= 0
+		&& coord[Y] <= world[HEIGHT])
+		return (1);
+	return (0);
+}
+
+int	is_inside_screen(int *screen, float x, float y)
+{
+	if (x > 0 && x < screen[WIDTH] && y > 0 && y < screen[HEIGHT])
+		return (TRUE);
+	return (FALSE);
 }

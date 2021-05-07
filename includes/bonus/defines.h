@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:26:25 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/04 01:16:58 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 03:15:41 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # define BOTTOM			1
 # define VALID_CELL		1
 # define EDGE			0
-
 
 # define TILE_SIZE		64
 # define HALF_TILE		32
@@ -81,8 +80,5 @@
 # define KEYPRESS		2
 # define KEYRELEASE		3
 # define CLIENTMESSAGE	33
-# define KEYPRESS_MASK	1L<<0
-# define KEYREL_MASK	1L<<1
-# define NOTIFY_MASK	1L<<17
 
 #endif

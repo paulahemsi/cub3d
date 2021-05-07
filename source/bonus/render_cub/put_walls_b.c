@@ -6,13 +6,13 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/06 23:15:59 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 03:36:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/bonus/cub.h"
 
-static void	define_wall_direction(t_game *game, t_ray *rays, int ray)
+static int	define_direction(t_game *game, t_ray *rays, int ray, t_texture t)
 {
 	if (rays[ray].vertical_hit)
 	{
@@ -28,14 +28,10 @@ static void	define_wall_direction(t_game *game, t_ray *rays, int ray)
 		else
 			game->wall_direction = NORTH;
 	}
-}
-
-static int	define_texture_offsetX(t_ray *rays, int ray, t_texture texture)
-{
 	if (rays[ray].vertical_hit)
-		return ((int)rays[ray].hit[Y] % texture.width);
+		return ((int)rays[ray].hit[Y] % t.width);
 	else
-		return ((int)rays[ray].hit[X] % texture.width);
+		return ((int)rays[ray].hit[X] % t.width);
 }
 
 //!para bônus mexer no offset[X] para dar efeito de tudo se mexendo/tontura.
@@ -81,6 +77,17 @@ static void	draw_wall(t_cub *cub, int *init, int y_end, int offset_x)
 	}
 }
 
+static void	define_limits(t_cub *cub, int *init, int *end_y, int ray)
+{
+	init[X] = ray;
+	init[Y] = cub->settings.center[Y] - (cub->game.wall_height / 2);
+	if (init[Y] < 0)
+		init[Y] = 0;
+	*end_y = cub->settings.center[Y] + (cub->game.wall_height / 2);
+	if (*end_y > cub->settings.screen[HEIGHT])
+		*end_y = cub->settings.screen[HEIGHT];
+}
+
 void	put_walls(t_cub *cub, t_ray *rays, t_toggle *t)
 {
 	int		ray;
@@ -88,29 +95,24 @@ void	put_walls(t_cub *cub, t_ray *rays, t_toggle *t)
 	int		end_y;
 	int		offset_x;
 
-	ray = 0;
-	while (ray < cub->game.ray.total)
+	ray = -1;
+	while (++ray < cub->game.ray.total)
 	{
 		cub->game.is_texture = FALSE;
 		if (cub->game.win || cub->settings.level == 2)
 			cub->game.is_texture = TRUE;
 		if (ft_isalpha(rays[ray].wall_content))
 			cub->game.is_texture = FALSE;
-		cub->game.wall_height = ((TILE_SIZE / rays[ray].dist) * cub->game.player.plane_dist);
-		init[X] = ray;
-		init[Y] = cub->settings.center[Y] - (cub->game.wall_height / 2);
-		if (init[Y] < 0)
-			init[Y] = 0;
-		end_y = cub->settings.center[Y] + (cub->game.wall_height / 2);
-		if (end_y > cub->settings.screen[HEIGHT])
-			end_y = cub->settings.screen[HEIGHT];
-		define_wall_direction(&cub->game, rays, ray);
-		offset_x = define_texture_offsetX(rays, ray, cub->game.texture[cub->game.wall_direction]);
+		cub->game.wall_height = ((TILE_SIZE / rays[ray].dist)
+				* cub->game.player.plane_dist);
+		define_limits(cub, init, &end_y, ray);
+		offset_x = define_direction(&cub->game, rays, ray,
+				cub->game.texture[cub->game.wall_direction]);
 		define_wall_colors(cub, rays, ray);
-		if (cub->game.is_texture && (t->night_mode != TRUE) && (t->debug != TRUE))
+		if (cub->game.is_texture
+			&& (t->night_mode != TRUE) && (t->debug != TRUE))
 			draw_wall(cub, init, end_y, offset_x);
 		else
 			put_line(cub, init, init[X], end_y);
-		ray++;
 	}
 }

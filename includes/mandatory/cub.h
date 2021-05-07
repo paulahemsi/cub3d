@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/01 01:34:08 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/07 03:16:36 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	find_horizontal_collision(t_cub *cub, t_cast *horizontal, float angle);
 ** render tools
 */
 void	put_line(t_cub *cub, int *pos, int x2, int y2);
-int		color_picker(unsigned char red, unsigned char green, unsigned char blue);
+int		color_picker(unsigned char red, unsigned char green,
+			unsigned char blue);
 void	define_img_colors(t_rgb *color, int red, int green, int blue);
 void	put_pixel(t_data *img, int pos_x, int pos_y, int color);
 /*
