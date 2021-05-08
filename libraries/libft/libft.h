@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 19:02:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/03 13:59:56 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/08 18:36:40 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ int				ft_numlen(int number);
 char			*ft_itoa_hex(unsigned long int number, char case_char);
 void			ft_putnbr_unsigned(unsigned int nb);
 int				ft_isupper(int c);
+void			ft_free_and_null(void **pointer);
 /*
 **  FT_PRINTF
 */

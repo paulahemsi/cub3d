@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/07 20:06:06 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/08 19:04:43 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	fill_row(t_cub *cub, char *line, int index, int *player)
 		{
 			free(map->row[index]);
 			map->row[index] = NULL;
-			//free(line);
 			return_error(cub, -106);
 		}
 		map->row[index][col] = line[col];
@@ -68,7 +67,6 @@ static void	fill_row(t_cub *cub, char *line, int index, int *player)
 
 void	fill_map(t_cub *cub, char *file, int total_rows)
 {
-	char			*line;
 	int				fd;
 	int				player;
 	int				row;
@@ -82,19 +80,15 @@ void	fill_map(t_cub *cub, char *file, int total_rows)
 		return_error(cub, -104);
 	while (get_next_line(fd, &cub->settings.line))
 	{
-		line = cub->settings.line;
-		if (((*line == '1') || (*line == ' ')))
+		if (((*cub->settings.line == '1') || (*cub->settings.line == ' ')))
 		{
-			fill_row(cub, line, row, &player);
+			fill_row(cub, cub->settings.line, row, &player);
 			row++;
 		}
-		free(cub->settings.line);
-		cub->settings.line = NULL;
+		ft_free_and_null((void **)&cub->settings.line);
 	}
-	line = cub->settings.line;
-	if (((*line == '1') || (*line == ' ')))
-		fill_row(cub, line, row, &player);
-	free(cub->settings.line);
-	cub->settings.line = NULL;
+	if (((*cub->settings.line == '1') || (*cub->settings.line == ' ')))
+		fill_row(cub, cub->settings.line, row, &player);
+	ft_free_and_null((void **)&cub->settings.line);
 	close(fd);
 }

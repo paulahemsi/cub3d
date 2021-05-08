@@ -396,5 +396,9 @@ Habemus sprites!!
 
 * 06/05: git empty object error again :/ The google says is something with the vm, but I cant find more acurate informations. Besides that, no leaks, says valgrind! Level 1 is finished and errors are being handle correctly in bônus program. I spent some hours trying to improve the gradient background mess, not so sucessful though. All the files are in the new norme.
 
+* 07/05: A segfault was founded when a wrong character was placed in the map, is already solved, but I start to use valgrind in each test and because of that I descovered some very small leaks when a error is found in the map. Trying to fix it.
+
+* 08/05: The micro-leaks was in fact the static variable from get_next_line function, I was able to solved it, but talking with some other students we reach the conclusion that since it was a static variable, it was not a problem to let the exit function ger rid of that chunk of memory for us. I founded also that my map was being render even if was a empty line in the middle of his content, and it shouldnt, so I corrected it.
+
 </details>
 

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 02:22:45 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/07 19:12:30 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:21:31 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static void	free_textures(t_cub *cub, t_texture *wall_text, t_sprite *sprites)
 
 void	free_cub(t_cub *cub)
 {
+	if (cub->settings.line)
+		free (cub->settings.line);
 	free_paths_and_map(cub->settings.path, cub->game.map.row);
 	free_textures(cub, cub->game.texture, cub->game.sprites);
 	if (cub->img.ptr && cub->mlx_ptr)
