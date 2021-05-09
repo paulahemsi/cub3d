@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:48:42 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/08 21:21:20 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/09 17:38:59 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,18 @@ static void	fill_row(t_cub *cub, char *line, int index, int *player)
 	}
 }
 
-void	fill_map(t_cub *cub, char *file, int total_rows)
+void	fill_map(t_cub *cub, int fd, int row)
 {
-	int				fd;
 	int				player;
-	int				row;
 	int				start_map;
 
 	player = FALSE;
-	cub->game.map.row = (char **)malloc((total_rows + 1) * sizeof(char *));
-	cub->game.map.row[total_rows] = NULL;
-	row = 0;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return_error(cub, -104);
 	start_map = FALSE;
 	while (get_next_line(fd, &cub->settings.line))
 	{
 		if ((start_map) && (*cub->settings.line == '\0'))
 		{
-			ft_free_and_null((void **)&cub->game.map.row);
+			ft_free_and_null((void **)&cub->game.map.row[row - 1]);
 			return_error(cub, -106);
 		}
 		if (((*cub->settings.line == '1') || (*cub->settings.line == ' ')))
@@ -99,5 +91,4 @@ void	fill_map(t_cub *cub, char *file, int total_rows)
 	if (((*cub->settings.line == '1') || (*cub->settings.line == ' ')))
 		fill_row(cub, cub->settings.line, row, &player);
 	ft_free_and_null((void **)&cub->settings.line);
-	close(fd);
 }

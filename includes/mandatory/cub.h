@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 16:21:18 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/08 19:50:41 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/09 17:26:31 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 ** parse configs
 */
 void	parse_scene(char *file, t_cub *cub);
-void	parse_settings(t_cub *cub, char *line);
+void	parse_settings(t_cub *cub, char *line, t_settings *settings);
 void	parse_map(t_settings *configs, char *line);
 void	parse_map_size(t_map *map, char *line);
-void	fill_map(t_cub *cub, char *file, int row);
+void	fill_map(t_cub *cub, int fd, int row);
 void	check_map(t_cub *cub, t_render *game);
 /*
 ** render cub

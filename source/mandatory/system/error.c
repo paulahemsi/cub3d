@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 00:46:13 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/08 20:28:54 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/09 17:02:11 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ static void	print_settings_and_window_message(int error_id)
 		ft_putendl("Error\nTextures' paths misconfig");
 	else if (error_id == -120)
 		ft_putendl("Error\nunable to create a window");
+	else if (error_id == -121)
+		ft_putendl("Error\nthe sistem run out of memory");
 }
 
 void	return_error(t_cub *cub, int error_id)
@@ -100,7 +102,7 @@ void	return_error(t_cub *cub, int error_id)
 		print_map_and_bmp_message(error_id);
 	else if (error_id <= -112 && error_id >= -116)
 		print_texture_message(error_id);
-	else if (error_id <= -117 && error_id >= -120)
+	else if (error_id <= -117 && error_id >= -121)
 		print_settings_and_window_message(error_id);
 	ft_putendl("\x1B[31m---------------------------------------------\033[0m");
 	free_cub(cub);

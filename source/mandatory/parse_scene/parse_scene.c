@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/08 19:10:15 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/09 17:26:20 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,14 @@ static void	check_resolution_limits(t_cub *cub)
 	game->ray.total = set->screen[WIDTH];
 }
 
-static void	define_world_size(t_settings *setting, t_map *map)
+static void	set_world_and_map_size(t_settings *setting, t_map *map, t_cub *cub)
 {
 	setting->world[WIDTH] = map->total_column * TILE_SIZE;
 	setting->world[HEIGHT] = map->total_row * TILE_SIZE;
+	map->row = (char **)malloc((map->total_row + 1) * sizeof(char *));
+	if (map->row == NULL)
+		return_error(cub, -121);
+	map->row[map->total_row] = NULL;
 }
 
 static void	save_sprites_locations(t_render *game)
@@ -76,7 +80,6 @@ static void	save_sprites_locations(t_render *game)
 
 void	parse_scene(char *file, t_cub *cub)
 {
-	char		*line;
 	int			fd;
 
 	fd = open(file, O_RDONLY);
@@ -84,17 +87,17 @@ void	parse_scene(char *file, t_cub *cub)
 		return_error(cub, -104);
 	while (get_next_line(fd, &cub->settings.line))
 	{
-		line = cub->settings.line;
-		parse_settings(cub, line);
+		parse_settings(cub, cub->settings.line, &cub->settings);
 		ft_free_and_null((void **)&cub->settings.line);
 	}
-	line = cub->settings.line;
-	parse_settings(cub, line);
+	parse_settings(cub, cub->settings.line, &cub->settings);
 	ft_free_and_null((void **)&cub->settings.line);
 	close(fd);
 	check_colors(cub, &cub->settings.ceiling, &cub->settings.floor);
-	define_world_size(&cub->settings, &cub->game.map);
-	fill_map(cub, file, cub->game.map.total_row);
+	set_world_and_map_size(&cub->settings, &cub->game.map, cub);
+	fd = open(file, O_RDONLY);
+	fill_map(cub, fd, 0);
+	close(fd);
 	check_map(cub, &cub->game);
 	check_resolution_limits(cub);
 	save_sprites_locations(&cub->game);
