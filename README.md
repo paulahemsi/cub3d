@@ -400,5 +400,7 @@ Habemus sprites!!
 
 * 08/05: The micro-leaks was in fact the static variable from get_next_line function, I was able to solved it, but talking with some other students we reach the conclusion that since it was a static variable, it was not a problem to let the exit function ger rid of that chunk of memory for us. I founded also that my map was being render even if was a empty line in the middle of his content, and it shouldnt, so I corrected it.
 
+* 09/05: All project is in the norme. Mandatory part seems to be completly finished and ready to evaluation.
+
 </details>
 

@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/07 02:57:09 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:18:41 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int	key_released(int key, t_cub *cub)
 		cub->game.player.direction[TURN] = 0;
 	if (key == SHIFT)
 	{
-		cub->game.player.speed = 7;
-		cub->game.player.rotate_speed = 1.5 * PI / 180;
+		cub->game.player.speed = 10;
+		cub->game.player.rotate_speed = 2.5 * PI / 180;
 	}
 	return (0);
 }
