@@ -88,7 +88,10 @@ S ./textures/sprites/mario.XPM
 
 # bonus:
 
-![](./study_resources/night_glasses.gif)
+![](./study_resources/night_vision.gif)
+
+
+![](./study_resources/ending.gif)
 
 **bônus and extra features**:
 
@@ -283,8 +286,6 @@ I made main.c function and error handling for program arguments (.cub and flag -
 
 * 20/03: I manage to adjust [vscode debugger for wsl](https://code.visualstudio.com/docs/cpp/launch-json-reference) thanks to [this extension](https://code.visualstudio.com/docs/remote/wsl-tutorial). I began a error handling mindmap.
 
-![](./study_resources/mindmaps/cub3d_errors.jpg)
-
 * 21/03: I manage to save textures paths and resolution, floor and ceiling values in theyer own variables (inside configs struct).
 I still need to deal with the map and double configs.
 
@@ -293,8 +294,6 @@ I still need to deal with the map and double configs.
 * 23/03: I finished map and walls errors handling. Map correctly stored in a 2d array.
 
 * 24/03: I included minilibx but I'm struggling to create a window with it. May be is an Wsl issue :/
-
-![](./study_resources/mindmaps/check__walls.jpg)
 
 * 25/03: I gave up wsl and started working on the vm. The window with mlx was created and I managed to render some pixels and lines (yey!). I started to study geometry in computer graphics
 
@@ -329,6 +328,8 @@ I'm still not sure if it will be better to render it in another window or in the
 
 * 7/04: *wall_collisions* 7 vs 1 *paula*
 
+![](study_resources/aranhadoidona.gif)
+
 * 8/04: *wall_collisions* 8 vs 5 *paula*
 
 * 9/04: Every dog has its day. Not only the wall collisions are working (99%), but also the walls are beeing rendered! **And** running/walking is implemented! 
@@ -354,6 +355,8 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 ![](study_resources/bugs_are_beautiful.gif)
 
+![](study_resources/bugmetropolis.gif)
+
 * 18/04: Oh my! The walls' textures are there! Do they have some issues? Yes. But they are there!
 
 * 19/04: All libft's functions are now in the new norme v3, and I've realised that some of the walls' issues were just a matter of adjusting the size of the images (they must be 64 x 64).
@@ -363,6 +366,8 @@ I also implemented invisibility and crouching, but the result got a little bit a
 * 21/04: I spent the whole day working on the sprites and in the end I needed to go back to my last git commit 'cause nothing worked. Mud.
 
 * 22/04: Still in the sprite's swamp
+
+![](./study_resources/sprite_doida.gif)
 
 * 23/04: I gave myself a break from the mindblowing sprites and spent the day reviewing the code and adjusting to the norme
 
