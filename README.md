@@ -402,5 +402,8 @@ Habemus sprites!!
 
 * 09/05: All project is in the norme. Mandatory part seems to be completly finished and ready to evaluation.
 
+* 10/05: Project finished! 115% :)
+Already missing you, cub.
+
 </details>
 

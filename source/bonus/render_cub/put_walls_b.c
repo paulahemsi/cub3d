@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 03:23:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/07 03:36:51 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/10 23:29:26 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ static int	define_direction(t_game *game, t_ray *rays, int ray, t_texture t)
 		return ((int)rays[ray].hit[X] % t.width);
 }
 
-//!para bônus mexer no offset[X] para dar efeito de tudo se mexendo/tontura.
-//!algo por aqui: offset[X] = init[X] * texture.width / cub->game.wall_height;
-//!offset[Y] = 1 -> listras verticais
 static int	get_texture_color(t_cub *cub, int y, int offset_x)
 {
 	t_texture	texture;

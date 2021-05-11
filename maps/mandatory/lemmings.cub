@@ -4,8 +4,8 @@ C 0, 0, 51
 F 221, 187, 68
 
 WE ./textures/walls/lemmings_1.XPM
-EA ./textures/walls/lemmings_2.XPM
 NO ./textures/walls/lemmings_1.XPM
+EA ./textures/walls/lemmings_2.XPM
 SO ./textures/walls/lemmings_4.XPM
 S ./textures/sprites/lemmings.XPM
 

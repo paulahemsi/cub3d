@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:19:30 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/10 13:18:41 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/10 23:28:52 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,6 @@ int	key_released(int key, t_cub *cub)
 	{
 		cub->game.player.speed = 10;
 		cub->game.player.rotate_speed = 2.5 * PI / 180;
-	}
-	return (0);
-}
-
-int	mouse_clicked(int button, int pos_x, int pos_y, t_cub *cub)
-{
-	if ((button == MOUSE_1) || (button == MOUSE_2) || (button == MOUSE_3))
-	{
-		mlx_mouse_get_pos(cub->mlx_ptr, cub->window_ptr, &pos_x, &pos_y);
-		ft_printf("Button pressed: %i\n(%4d, %4d)\n", button, pos_x, pos_y);
 	}
 	return (0);
 }
