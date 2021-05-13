@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 01:20:53 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/08 19:04:53 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/13 23:36:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ static void	save_sprites_locations(t_game*game)
 	col = 0;
 	i = 0;
 	map = game->map.row;
-	game->sprites = (t_sprite *)malloc(game->num_sprites * sizeof(t_sprite));
-	ft_memset(game->sprites, 0, sizeof(game->sprites));
+	game->sprites = (t_sprite *)ft_calloc(game->num_sprites, sizeof(t_sprite));
 	while (map[col])
 	{
 		row = 0;

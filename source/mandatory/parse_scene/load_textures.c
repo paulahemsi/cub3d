@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:13:10 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/10 23:47:06 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/13 23:34:46 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	load_textures(char **path, t_cub *cub, t_render *game)
 	t_texture	*texture;
 	int			text;
 
-	game->texture = (t_texture *)malloc(4 * sizeof(t_texture));
+	game->texture = (t_texture *)ft_calloc(4, sizeof(t_texture));
 	texture = game->texture;
 	text = NORTH;
 	while (text <= WEST)

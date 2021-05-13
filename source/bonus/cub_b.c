@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 23:03:50 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/05/07 02:32:39 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/05/13 23:43:25 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	init_cub(t_cub *cub)
 	ft_memset(&cub->toggle, -1, sizeof(cub->toggle));
 	cub->toggle.bmp_id = 0;
 	cub->game.life = 3;
+	cub->game.texture = NULL;
+	cub->game.sprites = NULL;
 	cub->mlx_ptr = mlx_init();
 	if (!(cub->mlx_ptr))
 		return_error(cub, -105);
