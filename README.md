@@ -88,7 +88,10 @@ S ./textures/sprites/mario.XPM
 
 # bonus:
 
-![](./study_resources/night_glasses.gif)
+![](./study_resources/night_vision.gif)
+
+
+![](./study_resources/ending.gif)
 
 **bônus and extra features**:
 
@@ -283,8 +286,6 @@ I made main.c function and error handling for program arguments (.cub and flag -
 
 * 20/03: I manage to adjust [vscode debugger for wsl](https://code.visualstudio.com/docs/cpp/launch-json-reference) thanks to [this extension](https://code.visualstudio.com/docs/remote/wsl-tutorial). I began a error handling mindmap.
 
-![](./study_resources/mindmaps/cub3d_errors.jpg)
-
 * 21/03: I manage to save textures paths and resolution, floor and ceiling values in theyer own variables (inside configs struct).
 I still need to deal with the map and double configs.
 
@@ -293,8 +294,6 @@ I still need to deal with the map and double configs.
 * 23/03: I finished map and walls errors handling. Map correctly stored in a 2d array.
 
 * 24/03: I included minilibx but I'm struggling to create a window with it. May be is an Wsl issue :/
-
-![](./study_resources/mindmaps/check__walls.jpg)
 
 * 25/03: I gave up wsl and started working on the vm. The window with mlx was created and I managed to render some pixels and lines (yey!). I started to study geometry in computer graphics
 
@@ -329,6 +328,8 @@ I'm still not sure if it will be better to render it in another window or in the
 
 * 7/04: *wall_collisions* 7 vs 1 *paula*
 
+![](study_resources/aranhadoidona.gif)
+
 * 8/04: *wall_collisions* 8 vs 5 *paula*
 
 * 9/04: Every dog has its day. Not only the wall collisions are working (99%), but also the walls are beeing rendered! **And** running/walking is implemented! 
@@ -354,6 +355,8 @@ I also implemented invisibility and crouching, but the result got a little bit a
 
 ![](study_resources/bugs_are_beautiful.gif)
 
+![](study_resources/bugmetropolis.gif)
+
 * 18/04: Oh my! The walls' textures are there! Do they have some issues? Yes. But they are there!
 
 * 19/04: All libft's functions are now in the new norme v3, and I've realised that some of the walls' issues were just a matter of adjusting the size of the images (they must be 64 x 64).
@@ -363,6 +366,8 @@ I also implemented invisibility and crouching, but the result got a little bit a
 * 21/04: I spent the whole day working on the sprites and in the end I needed to go back to my last git commit 'cause nothing worked. Mud.
 
 * 22/04: Still in the sprite's swamp
+
+![](./study_resources/sprite_doida.gif)
 
 * 23/04: I gave myself a break from the mindblowing sprites and spent the day reviewing the code and adjusting to the norme
 
@@ -382,25 +387,25 @@ And also in the bug subject, I've, after days and days of struggling and digging
 and....:
 Habemus sprites!!
 
-* 29/04: The leaks were found and corrected and the code is being refactored. Error messages were wrote in a more specific way.
+* 29/04: The leaks were found and corrected and the code is being refactored. Error messages were written in a more specific way.
 
-* 30/04: Two mechanics were in conflict: the `r` *always running* key and `shift` to run, so I took off the always running option. Bonus and mandatory version has now diferente rules in the makefile. Mandatory version is clean and ready to evaluation!
+* 30/04: Two mechanics were in conflict: the `r` *always running* key and `shift` to run, so I took off the *always running* option. Bonus and mandatory versions have now different rules in the makefile. Mandatory version is clean and ready for evaluation!
 
-* 02/05: I managed to insert diferent objects in the map, that can be collected. The hud changeded when the player picks an item, but in a pre-determined order.
+* 02/05: I managed to insert different objects in the map that can be collected. The hud changes when the player picks an item, but in a pre-determined order.
 
-* 03/05: All the colectable object are done (I want to redraw the map, though) and being rendered. The game now has locked doors that can be unlocked with the correct keys. The life bar is in the game, and when the player loses all the hearts, the character is replaced by a skull.
+* 03/05: All the colectable objects are done (I want to redraw the map, though) and being rendered. The game now has locked doors that can be unlocked with the correct keys. The life bar is in the game, and when the player loses all the hearts, the character is replaced by a skull.
 
-* 04/05: I added poisons bottles that make the player loses life, some new maps for the mandatory part (tributes to lemmings, doom and mario, nice games from my childhoood) and finished the rgb locked doors implementation.
+* 04/05: I added poison bottles that make the player lose life, some new maps for the mandatory part (tributes to lemmings, doom and mario, nice games from my childhoood) and finished the rgb locked doors implementation.
 
-* 05/05: The game final moment is ready to go! I made the new sprite that unlocks the colorful world in the end of the level, changing the walls and the sky. The sky seems like a party though, with flashing colorful lights. It's a bug, but maybe I'll implemented as a featured cause is actualy very interesting and make sense in the end of the game. Just need to understand why is happening and make it on purpose.
+* 05/05: The game final moment is ready to go! I made the new sprite that unlocks the colorful world in the end of the level, changing the walls and the sky. The sky seems like a party though, with flashing colorful lights. It's a bug, but maybe I'll implement it as a feature cause it's actualy very interesting and make sense in the end of the game. I just need to understand why it's happening and make it on purpose.
 
-* 06/05: git empty object error again :/ The google says is something with the vm, but I cant find more acurate informations. Besides that, no leaks, says valgrind! Level 1 is finished and errors are being handle correctly in bônus program. I spent some hours trying to improve the gradient background mess, not so sucessful though. All the files are in the new norme.
+* 06/05: git empty object error again :/ Google says it's something with the vm, but I can't find more accurate information. Besides that, no leaks, says valgrind! Level 1 is finished and errors are being handled correctly in bonus program. I spent some hours trying to improve the gradient background mess, not so sucessfully though. All the files are in the new norme.
 
-* 07/05: A segfault was founded when a wrong character was placed in the map, is already solved, but I start to use valgrind in each test and because of that I descovered some very small leaks when a error is found in the map. Trying to fix it.
+* 07/05: A segfault was founded when a wrong character was placed in the map, it's already solved, but I started to use valgrind in each test and because of that I discovered some very small leaks when an error is found in the map. Trying to fix it.
 
-* 08/05: The micro-leaks was in fact the static variable from get_next_line function, I was able to solved it, but talking with some other students we reach the conclusion that since it was a static variable, it was not a problem to let the exit function ger rid of that chunk of memory for us. I founded also that my map was being render even if was a empty line in the middle of his content, and it shouldnt, so I corrected it.
+* 08/05: The micro-leaks were in fact the static variable from get_next_line function, I was able to solved it, but talking with some other students we reached the conclusion that since it was a static variable, it was not a problem to let the exit function get rid off that chunk of memory for us. I also founded that my map was being rendered even if it was an empty line in the middle of his content, and it shouldnt, so I corrected it.
 
-* 09/05: All project is in the norme. Mandatory part seems to be completly finished and ready to evaluation.
+* 09/05: All project is in the norme. Mandatory part seems to be completely finished and ready for evaluation.
 
 * 10/05: Project finished! 115% :)
 Already missing you, cub.
