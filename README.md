@@ -1,4 +1,4 @@
-# cub3d
+# cub3d :suspect:
 cause Doom was a milestone in my childhood
 
 *in process*
@@ -10,13 +10,12 @@ cause Doom was a milestone in my childhood
 * [Study resources](#study_resources)
 * [Work Diary](#work_diary)
 
-## introduction 
-:suspect:
+## introduction :hurtrealbad:
 
 This [project](https://github.com/paulahemsi/cub3d/blob/main/study_resources/en.subject.pdf) is inspired by the world-famous 90’s game [Wolfeinstein 3D](http://users.atw.hu/wolf3d/), which was the first FPS ever. It will enable to explore ray-casting. My goal will be to make a dynamic view inside a maze, in which you’ll have to find your way
 
-## usage 
-:feelsgood:
+## usage :godmode:
+
 
 [Clang](https://releases.llvm.org/9.0.0/tools/clang/docs/index.html)
 
@@ -119,18 +118,21 @@ key  | function |
 ---|------|
 left/right arrow or `q`/`e`| turn				|
 `w` `a` `s` `d` | move					|
-shift | run				|
+`shift` | run				|
 `m` | toggle minimap (with map item)|
 `n` | toggle night vision (with glasses item)|
 `b` | toggle debug colors				|
 `p` | save .bmp screenshot				|
 
 you may edit these settings in .cub file:
-
+```
 L level (1 or 2)
+
 NO/SO/WE/EA path to the north/south/west/east texture
+
 F floor colors
 C ceiling colors
+
 map, composed by those possible characters:
 '0' empty space
 '1' wall
@@ -149,10 +151,11 @@ itens:
 '9' end game marker
 'N'/'S'/'E'/'W' for player position and orientation
 ' ' for optional padding
-The map must be the last content
 
-## step_by_step 
-:hurtrealbad:
+The map must be the last content
+```
+
+## step_by_step :rage3:
 
 (time may overlap, like life and data)
 * I watched videos and read about raycasting, field of view algorithms and collision detection to have an overall idea about the project. (~4 days)
@@ -202,14 +205,14 @@ for more details, read the [work diary](#work_diary)
 		1.calculate projection wall height
 		2. draw half of the height above the middle and half under the midle of the pixel column
 
-## mindmap 
-:goberserk:
+## mindmap :goberserk:
+
+error handling
 
 ![](./study_resources/mindmaps/cub3d_errors.jpg)
 ![](./study_resources/mindmaps/check__walls.jpg)
 
-## study_resources
-:finnadie:
+## study_resources :finnadie:
 
 ### raycasting
 * [Ray-Casting Tutorial For Game Development And Other Purposes](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/) by F. Permadi
@@ -249,7 +252,7 @@ for more details, read the [work diary](#work_diary)
 * [random walker to make a procedural dungeon map](https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/) by Ahmad Abdolsaheb
 * [John Carmack tech talk](https://www.youtube.com/watch?v=lHLpKzUxjGk)
 
-## work_diary
+## work_diary :feelsgood:
 
 inspired by L.R.Couto [Grumpy Robot](https://github.com/lrcouto) and some articles [like this one](https://hbr.org/2011/04/four-reasons-to-keep-a-work-di) from Teresa Amabile or [this one](https://medium.com/the-productivity-inn/how-to-maintain-a-work-diary-for-better-career-growth-eb543f97c34b) from Musa Mawanda.
 
