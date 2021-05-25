@@ -1,8 +1,6 @@
 # cub3d :suspect:
 cause Doom was a milestone in my childhood
 
-*in process*
-
 * [Introduction](#introduction)
 * [Usage](#usage)
 * [Step by step](#step_by_step)
