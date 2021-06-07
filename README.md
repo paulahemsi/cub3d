@@ -85,6 +85,10 @@ S ./textures/sprites/mario.XPM
 
 # bonus:
 
+# PB MAZE game
+
+Help Jo bring the colors back to the world
+
 ![](./study_resources/night_vision.gif)
 
 
